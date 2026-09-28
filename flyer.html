@@ -57,11 +57,12 @@
 
   /* ── Panel nocturno ── */
   .night {
-    position: absolute; left: 56px; right: 56px; top: 140px; height: 850px;
+    position: absolute; left: 56px; right: 56px; top: 140px; height: 1430px;
     border-radius: 40px;
     background:
       radial-gradient(900px 520px at 78% 18%, rgba(149,201,225,.16), transparent 60%),
-      radial-gradient(900px 600px at 20% 110%, rgba(0,72,135,.55), transparent 65%),
+      radial-gradient(900px 520px at 22% 58%, rgba(0,72,135,.45), transparent 65%),
+      radial-gradient(900px 500px at 80% 105%, rgba(0,72,135,.5), transparent 65%),
       var(--navy);
     overflow: hidden;
     color: #fff;
@@ -132,12 +133,11 @@
   /* ── Concurso ── */
   .contest {
     position: absolute; top: 1010px; left: 56px; right: 56px; height: 560px;
-    padding-top: 92px;
+    padding-top: 76px;
     text-align: center;
     border-radius: 40px;
     background:
-      radial-gradient(900px 500px at 80% 110%, rgba(0,72,135,.55), transparent 65%),
-      var(--navy);
+      transparent;
     color: #fff;
   }
   .kicker {
@@ -159,9 +159,9 @@
   /* etiqueta de cartón con cinta */
   .tagcard {
     position: relative;
-    margin: 48px auto 0;
-    width: 900px;
-    padding: 34px 44px 32px 164px;
+    margin: 40px auto 0;
+    width: 820px;
+    padding: 30px 36px 28px 150px;
     text-align: left;
     background:
       repeating-linear-gradient(90deg, rgba(120,84,44,.07) 0 2px, transparent 2px 9px),
@@ -178,14 +178,14 @@
     box-shadow: 0 1px 2px rgba(0,0,0,.08);
     z-index: 3;
   }
-  .tagcard .recycle { position: absolute; left: 44px; top: 50%; width: 92px; height: 92px; margin-top: -46px; }
+  .tagcard .recycle { position: absolute; left: 36px; top: 50%; width: 92px; height: 92px; margin-top: -46px; }
   .tagcard p {
     font-family: "Caveat", cursive; font-weight: 700;
-    font-size: 54px; line-height: 1.05; color: var(--navy);
+    font-size: 50px; line-height: 1.05; color: var(--navy);
   }
   .tagcard small {
     display: block; margin-top: 10px;
-    font-family: "Plus Jakarta Sans", sans-serif; font-size: 22px; font-weight: 600;
+    font-family: "Plus Jakarta Sans", sans-serif; font-size: 20px; font-weight: 600; white-space: nowrap;
     color: #3B2E1E; letter-spacing: .01em;
   }
 
@@ -211,7 +211,7 @@
 
   <!-- Panel nocturno -->
   <section class="night">
-    <svg class="deco" viewBox="0 0 1088 850" preserveAspectRatio="none" aria-hidden="true">
+    <svg class="deco" viewBox="0 0 1088 1430" aria-hidden="true">
       <defs>
         <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
           <stop offset="0" stop-color="#F2E8D0" stop-opacity=".28"/>
@@ -229,8 +229,8 @@
       <g fill="none" stroke-width="7" stroke-linecap="round">
         <path d="M34 118 V74 A40 40 0 0 1 74 34 H118" stroke="#95C9E1"/>
         <path d="M970 34 H1014 A40 40 0 0 1 1054 74 V118" stroke="#EE7F35"/>
-        <path d="M1054 732 V776 A40 40 0 0 1 1014 816 H970" stroke="#95C9E1"/>
-        <path d="M118 816 H74 A40 40 0 0 1 34 776 V732" stroke="#EE7F35"/>
+        <path d="M1054 1312 V1356 A40 40 0 0 1 1014 1396 H970" stroke="#95C9E1"/>
+        <path d="M118 1396 H74 A40 40 0 0 1 34 1356 V1312" stroke="#EE7F35"/>
       </g>
 
       <!-- Luna -->
