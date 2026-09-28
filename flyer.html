@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Halloween Cornerstone</title>
+<meta name="viewport" content="width=1200">
+<style>
+  @font-face { font-family: "Fraunces"; src: url(assets/fonts/fraunces.woff2) format("woff2"); font-weight: 100 900; }
+  @font-face { font-family: "Plus Jakarta Sans"; src: url(assets/fonts/plus-jakarta-sans.woff2) format("woff2"); font-weight: 200 800; }
+  @font-face { font-family: "Caveat"; src: url(assets/fonts/caveat.woff2) format("woff2"); font-weight: 400 700; }
+  /* ── Paleta ─────────────────────────────────────────────
+     Cornerstone: Dark Navy #0D1427 · Blue #004887 · Blue Accent #95C9E1
+                  Blue Accent #D8E8F5 · Gray #E3E3E3 · Action Red #CB333B (solo en logo)
+     Halloween:   Calabaza #EE7F35 (acento estratégico) · Luna #F2E8D0
+     Reutilizado: Cartón #C9A77C · Papel #F5F2EC                          */
+  :root {
+    --navy: #0D1427;
+    --blue: #004887;
+    --blue-2: #95C9E1;
+    --blue-3: #D8E8F5;
+    --gray: #E3E3E3;
+    --pumpkin: #EE7F35;
+    --pumpkin-dk: #D9662A;
+    --moon: #F2E8D0;
+    --kraft: #C9A77C;
+    --kraft-lt: #DCC3A0;
+    --paper: #F5F2EC;
+    --ink-soft: #4A5468;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); }
+  body { width: 1200px; height: 1697px; overflow: hidden; }
+
+  .flyer {
+    position: relative;
+    width: 1200px; height: 1697px;
+    background: var(--paper);
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    color: var(--navy);
+    overflow: hidden;
+  }
+  /* grano de papel reciclado, muy sutil */
+  .flyer::before {
+    content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .38  0 0 0 0 .28  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: .22; mix-blend-mode: multiply;
+  }
+  .flyer > * { position: relative; z-index: 1; }
+
+  /* ── Cabecera ── */
+  .header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 58px 72px 0;
+    height: 142px;
+  }
+  .header img { height: 40px; display: block; }
+  .header .tag {
+    font-size: 15px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .header .tag b { color: var(--pumpkin-dk); font-weight: 700; }
+
+  /* ── Panel nocturno ── */
+  .night {
+    position: absolute; left: 56px; right: 56px; top: 150px; height: 850px;
+    border-radius: 40px;
+    background:
+      radial-gradient(900px 520px at 78% 18%, rgba(149,201,225,.16), transparent 60%),
+      radial-gradient(900px 600px at 20% 110%, rgba(0,72,135,.55), transparent 65%),
+      var(--navy);
+    overflow: hidden;
+    color: #fff;
+  }
+  .night svg.deco { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  .night .content {
+    position: absolute; left: 0; right: 0; top: 318px;
+    text-align: center;
+  }
+  .eyebrow {
+    font-size: 17px; font-weight: 600; letter-spacing: .38em; text-transform: uppercase;
+    color: var(--blue-2);
+  }
+  .title {
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 10px;
+    font-family: "Fraunces", Georgia, serif;
+    font-variation-settings: "SOFT" 100, "opsz" 144;
+    font-weight: 700;
+    font-size: 152px; line-height: 1;
+    letter-spacing: -.01em;
+    color: #fff;
+  }
+  .title .o { flex: none; width: .74em; height: .80em; margin: 0 .03em; transform: translateY(.02em); }
+  .subtitle {
+    margin-top: 6px;
+    font-family: "Caveat", cursive; font-weight: 700;
+    font-size: 40px; color: var(--kraft-lt);
+    transform: rotate(-1.5deg);
+  }
+  .when {
+    margin: 52px auto 0;
+    display: inline-flex; align-items: stretch; gap: 0;
+    border-top: 1px solid rgba(149,201,225,.28);
+    padding-top: 34px;
+  }
+  .when .col { padding: 0 44px; text-align: left; }
+  .when .col + .col { border-left: 1px solid rgba(149,201,225,.28); }
+  .when .lbl {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase;
+    color: var(--blue-2);
+  }
+  .when .lbl svg { width: 20px; height: 20px; }
+  .when .val { margin-top: 8px; font-size: 44px; font-weight: 700; letter-spacing: -.01em; white-space: nowrap; }
+
+  /* ── Invitación familiar ── */
+  .family {
+    position: absolute; top: 966px; left: 0; right: 0;
+    display: flex; justify-content: center;
+  }
+  .pill {
+    position: relative;
+    background: var(--pumpkin);
+    color: var(--navy);
+    font-size: 34px; font-weight: 800; letter-spacing: -.005em;
+    padding: 20px 52px 20px 108px;
+    border-radius: 999px;
+    box-shadow: 0 14px 30px -14px rgba(13,20,39,.55);
+  }
+  .pill::after { /* costura de hilo, como hecho a mano */
+    content: ""; position: absolute; inset: 7px; border-radius: 999px;
+    border: 2px dashed rgba(13,20,39,.28);
+  }
+  .pill .ghost { position: absolute; left: 26px; bottom: 8px; width: 70px; height: 82px; }
+
+  /* ── Concurso ── */
+  .contest {
+    position: absolute; top: 1112px; left: 0; right: 0;
+    text-align: center;
+  }
+  .kicker {
+    display: inline-flex; align-items: center; gap: 18px;
+    font-size: 15px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase;
+    color: var(--blue);
+  }
+  .kicker::before, .kicker::after { content: ""; width: 56px; height: 1.5px; background: var(--blue-2); }
+  .contest h2 {
+    margin-top: 20px;
+    font-size: 54px; line-height: 1.12; font-weight: 800; letter-spacing: -.02em;
+    color: var(--navy);
+  }
+  .contest h2 .hl { color: var(--blue); position: relative; white-space: nowrap; }
+  .contest h2 .hl svg {
+    position: absolute; left: -2%; bottom: -14px; width: 104%; height: 18px; z-index: -1;
+  }
+
+  /* etiqueta de cartón con cinta */
+  .tagcard {
+    position: relative;
+    margin: 58px auto 0;
+    width: 760px;
+    padding: 34px 44px 30px 150px;
+    text-align: left;
+    background:
+      repeating-linear-gradient(90deg, rgba(120,84,44,.07) 0 2px, transparent 2px 9px),
+      linear-gradient(180deg, #D3B38A, #C6A174);
+    border-radius: 6px;
+    transform: rotate(-1.4deg);
+    box-shadow: 0 18px 30px -18px rgba(70,48,20,.55);
+    clip-path: polygon(0 3%, 3% 0, 22% 2%, 41% 0, 63% 2.5%, 82% .5%, 97% 1.5%, 100% 6%, 99.4% 34%, 100% 67%, 99.2% 96%, 96% 100%, 74% 98.5%, 52% 100%, 29% 98%, 8% 100%, 0 96%, .6% 62%, 0 30%);
+  }
+  .tape {
+    position: absolute; top: -18px; left: 50%; width: 150px; height: 40px; margin-left: -75px;
+    background: rgba(245,236,214,.78);
+    transform: rotate(3deg);
+    box-shadow: 0 1px 2px rgba(0,0,0,.08);
+    z-index: 3;
+  }
+  .tagcard .recycle { position: absolute; left: 42px; top: 50%; width: 76px; height: 76px; margin-top: -38px; }
+  .tagcard p {
+    font-family: "Caveat", cursive; font-weight: 700;
+    font-size: 44px; line-height: 1.08; color: var(--navy);
+  }
+  .tagcard small {
+    display: block; margin-top: 10px;
+    font-family: "Plus Jakarta Sans", sans-serif; font-size: 18px; font-weight: 500;
+    color: #3B2E1E; letter-spacing: .01em;
+  }
+
+  /* ── Pie ── */
+  .footer {
+    position: absolute; left: 72px; right: 72px; bottom: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(13,20,39,.14);
+    padding-top: 22px;
+    font-size: 17px; color: var(--ink-soft);
+  }
+  .footer .note { display: flex; align-items: center; gap: 12px; }
+  .footer .note svg { width: 22px; height: 22px; flex: none; }
+  .footer img { height: 38px; }
+</style>
+</head>
+<body>
+<main class="flyer">
+
+  <!-- Cabecera -->
+  <header class="header">
+    <img src="assets/logo-cornerstone-horizontal.png" alt="Cornerstone">
+    <span class="tag">Octubre <b>·</b> Colaboradores</span>
+  </header>
+
+  <!-- Panel nocturno -->
+  <section class="night">
+    <svg class="deco" viewBox="0 0 1088 850" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0" stop-color="#F2E8D0" stop-opacity=".28"/>
+          <stop offset="1" stop-color="#F2E8D0" stop-opacity="0"/>
+        </radialGradient>
+        <symbol id="bat" viewBox="0 14 100 30">
+          <path d="M50 41 C54 35 59 34 63 38 C67 32 75 31 80 36 C84 28 92 24 100 24 C88 16 72 16 62 24 C58 22 56 22 54 23.5 L53 17 L51 21.5 L49 21.5 L47 17 L46 23.5 C44 22 42 22 38 24 C28 16 12 16 0 24 C8 24 16 28 20 36 C25 31 33 32 37 38 C41 34 46 35 50 41 Z"/>
+        </symbol>
+        <symbol id="spark" viewBox="-10 -10 20 20">
+          <path d="M0 -10 C1 -3 3 -1 10 0 C3 1 1 3 0 10 C-1 3 -3 1 -10 0 C-3 -1 -1 -3 0 -10 Z"/>
+        </symbol>
+      </defs>
+
+      <!-- Esquinas: lenguaje de las "C" entrelazadas del símbolo Cornerstone -->
+      <g fill="none" stroke-width="7" stroke-linecap="round">
+        <path d="M34 118 V74 A40 40 0 0 1 74 34 H118" stroke="#95C9E1"/>
+        <path d="M970 34 H1014 A40 40 0 0 1 1054 74 V118" stroke="#EE7F35"/>
+        <path d="M1054 732 V776 A40 40 0 0 1 1014 816 H970" stroke="#95C9E1"/>
+        <path d="M118 816 H74 A40 40 0 0 1 34 776 V732" stroke="#EE7F35"/>
+      </g>
+
+      <!-- Luna -->
+      <circle cx="830" cy="190" r="190" fill="url(#moonGlow)"/>
+      <circle cx="830" cy="190" r="104" fill="#F2E8D0"/>
+      <g fill="#E4D6B6">
+        <circle cx="796" cy="162" r="15"/>
+        <circle cx="858" cy="222" r="21"/>
+        <circle cx="866" cy="150" r="8"/>
+        <circle cx="800" cy="236" r="7"/>
+      </g>
+
+      <!-- Telaraña mínima en esquina -->
+      <g fill="none" stroke="#95C9E1" stroke-opacity=".32" stroke-width="1.4">
+        <path d="M60 60 L230 60 M60 60 L210 150 M60 60 L150 210 M60 60 L60 230"/>
+        <path d="M110 60 Q100 78 103 85 Q88 96 85 103 Q78 100 60 110"/>
+        <path d="M160 60 Q144 94 146 110 Q118 128 110 146 Q94 144 60 160"/>
+        <path d="M208 60 Q186 110 189 135 Q150 162 140 188 Q108 186 60 208"/>
+      </g>
+      <line x1="160" y1="206" x2="160" y2="262" stroke="#95C9E1" stroke-opacity=".45" stroke-width="1.2"/>
+      <g fill="#95C9E1" fill-opacity=".85">
+        <circle cx="160" cy="268" r="7"/>
+        <circle cx="160" cy="259" r="4.5"/>
+      </g>
+
+      <!-- Murciélagos -->
+      <use href="#bat" x="760" y="150" width="96" height="29" fill="#0D1427"/>
+      <use href="#bat" x="930" y="330" width="58" height="18" fill="#95C9E1" fill-opacity=".7"/>
+      <use href="#bat" x="360" y="120" width="44" height="13" fill="#95C9E1" fill-opacity=".5"/>
+
+      <!-- Destellos -->
+      <g fill="#F2E8D0">
+        <use href="#spark" x="560" y="80" width="20" height="20" fill-opacity=".9"/>
+        <use href="#spark" x="660" y="300" width="12" height="12" fill-opacity=".6"/>
+        <use href="#spark" x="250" y="300" width="14" height="14" fill-opacity=".7"/>
+        <use href="#spark" x="1000" y="560" width="16" height="16" fill-opacity=".6"/>
+      </g>
+    </svg>
+
+    <div class="content">
+      <div class="eyebrow">Cornerstone celebra</div>
+      <h1 class="title" aria-label="Halloween">
+        <span>HALL</span>
+        <!-- La "O": calabaza de papel recortado, cosida a mano -->
+        <svg class="o" viewBox="0 0 100 108" aria-hidden="true">
+          <path d="M50 22 C49 14 51 8 57 4" fill="none" stroke="#8A6A45" stroke-width="6" stroke-linecap="round"/>
+          <path d="M55 12 C64 4 76 6 80 12 C71 17 62 17 55 12 Z" fill="#9FB07F"/>
+          <ellipse cx="30" cy="64" rx="26" ry="40" fill="#D9662A"/>
+          <ellipse cx="70" cy="64" rx="26" ry="40" fill="#D9662A"/>
+          <ellipse cx="50" cy="64" rx="28" ry="42" fill="#EE7F35"/>
+          <ellipse cx="50" cy="64" rx="46" ry="41" fill="none" stroke="#FFF3E4" stroke-opacity=".55" stroke-width="1.6" stroke-dasharray="4 4"/>
+          <g fill="#0D1427">
+            <path d="M33 55 L41 44 L45 57 Z"/>
+            <path d="M67 55 L59 44 L55 57 Z"/>
+            <path d="M31 70 Q50 88 69 70 Q62 74 57 73 L54 78 L50 73 L46 78 L43 73 Q38 74 31 70 Z"/>
+          </g>
+        </svg>
+        <span>WEEN</span>
+      </h1>
+      <div class="subtitle">edición sostenible</div>
+
+      <div class="when">
+        <div class="col">
+          <div class="lbl">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+            Jueves
+          </div>
+          <div class="val">29 de octubre</div>
+        </div>
+        <div class="col">
+          <div class="lbl">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            Horario
+          </div>
+          <div class="val">3:30 p. m. – 5:30 p. m.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Invitación familiar -->
+  <div class="family">
+    <div class="pill">
+      <svg class="ghost" viewBox="0 0 100 118" aria-hidden="true">
+        <path d="M18 50 A32 32 0 0 1 82 50 V108 Q74 99 66 108 Q58 117 50 108 Q42 99 34 108 Q26 117 18 108 Z" fill="#F5F2EC" stroke="#0D1427" stroke-width="3.5" stroke-linejoin="round"/>
+        <ellipse cx="39" cy="54" rx="5" ry="7" fill="#0D1427"/>
+        <ellipse cx="61" cy="54" rx="5" ry="7" fill="#0D1427"/>
+        <path d="M44 70 Q50 75 56 70" fill="none" stroke="#0D1427" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      ¡Tus hijos también están invitados!
+    </div>
+  </div>
+
+  <!-- Concurso -->
+  <section class="contest">
+    <div class="kicker">Actividad principal</div>
+    <h2>
+      Concurso de disfraces<br>
+      <span class="hl">sostenibles o reciclados
+        <svg viewBox="0 0 400 18" preserveAspectRatio="none" aria-hidden="true"><path d="M4 12 C80 4 160 15 240 8 S360 6 396 10" fill="none" stroke="#C9A77C" stroke-width="9" stroke-linecap="round" opacity=".75"/></svg>
+      </span>
+    </h2>
+
+    <div class="tagcard">
+      <span class="tape"></span>
+      <!-- Símbolo de reutilización -->
+      <svg class="recycle" viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke="#0D1427" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="50" cy="50" r="45" stroke-opacity=".25" stroke-width="2" stroke-dasharray="3 5"/>
+        <path d="M24.5 45 A26 26 0 0 1 71 34.5"/>
+        <path d="M61 33 L71.5 35 L74 24.5"/>
+        <path d="M75.5 55 A26 26 0 0 1 29 65.5"/>
+        <path d="M39 67 L28.5 65 L26 75.5"/>
+      </svg>
+      <p>¡Crea tu disfraz en casa, reutiliza, imagina y sorpréndenos!</p>
+      <small>Cartón, telas, frascos, papel… lo que ya tengas es perfecto.</small>
+    </div>
+  </section>
+
+  <!-- Pie -->
+  <footer class="footer">
+    <span class="note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#D9662A" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 7.5v5.5M12 16.5v.01"/></svg>
+      Evitemos temáticas de terror explícito: habrá niños en la oficina.
+    </span>
+    <img src="assets/simbolo-cornerstone.png" alt="">
+  </footer>
+
+</main>
+</body>
+</html>
