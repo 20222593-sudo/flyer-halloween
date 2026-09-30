@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Navidad Cornerstone</title>
+<meta name="viewport" content="width=1200">
+<style>
+  @font-face { font-family: "Fraunces"; src: url(assets/fonts/fraunces.woff2) format("woff2"); font-weight: 100 900; }
+  @font-face { font-family: "Plus Jakarta Sans"; src: url(assets/fonts/plus-jakarta-sans.woff2) format("woff2"); font-weight: 200 800; }
+  /* ── Paleta ─────────────────────────────────────────────
+     Cornerstone: Dark Navy #0D1427 · Blue #004887 · Blue Accent #95C9E1
+                  Blue Accent #D8E8F5 · Action Red #CB333B (énfasis puntual)
+     Navidad:     Dorado #C49A45 / #E3C47E · Pino #1F5A4C (acento)
+     Base:        Marfil cálido #FBF8F3                                    */
+  :root {
+    --navy: #0D1427;
+    --blue: #004887;
+    --blue-2: #95C9E1;
+    --blue-3: #D8E8F5;
+    --red: #CB333B;
+    --gold: #C49A45;
+    --gold-lt: #E3C47E;
+    --pine: #1F5A4C;
+    --ivory: #FBF8F3;
+    --ink-soft: #4A5468;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--ivory); }
+  body { width: 1200px; height: 1697px; overflow: hidden; }
+
+  .flyer {
+    position: relative; width: 1200px; height: 1697px; overflow: hidden;
+    background:
+      radial-gradient(760px 520px at 50% 40%, rgba(255,236,196,.55), transparent 70%),
+      var(--ivory);
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    color: var(--navy);
+  }
+  svg.deco { position: absolute; inset: 0; width: 1200px; height: 1697px; }
+
+  .logo { position: absolute; left: 72px; top: 62px; height: 46px; }
+
+  /* ── Contenido ── */
+  .content {
+    position: absolute; left: 0; right: 0; top: 545px;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+  }
+  .title {
+    display: flex; align-items: flex-end; justify-content: center; gap: 22px;
+    font-family: "Fraunces", Georgia, serif;
+    font-variation-settings: "SOFT" 50, "opsz" 144;
+    font-weight: 600; font-size: 172px; line-height: .9;
+    letter-spacing: .05em;
+    color: var(--navy);
+  }
+  .title svg { width: 118px; height: 150px; flex: none; margin-bottom: 4px; }
+
+  .divider { display: flex; align-items: center; gap: 18px; margin-top: 40px; }
+  .divider i { display: block; width: 110px; height: 1.5px; background: var(--gold); opacity: .7; }
+  .divider svg { width: 22px; height: 22px; }
+
+  .date {
+    margin-top: 38px;
+    font-size: 70px; font-weight: 800; letter-spacing: -.015em; line-height: 1;
+    color: var(--navy);
+  }
+  .date span { font-weight: 400; }
+
+  .meta {
+    margin-top: 26px;
+    display: flex; align-items: center; gap: 26px;
+    font-size: 36px; font-weight: 600; color: var(--blue);
+  }
+  .meta .item { display: flex; align-items: center; gap: 14px; }
+  .meta svg { width: 32px; height: 32px; flex: none; }
+  .meta .bar { color: var(--gold); font-weight: 300; font-size: 40px; }
+
+  .invite {
+    margin-top: 58px;
+    display: inline-flex; align-items: center; gap: 18px;
+    padding: 22px 46px 22px 34px;
+    border-radius: 999px;
+    background: var(--navy);
+    color: #fff;
+    font-size: 42px; font-weight: 800; letter-spacing: -.01em;
+    box-shadow: 0 18px 40px -18px rgba(13,20,39,.55);
+  }
+  .invite svg { width: 44px; height: 44px; flex: none; }
+
+  .must {
+    margin-top: 30px;
+    display: flex; align-items: center; gap: 12px;
+    font-size: 27px; font-weight: 700; color: var(--ink-soft);
+  }
+  .must i { width: 10px; height: 10px; border-radius: 2px; background: var(--red); transform: rotate(45deg); }
+</style>
+</head>
+<body>
+<main class="flyer">
+  <svg class="deco" id="deco" viewBox="0 0 1200 1697" aria-hidden="true">
+    <defs>
+      <radialGradient id="glow"><stop offset="0" stop-color="#FFD98A" stop-opacity=".75"/><stop offset="1" stop-color="#FFD98A" stop-opacity="0"/></radialGradient>
+      <radialGradient id="ballGold" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#F3DDA4"/><stop offset=".55" stop-color="#C49A45"/><stop offset="1" stop-color="#9C7630"/></radialGradient>
+      <radialGradient id="ballRed" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#E86A70"/><stop offset=".55" stop-color="#CB333B"/><stop offset="1" stop-color="#9A2229"/></radialGradient>
+      <radialGradient id="ballBlue" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#3C7DB8"/><stop offset=".55" stop-color="#004887"/><stop offset="1" stop-color="#062F58"/></radialGradient>
+      <radialGradient id="ballPearl" cx=".38" cy=".3" r=".85"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".7" stop-color="#F4F6FA"/><stop offset="1" stop-color="#DCE5EF"/></radialGradient>
+      <linearGradient id="capGold" x1="0" x2="1"><stop offset="0" stop-color="#9C7630"/><stop offset=".5" stop-color="#EBD08F"/><stop offset="1" stop-color="#9C7630"/></linearGradient>
+      <filter id="soft" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#0D1427" flood-opacity=".16"/></filter>
+      <symbol id="flake" viewBox="-12 -12 24 24">
+        <g stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none">
+          <path id="arm" d="M0 0V-10M0 -6.5l-2.6 -2.2M0 -6.5l2.6 -2.2"/>
+          <use href="#arm" transform="rotate(60)"/><use href="#arm" transform="rotate(120)"/>
+          <use href="#arm" transform="rotate(180)"/><use href="#arm" transform="rotate(240)"/><use href="#arm" transform="rotate(300)"/>
+        </g>
+      </symbol>
+      <symbol id="spark" viewBox="-10 -10 20 20"><path d="M0-10C.8-2.5 2.5-.8 10 0 2.5.8.8 2.5 0 10-.8 2.5-2.5.8-10 0-2.5-.8-.8-2.5 0-10Z" fill="currentColor"/></symbol>
+    </defs>
+
+    <!-- guirnalda de luces -->
+    <path id="wire" d="M-20 150 C 220 250, 430 268, 640 212 S 1030 128, 1220 176" fill="none" stroke="#0D1427" stroke-opacity=".55" stroke-width="1.6"/>
+    <g id="lights"></g>
+    <g id="ornaments"></g>
+
+    <!-- destellos y copos -->
+    <g color="#95C9E1" opacity=".75">
+      <use href="#flake" x="96" y="420" width="30" height="30"/>
+      <use href="#flake" x="1080" y="560" width="24" height="24"/>
+      <use href="#flake" x="1040" y="930" width="30" height="30"/>
+    </g>
+    <g color="#C49A45">
+      <use href="#spark" x="150" y="760" width="20" height="20"/>
+      <use href="#spark" x="990" y="760" width="16" height="16"/>
+      <use href="#spark" x="560" y="360" width="14" height="14"/>
+    </g>
+
+    <!-- escena inferior -->
+    <path d="M0 1500 C 220 1450, 420 1470, 640 1500 S 1020 1540, 1200 1480 V1697 H0Z" fill="#E7EFF8"/>
+    <path d="M0 1560 C 260 1530, 520 1545, 760 1575 S 1080 1600, 1200 1575 V1697 H0Z" fill="#D8E8F5"/>
+    <g id="scene"></g>
+  </svg>
+
+  <img class="logo" src="assets/logo-cornerstone-horizontal.png" alt="Cornerstone">
+
+  <section class="content">
+    <h1 class="title">NAVIDAD
+      <svg viewBox="0 0 118 150" aria-label="🎄">
+        <path d="M59 22 L96 74 H22 Z" fill="#1F5A4C" stroke="#1F5A4C" stroke-width="10" stroke-linejoin="round"/>
+        <path d="M59 50 L108 118 H10 Z" fill="#1F5A4C" stroke="#1F5A4C" stroke-width="10" stroke-linejoin="round"/>
+        <rect x="51" y="118" width="16" height="22" rx="3" fill="#0D1427"/>
+        <use href="#spark" x="44" y="0" width="30" height="30" color="#C49A45"/>
+        <circle cx="44" cy="78" r="5" fill="#CB333B"/><circle cx="76" cy="96" r="5" fill="#E3C47E"/>
+        <circle cx="60" cy="56" r="4.5" fill="#E3C47E"/><circle cx="34" cy="106" r="4.5" fill="#95C9E1"/>
+      </svg>
+    </h1>
+
+    <div class="divider"><i></i><svg viewBox="-10 -10 20 20"><use href="#spark" x="-10" y="-10" width="20" height="20" color="#C49A45"/></svg><i></i></div>
+
+    <p class="date"><span>Viernes</span> 18 de diciembre</p>
+
+    <p class="meta">
+      <span class="item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#C49A45" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
+        10:00 a. m. – 12:00 p. m.
+      </span>
+      <span class="bar">|</span>
+      <span class="item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#C49A45" stroke-width="2" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11.5a7 7 0 0 1 14 0C19 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+        En la oficina
+      </span>
+    </p>
+
+    <p class="invite">
+      <svg viewBox="0 0 44 44">
+        <rect x="6" y="18" width="32" height="22" rx="3" fill="#C49A45"/>
+        <rect x="4" y="12" width="36" height="9" rx="2.5" fill="#E3C47E"/>
+        <rect x="19" y="12" width="6" height="28" fill="#CB333B"/>
+        <path d="M22 12c-4-7-12-7-11-2 1 3 7 2 11 2Zm0 0c4-7 12-7 11-2-1 3-7 2-11 2Z" fill="none" stroke="#CB333B" stroke-width="2.6" stroke-linejoin="round"/>
+      </svg>
+      ¡Ven con tus hijos!
+    </p>
+
+    <p class="must"><i></i>Asistencia obligatoria.</p>
+  </section>
+</main>
+
+<script>
+(() => {
+  const NS = "http://www.w3.org/2000/svg";
+  const el = (tag, attrs, parent) => {
+    const n = document.createElementNS(NS, tag);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  };
+  const wire = document.getElementById("wire");
+  const L = wire.getTotalLength();
+  const at = t => wire.getPointAtLength(L * t);
+
+  /* luces cálidas sobre la guirnalda */
+  const lights = document.getElementById("lights");
+  const N = 15;
+  for (let i = 1; i < N; i++) {
+    const t = i / N, p = at(t), q = at(Math.min(1, t + .002));
+    const ang = Math.atan2(q.y - p.y, q.x - p.x) * 180 / Math.PI;
+    const g = el("g", { transform: `translate(${p.x} ${p.y}) rotate(${ang})` }, lights);
+    el("circle", { cx: 0, cy: 18, r: 34, fill: "url(#glow)" }, g);
+    el("rect", { x: -4, y: 0, width: 8, height: 7, rx: 1.5, fill: "#0D1427", "fill-opacity": .7 }, g);
+    el("ellipse", { cx: 0, cy: 16, rx: 6.5, ry: 10, fill: "#F2D48A" }, g);
+    el("ellipse", { cx: -2, cy: 12, rx: 1.8, ry: 3.4, fill: "#fff", "fill-opacity": .55 }, g);
+  }
+
+  /* adornos colgantes: el símbolo de Cornerstone como esfera principal */
+  const orn = document.getElementById("ornaments");
+  const ornament = (t, drop, r, fill, symbol) => {
+    const p = at(t), cy = p.y + drop;
+    el("line", { x1: p.x, y1: p.y, x2: p.x, y2: cy - r - 12, stroke: "#C49A45", "stroke-width": 1.4 }, orn);
+    el("circle", { cx: p.x, cy: cy - r - 16, r: 5, fill: "none", stroke: "#C49A45", "stroke-width": 1.6 }, orn);
+    el("rect", { x: p.x - r * .28, y: cy - r - 12, width: r * .56, height: 16, rx: 3, fill: "url(#capGold)" }, orn);
+    el("circle", { cx: p.x, cy, r, fill, filter: "url(#soft)" }, orn);
+    if (symbol) {
+      el("circle", { cx: p.x, cy, r: r - 9, fill: "none", stroke: "#C49A45", "stroke-width": 1.4, "stroke-opacity": .7 }, orn);
+      const s = r * 1.02;
+      el("image", { href: "assets/simbolo-cornerstone.png", x: p.x - s / 2, y: cy - s / 2, width: s, height: s }, orn);
+    } else {
+      el("ellipse", { cx: p.x - r * .35, cy: cy - r * .38, rx: r * .22, ry: r * .13, fill: "#fff", "fill-opacity": .5, transform: `rotate(-35 ${p.x - r * .35} ${cy - r * .38})` }, orn);
+    }
+  };
+  ornament(.12, 70, 22, "url(#ballGold)");
+  ornament(.71, 175, 82, "url(#ballPearl)", true);
+  ornament(.60, 92, 30, "url(#ballRed)");
+  ornament(.84, 96, 26, "url(#ballBlue)");
+
+  /* escena: familia junto al árbol */
+  const scene = document.getElementById("scene");
+  const tree = (x, base, h, color) => {
+    const g = el("g", {}, scene);
+    const w = h * .62, tiers = 3;
+    for (let i = 0; i < tiers; i++) {
+      const top = base - h + i * h * .24, bot = top + h * .42 + i * h * .02, hw = w * (.3 + i * .18);
+      el("path", { d: `M${x} ${top} L${x + hw} ${bot} H${x - hw} Z`, fill: color, stroke: color, "stroke-width": 10, "stroke-linejoin": "round" }, g);
+    }
+    el("rect", { x: x - h * .045, y: base - h * .12, width: h * .09, height: h * .12, rx: 3, fill: "#0D1427" }, g);
+    return g;
+  };
+  const big = tree(890, 1590, 330, "#1F5A4C");
+  tree(1030, 1570, 190, "#004887");
+  // estrella y luces del árbol principal
+  el("circle", { cx: 890, cy: 1258, r: 60, fill: "url(#glow)" }, scene);
+  el("use", { href: "#spark", x: 866, y: 1234, width: 48, height: 48, color: "#C49A45" }, scene);
+  [[870,1340,"#E3C47E"],[915,1378,"#CB333B"],[852,1420,"#95C9E1"],[930,1450,"#E3C47E"],[880,1486,"#CB333B"],[830,1512,"#E3C47E"],[950,1520,"#95C9E1"],[1020,1480,"#E3C47E"],[1040,1530,"#CB333B"]]
+    .forEach(([x, y, c]) => el("circle", { cx: x, cy: y, r: 6, fill: c }, scene));
+
+  // regalos
+  const gift = (x, base, w, h, box, ribbon) => {
+    const g = el("g", {}, scene);
+    el("rect", { x, y: base - h, width: w, height: h, rx: 4, fill: box }, g);
+    el("rect", { x: x - 4, y: base - h - 4, width: w + 8, height: h * .24, rx: 3, fill: box, filter: "brightness(1.1)" }, g);
+    el("rect", { x: x + w / 2 - 5, y: base - h - 4, width: 10, height: h + 4, fill: ribbon }, g);
+    const cx = x + w / 2, cy = base - h - 4;
+    el("path", { d: `M${cx} ${cy}c-6-14-24-14-22-4 2 6 14 4 22 4Zm0 0c6-14 24-14 22-4-2 6-14 4-22 4Z`, fill: "none", stroke: ribbon, "stroke-width": 4, "stroke-linejoin": "round" }, g);
+  };
+  gift(762, 1602, 78, 66, "#CB333B", "#E3C47E");
+  gift(862, 1606, 56, 46, "#C49A45", "#0D1427");
+  gift(990, 1604, 58, 50, "#95C9E1", "#C49A45");
+
+  // familia (pictogramas cálidos, tomados de la mano)
+  const fam = [];
+  const person = (x, base, h, color, extra = {}) => {
+    const g = el("g", {}, scene);
+    const r = h * .125, hy = base - h + r;
+    const sy = hy + r + h * .035, wt = h * .30, wb = h * .36, legH = h * .2, bodyB = base - legH;
+    const rr = wt * .32;
+    el("path", { d: `M${x - wb / 2} ${bodyB} L${x - wt / 2} ${sy + rr} Q${x - wt / 2} ${sy} ${x - wt / 2 + rr} ${sy} H${x + wt / 2 - rr} Q${x + wt / 2} ${sy} ${x + wt / 2} ${sy + rr} L${x + wb / 2} ${bodyB} Z`, fill: color, stroke: color, "stroke-width": 6, "stroke-linejoin": "round" }, g);
+    const lw = h * .085;
+    el("rect", { x: x - wb * .3 - lw / 2, y: bodyB - 4, width: lw, height: legH + 4, rx: lw / 2, fill: color }, g);
+    el("rect", { x: x + wb * .3 - lw / 2, y: bodyB - 4, width: lw, height: legH + 4, rx: lw / 2, fill: color }, g);
+    el("circle", { cx: x, cy: hy, r, fill: color }, g);
+    if (extra.hat) {
+      el("path", { d: `M${x - r * 1.02} ${hy - r * .15} A${r * 1.02} ${r * 1.02} 0 0 1 ${x + r * 1.02} ${hy - r * .15} Z`, fill: extra.hat }, g);
+      el("rect", { x: x - r * 1.1, y: hy - r * .3, width: r * 2.2, height: r * .42, rx: r * .2, fill: "#F4EFE6" }, g);
+      el("circle", { cx: x, cy: hy - r * 1.12, r: r * .3, fill: "#F4EFE6" }, g);
+    }
+    if (extra.scarf) {
+      el("rect", { x: x - wt * .55, y: sy - 2, width: wt * 1.1, height: h * .06, rx: h * .03, fill: extra.scarf }, g);
+      el("rect", { x: x + wt * .12, y: sy, width: h * .06, height: h * .17, rx: h * .03, fill: extra.scarf }, g);
+    }
+    const p = { x, sy, h, wt, color, g };
+    fam.push(p);
+    return p;
+  };
+  const arm = (p, hx, hy) => el("path", { d: `M${p.x + Math.sign(hx - p.x) * p.wt * .42} ${p.sy + p.h * .06} L${hx} ${hy}`, stroke: p.color, "stroke-width": p.h * .075, "stroke-linecap": "round", fill: "none" }, scene);
+  const hold = (a, b) => {
+    const hx = (a.x + b.x) / 2, hy = Math.max(a.sy + a.h * .36, b.sy + b.h * .36) - Math.min(a.h, b.h) * .02;
+    arm(a, hx, hy); arm(b, hx, hy);
+    el("circle", { cx: hx, cy: hy, r: Math.min(a.h, b.h) * .05, fill: b.color }, scene);
+  };
+  const free = (p, dir) => arm(p, p.x + dir * (p.wt * .62 + p.h * .06), p.sy + p.h * .4);
+
+  const dad = person(330, 1606, 190, "#0D1427", { scarf: "#C49A45" });
+  const kid1 = person(420, 1612, 112, "#004887", { hat: "#CB333B" });
+  const mom = person(506, 1610, 178, "#0D1427");
+  const kid2 = person(582, 1614, 92, "#004887", { scarf: "#CB333B" });
+  free(dad, -1);
+  hold(dad, kid1); hold(kid1, mom); hold(mom, kid2);
+  free(kid2, 1);
+  // bring figure bodies above arms
+  fam.forEach(p => scene.appendChild(p.g));
+})();
+</script>
+</body>
+</html>
