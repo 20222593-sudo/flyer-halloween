@@ -103,9 +103,12 @@
       <radialGradient id="glow"><stop offset="0" stop-color="#FFE2A0" stop-opacity=".8"/><stop offset=".35" stop-color="#FFE2A0" stop-opacity=".25"/><stop offset="1" stop-color="#FFE2A0" stop-opacity="0"/></radialGradient>
       <radialGradient id="bokehB"><stop offset="0" stop-color="#95C9E1" stop-opacity=".35"/><stop offset="1" stop-color="#95C9E1" stop-opacity="0"/></radialGradient>
       <radialGradient id="bokehG"><stop offset="0" stop-color="#E9CF94" stop-opacity=".32"/><stop offset="1" stop-color="#E9CF94" stop-opacity="0"/></radialGradient>
-      <linearGradient id="hill1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2B5D8E"/><stop offset="1" stop-color="#1A3F68"/></linearGradient>
-      <linearGradient id="hill2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D8E8F5"/><stop offset="1" stop-color="#AFCFE6"/></linearGradient>
-      <linearGradient id="hill3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7FAFD"/><stop offset="1" stop-color="#D8E8F5"/></linearGradient>
+      <linearGradient id="mist" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#95C9E1" stop-opacity="0"/><stop offset="1" stop-color="#95C9E1" stop-opacity=".16"/></linearGradient>
+      <linearGradient id="hill1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4A78"/><stop offset=".5" stop-color="#15375F"/></linearGradient>
+      <linearGradient id="hill2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9CC0DD"/><stop offset=".45" stop-color="#7EA6CB"/></linearGradient>
+      <linearGradient id="hill3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DCE9F5"/></linearGradient>
+      <radialGradient id="warm"><stop offset="0" stop-color="#FFE7B0" stop-opacity=".55"/><stop offset="1" stop-color="#FFE7B0" stop-opacity="0"/></radialGradient>
+      <radialGradient id="shadow"><stop offset="0" stop-color="#0D1427" stop-opacity=".22"/><stop offset="1" stop-color="#0D1427" stop-opacity="0"/></radialGradient>
       <filter id="shine" x="-40%" y="-40%" width="180%" height="180%">
         <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b"/>
         <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
@@ -117,9 +120,13 @@
     <g id="tree"></g>
 
     <!-- paisaje nevado -->
-    <path d="M0 1395 C 180 1360, 330 1372, 470 1400 S 820 1420, 960 1385 S 1140 1360, 1200 1375 V1697 H0Z" fill="url(#hill1)" opacity=".75"/>
-    <path d="M0 1470 C 240 1430, 470 1445, 700 1478 S 1060 1500, 1200 1455 V1697 H0Z" fill="url(#hill2)"/>
-    <path d="M0 1560 C 300 1528, 560 1540, 820 1568 S 1100 1580, 1200 1560 V1697 H0Z" fill="url(#hill3)"/>
+    <rect x="0" y="1250" width="1200" height="260" fill="url(#mist)"/>
+    <path id="h1" d="M0 1430 C 160 1392, 320 1398, 470 1424 S 800 1446, 960 1410 S 1140 1386, 1200 1398 V1697 H0Z" fill="url(#hill1)"/>
+    <g id="pinesFar"></g>
+    <path id="h2" d="M0 1508 C 220 1470, 430 1478, 640 1506 S 1020 1530, 1200 1488 V1697 H0Z" fill="url(#hill2)"/>
+    <g id="pinesMid"></g>
+    <path id="h3" d="M0 1590 C 260 1560, 470 1552, 640 1566 S 1000 1600, 1200 1580 V1697 H0Z" fill="url(#hill3)"/>
+    <ellipse cx="600" cy="1600" rx="330" ry="70" fill="url(#warm)"/>
     <g id="scene"></g>
     <g id="snow"></g>
   </svg>
@@ -247,14 +254,15 @@
   const fam = [];
   const person = (x, base, h, color, extra = {}) => {
     const g = el("g", {}, scene);
-    const r = h * .125, hy = base - h + r;
-    const sy = hy + r + h * .035, wt = h * .30, wb = h * .36, legH = h * .2, bodyB = base - legH;
+    const r = h * (extra.kid ? .15 : .105), hy = base - h + r;
+    const sy = hy + r + h * .03, wt = h * (extra.kid ? .3 : .25), wb = h * (extra.kid ? .36 : .34), legH = h * (extra.kid ? .2 : .17), bodyB = base - legH;
     const rr = wt * .32;
     el("path", { d: `M${x - wb / 2} ${bodyB} L${x - wt / 2} ${sy + rr} Q${x - wt / 2} ${sy} ${x - wt / 2 + rr} ${sy} H${x + wt / 2 - rr} Q${x + wt / 2} ${sy} ${x + wt / 2} ${sy + rr} L${x + wb / 2} ${bodyB} Z`, fill: color, stroke: color, "stroke-width": 6, "stroke-linejoin": "round" }, g);
-    const lw = h * .085;
+    const lw = h * (extra.kid ? .085 : .07);
     el("rect", { x: x - wb * .3 - lw / 2, y: bodyB - 4, width: lw, height: legH + 4, rx: lw / 2, fill: color }, g);
     el("rect", { x: x + wb * .3 - lw / 2, y: bodyB - 4, width: lw, height: legH + 4, rx: lw / 2, fill: color }, g);
     el("circle", { cx: x, cy: hy, r, fill: color }, g);
+    if (extra.bun) el("circle", { cx: x + r * .55, cy: hy - r * .85, r: r * .48, fill: color }, g);
     if (extra.hat) {
       el("path", { d: `M${x - r * 1.02} ${hy - r * .15} A${r * 1.02} ${r * 1.02} 0 0 1 ${x + r * 1.02} ${hy - r * .15} Z`, fill: extra.hat }, g);
       el("rect", { x: x - r * 1.1, y: hy - r * .3, width: r * 2.2, height: r * .42, rx: r * .2, fill: "#F7FAFD" }, g);
@@ -268,33 +276,62 @@
     fam.push(p);
     return p;
   };
-  const arm = (p, hx, hy) => el("path", { d: `M${p.x + Math.sign(hx - p.x) * p.wt * .42} ${p.sy + p.h * .06} L${hx} ${hy}`, stroke: p.color, "stroke-width": p.h * .075, "stroke-linecap": "round", fill: "none" }, scene);
+  const arm = (p, hx, hy) => el("path", { d: `M${p.x + Math.sign(hx - p.x) * p.wt * .42} ${p.sy + p.h * .06} L${hx} ${hy}`, stroke: p.color, "stroke-width": p.h * .065, "stroke-linecap": "round", fill: "none" }, scene);
   const hold = (a, b) => {
     const hx = (a.x + b.x) / 2, hy = Math.max(a.sy + a.h * .36, b.sy + b.h * .36) - Math.min(a.h, b.h) * .02;
     arm(a, hx, hy); arm(b, hx, hy);
   };
   const free = (p, dir) => arm(p, p.x + dir * (p.wt * .62 + p.h * .06), p.sy + p.h * .4);
 
-  const X = 560;
-  const dad = person(X - 130, 1616, 150, "#0D1427", { scarf: "#E9CF94" });
-  const kid1 = person(X - 58, 1622, 90, "#004887", { hat: "#CB333B" });
-  const mom = person(X + 12, 1618, 140, "#0D1427");
-  const kid2 = person(X + 72, 1624, 74, "#004887", { scarf: "#CB333B" });
+  // pinos del paisaje, apoyados en la cresta de cada colina
+  const ridgeY = (path, x) => {
+    const L = path.getTotalLength();
+    let best = 1e9, y = 0;
+    for (let t = 0; t < L; t += 2) { const p = path.getPointAtLength(t); if (p.y < 1680 && Math.abs(p.x - x) < best) { best = Math.abs(p.x - x); y = p.y; } }
+    return y;
+  };
+  const pine = (parent, x, base, h, color, cap, lights) => {
+    const g = el("g", {}, parent);
+    for (let i = 0; i < 3; i++) {
+      const top = base - h + i * h * .25, bot = top + h * .4, hw = h * (.17 + i * .09);
+      el("path", { d: `M${x} ${top} L${x + hw} ${bot} H${x - hw} Z`, fill: color, stroke: color, "stroke-width": 3, "stroke-linejoin": "round" }, g);
+      if (cap) el("path", { d: `M${x} ${top} L${x + hw * .42} ${top + h * .16} Q${x} ${top + h * .12} ${x - hw * .42} ${top + h * .16} Z`, fill: cap, "stroke-linejoin": "round" }, g);
+    }
+    el("rect", { x: x - h * .035, y: base - h * .08, width: h * .07, height: h * .12, fill: color }, g);
+    if (lights) [[.36, -.3], [.6, .35], [.8, -.45], [.84, .5]].forEach(([ty, tx]) =>
+      el("circle", { cx: x + tx * h * .3, cy: base - h + ty * h * .92, r: 2.2, fill: "#FFE7B0" }, g));
+  };
+  const h1 = document.getElementById("h1"), h2 = document.getElementById("h2");
+  const far = document.getElementById("pinesFar"), mid = document.getElementById("pinesMid");
+  [[40, 70], [88, 48], [250, 56], [1000, 62], [1052, 88], [1110, 54], [1170, 70]]
+    .forEach(([x, h]) => pine(far, x, ridgeY(h1, x) + 10, h, "#123157", null));
+  [[70, 104, 1], [140, 74, 0], [200, 58, 0], [960, 66, 0], [1030, 96, 1], [1112, 128, 1]]
+    .forEach(([x, h, l]) => pine(mid, x, ridgeY(h2, x) + 12, h, "#4F7FAD", "#F7FAFD", l));
+
+  // familia, tomada de la mano, sobre la colina delantera
+  const X = 600, B = 1604;
+  const shadowAt = (x, w) => el("ellipse", { cx: x, cy: B + 4, rx: w, ry: 7, fill: "url(#shadow)" }, scene);
+  [[X - 96, 36], [X - 38, 24], [X + 22, 34], [X + 76, 22]].forEach(([x, w]) => shadowAt(x, w));
+  const dad = person(X - 96, B, 134, "#0D1427", { scarf: "#E9CF94" });
+  const kid1 = person(X - 38, B + 2, 76, "#004887", { hat: "#CB333B", kid: 1 });
+  const mom = person(X + 22, B, 124, "#0D1427", { bun: 1 });
+  const kid2 = person(X + 76, B + 2, 62, "#004887", { scarf: "#CB333B", kid: 1 });
   free(dad, -1); hold(dad, kid1); hold(kid1, mom); hold(mom, kid2); free(kid2, 1);
   fam.forEach(p => scene.appendChild(p.g));
 
   // regalos
   const gift = (x, base, w, h, box, ribbon) => {
+    el("ellipse", { cx: x + w / 2, cy: base + 3, rx: w * .7, ry: 6, fill: "url(#shadow)" }, scene);
     const g = el("g", {}, scene);
-    el("rect", { x, y: base - h, width: w, height: h, rx: 4, fill: box }, g);
-    el("rect", { x: x - 4, y: base - h - 4, width: w + 8, height: h * .24, rx: 3, fill: box }, g);
-    el("rect", { x: x + w / 2 - 4.5, y: base - h - 4, width: 9, height: h + 4, fill: ribbon }, g);
-    const cx = x + w / 2, cy = base - h - 4;
-    el("path", { d: `M${cx} ${cy}c-6-13-22-13-20-4 2 6 13 4 20 4Zm0 0c6-13 22-13 20-4-2 6-13 4-20 4Z`, fill: "none", stroke: ribbon, "stroke-width": 3.6, "stroke-linejoin": "round" }, g);
+    el("rect", { x, y: base - h, width: w, height: h, rx: 3, fill: box }, g);
+    el("rect", { x: x - 3, y: base - h - 3, width: w + 6, height: h * .24, rx: 2.5, fill: box }, g);
+    el("rect", { x: x + w / 2 - 3.5, y: base - h - 3, width: 7, height: h + 3, fill: ribbon }, g);
+    const cx = x + w / 2, cy = base - h - 3;
+    el("path", { d: `M${cx} ${cy}c-5-10-17-10-15-3 1.5 4.5 10 3 15 3Zm0 0c5-10 17-10 15-3-1.5 4.5-10 3-15 3Z`, fill: "none", stroke: ribbon, "stroke-width": 3, "stroke-linejoin": "round" }, g);
   };
-  gift(690, 1624, 62, 54, "#CB333B", "#E9CF94");
-  gift(760, 1626, 46, 38, "#C9A15A", "#0D1427");
-  gift(334, 1622, 48, 40, "#004887", "#E9CF94");
+  gift(700, B + 2, 46, 40, "#CB333B", "#E9CF94");
+  gift(752, B + 4, 34, 28, "#C9A15A", "#0D1427");
+  gift(438, B + 3, 36, 30, "#004887", "#E9CF94");
 
   /* ── Nieve ── */
   const snow = document.getElementById("snow");
@@ -302,6 +339,7 @@
     const x = rnd() * 1200, y = rnd() * 1560, r = .8 + rnd() * rnd() * 3.4;
     // evitar la zona del texto principal para mantener la lectura limpia
     if (y > 690 && y < 1320 && x > 150 && x < 1050) continue;
+    if (y > 1440 && x > 400 && x < 820) continue;
     el("circle", { cx: x, cy: y, r, fill: "#FFFFFF", "fill-opacity": .25 + rnd() * .55 }, snow);
   }
 })();
