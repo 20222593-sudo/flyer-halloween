@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Aniversario Cornerstone</title>
+<meta name="viewport" content="width=1200">
+<style>
+  @font-face { font-family: "Fraunces"; src: url(../assets/fonts/fraunces.woff2) format("woff2"); font-weight: 100 900; }
+  @font-face { font-family: "Plus Jakarta Sans"; src: url(../assets/fonts/plus-jakarta-sans.woff2) format("woff2"); font-weight: 200 800; }
+  @font-face { font-family: "Caveat"; src: url(../assets/fonts/caveat.woff2) format("woff2"); font-weight: 400 700; }
+  /* Paleta Cornerstone: Dark Navy #0D1427 · Blue #004887 · Logo Blue #1A509D
+     Blue Accent #95C9E1 · Blue Accent #D8E8F5 · Action Red #CB333B (acento mínimo) */
+  :root {
+    --navy: #0D1427;
+    --blue: #004887;
+    --logo-blue: #1A509D;
+    --blue-2: #95C9E1;
+    --blue-3: #D8E8F5;
+    --red: #CB333B;
+    --paper: #F6F9FC;
+    --ink-soft: #3E4A63;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); }
+  body { width: 1200px; height: 1500px; overflow: hidden; }
+
+  .card {
+    position: relative; width: 1200px; height: 1500px; overflow: hidden;
+    background:
+      radial-gradient(700px 420px at 50% 100%, rgba(149,201,225,.35), transparent 70%),
+      var(--paper);
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    color: var(--navy);
+    word-spacing: .08em;
+  }
+  .card::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .1  0 0 0 0 .2  0 0 0 0 .35  0 0 0 .5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: .12; mix-blend-mode: multiply;
+  }
+  .card > * { position: relative; z-index: 1; }
+
+  .logo { display: block; height: 46px; margin: 58px auto 0; }
+
+  /* ── Panel principal ── */
+  .hero {
+    position: absolute; left: 56px; right: 56px; top: 150px; height: 720px;
+    border-radius: 40px; overflow: hidden; color: #fff; text-align: center;
+    background:
+      radial-gradient(620px 420px at 50% 36%, rgba(149,201,225,.22), transparent 65%),
+      radial-gradient(800px 500px at 0% 100%, rgba(0,72,135,.65), transparent 65%),
+      radial-gradient(800px 500px at 100% 0%, rgba(0,72,135,.55), transparent 65%),
+      var(--navy);
+  }
+  .hero svg.deco { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  .eyebrow {
+    position: absolute; left: 0; right: 0; top: 54px;
+    font-size: 21px; font-weight: 700; letter-spacing: .34em; text-transform: uppercase;
+    color: var(--blue-2);
+  }
+
+  .portrait {
+    position: absolute; left: 50%; top: 110px; transform: translateX(-50%);
+    width: 300px; height: 350px;
+  }
+  .arch {
+    position: absolute; inset: 0;
+    border-radius: 150px 150px 26px 26px;
+    background: #fff; padding: 9px;
+    box-shadow: 0 24px 60px rgba(0,0,0,.35), 0 0 0 2px rgba(149,201,225,.45);
+  }
+  .arch img {
+    width: 100%; height: 100%; display: block; object-fit: cover; object-position: 50% 100%;
+    border-radius: 141px 141px 18px 18px; background: #fff;
+  }
+
+  /* Medalla de años */
+  .badge {
+    position: absolute; right: -118px; bottom: -34px;
+    width: 176px; height: 176px; border-radius: 50%;
+    background: #fff; color: var(--blue);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    box-shadow: 0 16px 40px rgba(0,0,0,.35);
+  }
+  .badge::before {
+    content: ""; position: absolute; inset: 8px; border-radius: 50%;
+    border: 2px dashed rgba(0,72,135,.35);
+  }
+  .badge .n {
+    font-family: "Fraunces", Georgia, serif; font-weight: 700;
+    font-variation-settings: "SOFT" 100, "opsz" 144;
+    font-size: 84px; line-height: .9; color: var(--blue);
+  }
+  .badge .u {
+    margin-top: 2px; font-size: 17px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--navy);
+  }
+  .badge .dot { position: absolute; top: 20px; width: 9px; height: 9px; border-radius: 50%; background: var(--red); }
+
+  .greet {
+    position: absolute; left: 40px; right: 40px; top: 500px;
+    font-family: "Fraunces", Georgia, serif; font-weight: 600;
+    font-variation-settings: "SOFT" 100, "opsz" 144;
+    font-size: 40px; line-height: 1; color: var(--blue-2); letter-spacing: .01em;
+  }
+  .name {
+    position: absolute; left: 30px; right: 30px; top: 552px;
+    font-family: "Fraunces", Georgia, serif; font-weight: 700;
+    font-variation-settings: "SOFT" 100, "opsz" 144;
+    font-size: 84px; line-height: 1; letter-spacing: -.01em; color: #fff;
+  }
+  .role {
+    position: absolute; left: 0; right: 0; top: 658px;
+    font-size: 22px; font-weight: 600; letter-spacing: .06em; color: rgba(255,255,255,.78);
+  }
+  .role b { color: var(--blue-2); font-weight: 700; }
+
+  /* ── Mensaje ── */
+  .message {
+    position: absolute; left: 120px; right: 120px; top: 880px; height: 280px;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; font-size: 29px; line-height: 1.55; color: var(--ink-soft);
+  }
+  .message strong { color: var(--blue); font-weight: 800; }
+
+  .sign {
+    position: absolute; left: 0; right: 0; top: 1176px; text-align: center;
+  }
+  .sign .hand {
+    font-family: "Caveat", cursive; font-weight: 700; font-size: 50px; color: var(--logo-blue);
+    display: inline-block; transform: rotate(-2deg);
+  }
+  .sign .team {
+    margin-top: 4px; font-size: 20px; font-weight: 800; letter-spacing: .28em; text-transform: uppercase; color: var(--navy);
+  }
+
+  .ribbon {
+    position: absolute; left: 50%; transform: translateX(-50%); top: 1318px;
+    padding: 20px 52px; border-radius: 999px; white-space: nowrap;
+    background: linear-gradient(90deg, var(--blue) 0%, var(--navy) 100%);
+    color: #fff; font-size: 30px; font-weight: 800; letter-spacing: .005em;
+    box-shadow: 0 14px 30px rgba(13,20,39,.22);
+  }
+  .foot {
+    position: absolute; left: 0; right: 0; bottom: 38px; text-align: center;
+    font-size: 16px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: rgba(13,20,39,.45);
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <img class="logo" src="../assets/logo-cornerstone-horizontal.png" alt="Cornerstone">
+
+  <section class="hero">
+    <svg class="deco" viewBox="0 0 1088 720" aria-hidden="true">
+      <!-- anillos concéntricos detrás del retrato -->
+      <g fill="none" stroke="#95C9E1" stroke-opacity=".16">
+        <circle cx="544" cy="280" r="235" stroke-width="2"/>
+        <circle cx="544" cy="280" r="300" stroke-width="1.5" stroke-dasharray="2 10" stroke-linecap="round"/>
+        <circle cx="544" cy="280" r="375" stroke-width="1"/>
+      </g>
+      <!-- confeti de marca -->
+      <g id="confetti"></g>
+    </svg>
+
+    <div class="eyebrow" id="eyebrow"></div>
+
+    <div class="portrait">
+      <div class="arch"><img id="photo" alt=""></div>
+      <div class="badge"><span class="dot"></span><span class="n" id="years"></span><span class="u" id="unit"></span></div>
+    </div>
+
+    <div class="greet">¡Feliz aniversario,</div>
+    <div class="name" id="name"></div>
+    <div class="role" id="role"></div>
+  </section>
+
+  <div class="message"><p id="message"></p></div>
+
+  <div class="sign">
+    <div class="hand">Con cariño y gratitud,</div>
+    <div class="team">Todo el equipo Cornerstone</div>
+  </div>
+
+  <div class="ribbon">Gracias por seguir creciendo con nosotros</div>
+  <div class="foot">Octubre 2026</div>
+</div>
+
+<script>
+  const PEOPLE = {
+    "oscar-alva":           { first: "Oscar",     role: "Managing Consultant",                    day: 1,  years: 5 },
+    "natalia-marquez":      { first: "Natalia",   role: "Lead Career Consultant",                 day: 1,  years: 8 },
+    "mayra-quevedo":        { first: "Mayra",     role: "Consultant",                             day: 4,  years: 4 },
+    "sandra-valencia":      { first: "Sandra",    role: "Senior Consultant",                      day: 13, years: 1 },
+    "roberto-pacora":       { first: "Roberto",   role: "Consultant Trainee",                     day: 15, years: 1 },
+    "martin-barrantes":     { first: "Martín",    role: "Consultant",                             day: 16, years: 2 },
+    "ines-secada":          { first: "Inés",      role: "Managing Consultant & Training Leader",  day: 19, years: 11 },
+    "keyla-huaman":         { first: "Keyla",     role: "Accounting Assistant",                   day: 21, years: 2 },
+    "alexandra-monteverde": { first: "Alexandra", role: "Senior Consultant",                      day: 23, years: 3 },
+  };
+  const WORDS = ["", "un", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez", "once", "doce"];
+  const cap = s => s[0].toUpperCase() + s.slice(1);
+
+  function message(y) {
+    const w = WORDS[y];
+    if (y === 1) return `Hace un año llegaste a Cornerstone y desde el primer día sumaste tu energía, tus ideas y tus ganas de aprender. <strong>Gracias por este primer año</strong>: lo que aportas ya se nota en el equipo, y lo mejor está por venir.`;
+    if (y <= 4)  return `Hoy celebramos <strong>${w} años</strong> desde que llegaste a Cornerstone. Gracias por tu compromiso, tu talento y la calidez con la que acompañas a cada persona del equipo. Tu trabajo hace la diferencia y <strong>queremos que sepas cuánto lo valoramos</strong>.`;
+    if (y <= 7)  return `<strong>${cap(w)} años construyendo juntos.</strong> Gracias por tu constancia, tu criterio y tu generosidad para compartir lo que sabes. Eres parte esencial de lo que Cornerstone es hoy, y <strong>nos llena de orgullo seguir creciendo a tu lado</strong>.`;
+    return `<strong>${cap(w)} años de historia compartida.</strong> Gracias por tu entrega, tu liderazgo y por dejar huella en cada persona que ha pasado por Cornerstone. Tu trayectoria inspira a todo el equipo y <strong>es uno de los pilares de lo que somos</strong>.`;
+  }
+
+  // Confeti determinista (mismo patrón en todas las tarjetas), fuera de la zona central
+  function confetti() {
+    const g = document.getElementById("confetti");
+    let s = 7; const r = () => (s = (s * 16807) % 2147483647) / 2147483647;
+    const cols = ["#95C9E1", "#D8E8F5", "#FFFFFF", "#1A509D", "#95C9E1", "#CB333B"];
+    let html = "", n = 0;
+    while (n < 70) {
+      const x = r() * 1088, y = r() * 720;
+      const dx = Math.abs(x - 544), inCenter = (dx < 300 && y > 20 && y < 700) || (dx < 470 && y > 40 && y < 110);
+      if (inCenter) continue;
+      const c = cols[Math.floor(r() * cols.length)];
+      const a = Math.round(r() * 360), o = (.35 + r() * .55).toFixed(2), t = r();
+      if (t < .45) html += `<rect x="${x}" y="${y}" width="${6 + r() * 8}" height="${3 + r() * 3}" rx="1.5" fill="${c}" opacity="${o}" transform="rotate(${a} ${x} ${y})"/>`;
+      else if (t < .75) html += `<circle cx="${x}" cy="${y}" r="${2 + r() * 3.5}" fill="${c}" opacity="${o}"/>`;
+      else html += `<path d="M${x} ${y} q 6 -8 12 0 t 12 0" fill="none" stroke="${c}" stroke-width="2.5" stroke-linecap="round" opacity="${o}" transform="rotate(${a} ${x} ${y})"/>`;
+      n++;
+    }
+    g.innerHTML = html;
+  }
+
+  const slug = new URLSearchParams(location.search).get("p") || "oscar-alva";
+  const p = PEOPLE[slug];
+  document.getElementById("photo").src = `fotos/${slug}.jpg`;
+  document.getElementById("name").textContent = `${p.first}!`;
+  document.getElementById("role").innerHTML = p.role;
+  document.getElementById("years").textContent = p.years;
+  document.getElementById("unit").textContent = p.years === 1 ? "año" : "años";
+  document.getElementById("eyebrow").textContent = `${String(p.day).padStart(2, "0")} de octubre · ${p.years === 1 ? "1 año" : p.years + " años"} en Cornerstone`;
+  document.getElementById("message").innerHTML = message(p.years);
+  confetti();
+</script>
+</body>
+</html>
