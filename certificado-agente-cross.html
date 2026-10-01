@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Certificado Agente Cross</title>
+<meta name="viewport" content="width=1123">
+<style>
+  @font-face { font-family: "Fraunces"; src: url(assets/fonts/fraunces.woff2) format("woff2"); font-weight: 100 900; }
+  @font-face { font-family: "Plus Jakarta Sans"; src: url(assets/fonts/plus-jakarta-sans.woff2) format("woff2"); font-weight: 200 800; }
+  /* ── Paleta ─────────────────────────────────────────────
+     Cornerstone: Dark Navy #0D1427 · Blue #004887 · Blue Accent #95C9E1
+                  Blue Accent #D8E8F5 · Gray #E3E3E3 · Action Red #CB333B (solo en logo)
+     Premio:      Oro #B8924A → #E8D49A (detalles metálicos sutiles)          */
+  :root {
+    --navy: #0D1427;
+    --blue: #004887;
+    --blue-2: #95C9E1;
+    --blue-3: #D8E8F5;
+    --gray: #E3E3E3;
+    --gold: #B8924A;
+    --gold-lt: #E8D49A;
+    --gold-dk: #94712F;
+    --ink-soft: #4A5468;
+  }
+  @page { size: 297mm 210mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  body { width: 1123px; height: 794px; overflow: hidden;
+         -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .cert {
+    position: relative; width: 1123px; height: 794px; overflow: hidden;
+    background:
+      radial-gradient(ellipse 520px 420px at 100% 0%, rgba(216,232,245,.75), transparent 70%),
+      radial-gradient(ellipse 520px 420px at 0% 100%, rgba(216,232,245,.75), transparent 70%),
+      #fff;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    color: var(--navy);
+  }
+
+  /* Red de conexiones (networking / leads) */
+  .net { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  /* Marco: filete dorado doble */
+  .frame, .frame-in { position: absolute; pointer-events: none; }
+  .frame    { inset: 26px; border: 1.6px solid var(--gold); }
+  .frame-in { inset: 33px; border: .6px solid rgba(184,146,74,.55); }
+
+  .logo { position: absolute; left: 70px; top: 66px; height: 32px; }
+
+  .seal { position: absolute; right: 66px; top: 56px; width: 128px; height: 128px; }
+
+  .content {
+    position: absolute; left: 0; right: 0; top: 196px;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+  }
+  .title {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600; font-size: 84px; line-height: 1; letter-spacing: .08em; padding-left: .08em;
+    color: var(--navy);
+    font-variation-settings: "SOFT" 0, "WONK" 0, "opsz" 72;
+  }
+  .title span { color: var(--blue); }
+  .ornament { margin-top: 22px; width: 220px; height: 14px; display: block; }
+  .lead {
+    margin-top: 22px; max-width: 600px;
+    font-size: 17.5px; line-height: 1.6; color: var(--ink-soft); font-weight: 400;
+  }
+  .name-wrap { margin-top: 56px; width: 700px; display: flex; flex-direction: column; align-items: center; }
+  .name {
+    font-family: "Fraunces", Georgia, serif; font-weight: 500;
+    font-size: 54px; line-height: 1.12; color: var(--navy); letter-spacing: .01em;
+    white-space: nowrap; height: 64px; display: flex; align-items: flex-end;
+  }
+  .name.placeholder { color: #9AA3B5; }
+  .name-line {
+    margin-top: 12px; width: 560px; height: 1.5px;
+    background: linear-gradient(90deg, transparent, var(--gold) 18%, var(--gold-lt) 50%, var(--gold) 82%, transparent);
+  }
+  .award {
+    margin-top: 16px; font-size: 13px; font-weight: 700; letter-spacing: .32em;
+    text-transform: uppercase; color: var(--blue);
+  }
+
+  .signs {
+    position: absolute; left: 190px; right: 190px; bottom: 84px;
+    display: grid; grid-template-columns: 1fr 1fr 1fr; column-gap: 64px;
+  }
+  .sign { display: flex; flex-direction: column; align-items: center; }
+  .sign .line { width: 100%; height: 1px; background: var(--navy); opacity: .55; }
+  .sign .label {
+    margin-top: 10px; font-size: 11.5px; font-weight: 600; letter-spacing: .24em;
+    text-transform: uppercase; color: var(--ink-soft);
+  }
+
+  /* Panel de edición (no se imprime) */
+  .editor {
+    position: fixed; left: 50%; transform: translateX(-50%); bottom: 12px; z-index: 10;
+    display: flex; gap: 8px; align-items: center; padding: 10px 12px;
+    background: var(--navy); color: #fff; border-radius: 10px;
+    font: 500 13px "Plus Jakarta Sans", sans-serif; box-shadow: 0 6px 24px rgba(13,20,39,.3);
+  }
+  .editor input { width: 260px; padding: 7px 9px; border: 0; border-radius: 6px; font: inherit; }
+  .editor button { padding: 7px 12px; border: 0; border-radius: 6px; background: var(--gold); color: var(--navy); font: 700 13px inherit; cursor: pointer; }
+  @media print { .editor { display: none; } }
+  body.render .editor { display: none; }
+</style>
+</head>
+<body>
+<div class="cert">
+
+  <svg class="net" id="net" viewBox="0 0 1123 794" aria-hidden="true"></svg>
+
+  <div class="frame"></div>
+  <div class="frame-in"></div>
+
+  <img class="logo" src="assets/logo-cornerstone-horizontal.png" alt="Cornerstone">
+
+  <svg class="seal" viewBox="0 0 150 150" aria-hidden="true">
+    <defs>
+      <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#94712F"/><stop offset=".35" stop-color="#E8D49A"/>
+        <stop offset=".6" stop-color="#B8924A"/><stop offset="1" stop-color="#E2C985"/>
+      </linearGradient>
+      <path id="ring" d="M75,75 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/>
+    </defs>
+    <g id="rosette"></g>
+    <circle cx="75" cy="75" r="66" fill="url(#g)"/>
+    <circle cx="75" cy="75" r="62.5" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width=".8"/>
+    <circle cx="75" cy="75" r="41" fill="#fff"/>
+    <circle cx="75" cy="75" r="38" fill="none" stroke="url(#g)" stroke-width=".8"/>
+    <text font-family="Plus Jakarta Sans" font-weight="800" font-size="9.4" letter-spacing="2.1" fill="#0D1427">
+      <textPath href="#ring" startOffset="0">RECONOCIMIENTO · AGENTE CROSS ·</textPath>
+    </text>
+    <image href="assets/simbolo-cornerstone.png" x="56" y="56" width="38" height="38"/>
+  </svg>
+
+  <div class="content">
+    <h1 class="title">AGENTE <span>CROSS</span></h1>
+    <svg class="ornament" viewBox="0 0 220 14" aria-hidden="true">
+      <line x1="0" y1="7" x2="86" y2="7" stroke="#B8924A" stroke-width="1"/>
+      <line x1="134" y1="7" x2="220" y2="7" stroke="#B8924A" stroke-width="1"/>
+      <line x1="92" y1="7" x2="128" y2="7" stroke="#004887" stroke-width="1"/>
+      <circle cx="92" cy="7" r="3.2" fill="#fff" stroke="#B8924A" stroke-width="1.2"/>
+      <circle cx="110" cy="7" r="4.6" fill="#B8924A"/>
+      <circle cx="128" cy="7" r="3.2" fill="#fff" stroke="#B8924A" stroke-width="1.2"/>
+    </svg>
+    <p class="lead">En reconocimiento a su destacada contribución en la generación de leads y oportunidades para la organización.</p>
+    <div class="name-wrap">
+      <div class="name placeholder" id="name">[NOMBRE DEL GANADOR]</div>
+      <div class="name-line"></div>
+      <div class="award">Reconocimiento Agente Cross</div>
+    </div>
+  </div>
+
+  <div class="signs">
+    <div class="sign"><div class="line"></div><div class="label">Firma</div></div>
+    <div class="sign"><div class="line"></div><div class="label">Fecha</div></div>
+    <div class="sign"><div class="line"></div><div class="label">Firma</div></div>
+  </div>
+</div>
+
+<form class="editor" id="editor">
+  <label for="in">Nombre del ganador</label>
+  <input id="in" autocomplete="off" placeholder="Escribe el nombre…">
+  <button type="button" onclick="window.print()">Imprimir / PDF</button>
+</form>
+
+<script>
+  /* ── Red de conexiones: nodos fijos que nacen de las esquinas ── */
+  const NS = "http://www.w3.org/2000/svg";
+  const net = document.getElementById("net");
+  const clusters = [
+    // esquina superior derecha (detrás del sello)
+    [[1123,30],[1072,130],[990,40],[1030,226],[905,70],[850,30],[1100,300],[1000,300],[1123,190],[780,48],[960,170]],
+    // esquina inferior izquierda
+    [[0,780],[46,712],[118,760],[96,640],[24,590],[150,690],[70,520],[140,566],[0,470],[200,775],[260,740]],
+  ];
+  const gold = new Set(["1072,130","960,170","96,640","150,690","140,566"]);
+  const el = (n, a) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); return e; };
+  clusters.forEach(pts => {
+    const edges = new Set();
+    pts.forEach((p, i) => {
+      pts.map((q, j) => [j, Math.hypot(p[0]-q[0], p[1]-q[1])])
+         .filter(([j]) => j !== i).sort((a, b) => a[1] - b[1]).slice(0, 3)
+         .forEach(([j]) => edges.add([Math.min(i,j), Math.max(i,j)].join("-")));
+    });
+    edges.forEach(k => {
+      const [a, b] = k.split("-").map(Number);
+      net.appendChild(el("line", { x1: pts[a][0], y1: pts[a][1], x2: pts[b][0], y2: pts[b][1],
+        stroke: "#95C9E1", "stroke-width": 1, "stroke-opacity": .75 }));
+    });
+    pts.forEach(p => {
+      const g = gold.has(p.join(","));
+      net.appendChild(el("circle", { cx: p[0], cy: p[1], r: g ? 4.2 : 3,
+        fill: g ? "#B8924A" : "#fff", stroke: g ? "none" : "#004887", "stroke-width": 1.3, "stroke-opacity": .55 }));
+    });
+  });
+
+  /* ── Roseta del sello ── */
+  const ros = document.getElementById("rosette");
+  for (let i = 0; i < 60; i++) {
+    const a = i * 6 * Math.PI / 180, r1 = 66, r2 = 72;
+    ros.appendChild(el("line", { x1: 75 + r1*Math.cos(a), y1: 75 + r1*Math.sin(a), x2: 75 + r2*Math.cos(a), y2: 75 + r2*Math.sin(a),
+      stroke: "#B8924A", "stroke-width": 1.4, "stroke-linecap": "round" }));
+  }
+
+  /* ── Nombre: ?nombre=Ana%20Pérez o el campo inferior ── */
+  const nameEl = document.getElementById("name"), input = document.getElementById("in");
+  const MAX_W = 700, BASE = 54;
+  function setName(v) {
+    v = (v || "").trim();
+    nameEl.textContent = v || "[NOMBRE DEL GANADOR]";
+    nameEl.classList.toggle("placeholder", !v);
+    nameEl.style.fontSize = BASE + "px";
+    const w = nameEl.scrollWidth;                       // reduce el tamaño si el nombre es muy largo
+    if (w > MAX_W) nameEl.style.fontSize = (BASE * MAX_W / w) + "px";
+  }
+  const params = new URLSearchParams(location.search);
+  if (params.has("render")) document.body.classList.add("render");
+  if (params.has("blank")) { nameEl.style.visibility = "hidden"; }
+  input.value = params.get("nombre") || "";
+  input.addEventListener("input", () => setName(input.value));
+  document.fonts.ready.then(() => setName(input.value));
+</script>
+</body>
+</html>
