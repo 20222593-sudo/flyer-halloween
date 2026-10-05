@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Halloween 2026 One-pager</title>
+<meta name="viewport" content="width=1080">
+<style>
+  @font-face { font-family: "Fraunces"; src: url(assets/fonts/fraunces.woff2) format("woff2"); font-weight: 100 900; }
+  @font-face { font-family: "Plus Jakarta Sans"; src: url(assets/fonts/plus-jakarta-sans.woff2) format("woff2"); font-weight: 200 800; }
+  @font-face { font-family: "Caveat"; src: url(assets/fonts/caveat.woff2) format("woff2"); font-weight: 400 700; }
+
+  /* Cornerstone: Navy #0D1427 · Blue #004887 · Accent #95C9E1 / #D8E8F5
+     Halloween: Calabaza #EE7F35 · Luna #F2E8D0 · Hoja otoñal #C2571B
+     Reutilizado: Cartón #C9A77C */
+  :root {
+    --navy: #0D1427; --navy-2: #16223B; --blue: #004887; --blue-2: #95C9E1; --blue-3: #D8E8F5;
+    --pumpkin: #EE7F35; --pumpkin-dk: #B8501A; --moon: #F2E8D0; --kraft: #C9A77C; --kraft-dk: #8A6A45;
+    --paper: #F4F7FB; --ink: #0D1427; --ink-soft: #3A4660; --card: #FFFFFF; --line: #D5E1EE;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); }
+  body { width: 1080px; font-family: "Plus Jakarta Sans", system-ui, sans-serif; color: var(--ink); }
+  .page { position: relative; width: 1080px; background: var(--paper); overflow: hidden; }
+  .page::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .38  0 0 0 0 .28  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: .12; mix-blend-mode: multiply;
+  }
+  .page > * { position: relative; z-index: 1; }
+  section { padding: 0 64px; }
+  .label {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-size: 17px; font-weight: 800; letter-spacing: .28em; text-transform: uppercase; color: var(--blue);
+  }
+  .label::before { content: ""; width: 36px; height: 3px; border-radius: 3px; background: var(--pumpkin); }
+  h2 { font-family: "Fraunces", Georgia, serif; font-variation-settings: "SOFT" 100, "opsz" 144; font-weight: 800; font-size: 50px; line-height: 1.05; letter-spacing: -.01em; margin-top: 12px; }
+
+  /* 1 · HERO */
+  .hero {
+    position: relative; margin: 0; padding: 56px 64px 72px;
+    background:
+      radial-gradient(700px 480px at 82% 22%, rgba(149,201,225,.16), transparent 60%),
+      radial-gradient(800px 500px at 10% 110%, rgba(0,72,135,.55), transparent 65%),
+      var(--navy);
+    color: #F3F6FA; border-radius: 0 0 48px 48px; overflow: hidden;
+  }
+  .hero svg.deco { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hero .top { position: relative; display: flex; justify-content: space-between; align-items: center; }
+  .chip { background: #EEF4FA; border-radius: 999px; padding: 12px 24px; display: inline-flex; }
+  .chip img { height: 32px; display: block; }
+  .hero .content { position: relative; margin-top: 210px; }
+  .eyebrow { font-size: 19px; font-weight: 700; letter-spacing: .36em; text-transform: uppercase; color: var(--blue-2); }
+  .title {
+    display: flex; align-items: center; margin-top: 10px;
+    font-family: "Fraunces", Georgia, serif; font-variation-settings: "SOFT" 100, "opsz" 144;
+    font-weight: 800; font-size: 148px; line-height: .95; letter-spacing: -.01em;
+  }
+  .title .o { flex: none; width: .74em; height: .8em; margin: 0 .02em; }
+  .year { font-family: "Fraunces", Georgia, serif; font-variation-settings: "SOFT" 100, "opsz" 144; font-weight: 800; font-size: 96px; line-height: 1; color: var(--pumpkin); margin-top: 4px; }
+  .date {
+    display: inline-flex; align-items: center; gap: 14px; margin-top: 36px;
+    background: var(--pumpkin); color: var(--navy); font-size: 32px; font-weight: 800;
+    padding: 18px 36px; border-radius: 999px; position: relative;
+  }
+  .date::after { content: ""; position: absolute; inset: 6px; border-radius: 999px; border: 2px dashed rgba(13,20,39,.28); }
+  .date svg { width: 32px; height: 32px; }
+
+  /* 2 · CONCEPTO */
+  .concept { margin-top: -36px; display: flex; justify-content: center; }
+  .tag {
+    position: relative; width: 860px; text-align: center;
+    padding: 30px 48px 28px;
+    background: repeating-linear-gradient(90deg, rgba(120,84,44,.07) 0 2px, transparent 2px 9px), linear-gradient(180deg, #D7B990, #C8A376);
+    border-radius: 6px; transform: rotate(-1deg);
+    box-shadow: 0 18px 30px -18px rgba(70,48,20,.55);
+    clip-path: polygon(0 4%, 3% 0, 22% 2%, 41% 0, 63% 3%, 82% .5%, 97% 2%, 100% 8%, 99.4% 40%, 100% 70%, 99.2% 95%, 96% 100%, 74% 98%, 52% 100%, 29% 97.5%, 8% 100%, 0 95%, .6% 60%, 0 30%);
+  }
+  .tag .tape { position: absolute; top: -14px; left: 50%; width: 130px; height: 34px; margin-left: -65px; background: rgba(245,236,214,.8); transform: rotate(3deg); }
+  .tag p { font-size: 27px; font-weight: 600; line-height: 1.4; color: #2A2014; }
+  .tag p b { font-weight: 800; color: var(--navy); }
+  .tag .hand { display: block; font-family: "Caveat", cursive; font-weight: 700; font-size: 40px; color: var(--navy); margin-bottom: 4px; }
+
+  /* 3 · ACTIVIDADES */
+  .activities { margin-top: 80px; }
+  .acts { margin-top: 28px; display: grid; gap: 18px; }
+  .act {
+    display: grid; grid-template-columns: 112px 1fr; gap: 28px; align-items: center;
+    background: var(--card); border: 2px solid var(--line); border-radius: 28px; padding: 26px 32px 26px 26px;
+  }
+  .act .ic { width: 112px; height: 112px; border-radius: 24px; background: var(--blue-3); display: grid; place-items: center; }
+  .act .ic svg { width: 80px; height: 80px; }
+  .act h3 { font-size: 30px; font-weight: 800; line-height: 1.2; color: var(--navy); }
+  .act p { margin-top: 6px; font-size: 22px; line-height: 1.45; color: var(--ink-soft); }
+  .act .pill { display: inline-block; margin-left: 10px; vertical-align: middle; font-size: 15px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; background: var(--navy); color: #F3F6FA; padding: 6px 12px; border-radius: 999px; }
+
+  /* 4 · PREMIOS */
+  .prizes { margin-top: 80px; }
+  .prize-grid { margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .prize {
+    position: relative; background: var(--navy); color: #F3F6FA; border-radius: 28px; padding: 34px 32px 32px; overflow: hidden;
+  }
+  .prize::after { content: ""; position: absolute; right: -40px; top: -40px; width: 160px; height: 160px; border-radius: 50%; background: radial-gradient(circle, rgba(238,127,53,.28), transparent 70%); }
+  .prize .kick { display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 800; letter-spacing: .24em; text-transform: uppercase; color: var(--blue-2); }
+  .prize .kick svg { width: 30px; height: 30px; }
+  .prize h3 { font-family: "Fraunces", Georgia, serif; font-variation-settings: "SOFT" 100, "opsz" 144; font-weight: 800; font-size: 40px; line-height: 1.05; margin-top: 10px; }
+  .prize ul { list-style: none; margin-top: 22px; display: grid; gap: 16px; }
+  .prize li { display: grid; grid-template-columns: 60px 1fr; gap: 16px; align-items: center; font-size: 22px; font-weight: 700; line-height: 1.3; }
+  .prize li svg { width: 60px; height: 60px; }
+
+  /* 5 · RETO */
+  .challenge { margin-top: 80px; padding: 0; }
+  .band {
+    position: relative; margin: 0 40px; padding: 64px 72px 60px; border-radius: 40px;
+    background: var(--pumpkin); color: var(--navy); overflow: hidden; text-align: center;
+  }
+  .band svg.leaves { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .band .inner { position: relative; }
+  .band .label { color: var(--navy); }
+  .band .label::before { background: var(--navy); }
+  .band .recycle { width: 84px; height: 84px; margin: 0 auto 18px; display: block; }
+  .band blockquote {
+    margin-top: 20px; font-family: "Fraunces", Georgia, serif; font-variation-settings: "SOFT" 100, "opsz" 144;
+    font-weight: 800; font-size: 56px; line-height: 1.08; letter-spacing: -.01em;
+  }
+  .band blockquote em { font-style: normal; color: #FFF6EC; }
+  .band p { margin-top: 22px; font-size: 26px; font-weight: 600; line-height: 1.4; color: #2A1606; }
+
+  /* 6 · CRITERIOS */
+  .criteria { margin-top: 80px; }
+  .crit-grid { margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .crit { background: var(--card); border: 2px solid var(--line); border-radius: 28px; padding: 30px 30px 26px; }
+  .crit .head { display: flex; align-items: center; gap: 14px; }
+  .crit .head svg { width: 52px; height: 56px; flex: none; }
+  .crit h3 { font-size: 28px; font-weight: 800; color: var(--navy); }
+  .crit ol { list-style: none; margin-top: 18px; display: grid; gap: 12px; counter-reset: c; }
+  .crit li {
+    counter-increment: c; display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: center;
+    font-size: 21px; font-weight: 600; line-height: 1.3; color: var(--ink-soft);
+  }
+  .crit li::before {
+    content: counter(c); width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--blue-3); color: var(--blue); font-family: "Fraunces", Georgia, serif; font-weight: 800; font-size: 20px;
+  }
+
+  /* 7 · CIERRE */
+  .closing {
+    position: relative; margin-top: 88px; padding: 72px 64px 56px;
+    background: radial-gradient(700px 400px at 50% 0%, rgba(0,72,135,.5), transparent 70%), var(--navy);
+    color: #F3F6FA; text-align: center; border-radius: 48px 48px 0 0; overflow: hidden;
+  }
+  .closing svg.deco { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .closing .inner { position: relative; }
+  .closing p.big {
+    font-family: "Fraunces", Georgia, serif; font-variation-settings: "SOFT" 100, "opsz" 144;
+    font-weight: 800; font-size: 46px; line-height: 1.15; max-width: 820px; margin: 0 auto;
+  }
+  .closing p.big span { color: var(--pumpkin); }
+  .closing .icons { display: inline-flex; gap: 12px; vertical-align: middle; margin-left: 8px; }
+  .closing .icons svg { width: 46px; height: 50px; }
+  .closing .foot { margin-top: 44px; display: flex; justify-content: center; }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <!-- 1 · TÍTULO + FECHA -->
+  <header class="hero">
+    <svg class="deco" viewBox="0 0 1080 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <radialGradient id="glow"><stop offset="0" stop-color="#F2E8D0" stop-opacity=".22"/><stop offset="1" stop-color="#F2E8D0" stop-opacity="0"/></radialGradient>
+        <symbol id="bat" viewBox="0 14 100 30"><path d="M50 41 C54 35 59 34 63 38 C67 32 75 31 80 36 C84 28 92 24 100 24 C88 16 72 16 62 24 C58 22 56 22 54 23.5 L53 17 L51 21.5 L49 21.5 L47 17 L46 23.5 C44 22 42 22 38 24 C28 16 12 16 0 24 C8 24 16 28 20 36 C25 31 33 32 37 38 C41 34 46 35 50 41 Z"/></symbol>
+        <symbol id="leaf" viewBox="-20 -30 40 60"><path d="M0 -28 C14 -18 18 -4 12 10 C8 20 2 26 0 28 C-2 26 -8 20 -12 10 C-18 -4 -14 -18 0 -28 Z"/><path d="M0 -24 V28" stroke="#0D1427" stroke-opacity=".25" stroke-width="1.6" fill="none"/></symbol>
+        <symbol id="spark" viewBox="-10 -10 20 20"><path d="M0 -10 C1 -3 3 -1 10 0 C3 1 1 3 0 10 C-1 3 -3 1 -10 0 C-3 -1 -1 -3 0 -10 Z"/></symbol>
+      </defs>
+      <circle cx="860" cy="215" r="220" fill="url(#glow)"/>
+      <circle cx="860" cy="215" r="112" fill="#F2E8D0"/>
+      <g fill="#E4D6B6"><circle cx="824" cy="186" r="16"/><circle cx="896" cy="250" r="22"/><circle cx="906" cy="170" r="8"/></g>
+      <use href="#bat" x="800" y="186" width="110" height="33" fill="#0D1427"/>
+      <use href="#bat" x="610" y="140" width="64" height="19" fill="#95C9E1" fill-opacity=".65"/>
+      <use href="#bat" x="960" y="640" width="50" height="15" fill="#95C9E1" fill-opacity=".5"/>
+      <!-- telaraña -->
+      <g fill="none" stroke="#95C9E1" stroke-opacity=".3" stroke-width="1.5">
+        <path d="M0 120 L190 120 M0 120 L170 215 M0 120 L110 290 M0 120 L0 330"/>
+        <path d="M60 120 Q55 140 58 148 Q42 158 38 166 Q22 164 0 176"/>
+        <path d="M120 120 Q106 160 108 176 Q78 196 72 214 Q40 214 0 230"/>
+        <path d="M180 120 Q160 178 162 204 Q118 236 106 262 Q62 264 0 286"/>
+      </g>
+      <!-- hojas otoñales -->
+      <use href="#leaf" x="548" y="40" width="34" height="52" fill="#C9A77C" transform="rotate(24 565 66)"/>
+      <use href="#leaf" x="1000" y="560" width="40" height="60" fill="#EE7F35" transform="rotate(-30 1020 590)"/>
+      <use href="#leaf" x="452" y="250" width="26" height="40" fill="#B8501A" transform="rotate(60 465 270)"/>
+      <g fill="#F2E8D0"><use href="#spark" x="700" y="320" width="16" height="16" fill-opacity=".7"/><use href="#spark" x="380" y="170" width="20" height="20"/><use href="#spark" x="1010" y="120" width="14" height="14" fill-opacity=".6"/></g>
+    </svg>
+
+    <div class="top">
+      <span class="chip"><img src="assets/logo-cornerstone-horizontal.png" alt="Cornerstone"></span>
+    </div>
+
+    <div class="content">
+      <div class="eyebrow">Halloween con sello sostenible</div>
+      <h1 class="title" aria-label="Halloween">
+        <span>HALL</span>
+        <svg class="o" viewBox="0 0 100 108" aria-hidden="true">
+          <path d="M50 22 C49 14 51 8 57 4" fill="none" stroke="#8A6A45" stroke-width="6" stroke-linecap="round"/>
+          <path d="M55 12 C64 4 76 6 80 12 C71 17 62 17 55 12 Z" fill="#9FB07F"/>
+          <ellipse cx="30" cy="64" rx="26" ry="40" fill="#D9662A"/><ellipse cx="70" cy="64" rx="26" ry="40" fill="#D9662A"/>
+          <ellipse cx="50" cy="64" rx="28" ry="42" fill="#EE7F35"/>
+          <ellipse cx="50" cy="64" rx="46" ry="41" fill="none" stroke="#FFF3E4" stroke-opacity=".55" stroke-width="1.6" stroke-dasharray="4 4"/>
+          <g fill="#0D1427"><path d="M33 55 L41 44 L45 57 Z"/><path d="M67 55 L59 44 L55 57 Z"/><path d="M31 70 Q50 88 69 70 Q62 74 57 73 L54 78 L50 73 L46 78 L43 73 Q38 74 31 70 Z"/></g>
+        </svg>
+        <span>WEEN</span>
+      </h1>
+      <div class="year">2026</div>
+      <div class="date">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0D1427" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+        Jueves 29 de octubre
+      </div>
+    </div>
+  </header>
+
+  <!-- 2 · CONCEPTO -->
+  <section class="concept">
+    <div class="tag">
+      <span class="tape"></span>
+      <span class="hand">El concepto</span>
+      <p>Un Halloween que combina <b>diversión</b>, <b>creatividad</b>, <b>integración</b> y <b>reutilización de materiales</b>.</p>
+    </div>
+  </section>
+
+  <!-- 3 · ACTIVIDADES -->
+  <section class="activities">
+    <div class="label">Actividades</div>
+    <h2>¿Qué haremos?</h2>
+    <div class="acts">
+      <div class="act">
+        <div class="ic"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M10 22 Q60 42 110 22" fill="none" stroke="#8A6A45" stroke-width="2.5"/><polygon points="14,24 30,27 22,40" fill="#EE7F35"/><polygon points="32,30 48,32 40,45" fill="#C9A77C"/><polygon points="52,32 68,33 60,46" fill="#004887"/><polygon points="72,31 88,30 80,44" fill="#EE7F35"/><polygon points="90,27 106,24 98,39" fill="#C9A77C"/><g transform="translate(43,46) scale(0.34)"><ellipse cx="30" cy="64" rx="26" ry="40" fill="#D9662A"/><ellipse cx="70" cy="64" rx="26" ry="40" fill="#D9662A"/><ellipse cx="50" cy="64" rx="28" ry="42" fill="#EE7F35"/><path d="M50 22 C49 14 51 8 57 4" fill="none" stroke="#8A6A45" stroke-width="7" stroke-linecap="round"/></g><rect x="10" y="80" width="100" height="8" rx="3" fill="#0D1427"/><rect x="20" y="88" width="6" height="24" fill="#0D1427"/><rect x="94" y="88" width="6" height="24" fill="#0D1427"/></svg></div>
+        <div>
+          <h3>Decoración de mesas por equipos</h3>
+          <p>Cada equipo decorará la mesa o espacio de trabajo que se le indique utilizando principalmente materiales reutilizados, reciclados o elementos que ya tengan disponibles.</p>
+        </div>
+      </div>
+      <div class="act">
+        <div class="ic"><svg viewBox="0 0 120 120" aria-hidden="true"><polygon points="36,60 10,40 14,80" fill="#D9662A"/><polygon points="84,60 110,40 106,80" fill="#D9662A"/><ellipse cx="60" cy="60" rx="28" ry="22" fill="#EE7F35"/><path d="M50 40 Q58 60 50 80" fill="none" stroke="#FFF3E4" stroke-width="5" stroke-opacity=".6"/><path d="M68 40 Q76 60 68 80" fill="none" stroke="#FFF3E4" stroke-width="5" stroke-opacity=".6"/></svg></div>
+        <div>
+          <h3>Dulce o truco</h3>
+          <p>Los niños invitados recorrerán las mesas de trabajo para realizar el tradicional recorrido de “dulce o truco” y recibir dulces.</p>
+        </div>
+      </div>
+      <div class="act">
+        <div class="ic"><svg viewBox="0 0 120 120" aria-hidden="true"><polygon points="52,4 68,4 104,112 16,112" fill="#95C9E1" fill-opacity=".55"/><g transform="translate(31,34) scale(0.58)"><path d="M18 50 A32 32 0 0 1 82 50 V108 Q74 99 66 108 Q58 117 50 108 Q42 99 34 108 Q26 117 18 108 Z" fill="#FFFFFF" stroke="#0D1427" stroke-width="4" stroke-linejoin="round"/><ellipse cx="39" cy="54" rx="5" ry="7" fill="#0D1427"/><ellipse cx="61" cy="54" rx="5" ry="7" fill="#0D1427"/><path d="M44 70 Q50 75 56 70" fill="none" stroke="#0D1427" stroke-width="3" stroke-linecap="round"/></g><rect x="12" y="108" width="96" height="6" rx="3" fill="#0D1427"/></svg></div>
+        <div>
+          <h3>Pasarela voluntaria de disfraces</h3>
+          <p>Los colaboradores que quieran participar podrán presentar sus disfraces durante la actividad.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · PREMIOS -->
+  <section class="prizes">
+    <div class="label">Premios</div>
+    <h2>Y sí, hay premios</h2>
+    <div class="prize-grid">
+      <div class="prize">
+        <div class="kick"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 14 H10 C10 24 14 28 19 29" fill="none" stroke="#EE7F35" stroke-width="4" stroke-linecap="round"/><path d="M46 14 H54 C54 24 50 28 45 29" fill="none" stroke="#EE7F35" stroke-width="4" stroke-linecap="round"/><path d="M18 8 H46 V24 C46 34 40 40 32 40 C24 40 18 34 18 24 Z" fill="#EE7F35"/><rect x="29" y="40" width="6" height="10" fill="#EE7F35"/><rect x="20" y="50" width="24" height="7" rx="2" fill="#95C9E1"/></svg>Premio</div>
+        <h3>Mejor mesa</h3>
+        <ul>
+          <li><svg viewBox="0 0 80 80" aria-hidden="true"><polygon points="18,42 62,42 56,72 24,72" fill="#C9A77C"/><path d="M30 44 L32 72 M40 44 V72 M50 44 L48 72" stroke="#8A6A45" stroke-width="2"/><path d="M14 44 C10 34 20 26 26 28 C26 18 38 12 44 20 C50 14 62 18 60 28 C68 28 72 38 66 44 Z" fill="#F2E8D0"/><circle cx="44" cy="14" r="6" fill="#EE7F35"/></svg>Cupcake para cada integrante del equipo ganador</li>
+          <li><svg viewBox="0 0 80 80" aria-hidden="true"><g stroke="#EE7F35" stroke-width="4" stroke-linecap="round"><path d="M46 6 V12 M68 30 H74 M62 13 L58 17 M30 13 L34 17"/></g><circle cx="46" cy="32" r="15" fill="#EE7F35"/><path d="M14 64 C6 64 6 52 14 50 C14 40 28 38 32 46 C36 40 50 42 50 52 C58 52 60 64 50 64 Z" fill="#F3F6FA"/></svg>Medio día libre</li>
+        </ul>
+      </div>
+      <div class="prize">
+        <div class="kick"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 14 H10 C10 24 14 28 19 29" fill="none" stroke="#EE7F35" stroke-width="4" stroke-linecap="round"/><path d="M46 14 H54 C54 24 50 28 45 29" fill="none" stroke="#EE7F35" stroke-width="4" stroke-linecap="round"/><path d="M18 8 H46 V24 C46 34 40 40 32 40 C24 40 18 34 18 24 Z" fill="#EE7F35"/><rect x="29" y="40" width="6" height="10" fill="#EE7F35"/><rect x="20" y="50" width="24" height="7" rx="2" fill="#95C9E1"/></svg>Premio</div>
+        <h3>Mejor disfraz</h3>
+        <ul>
+          <li><svg viewBox="0 0 80 80" aria-hidden="true"><rect x="16" y="8" width="44" height="64" rx="8" fill="#95C9E1"/><circle cx="38" cy="24" r="7" fill="#0D1427"/><circle cx="38" cy="50" r="14" fill="#0D1427"/><circle cx="38" cy="50" r="5" fill="#95C9E1"/><path d="M66 38 Q71 46 66 54" fill="none" stroke="#EE7F35" stroke-width="3.5" stroke-linecap="round"/><path d="M71 31 Q80 46 71 61" fill="none" stroke="#EE7F35" stroke-width="3.5" stroke-linecap="round"/></svg>Un parlante</li>
+          <li><svg viewBox="0 0 80 80" aria-hidden="true"><rect x="6" y="18" width="68" height="46" rx="6" fill="#EE7F35"/><rect x="6" y="28" width="68" height="8" fill="#D9662A"/><rect x="50" y="18" width="6" height="46" fill="#F2E8D0"/><circle cx="48" cy="16" r="5" fill="#F2E8D0"/><circle cx="58" cy="16" r="5" fill="#F2E8D0"/><rect x="14" y="46" width="16" height="10" rx="2" fill="#F2E8D0"/></svg>Gift card Saga Falabella o Ripley</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · RETO SOSTENIBLE -->
+  <section class="challenge">
+    <div class="band">
+      <svg class="leaves" viewBox="0 0 1000 460" preserveAspectRatio="none" aria-hidden="true">
+        <defs><symbol id="lf" viewBox="-20 -30 40 60"><path d="M0 -28 C14 -18 18 -4 12 10 C8 20 2 26 0 28 C-2 26 -8 20 -12 10 C-18 -4 -14 -18 0 -28 Z"/></symbol></defs>
+        <use href="#lf" x="24" y="30" width="56" height="84" fill="#D9662A" transform="rotate(-25 52 72)"/>
+        <use href="#lf" x="90" y="330" width="40" height="60" fill="#C9A77C" transform="rotate(40 110 360)"/>
+        <use href="#lf" x="900" y="40" width="44" height="66" fill="#C9A77C" transform="rotate(30 922 73)"/>
+        <use href="#lf" x="880" y="320" width="60" height="90" fill="#D9662A" transform="rotate(-40 910 365)"/>
+      </svg>
+      <div class="inner">
+        <svg class="recycle" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="#0D1427"/><g fill="none" stroke="#EE7F35" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M24.5 45 A26 26 0 0 1 71 34.5"/><path d="M61 33 L71.5 35 L74 24.5"/><path d="M75.5 55 A26 26 0 0 1 29 65.5"/><path d="M39 67 L28.5 65 L26 75.5"/></g></svg>
+        <div class="label">El reto sostenible</div>
+        <blockquote>“No se trata de gastar más, <em>sino de crear más.</em>”</blockquote>
+        <p>Reutiliza, recicla y dale una segunda vida a lo que ya tienes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · CRITERIOS -->
+  <section class="criteria">
+    <div class="label">Criterios de evaluación</div>
+    <h2>¿Cómo elegiremos a los ganadores?</h2>
+    <div class="crit-grid">
+      <div class="crit">
+        <div class="head">
+          <svg viewBox="0 0 100 108" aria-hidden="true"><path d="M50 22 C49 14 51 8 57 4" fill="none" stroke="#8A6A45" stroke-width="6" stroke-linecap="round"/><path d="M55 12 C64 4 76 6 80 12 C71 17 62 17 55 12 Z" fill="#9FB07F"/><ellipse cx="30" cy="64" rx="26" ry="40" fill="#D9662A"/><ellipse cx="70" cy="64" rx="26" ry="40" fill="#D9662A"/><ellipse cx="50" cy="64" rx="28" ry="42" fill="#EE7F35"/><g fill="#0D1427"><path d="M33 55 L41 44 L45 57 Z"/><path d="M67 55 L59 44 L55 57 Z"/><path d="M31 70 Q50 88 69 70 Q62 74 57 73 L54 78 L50 73 L46 78 L43 73 Q38 74 31 70 Z"/></g></svg>
+          <h3>Mejor mesa</h3>
+        </div>
+        <ol>
+          <li>Creatividad y originalidad</li>
+          <li>Uso de materiales reciclados/reutilizados</li>
+          <li>Integración y trabajo en equipo</li>
+          <li>Impacto visual</li>
+          <li>Cumplimiento de la temática de Halloween</li>
+        </ol>
+      </div>
+      <div class="crit">
+        <div class="head">
+          <svg viewBox="0 0 100 118" aria-hidden="true"><path d="M18 50 A32 32 0 0 1 82 50 V108 Q74 99 66 108 Q58 117 50 108 Q42 99 34 108 Q26 117 18 108 Z" fill="#FFFFFF" stroke="#0D1427" stroke-width="4" stroke-linejoin="round"/><ellipse cx="39" cy="54" rx="5" ry="7" fill="#0D1427"/><ellipse cx="61" cy="54" rx="5" ry="7" fill="#0D1427"/><path d="M44 70 Q50 75 56 70" fill="none" stroke="#0D1427" stroke-width="3" stroke-linecap="round"/></svg>
+          <h3>Mejor disfraz</h3>
+        </div>
+        <ol>
+          <li>Creatividad y originalidad</li>
+          <li>Uso de materiales reciclados/reutilizados</li>
+          <li>Relación con la temática</li>
+          <li>Presentación y detalle</li>
+          <li>Impacto general del disfraz</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · CIERRE -->
+  <footer class="closing">
+    <svg class="deco" viewBox="0 0 1080 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <use href="#bat" x="80" y="70" width="70" height="21" fill="#95C9E1" fill-opacity=".55"/>
+      <use href="#bat" x="930" y="110" width="56" height="17" fill="#95C9E1" fill-opacity=".45"/>
+      <use href="#leaf" x="60" y="300" width="34" height="52" fill="#C9A77C" transform="rotate(-30 77 326)"/>
+      <use href="#leaf" x="980" y="290" width="40" height="60" fill="#EE7F35" transform="rotate(35 1000 320)"/>
+      <g fill="#F2E8D0"><use href="#spark" x="200" y="200" width="16" height="16" fill-opacity=".7"/><use href="#spark" x="880" y="230" width="18" height="18" fill-opacity=".8"/></g>
+    </svg>
+    <div class="inner">
+      <p class="big">Prepárate para <span>crear, compartir y celebrar</span> un Halloween diferente.
+        <span class="icons">
+          <svg viewBox="0 0 100 108" aria-hidden="true"><ellipse cx="30" cy="64" rx="26" ry="40" fill="#D9662A"/><ellipse cx="70" cy="64" rx="26" ry="40" fill="#D9662A"/><ellipse cx="50" cy="64" rx="28" ry="42" fill="#EE7F35"/><path d="M50 22 C49 14 51 8 57 4" fill="none" stroke="#8A6A45" stroke-width="6" stroke-linecap="round"/><g fill="#0D1427"><path d="M33 55 L41 44 L45 57 Z"/><path d="M67 55 L59 44 L55 57 Z"/><path d="M31 70 Q50 88 69 70 Q62 74 57 73 L54 78 L50 73 L46 78 L43 73 Q38 74 31 70 Z"/></g></svg>
+          <svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="#C9A77C"/><g fill="none" stroke="#0D1427" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M24.5 45 A26 26 0 0 1 71 34.5"/><path d="M61 33 L71.5 35 L74 24.5"/><path d="M75.5 55 A26 26 0 0 1 29 65.5"/><path d="M39 67 L28.5 65 L26 75.5"/></g></svg>
+        </span>
+      </p>
+      <div class="foot"><span class="chip"><img src="assets/logo-cornerstone-horizontal.png" alt="Cornerstone"></span></div>
+    </div>
+  </footer>
+
+</main>
+</body>
+</html>
