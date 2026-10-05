@@ -23,4 +23,14 @@ if (what === 'flyer' || what === 'all') {
   await page.pdf({ path: path.join(out, 'flyer.pdf'), width: '1080px', height: Math.ceil(h) + 'px', printBackground: true });
   console.log('flyer', h);
 }
+if (what === 'a4' || what === 'all') {
+  // A4 210 × 297 mm = 794 × 1123 px; PNG a 3x ≈ 290 dpi para impresión
+  const page = await browser.newPage({ viewport: { width: 794, height: 1123 }, deviceScaleFactor: 3 });
+  await page.goto('file://' + path.join(here, 'flyer-ranking-a4.html'));
+  await page.evaluate(() => document.fonts.ready);
+  const over = await page.evaluate(() => { const p = document.querySelector('.page'); const f = document.querySelector('.files').getBoundingClientRect(); const c = document.querySelector('.cta').getBoundingClientRect(); return { gap: Math.round(c.top - f.bottom), scroll: p.scrollHeight }; });
+  await page.locator('.page').screenshot({ path: path.join(out, 'flyer-a4.png') });
+  await page.pdf({ path: path.join(out, 'flyer-a4.pdf'), format: 'A4', printBackground: true, preferCSSPageSize: true });
+  console.log('a4', JSON.stringify(over));
+}
 await browser.close();

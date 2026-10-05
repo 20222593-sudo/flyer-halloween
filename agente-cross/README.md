@@ -7,10 +7,12 @@ Rediseño visual del programa interno **Misión Posible: Agente Cross** (concept
 - `Agente-Cross-2026.pdf`: la misma presentación en PDF.
 - `slides/slide-01…09.png`: diapositivas sueltas (1920 × 1080).
 - `Agente-Cross-Ranking.png` / `.pdf`: flyer digital "Ranking de agentes calificados" (1080 px de ancho, @2x).
+- `Agente-Cross-Ranking-A4.png` / `.pdf`: el mismo flyer en una hoja A4 (PNG de 2382 × 3369 px, ≈ 290 dpi, apto para imprimir).
 
 ## Fuentes editables
 - `presentacion.html`: deck (una `<section class="slide">` por diapositiva).
-- `flyer-ranking.html`: flyer de ranking.
+- `flyer-ranking.html`: flyer de ranking (formato digital largo).
+- `flyer-ranking-a4.html`: flyer de ranking en A4.
 - `agente-cross.css`: sistema visual compartido (colores, sellos, tipografía).
 - `render.mjs`: vuelve a exportar todo con `node render.mjs all export` (usa Playwright + Chromium).
 
