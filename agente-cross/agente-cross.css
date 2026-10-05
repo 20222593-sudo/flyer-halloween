@@ -1,0 +1,68 @@
+/* AGENTE CROSS · Sistema visual compartido (deck + flyer)
+   Cornerstone: Navy #0D1427 · Blue #004887 · Accent #95C9E1 / #D8E8F5 · Action Red #CB333B
+   Concepto: expediente confidencial + centro de inteligencia + gamificación corporativa */
+
+@font-face { font-family: "Archivo"; src: url(../assets/fonts/archivo.woff2) format("woff2"); font-weight: 100 900; font-stretch: 62% 125%; }
+@font-face { font-family: "Plus Jakarta Sans"; src: url(../assets/fonts/plus-jakarta-sans.woff2) format("woff2"); font-weight: 200 800; }
+@font-face { font-family: "Plex Mono"; src: url(../assets/fonts/plex-mono-400.woff2) format("woff2"); font-weight: 400; }
+@font-face { font-family: "Plex Mono"; src: url(../assets/fonts/plex-mono-500.woff2) format("woff2"); font-weight: 500; }
+@font-face { font-family: "Plex Mono"; src: url(../assets/fonts/plex-mono-600.woff2) format("woff2"); font-weight: 600; }
+@font-face { font-family: "Plex Mono"; src: url(../assets/fonts/plex-mono-700.woff2) format("woff2"); font-weight: 700; }
+
+:root {
+  --navy: #0D1427; --navy-2: #121C33; --navy-3: #1A2742;
+  --blue: #004887; --blue-mid: #1D5FA0; --blue-2: #95C9E1; --blue-3: #D8E8F5;
+  --red: #CB333B; --red-dk: #A3242B;
+  --paper: #F3F6FA; --paper-2: #E8EEF5; --card: #FFFFFF; --line: #D3DEEA;
+  --ink: #0D1427; --ink-soft: #46536B; --ink-mute: #7A879C;
+  --medal: #C8A45A; --medal-2: #E7D3A1;
+  --display: "Archivo", "Arial Narrow", sans-serif;
+  --sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --mono: "Plex Mono", "DejaVu Sans Mono", monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--sans); color: var(--ink); -webkit-font-smoothing: antialiased; }
+b, strong { font-weight: 800; }
+
+/* ---------- Tipografía ---------- */
+.mono { font-family: var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+.display { font-family: var(--display); font-stretch: 68%; font-variation-settings: "wdth" 68; font-weight: 850; letter-spacing: -.005em; line-height: .92; text-transform: uppercase; }
+
+/* ---------- Sello (CONFIDENCIAL / MISIÓN ACTIVA / CUMPLIDA / CALIFICADO) ---------- */
+.stamp {
+  display: inline-flex; align-items: center; gap: .5em;
+  font-family: var(--mono); font-weight: 700; text-transform: uppercase; letter-spacing: .22em;
+  color: var(--red); border: .16em solid currentColor; border-radius: .35em;
+  padding: .42em .9em .38em 1.12em; line-height: 1;
+  outline: .07em solid currentColor; outline-offset: .22em;
+  transform: rotate(-7deg); opacity: .92;
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='7'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.75'/></filter><rect width='100%' height='100%' filter='url(%23f)'/></svg>");
+  -webkit-mask-size: 220px 220px;
+}
+.stamp.blue { color: var(--blue); }
+.stamp.light { color: var(--blue-2); }
+.stamp.ok { color: #2E7D5B; }
+
+/* ---------- Pastilla mono ---------- */
+.tag {
+  display: inline-flex; align-items: center; gap: .6em;
+  font-family: var(--mono); font-weight: 600; text-transform: uppercase; letter-spacing: .16em;
+  font-size: 15px; line-height: 1; padding: .7em 1em; border-radius: 4px;
+  border: 1px solid currentColor;
+}
+.dot { width: .62em; height: .62em; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 .3em rgba(203,51,59,.22); flex: none; }
+
+/* ---------- Iconos ---------- */
+.ico { width: 1em; height: 1em; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* ---------- Esquinas de visor (marcas de encuadre) ---------- */
+.viewfinder { position: absolute; pointer-events: none; }
+.viewfinder::before, .viewfinder::after { content: ""; position: absolute; width: 28px; height: 28px; border: 2px solid currentColor; }
+.viewfinder::before { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+.viewfinder::after { bottom: 0; right: 0; border-left: 0; border-top: 0; }
+
+/* ---------- Texto tachado / censurado (decorativo) ---------- */
+.redact { display: inline-block; height: .72em; background: currentColor; border-radius: 2px; vertical-align: middle; opacity: .9; }
+
+/* ---------- Logo en blanco sobre fondos oscuros ---------- */
+.logo-white { filter: brightness(0) invert(1); }
