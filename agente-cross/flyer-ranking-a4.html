@@ -69,12 +69,24 @@
   .f.lead .num b { color: var(--navy); }
   .f.lead .bar i { background: linear-gradient(90deg, var(--blue), var(--medal)); }
 
+  /* hueco del ranking: invitación al próximo agente */
+  .f.next .tab { background: transparent; color: var(--blue); border: 1.5px dashed rgba(0,72,135,.45); border-bottom: 0; }
+  .f.next .card { background: rgba(255,255,255,.55); border: 2px dashed rgba(0,72,135,.4); border-top-width: 2px; box-shadow: none; align-items: center; justify-content: center; text-align: center; }
+  .f.next .sil { width: 54px; height: 54px; border-radius: 50%; border: 2px dashed rgba(0,72,135,.45); display: grid; place-items: center; color: var(--blue); }
+  .f.next .sil svg { width: 28px; height: 28px; }
+  .f.next .agent { margin-top: 10px; justify-content: center; }
+  .f.next .q { margin-top: 4px; font-family: var(--display); font-stretch: 72%; font-variation-settings: "wdth" 72; font-weight: 850; font-size: 52px; line-height: 1; color: var(--navy); }
+  .f.next .lines { width: 80%; margin-top: 12px; display: grid; gap: 6px; }
+  .f.next .lines i { height: 6px; border-radius: 3px; background: var(--paper-2); }
+  .f.next .lines i:nth-child(2) { width: 65%; margin: 0 auto; }
+  .f.next .open { margin-top: 12px; font-family: var(--mono); font-weight: 700; font-size: 9px; letter-spacing: .18em; color: var(--red); text-transform: uppercase; }
+
   /* ---------- CTA ---------- */
   .cta { margin-top: auto; padding: 18px 40px 20px; background: var(--navy); color: #EEF3F9; overflow: hidden; }
   .cta::before { content: ""; position: absolute; inset: 0;
     background: radial-gradient(360px 260px at 100% 0%, rgba(29,95,160,.5), transparent 65%), repeating-linear-gradient(-45deg, rgba(149,201,225,.04) 0 10px, transparent 10px 20px); }
   .cta > * { position: relative; }
-  .cta .grid { display: grid; grid-template-columns: 1fr 150px; gap: 24px; align-items: center; }
+  .cta .grid { display: block; }
   .live { display: inline-flex; align-items: center; gap: 9px; padding: 7px 12px; border-radius: 4px; background: var(--red); color: #fff;
     font-family: var(--mono); font-weight: 700; font-size: 11.5px; letter-spacing: .24em; text-transform: uppercase; }
   .live .dot { background: #fff; box-shadow: 0 0 0 .3em rgba(255,255,255,.25); }
@@ -200,22 +212,21 @@
       <div class="tab"><svg class="ico" viewBox="0 0 24 24"><use href="#i-folder"/></svg>Exp. CX-005</div>
       <div class="card">
         <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="none" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">05</text></svg>Agente #05</div><div class="stamp">Calificado</div></div>
-        <div class="name">Aurora Ponce<br>de Leon</div>
-        <div class="unit">Career Services &amp; Talent Solutions</div>
-        <div class="num"><b>17,100</b><span>LEADS</span></div>
-        <div class="bar"><i style="width:21.6%"></i></div>
-        <div class="ok"><svg class="ico" viewBox="0 0 24 24"><use href="#i-check"/></svg>Recompensa asegurada</div>
-      </div>
-    </article>
-    <article class="f">
-      <div class="tab"><svg class="ico" viewBox="0 0 24 24"><use href="#i-folder"/></svg>Exp. CX-006</div>
-      <div class="card">
-        <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="none" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">06</text></svg>Agente #06</div><div class="stamp">Calificado</div></div>
         <div class="name">Nicolás<br>Lizárraga</div>
         <div class="unit">CL &amp; Executive Search</div>
         <div class="num"><b>15,694</b><span>LEADS</span></div>
         <div class="bar"><i style="width:19.8%"></i></div>
         <div class="ok"><svg class="ico" viewBox="0 0 24 24"><use href="#i-check"/></svg>Recompensa asegurada</div>
+      </div>
+    </article>
+  <article class="f next">
+      <div class="tab"><svg class="ico" viewBox="0 0 24 24"><use href="#i-folder"/></svg>Exp. CX-006</div>
+      <div class="card">
+        <div class="sil"><svg class="ico" viewBox="0 0 24 24"><use href="#i-user"/></svg></div>
+        <div class="agent">Agente #06</div>
+        <div class="q">¿Tú?</div>
+        <div class="lines"><i></i><i></i></div>
+        <div class="open">Expediente abierto</div>
       </div>
     </article>
   </section>
@@ -227,12 +238,6 @@
         <h3>La convocatoria sigue abierta para todo el equipo.</h3>
         <p class="lead">Todavía puedes seguir acumulando leads.</p>
         <div class="hl"><svg class="ico" viewBox="0 0 24 24"><use href="#i-chart"/></svg><b>A mayor cantidad de leads, mejor será tu recompensa.</b></div>
-      </div>
-      <div class="blank">
-        <div class="sil"><svg class="ico" viewBox="0 0 24 24"><use href="#i-user"/></svg></div>
-        <div class="agent">Agente #07</div>
-        <div class="q">¿Tú?</div>
-        <div class="lines"><i></i><i></i></div>
       </div>
     </div>
     <div class="question">
