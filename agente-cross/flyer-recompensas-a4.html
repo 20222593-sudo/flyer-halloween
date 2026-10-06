@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Agente Cross Recompensas</title>
+<meta name="viewport" content="width=794">
+<link rel="stylesheet" href="agente-cross.css">
+<style>
+  /* A4 = 210 × 297 mm → 794 × 1123 px a 96 dpi. Niveles, montos y premios: tabla oficial del PPT
+     "Misión Posible – Agente Cross 2026" (Nivel Agente · Misiones · Premio Asociado). */
+  @page { size: A4; margin: 0; }
+  html, body { background: #fff; }
+  body { width: 794px; }
+  .page { position: relative; width: 794px; height: 1123px; overflow: hidden; background: var(--paper); display: flex; flex-direction: column; }
+  .page::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(0,72,135,.12) 1px, transparent 1.2px); background-size: 22px 22px; }
+  .page > * { position: relative; flex-shrink: 0; }
+  .cond { font-family: var(--display); font-stretch: 70%; font-variation-settings: "wdth" 70; font-weight: 850; }
+
+  /* ---------- HERO ---------- */
+  .hero { padding: 20px 40px 22px; color: #EEF3F9; overflow: hidden;
+    background: radial-gradient(420px 320px at 92% 30%, rgba(29,95,160,.55), transparent 65%),
+                radial-gradient(420px 300px at 0% 100%, rgba(0,72,135,.55), transparent 60%), var(--navy); }
+  .hero::before { content: ""; position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(149,201,225,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(149,201,225,.06) 1px, transparent 1px); background-size: 44px 44px; }
+  .hero > * { position: relative; }
+  .hero .radar { position: absolute; right: -150px; top: -40px; width: 470px; height: 470px; }
+  .top { display: flex; align-items: center; gap: 14px; }
+  .top img { height: 22px; display: block; }
+  .top .code { font-family: var(--mono); font-size: 10px; letter-spacing: .22em; color: var(--blue-2); text-transform: uppercase; }
+  .top .code em { font-style: normal; opacity: .55; }
+  .top .rule { flex: 1; height: 1px; background: rgba(149,201,225,.3); }
+  .top .conf { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .22em; color: var(--red); text-transform: uppercase; }
+  .brand { margin-top: 16px; display: flex; align-items: center; gap: 16px; }
+  .brand .mark { width: 36px; height: 36px; }
+  .brand .name { font-size: 32px; line-height: 1; letter-spacing: .04em; color: #fff; text-transform: uppercase; }
+  .brand .name span { color: var(--blue-2); }
+  .hero .stamp { position: absolute; right: 44px; top: 70px; font-size: 14px; color: #E5545B; transform: rotate(8deg); }
+  .hero h1 { margin-top: 8px; font-size: 60px; line-height: .94; text-transform: uppercase; color: #fff; }
+  .hero h1 span { color: var(--blue-2); }
+  .hero .lead { margin-top: 12px; display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 10px; background: rgba(149,201,225,.14); border: 1px solid rgba(149,201,225,.35); font-size: 16px; font-weight: 600; color: #E6EEF7; }
+  .hero .lead b { color: #fff; font-weight: 800; }
+  .hero .lead svg { width: 24px; height: 24px; color: var(--blue-2); flex: none; }
+
+  /* ---------- PREMIOS ---------- */
+  .prizes { padding: 16px 40px 0; }
+  .sec-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+  .kicker { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-weight: 600; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--blue); }
+  .kicker::before { content: ""; width: 26px; height: 2px; background: var(--red); }
+  .sec-head h2 { margin-top: 4px; font-size: 30px; line-height: 1; color: var(--navy); text-transform: uppercase; }
+  .sec-head .scale { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 9.5px; font-weight: 600; letter-spacing: .14em; color: var(--ink-mute); text-transform: uppercase; padding-bottom: 4px; }
+  .sec-head .scale i { display: block; width: 90px; height: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--blue-3), var(--blue), var(--medal)); }
+  .grid { margin-top: 26px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 27px 12px; }
+  .lv { position: relative; }
+  .tab { position: absolute; top: -21px; left: 0; height: 24px; padding: 0 10px; display: flex; align-items: center; gap: 6px; border-radius: 7px 7px 0 0;
+    background: var(--blue); color: #fff; font-family: var(--mono); font-weight: 600; font-size: 9px; letter-spacing: .16em; text-transform: uppercase; }
+  .card { position: relative; height: 100%; background: #fff; border-radius: 0 10px 10px 10px; border-top: 4px solid var(--blue); padding: 9px 12px 10px;
+    box-shadow: 0 16px 26px -20px rgba(13,20,39,.55), 0 0 0 1px rgba(13,20,39,.05); display: flex; flex-direction: column; }
+  .row1 { display: flex; align-items: center; justify-content: space-between; }
+  .lvl { font-family: var(--mono); font-weight: 600; font-size: 10px; letter-spacing: .18em; color: var(--blue); }
+  .badge { width: 26px; height: 26px; }
+  .rank { margin-top: 2px; font-size: 23px; line-height: 1; text-transform: uppercase; color: var(--navy); }
+  .prize { margin-top: 7px; padding: 7px 10px; border-radius: 8px; background: var(--blue-3); display: flex; align-items: center; gap: 9px; min-height: 56px; }
+  .prize .ic { width: 30px; height: 30px; border-radius: 9px; background: var(--blue); color: #fff; display: grid; place-items: center; flex: none; }
+  .prize .ic svg { width: 18px; height: 18px; }
+  .prize small { display: block; font-family: var(--mono); font-weight: 600; font-size: 8.5px; letter-spacing: .12em; line-height: 1.35; color: var(--blue); text-transform: uppercase; }
+  .prize b { display: block; font-family: var(--display); font-stretch: 82%; font-variation-settings: "wdth" 82; font-weight: 850; font-size: 28px; line-height: .95; color: var(--navy); }
+  .prize b em { font-family: var(--sans); font-style: normal; font-weight: 700; font-size: 11px; letter-spacing: 0; color: var(--ink-soft); margin-right: 4px; vertical-align: 4px; }
+  .detail { margin-top: 5px; font-size: 10px; line-height: 1.35; color: var(--ink-soft); font-weight: 600; }
+  .mission { padding-top: 6px; display: flex; justify-content: space-between; align-items: baseline; border-top: 1px dashed var(--line); margin-top: auto; }
+  .mission span { font-family: var(--mono); font-size: 8.5px; letter-spacing: .16em; color: var(--ink-mute); text-transform: uppercase; }
+  .mission b { font-size: 13px; font-weight: 800; color: var(--navy); }
+  .meter { margin-top: 6px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 3px; }
+  .meter i { height: 4px; border-radius: 2px; background: var(--paper-2); }
+  .meter i.on { background: var(--blue); }
+  /* progresión visual: los niveles altos ganan peso */
+  .lv.l4 .card, .lv.l5 .card { border-top-color: var(--navy); }
+  .lv.l4 .tab, .lv.l5 .tab { background: var(--navy); }
+  .lv.l6 .tab { background: var(--navy); }
+  .lv.l6 .tab b { color: var(--medal); }
+  .lv.l6 .card { background: var(--navy); border-top-color: var(--medal); box-shadow: 0 0 0 2px rgba(200,164,90,.6), 0 18px 28px -18px rgba(13,20,39,.7); }
+  .lv.l6 .lvl { color: var(--medal); }
+  .lv.l6 .rank { color: #fff; }
+  .lv.l6 .prize { background: rgba(200,164,90,.16); }
+  .lv.l6 .prize .ic { background: var(--medal); color: var(--navy); }
+  .lv.l6 .prize small { color: var(--medal-2); }
+  .lv.l6 .prize b { color: #fff; }
+  .lv.l6 .prize b em { color: var(--medal-2); }
+  .lv.l6 .mission { border-color: rgba(149,201,225,.3); }
+  .lv.l6 .mission span { color: var(--blue-2); }
+  .lv.l6 .mission b { color: #fff; }
+  .lv.l6 .meter i { background: rgba(149,201,225,.2); }
+  .lv.l6 .meter i.on { background: var(--medal); }
+  .rule-note { margin-top: 8px; display: flex; align-items: center; gap: 8px; font-size: 11px; font-style: italic; color: var(--ink-soft); }
+  .rule-note svg { width: 15px; height: 15px; color: var(--blue); flex: none; }
+
+  /* ---------- MOTIVACIÓN ---------- */
+  .moti { margin: 10px 40px 0; display: flex; align-items: center; gap: 14px; padding: 9px 16px; border-radius: 10px; background: #fff; border-left: 5px solid var(--red); box-shadow: 0 12px 22px -18px rgba(13,20,39,.5); }
+  .moti .c1 { font-size: 22px; line-height: 1; text-transform: uppercase; color: var(--navy); white-space: nowrap; }
+  .moti .sep { width: 1px; align-self: stretch; background: var(--line); }
+  .moti p { font-size: 14px; font-weight: 600; color: var(--ink-soft); }
+  .moti p b { color: var(--navy); font-weight: 800; }
+  .moti svg { width: 24px; height: 24px; color: var(--blue); flex: none; }
+
+  /* ---------- CIERRE ---------- */
+  .cta { margin-top: auto; padding: 16px 40px 16px; background: var(--navy); color: #EEF3F9; overflow: hidden; }
+  .cta::before { content: ""; position: absolute; inset: 0;
+    background: radial-gradient(360px 260px at 100% 0%, rgba(29,95,160,.55), transparent 65%), repeating-linear-gradient(-45deg, rgba(149,201,225,.04) 0 10px, transparent 10px 20px); }
+  .cta > * { position: relative; }
+  .countdown { display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: center; }
+  .months { display: flex; gap: 8px; }
+  .months div { width: 50px; height: 62px; border-radius: 9px; background: rgba(149,201,225,.12); border: 1.5px solid rgba(149,201,225,.45); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .months div b { font-family: var(--display); font-stretch: 80%; font-variation-settings: "wdth" 80; font-weight: 850; font-size: 30px; line-height: 1; color: #fff; }
+  .months div span { margin-top: 3px; font-family: var(--mono); font-size: 8.5px; letter-spacing: .16em; color: var(--blue-2); }
+  .cta h3 { font-size: 38px; line-height: .95; text-transform: uppercase; color: #fff; }
+  .cta h3 span { color: var(--blue-2); }
+  .cta .open { margin-top: 6px; display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: #D3DEEC; }
+  .live { display: inline-flex; align-items: center; gap: 7px; padding: 4px 9px; border-radius: 4px; background: var(--red); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; }
+  .live .dot { background: #fff; box-shadow: 0 0 0 .3em rgba(255,255,255,.25); }
+  .close { margin-top: 12px; padding-top: 10px; border-top: 1px dashed rgba(149,201,225,.35); display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+  .close .q { font-size: 24px; line-height: 1; color: #fff; text-transform: uppercase; }
+  .close .q span { display: block; margin-top: 3px; color: var(--blue-2); font-size: 18px; }
+  .close .stamp { font-size: 12px; color: #E5545B; transform: rotate(-6deg); flex: none; }
+  .final { margin-top: 10px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 9px 16px; border-radius: 10px; background: #fff; color: var(--navy); }
+  .final p { font-size: 15px; font-weight: 800; }
+  .final img { height: 22px; display: block; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="hex" viewBox="0 0 64 64"><path d="M32 3 57 17.5v29L32 61 7 46.5v-29z"/></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 14.5h4"/></symbol>
+    <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M4 7h16v3a2 2 0 0 0 0 4v3H4v-3a2 2 0 0 0 0-4z"/><path d="m12 9.3.8 1.6 1.8.3-1.3 1.2.3 1.8-1.6-.8-1.6.8.3-1.8-1.3-1.2 1.8-.3z"/></symbol>
+    <symbol id="i-plane" viewBox="0 0 24 24"><path d="M10.5 13.5 4 11l1.2-1.2 7.3 1 4-4a1.8 1.8 0 0 1 2.6 2.6l-4 4 1 7.3L15 21.9l-2.5-6.5L9.8 18l.3 2.2-1 1-1.3-3.2L4.6 16.7l1-1 2.2.3z"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V4M4 20h16"/><path d="m7 15 4-4 3 3 5-6"/><path d="M16 8h3v3"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.4 15.4 21 21"/><path d="M7.8 9.2a3 3 0 0 1 2.4-1.9"/></symbol>
+    <symbol id="i-net" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.4"/><circle cx="5" cy="18" r="2.4"/><circle cx="19" cy="18" r="2.4"/><path d="M10.9 7.1 6.2 15.9M13.1 7.1l4.7 8.8M7.4 18h9.2"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 10.5h18"/></symbol>
+  </defs>
+</svg>
+
+<div class="page">
+
+  <!-- ===================== SUPERIOR ===================== -->
+  <header class="hero">
+    <svg class="radar" viewBox="0 0 640 640" aria-hidden="true">
+      <defs><linearGradient id="sw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#95C9E1" stop-opacity="0"/><stop offset="1" stop-color="#95C9E1" stop-opacity=".3"/></linearGradient></defs>
+      <g fill="none" stroke="#95C9E1">
+        <circle cx="320" cy="320" r="310" stroke-opacity=".45" stroke-width="2" stroke-dasharray="2 25.05"/>
+        <circle cx="320" cy="320" r="296" stroke-opacity=".22"/><circle cx="320" cy="320" r="210" stroke-opacity=".18" stroke-dasharray="4 8"/>
+        <circle cx="320" cy="320" r="120" stroke-opacity=".2"/><path d="M320 10v620M10 320h620" stroke-opacity=".12"/>
+      </g>
+      <path d="M320 320 L320 24 A296 296 0 0 1 529 111 Z" fill="url(#sw)"/>
+      <path d="M320 320 L529 111" stroke="#95C9E1" stroke-opacity=".7" stroke-width="2"/>
+      <g stroke="#95C9E1" stroke-opacity=".35" stroke-dasharray="4 6" fill="none"><path d="M420 190 L360 250 L270 105 M360 250 L470 420 M360 250 L180 430"/></g>
+      <g fill="#95C9E1"><circle cx="420" cy="190" r="7"/><circle cx="270" cy="105" r="5"/><circle cx="470" cy="420" r="6" fill-opacity=".7"/><circle cx="180" cy="430" r="6" fill-opacity=".7"/><circle cx="360" cy="250" r="5"/></g>
+    </svg>
+
+    <div class="top">
+      <img class="logo-white" src="../assets/logo-cornerstone-horizontal.png" alt="Cornerstone">
+      <div class="code">OP-CROSS-2026 <em>/ Comunicado interno</em></div>
+      <div class="rule"></div>
+      <div class="conf"><span class="dot"></span>Confidencial</div>
+    </div>
+
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><use href="#hex" fill="rgba(149,201,225,.12)" stroke="#95C9E1" stroke-width="2.5"/><circle cx="32" cy="32" r="12" fill="none" stroke="#95C9E1" stroke-width="2"/><path d="M32 32 41 23" stroke="#95C9E1" stroke-width="2.5"/><circle cx="32" cy="32" r="3" fill="#95C9E1"/></svg>
+      <div class="name cond">Agente <span>Cross</span></div>
+    </div>
+    <div class="stamp">Misión activa</div>
+
+    <h1 class="cond">Tu misión todavía<br><span>no termina.</span></h1>
+    <div class="lead"><svg class="ico" viewBox="0 0 24 24"><use href="#i-chart"/></svg><span>¡Aún tienes <b>3 meses</b> para sumar leads y alcanzar mejores recompensas!</span></div>
+  </header>
+
+  <!-- ===================== PREMIOS ===================== -->
+  <section class="prizes">
+    <div class="sec-head">
+      <div>
+        <div class="kicker">Expedientes de recompensa</div>
+        <h2 class="cond">Niveles de misión y premios</h2>
+      </div>
+      <div class="scale">Nivel 01<i></i>Nivel 06</div>
+    </div>
+
+    <div class="grid">
+      <article class="lv l1"><div class="tab">Exp. 01 · Recluta</div><div class="card">
+        <div class="row1"><span class="lvl">NIVEL 01</span><svg class="badge" viewBox="0 0 64 64"><use href="#hex" fill="none" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">01</text></svg></div>
+        <div class="rank cond">Recluta</div>
+        <div class="prize"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><use href="#i-card"/></svg></div><div><small>Vale de consumo</small><b>$50</b></div></div>
+        <div class="mission"><span>Misiones</span><b>Desde S/ 15,000</b></div>
+        <div class="meter"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div></article>
+
+      <article class="lv l2"><div class="tab">Exp. 02 · Táctico</div><div class="card">
+        <div class="row1"><span class="lvl">NIVEL 02</span><svg class="badge" viewBox="0 0 64 64"><use href="#hex" fill="none" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">02</text></svg></div>
+        <div class="rank cond">Táctico</div>
+        <div class="prize"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><use href="#i-card"/></svg></div><div><small>Vale de consumo</small><b>$100</b></div></div>
+        <div class="mission"><span>Misiones</span><b>Desde S/ 25,000</b></div>
+        <div class="meter"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div>
+      </div></article>
+
+      <article class="lv l3"><div class="tab">Exp. 03 · Especial</div><div class="card">
+        <div class="row1"><span class="lvl">NIVEL 03</span><svg class="badge" viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">03</text></svg></div>
+        <div class="rank cond">Especial</div>
+        <div class="prize"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><use href="#i-ticket"/></svg></div><div><small>Experiencia</small><b><em>Máximo</em>$300</b></div></div>
+        <div class="detail">Estadía, desayuno, cena, full day, concierto, etc.</div>
+        <div class="mission"><span>Misiones</span><b>Desde S/ 50,000</b></div>
+        <div class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
+      </div></article>
+
+      <article class="lv l4"><div class="tab">Exp. 04 · Élite</div><div class="card">
+        <div class="row1"><span class="lvl">NIVEL 04</span><svg class="badge" viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#0D1427" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#0D1427">04</text></svg></div>
+        <div class="rank cond">Élite</div>
+        <div class="prize"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><use href="#i-plane"/></svg></div><div><small>Pasaje o paquete de viaje</small><b><em>Máximo</em>$600</b></div></div>
+        <div class="mission"><span>Misiones</span><b>Desde S/ 75,000</b></div>
+        <div class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+      </div></article>
+
+      <article class="lv l5"><div class="tab">Exp. 05 · Comandante</div><div class="card">
+        <div class="row1"><span class="lvl">NIVEL 05</span><svg class="badge" viewBox="0 0 64 64"><use href="#hex" fill="#0D1427" stroke="#0D1427" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#95C9E1">05</text></svg></div>
+        <div class="rank cond">Comandante</div>
+        <div class="prize"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><use href="#i-plane"/></svg></div><div><small>Pasaje o paquete de viaje</small><b><em>Máximo</em>$1,200</b></div></div>
+        <div class="mission"><span>Misiones</span><b>Desde S/ 100,000</b></div>
+        <div class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+      </div></article>
+
+      <article class="lv l6"><div class="tab">Exp. 06 · <b>Leyenda Cross</b></div><div class="card">
+        <div class="row1"><span class="lvl">NIVEL 06</span><svg class="badge" viewBox="0 0 64 64"><use href="#hex" fill="#0D1427" stroke="#C8A45A" stroke-width="3"/><path d="m32 13 3 6.2 6.8.9-4.9 4.7 1.2 6.7L32 28.3l-6.1 3.2 1.2-6.7-4.9-4.7 6.8-.9z" fill="#C8A45A"/><text x="32" y="50" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="14" fill="#fff">06</text></svg></div>
+        <div class="rank cond">Leyenda Cross</div>
+        <div class="prize"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><use href="#i-plane"/></svg></div><div><small>Pasaje o paquete de viaje</small><b><em>Máximo</em>$2,500</b></div></div>
+        <div class="mission"><span>Misiones</span><b>Desde S/ 200,000</b></div>
+        <div class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+      </div></article>
+    </div>
+
+    <div class="rule-note"><svg class="ico" viewBox="0 0 24 24"><use href="#i-lock"/></svg>El rango es único por la acumulación de venta, un solo premio por persona.</div>
+  </section>
+
+  <!-- ===================== MOTIVACIÓN ===================== -->
+  <div class="moti">
+    <svg class="ico" viewBox="0 0 24 24"><use href="#i-search"/></svg>
+    <div class="c1 cond">Cada lead cuenta.</div>
+    <div class="sep"></div>
+    <p>A mayor cantidad de leads, <b>mejor será tu recompensa.</b></p>
+  </div>
+
+  <!-- ===================== INFERIOR ===================== -->
+  <section class="cta">
+    <div class="countdown">
+      <div class="months">
+        <div><b>01</b><span>MES</span></div><div><b>02</b><span>MES</span></div><div><b>03</b><span>MES</span></div>
+      </div>
+      <div>
+        <h3 class="cond">3 meses más<br><span>para sumar leads</span></h3>
+        <div class="open"><span class="live"><span class="dot"></span>Misión activa</span>La convocatoria sigue abierta para todo el equipo.</div>
+      </div>
+    </div>
+    <div class="close">
+      <div class="q cond">¿Hasta dónde puedes llegar?<span>La misión sigue abierta.</span></div>
+      <div class="stamp light">Expediente abierto</div>
+    </div>
+    <div class="final">
+      <p>Cada conexión puede convertirse en una nueva oportunidad.</p>
+      <img src="../assets/logo-cornerstone-horizontal.png" alt="Cornerstone">
+    </div>
+  </section>
+</div>
+</body>
+</html>

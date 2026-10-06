@@ -33,4 +33,14 @@ if (what === 'a4' || what === 'all') {
   await page.pdf({ path: path.join(out, 'flyer-a4.pdf'), format: 'A4', printBackground: true, preferCSSPageSize: true });
   console.log('a4', JSON.stringify(over));
 }
+if (what === 'rewards' || what === 'all') {
+  // Flyer de recompensas en A4, mismo tratamiento que el ranking A4
+  const page = await browser.newPage({ viewport: { width: 794, height: 1123 }, deviceScaleFactor: 3 });
+  await page.goto('file://' + path.join(here, 'flyer-recompensas-a4.html'));
+  await page.evaluate(() => document.fonts.ready);
+  const fit = await page.evaluate(() => { const r = s => document.querySelector(s).getBoundingClientRect(); return { gap: Math.round(r('.cta').top - r('.moti').bottom), bottom: Math.round(r('.cta').bottom), hero: Math.round(r('.hero').height), prizes: Math.round(r('.prizes').height), cta: Math.round(r('.cta').height) }; });
+  await page.locator('.page').screenshot({ path: path.join(out, 'recompensas-a4.png') });
+  await page.pdf({ path: path.join(out, 'recompensas-a4.pdf'), format: 'A4', printBackground: true, preferCSSPageSize: true });
+  console.log('rewards', JSON.stringify(fit));
+}
 await browser.close();
