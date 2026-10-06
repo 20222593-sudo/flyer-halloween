@@ -41,13 +41,13 @@
   .hero .msg .stamp { font-size: 13px; flex: none; margin-bottom: 14px; transform: rotate(-9deg); }
 
   /* ---------- EXPEDIENTES ---------- */
-  .files { margin-top: -30px; padding: 0 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 16px; }
+  .files { margin-top: -30px; padding: 0 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px 16px; }
   .f { position: relative; }
   .tab { position: absolute; top: -24px; left: 0; height: 27px; padding: 0 12px; display: flex; align-items: center; gap: 7px; border-radius: 8px 8px 0 0;
     background: var(--blue); color: #fff; font-family: var(--mono); font-weight: 600; font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; }
   .tab svg { width: 12px; height: 12px; }
   .tab b { color: var(--medal); font-weight: 700; }
-  .card { position: relative; height: 100%; background: #fff; border-radius: 0 10px 10px 10px; border-top: 4px solid var(--blue); padding: 12px 15px 10px;
+  .card { position: relative; height: 100%; background: #fff; border-radius: 10px; border-top: 4px solid var(--blue); padding: 12px 15px 12px;
     box-shadow: 0 18px 28px -20px rgba(13,20,39,.55), 0 0 0 1px rgba(13,20,39,.05); display: flex; flex-direction: column; }
   .row1 { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
   .agent { display: flex; align-items: center; gap: 7px; font-family: var(--mono); font-weight: 600; font-size: 10px; letter-spacing: .14em; color: var(--blue); text-transform: uppercase; }
@@ -55,9 +55,9 @@
   .card .stamp { font-size: 8.5px; transform: rotate(-6deg); padding: .4em .7em .36em .9em; }
   .name { margin-top: 9px; min-height: 54px; display: flex; align-items: flex-end; font-family: var(--display); font-stretch: 72%; font-variation-settings: "wdth" 72; font-weight: 850; font-size: 27px; line-height: .98; text-transform: uppercase; color: var(--navy); }
   .unit { margin-top: 5px; min-height: 26px; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; line-height: 1.45; color: var(--ink-mute); text-transform: uppercase; }
-  .num { margin-top: 6px; display: flex; align-items: baseline; gap: 6px; }
+  .num { margin-top: 6px; display: block; }
   .num b { font-family: var(--display); font-stretch: 82%; font-variation-settings: "wdth" 82; font-weight: 850; font-size: 40px; line-height: .9; color: var(--blue); letter-spacing: -.01em; }
-  .num span { font-family: var(--mono); font-weight: 700; font-size: 10px; letter-spacing: .2em; color: var(--navy); }
+  .num span { display: block; margin-top: 5px; text-transform: uppercase; font-family: var(--mono); font-weight: 700; font-size: 10px; letter-spacing: .2em; color: var(--navy); }
   .bar { margin-top: 8px; height: 6px; border-radius: 3px; background: var(--paper-2); overflow: hidden; }
   .bar i { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--blue), var(--blue-2)); }
   .ok { margin-top: 7px; display: inline-flex; align-self: flex-start; align-items: center; gap: 5px; padding: 5px 8px; border-radius: 5px; background: #E5F2EC; color: #23704F;
@@ -156,8 +156,8 @@
 
     <div class="msg">
       <div>
-        <h2>¡Ya tenemos agentes calificados!</h2>
-        <p>Ellos ya aseguraron su recompensa… <b>pero la misión continúa.</b></p>
+        <h2>¡Ya tenemos agentes con recompensa!</h2>
+        <p><b>…pero la misión continúa.</b></p>
       </div>
       <div class="stamp light">Calificados</div>
     </div>
@@ -165,62 +165,51 @@
 
   <section class="files">
     <article class="f lead">
-      <div class="tab"><svg class="ico" viewBox="0 0 24 24"><use href="#i-folder"/></svg>Exp. CX-001 · <b>Líder</b></div>
       <div class="card">
         <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#0D1427" stroke="#C8A45A" stroke-width="3"/><path d="m32 13 3 6.2 6.8.9-4.9 4.7 1.2 6.7L32 28.3l-6.1 3.2 1.2-6.7-4.9-4.7 6.8-.9z" fill="#C8A45A"/><text x="32" y="50" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="14" fill="#fff">01</text></svg>Agente #01</div><div class="stamp">Calificado</div></div>
         <div class="name">Sandra<br>Narro</div>
         <div class="unit">Career Services &amp; Talent Solutions</div>
-        <div class="num"><b>79,147</b><span>LEADS</span></div>
+        <div class="num"><b>S/ 79,147</b><span>en leads enviados</span></div>
         <div class="bar"><i style="width:100%"></i></div>
-        <div class="ok"><svg class="ico" viewBox="0 0 24 24"><use href="#i-check"/></svg>Recompensa asegurada</div>
       </div>
     </article>
     <article class="f">
-      <div class="tab"><svg class="ico" viewBox="0 0 24 24"><use href="#i-folder"/></svg>Exp. CX-002</div>
       <div class="card">
         <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">02</text></svg>Agente #02</div><div class="stamp">Calificado</div></div>
         <div class="name">Victoria<br>Balcazar</div>
         <div class="unit">Career Services &amp; Talent Solutions</div>
-        <div class="num"><b>57,600</b><span>LEADS</span></div>
+        <div class="num"><b>S/ 57,600</b><span>en leads enviados</span></div>
         <div class="bar"><i style="width:72.8%"></i></div>
-        <div class="ok"><svg class="ico" viewBox="0 0 24 24"><use href="#i-check"/></svg>Recompensa asegurada</div>
       </div>
     </article>
     <article class="f">
-      <div class="tab"><svg class="ico" viewBox="0 0 24 24"><use href="#i-folder"/></svg>Exp. CX-003</div>
       <div class="card">
         <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">03</text></svg>Agente #03</div><div class="stamp">Calificado</div></div>
         <div class="name">Andrea<br>Bernales</div>
         <div class="unit">CL &amp; Executive Search</div>
-        <div class="num"><b>56,822</b><span>LEADS</span></div>
+        <div class="num"><b>S/ 56,822</b><span>en leads enviados</span></div>
         <div class="bar"><i style="width:71.8%"></i></div>
-        <div class="ok"><svg class="ico" viewBox="0 0 24 24"><use href="#i-check"/></svg>Recompensa asegurada</div>
       </div>
     </article>
     <article class="f">
-      <div class="tab"><svg class="ico" viewBox="0 0 24 24"><use href="#i-folder"/></svg>Exp. CX-004</div>
       <div class="card">
         <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="none" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">04</text></svg>Agente #04</div><div class="stamp">Calificado</div></div>
         <div class="name">Enori<br>Larrabure</div>
         <div class="unit">Career Services &amp; Talent Solutions</div>
-        <div class="num"><b>42,350</b><span>LEADS</span></div>
+        <div class="num"><b>S/ 42,350</b><span>en leads enviados</span></div>
         <div class="bar"><i style="width:53.5%"></i></div>
-        <div class="ok"><svg class="ico" viewBox="0 0 24 24"><use href="#i-check"/></svg>Recompensa asegurada</div>
       </div>
     </article>
     <article class="f">
-      <div class="tab"><svg class="ico" viewBox="0 0 24 24"><use href="#i-folder"/></svg>Exp. CX-005</div>
       <div class="card">
         <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="none" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">05</text></svg>Agente #05</div><div class="stamp">Calificado</div></div>
         <div class="name">Nicolás<br>Lizárraga</div>
         <div class="unit">CL &amp; Executive Search</div>
-        <div class="num"><b>15,694</b><span>LEADS</span></div>
+        <div class="num"><b>S/ 15,694</b><span>en leads enviados</span></div>
         <div class="bar"><i style="width:19.8%"></i></div>
-        <div class="ok"><svg class="ico" viewBox="0 0 24 24"><use href="#i-check"/></svg>Recompensa asegurada</div>
       </div>
     </article>
   <article class="f next">
-      <div class="tab"><svg class="ico" viewBox="0 0 24 24"><use href="#i-folder"/></svg>Exp. CX-006</div>
       <div class="card">
         <div class="sil"><svg class="ico" viewBox="0 0 24 24"><use href="#i-user"/></svg></div>
         <div class="agent">Agente #06</div>
