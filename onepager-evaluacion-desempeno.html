@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Evaluación de Desempeño 2026</title>
+<meta name="viewport" content="width=1240">
+<style>
+  @font-face { font-family: "Fraunces"; src: url(assets/fonts/fraunces.woff2) format("woff2"); font-weight: 100 900; }
+  @font-face { font-family: "Plus Jakarta Sans"; src: url(assets/fonts/plus-jakarta-sans.woff2) format("woff2"); font-weight: 200 800; }
+
+  /* A4 vertical: 1240 × 1754 (210 × 297 mm) */
+  :root {
+    --navy: #0D1427; --blue: #004887; --blue-2: #95C9E1; --blue-3: #D8E8F5;
+    --paper: #F4F7FB; --ink: #0D1427; --ink-soft: #3A4660; --card: #FFFFFF; --line: #D5E1EE;
+    --c-res: #004887; --c-jefe: #2F7DB8; --c-eq: #95C9E1;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); }
+  body { width: 1240px; height: 1754px; overflow: hidden; font-family: "Plus Jakarta Sans", system-ui, sans-serif; color: var(--ink); }
+  .page { position: relative; width: 1240px; height: 1754px; background: var(--paper); overflow: hidden; display: flex; flex-direction: column; }
+  .fr { font-family: "Fraunces", Georgia, serif; font-variation-settings: "SOFT" 100, "opsz" 144; font-weight: 800; }
+  h2 { display: flex; align-items: center; gap: 14px; font-size: 30px; line-height: 1; letter-spacing: -.01em; margin-bottom: 16px; }
+  h2 .q { flex: none; width: 40px; height: 40px; border-radius: 12px; background: var(--blue); color: #fff; display: grid; place-items: center; font-size: 22px; }
+
+  /* HERO */
+  .hero {
+    position: relative; height: 500px; padding: 40px 56px 0; color: #F3F6FA; border-radius: 0 0 40px 40px; overflow: hidden;
+    background: radial-gradient(700px 460px at 88% 30%, rgba(149,201,225,.18), transparent 60%),
+                radial-gradient(760px 460px at 6% 120%, rgba(0,72,135,.6), transparent 65%), var(--navy);
+  }
+  .hero svg.deco { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .chip { position: relative; display: inline-flex; background: #EEF4FA; border-radius: 999px; padding: 11px 22px; }
+  .chip img { height: 30px; display: block; }
+  .hero .content { position: relative; margin-top: 28px; max-width: 760px; }
+  .eyebrow { font-size: 17px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--blue-2); }
+  .title { margin-top: 12px; font-size: 88px; line-height: .98; letter-spacing: -.015em; }
+  .title span { color: var(--blue-2); }
+  .hero .row { display: flex; align-items: center; gap: 22px; margin-top: 26px; }
+  .date { display: inline-flex; align-items: center; gap: 12px; background: var(--blue-2); color: var(--navy); font-size: 27px; font-weight: 800; padding: 14px 28px; border-radius: 999px; }
+  .date svg { width: 28px; height: 28px; }
+  .where { font-size: 20px; font-weight: 600; color: #C9D6E6; }
+  .where b { color: #fff; }
+  .badge {
+    position: absolute; right: 56px; bottom: 60px; width: 300px; height: 300px; border-radius: 50%;
+    display: grid; place-items: center; text-align: center;
+  }
+  .badge .in { position: relative; }
+  .badge .k { font-size: 14px; font-weight: 800; letter-spacing: .26em; text-transform: uppercase; color: var(--blue-2); }
+  .badge .n { font-size: 104px; line-height: .9; margin-top: 6px; }
+  .badge .t { font-size: 19px; font-weight: 700; line-height: 1.3; margin-top: 8px; color: #E6EEF7; }
+
+  .main { flex: 1; padding: 32px 56px 30px; display: flex; flex-direction: column; gap: 28px; }
+
+  /* PROPÓSITO */
+  .intro { display: grid; grid-template-columns: 1.05fr 1fr; gap: 22px; align-items: stretch; }
+  .lead { font-size: 22px; line-height: 1.45; color: var(--ink-soft); font-weight: 500; }
+  .lead b { color: var(--ink); font-weight: 800; }
+  .goals { margin-top: 18px; display: grid; gap: 10px; }
+  .goal { display: flex; align-items: center; gap: 14px; font-size: 19px; font-weight: 700; }
+  .goal .ic { flex: none; width: 44px; height: 44px; border-radius: 12px; background: var(--blue-3); display: grid; place-items: center; }
+  .goal .ic svg { width: 26px; height: 26px; }
+  .base { position: relative; background: var(--card); border: 2px solid var(--line); border-radius: 26px; padding: 26px 28px; overflow: hidden; }
+  .base .k { font-size: 14px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: var(--blue); }
+  .base h3 { margin-top: 10px; font-size: 30px; line-height: 1.12; }
+  .base p { margin-top: 12px; font-size: 18px; line-height: 1.45; color: var(--ink-soft); }
+  .base .no { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .base .no span { display: inline-flex; align-items: center; gap: 8px; background: var(--paper); border: 1.5px solid var(--line); border-radius: 999px; padding: 7px 14px 7px 9px; font-size: 16px; font-weight: 700; }
+  .base .no svg { width: 22px; height: 22px; }
+
+  /* COMPOSICIÓN */
+  .bar { display: grid; grid-template-columns: 50fr 30fr 20fr; height: 92px; border-radius: 22px; overflow: hidden; }
+  .bar div { display: flex; flex-direction: column; justify-content: center; padding: 0 22px; color: #fff; }
+  .bar .n { font-size: 40px; line-height: 1; }
+  .bar .l { margin-top: 4px; font-size: 15px; font-weight: 700; letter-spacing: .02em; }
+  .bar .r { background: var(--c-res); }
+  .bar .j { background: var(--c-jefe); }
+  .bar .e { background: var(--c-eq); color: var(--navy); }
+  .brace { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 10px; }
+  .brace div { position: relative; text-align: center; padding-top: 16px; font-size: 15px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--blue); }
+  .brace div::before { content: ""; position: absolute; top: 0; left: 8px; right: 8px; height: 10px; border: 2.5px solid var(--blue-2); border-top: 0; border-radius: 0 0 10px 10px; }
+  .blocks { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .blk { background: var(--card); border: 2px solid var(--line); border-radius: 24px; padding: 22px 24px; }
+  .blk .hd { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .blk h3 { font-size: 26px; }
+  .blk .pct { font-size: 34px; color: var(--blue); }
+  .blk p { margin-top: 10px; font-size: 17.5px; line-height: 1.45; color: var(--ink-soft); }
+  .blk p b { color: var(--ink); }
+  .who { margin-top: 14px; display: grid; gap: 8px; }
+  .who div { display: grid; grid-template-columns: 14px 1fr auto; gap: 12px; align-items: center; font-size: 17px; font-weight: 700; }
+  .who i { width: 14px; height: 14px; border-radius: 4px; }
+  .who .v { font-family: "Fraunces", Georgia, serif; font-weight: 800; font-size: 20px; color: var(--blue); }
+  .note { margin-top: 12px; display: flex; gap: 10px; align-items: flex-start; background: var(--paper); border-radius: 14px; padding: 11px 14px; font-size: 15.5px; line-height: 1.4; color: var(--ink-soft); }
+  .note svg { flex: none; width: 20px; height: 20px; margin-top: 1px; }
+  .comps { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 7px; }
+  .comps span { background: var(--blue-3); color: var(--blue); border-radius: 999px; padding: 6px 12px; font-size: 14px; font-weight: 700; }
+  .col { display: flex; flex-direction: column; gap: 18px; }
+  .col .blk { flex: 1; }
+  .self { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: center; background: var(--blue-3); border-radius: 22px; padding: 20px 24px; }
+  .self .ic { width: 58px; height: 58px; border-radius: 16px; background: var(--card); display: grid; place-items: center; }
+  .self .ic svg { width: 36px; height: 36px; }
+  .self p { font-size: 17.5px; line-height: 1.45; color: var(--ink-soft); }
+  .self p b { color: var(--ink); }
+
+  /* SESIONES */
+  .sess { display: grid; grid-template-columns: 1fr 1fr 1.05fr; gap: 18px; }
+  .day { display: grid; grid-template-columns: 86px 1fr; gap: 18px; align-items: center; background: var(--card); border: 2px solid var(--line); border-radius: 24px; padding: 18px 20px; }
+  .cal { border-radius: 16px; overflow: hidden; text-align: center; background: var(--blue-3); }
+  .cal .m { background: var(--blue); color: #fff; font-size: 13px; font-weight: 800; letter-spacing: .2em; padding: 5px 0; }
+  .cal .d { font-size: 44px; line-height: 1; padding: 8px 0 10px; color: var(--navy); }
+  .day h3 { font-size: 22px; font-weight: 800; }
+  .day p { margin-top: 4px; font-size: 18px; font-weight: 600; color: var(--ink-soft); display: flex; align-items: center; gap: 8px; }
+  .day p svg { width: 20px; height: 20px; }
+  .same { background: var(--navy); color: #E6EEF7; border-radius: 24px; padding: 20px 24px; display: flex; flex-direction: column; justify-content: center; }
+  .same b { font-family: "Fraunces", Georgia, serif; font-weight: 800; font-size: 23px; color: #fff; line-height: 1.15; }
+  .same span { margin-top: 6px; font-size: 16.5px; line-height: 1.4; }
+
+  /* CIERRE */
+  .closing {
+    margin-top: auto; height: 124px; padding: 0 56px; display: flex; align-items: center; justify-content: space-between; gap: 30px;
+    background: radial-gradient(600px 300px at 30% 0%, rgba(0,72,135,.5), transparent 70%), var(--navy);
+    color: #F3F6FA; border-radius: 40px 40px 0 0;
+  }
+  .closing p { font-size: 32px; line-height: 1.1; }
+  .closing p small { display: block; margin-top: 8px; font-family: "Plus Jakarta Sans", sans-serif; font-size: 17px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--blue-2); }
+</style>
+</head>
+<body>
+<main class="page">
+  <header class="hero">
+    <svg class="deco" viewBox="0 0 1240 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g fill="none" stroke="#95C9E1">
+        <circle cx="1034" cy="290" r="150" stroke-opacity=".9" stroke-width="3"/>
+        <circle cx="1034" cy="290" r="196" stroke-opacity=".22" stroke-width="2"/>
+        <circle cx="1034" cy="290" r="250" stroke-opacity=".12" stroke-width="2"/>
+        <circle cx="1034" cy="290" r="310" stroke-opacity=".07" stroke-width="2"/>
+      </g>
+      <!-- anillo de progreso 50 / 30 / 20 -->
+      <g fill="none" stroke-width="18" transform="rotate(-90 1034 290)">
+        <circle cx="1034" cy="290" r="172" stroke="#2F7DB8" stroke-dasharray="49 51" pathLength="100"/>
+        <circle cx="1034" cy="290" r="172" stroke="#95C9E1" stroke-dasharray="29 71" stroke-dashoffset="-50" pathLength="100"/>
+        <circle cx="1034" cy="290" r="172" stroke="#D8E8F5" stroke-dasharray="19 81" stroke-dashoffset="-80" pathLength="100"/>
+      </g>
+      <g fill="#95C9E1" fill-opacity=".5"><circle cx="640" cy="80" r="4"/><circle cx="700" cy="420" r="3"/><circle cx="1200" cy="70" r="5"/><circle cx="820" cy="150" r="3"/></g>
+    </svg>
+    <span class="chip"><img src="assets/logo-cornerstone-horizontal.png" alt="Cornerstone"></span>
+    <div class="content">
+      <div class="eyebrow">Primer ciclo · Línea base 2026</div>
+      <h1 class="title fr">Evaluación de<br><span>Desempeño</span></h1>
+      <div class="row">
+        <div class="date"><svg viewBox="0 0 24 24" fill="none" stroke="#0D1427" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>16 al 20 de noviembre</div>
+      </div>
+    </div>
+    <div class="badge">
+      <div class="in">
+        <div class="k">Participan</div>
+        <div class="n fr">+3</div>
+        <div class="t">meses en la empresa:<br>todas las personas</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="main">
+    <section class="intro">
+      <div>
+        <p class="lead">Este primer ciclo nos permitirá <b>conocer dónde estamos como equipo</b> y seguir creciendo juntos.</p>
+        <div class="goals">
+          <div class="goal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#004887" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 8-8z"/></svg></span>Saber dónde estamos como equipo</div>
+          <div class="goal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#004887" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4.5"/></svg></span>Fortalecer las conversaciones de feedback</div>
+          <div class="goal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#004887" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span>Seguir mejorando nuestro modelo de evaluación</div>
+        </div>
+      </div>
+      <div class="base">
+        <div class="k">Importante</div>
+        <h3 class="fr">Es una línea base para construir sobre ella</h3>
+        <p>Su objetivo es identificar oportunidades de mejora y crecer sobre ellas en los próximos años.</p>
+        <div class="no">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="#004887" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M6 18L18 6"/></svg>No vinculada a compensación</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="#004887" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M6 18L18 6"/></svg>Ni a continuidad</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="fr"><span class="q">?</span>¿Cómo se compone la evaluación?</h2>
+      <div class="bar" role="img" aria-label="Resultados 50%, Competencias del jefe directo 30%, Competencias del equipo 20%">
+        <div class="r"><span class="n fr">50%</span><span class="l">Resultados · jefe directo</span></div>
+        <div class="j"><span class="n fr">30%</span><span class="l">Competencias · jefe directo</span></div>
+        <div class="e"><span class="n fr">20%</span><span class="l">Competencias · equipo</span></div>
+      </div>
+            <div class="blocks">
+        <div class="col">
+        <div class="blk">
+          <div class="hd"><h3 class="fr">Resultados</h3><span class="pct fr">50%</span></div>
+          <p><b>Cumplimiento de los objetivos del rol</b>, evaluado por el jefe directo.</p>
+          <div class="note"><svg viewBox="0 0 24 24" fill="none" stroke="#004887" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span>En las áreas sin KPI individuales, este porcentaje corresponde a la <b>facturación del equipo o área</b>.</span></div>
+        </div>
+  <div class="self">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#004887" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7"/><path d="M15 19l2 2 4-4"/></svg></span>
+        <p><b>+ Autoevaluación (no suma puntos).</b> Cada colaborador la realizará y servirá como <b>punto de partida para la conversación de feedback</b>.</p>
+      </div>
+        </div>
+        <div class="blk">
+          <div class="hd"><h3 class="fr">Competencias</h3><span class="pct fr">50%</span></div>
+          <p>Las <b>6 competencias corporativas</b>, alineadas con nuestros valores.</p>
+          <div class="comps"><span>Entusiasmo por el Cliente</span><span>Soñar en Grande</span><span>Hacer lo Correcto</span><span>Determinación y Pasión</span><span>Trabajo en Equipo</span><span>Iniciativa y Drive</span></div>
+          <div class="who">
+            <div><i style="background:var(--c-jefe)"></i>Jefe directo<span class="v">30%</span></div>
+            <div><i style="background:var(--c-eq)"></i>Equipo<span class="v">20%</span></div>
+          </div>
+          <div class="note"><svg viewBox="0 0 24 24" fill="none" stroke="#004887" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span>Sin al menos <b>3 personas a cargo</b>: el jefe directo representa el <b>50%</b>.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="fr"><span class="q">i</span>Sesiones informativas</h2>
+      <div class="sess">
+        <div class="day">
+          <div class="cal"><div class="m">OCT</div><div class="d fr">20</div></div>
+          <div><h3>Martes</h3><p><svg viewBox="0 0 24 24" fill="none" stroke="#004887" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>9:00 a 9:45 a. m.</p></div>
+        </div>
+        <div class="day">
+          <div class="cal"><div class="m">OCT</div><div class="d fr">21</div></div>
+          <div><h3>Miércoles</h3><p><svg viewBox="0 0 24 24" fill="none" stroke="#004887" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>9:00 a 9:45 a. m.</p></div>
+        </div>
+        <div class="same">
+          <b>Mismo contenido, tú eliges</b>
+          <span>Explicaremos el modelo y resolveremos tus dudas. Participa en la que mejor te acomode.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="closing">
+    <p class="fr">¡Gracias por su participación!<small>People &amp; Culture</small></p>
+    <span class="chip"><img src="assets/logo-cornerstone-horizontal.png" alt="Cornerstone"></span>
+  </footer>
+</main>
+</body>
+</html>
