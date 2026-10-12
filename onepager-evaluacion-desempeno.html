@@ -24,7 +24,7 @@
 
   /* HERO */
   .hero {
-    position: relative; height: 500px; padding: 40px 56px 0; color: #F3F6FA; border-radius: 0 0 40px 40px; overflow: hidden;
+    position: relative; flex: none; height: 500px; padding: 40px 56px 0; color: #F3F6FA; border-radius: 0 0 40px 40px; overflow: hidden;
     background: radial-gradient(700px 460px at 88% 30%, rgba(149,201,225,.18), transparent 60%),
                 radial-gradient(760px 460px at 6% 120%, rgba(0,72,135,.6), transparent 65%), var(--navy);
   }
@@ -69,22 +69,18 @@
   .base .no svg { width: 22px; height: 22px; }
 
   /* COMPOSICIÓN */
-  .bar { display: grid; grid-template-columns: 1fr 1fr; height: 128px; border-radius: 22px; overflow: hidden; }
-  .bar .r, .bar .c > div, .bar .sub > div { display: flex; flex-direction: column; justify-content: center; padding: 0 22px; color: #fff; }
-  .bar .n { font-size: 44px; line-height: 1; }
-  .bar .l { margin-top: 4px; font-size: 16px; font-weight: 700; letter-spacing: .02em; }
-  .bar .r { background: var(--c-res); }
-  .bar .r .l { font-size: 22px; font-family: "Fraunces", Georgia, serif; font-weight: 800; }
-  .bar .c { display: grid; grid-template-rows: 1fr 1fr; }
-  .bar .c .top { flex-direction: row; align-items: center; justify-content: flex-start; gap: 12px; background: #1D5F99; }
-  .bar .c .top .n { font-size: 32px; }
-  .bar .c .top .l { margin: 0; font-size: 22px; font-family: "Fraunces", Georgia, serif; font-weight: 800; }
-  .bar .c > .sub { display: grid; grid-template-columns: 30fr 20fr; padding: 0; }
-  .bar .sub > div { flex-direction: row; align-items: center; justify-content: flex-start; gap: 10px; padding: 0 22px; }
-  .bar .sub .n { font-size: 26px; }
-  .bar .sub .l { margin: 0; font-size: 15px; }
+  .bar { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; height: 132px; }
+  .bar > div { border-radius: 22px; overflow: hidden; color: #fff; }
+  .bar .r { display: flex; flex-direction: column; justify-content: center; padding: 0 26px; background: var(--c-res); }
+  .bar .n { font-size: 46px; line-height: 1; }
+  .bar .l { margin-top: 4px; font-size: 24px; font-family: "Fraunces", Georgia, serif; font-weight: 800; }
+  .bar .c { display: flex; flex-direction: column; background: #1D5F99; }
+  .bar .c .top { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 0 26px; }
+  .bar .sub { display: grid; grid-template-columns: 30fr 20fr; height: 40px; }
+  .bar .sub > div { display: flex; align-items: center; gap: 8px; padding: 0 20px; font-size: 15px; font-weight: 700; }
+  .bar .sub b { font-family: "Fraunces", Georgia, serif; font-weight: 800; font-size: 20px; }
   .bar .j { background: var(--c-jefe); }
-  .bar .e { background: var(--c-eq); color: var(--navy) !important; }
+  .bar .e { background: var(--c-eq); color: var(--navy); }
   .brace { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 10px; }
   .brace div { position: relative; text-align: center; padding-top: 16px; font-size: 15px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--blue); }
   .brace div::before { content: ""; position: absolute; top: 0; left: 8px; right: 8px; height: 10px; border: 2.5px solid var(--blue-2); border-top: 0; border-radius: 0 0 10px 10px; }
@@ -188,17 +184,14 @@
 
     <section>
       <h2 class="fr"><span class="q">?</span>¿Cómo se compone la evaluación?</h2>
-      <div class="bar" role="img" aria-label="KPIs 50%; Competencias 50%: jefe directo 30% y equipo 20%">
+      <div class="bar" role="img" aria-label="50% KPIs y 50% Competencias (30% jefe directo, 20% equipo)">
         <div class="r"><span class="n fr">50%</span><span class="l">KPIs</span></div>
         <div class="c">
           <div class="top"><span class="n fr">50%</span><span class="l">Competencias</span></div>
-          <div class="sub">
-            <div class="j"><span class="n fr">30%</span><span class="l">Jefe directo</span></div>
-            <div class="e"><span class="n fr">20%</span><span class="l">Equipo</span></div>
-          </div>
+          <div class="sub"><div class="j"><b>30%</b>Jefe directo</div><div class="e"><b>20%</b>Equipo</div></div>
         </div>
       </div>
-            <div class="blocks">
+      <div class="blocks">
         <div class="blk">
           <div class="hd"><h3 class="fr">KPIs</h3><span class="pct fr">50%</span></div>
           <p><b>Cumplimiento de los objetivos del rol</b>, evaluado por el jefe directo.</p>
