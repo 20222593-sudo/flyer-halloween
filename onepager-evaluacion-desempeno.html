@@ -69,18 +69,12 @@
   .base .no svg { width: 22px; height: 22px; }
 
   /* COMPOSICIÓN */
-  .bar { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; height: 132px; }
-  .bar > div { border-radius: 22px; overflow: hidden; color: #fff; }
-  .bar .r { display: flex; flex-direction: column; justify-content: center; padding: 0 26px; background: var(--c-res); }
-  .bar .n { font-size: 46px; line-height: 1; }
-  .bar .l { margin-top: 4px; font-size: 24px; font-family: "Fraunces", Georgia, serif; font-weight: 800; }
-  .bar .c { display: flex; flex-direction: column; background: #1D5F99; }
-  .bar .c .top { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 0 26px; }
-  .bar .sub { display: grid; grid-template-columns: 30fr 20fr; height: 40px; }
-  .bar .sub > div { display: flex; align-items: center; gap: 8px; padding: 0 20px; font-size: 15px; font-weight: 700; }
-  .bar .sub b { font-family: "Fraunces", Georgia, serif; font-weight: 800; font-size: 20px; }
-  .bar .j { background: var(--c-jefe); }
-  .bar .e { background: var(--c-eq); color: var(--navy); }
+  .bar { display: grid; grid-template-columns: 1fr 1fr; height: 92px; border-radius: 22px; overflow: hidden; }
+  .bar div { display: flex; flex-direction: column; justify-content: center; padding: 0 22px; color: #fff; }
+  .bar .n { font-size: 40px; line-height: 1; }
+  .bar .l { margin-top: 4px; font-size: 15px; font-weight: 700; letter-spacing: .02em; }
+  .bar .r { background: var(--c-res); }
+  .bar .c { background: var(--c-jefe); }
   .brace { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 10px; }
   .brace div { position: relative; text-align: center; padding-top: 16px; font-size: 15px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--blue); }
   .brace div::before { content: ""; position: absolute; top: 0; left: 8px; right: 8px; height: 10px; border: 2.5px solid var(--blue-2); border-top: 0; border-radius: 0 0 10px 10px; }
@@ -184,12 +178,9 @@
 
     <section>
       <h2 class="fr"><span class="q">?</span>¿Cómo se compone la evaluación?</h2>
-      <div class="bar" role="img" aria-label="50% KPIs y 50% Competencias (30% jefe directo, 20% equipo)">
+      <div class="bar" role="img" aria-label="50% KPIs y 50% Competencias">
         <div class="r"><span class="n fr">50%</span><span class="l">KPIs</span></div>
-        <div class="c">
-          <div class="top"><span class="n fr">50%</span><span class="l">Competencias</span></div>
-          <div class="sub"><div class="j"><b>30%</b>Jefe directo</div><div class="e"><b>20%</b>Equipo</div></div>
-        </div>
+        <div class="c"><span class="n fr">50%</span><span class="l">Competencias</span></div>
       </div>
       <div class="blocks">
         <div class="blk">
