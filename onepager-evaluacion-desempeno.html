@@ -69,13 +69,22 @@
   .base .no svg { width: 22px; height: 22px; }
 
   /* COMPOSICIÓN */
-  .bar { display: grid; grid-template-columns: 50fr 30fr 20fr; height: 92px; border-radius: 22px; overflow: hidden; }
-  .bar div { display: flex; flex-direction: column; justify-content: center; padding: 0 22px; color: #fff; }
-  .bar .n { font-size: 40px; line-height: 1; }
-  .bar .l { margin-top: 4px; font-size: 15px; font-weight: 700; letter-spacing: .02em; }
+  .bar { display: grid; grid-template-columns: 1fr 1fr; height: 128px; border-radius: 22px; overflow: hidden; }
+  .bar .r, .bar .c > div, .bar .sub > div { display: flex; flex-direction: column; justify-content: center; padding: 0 22px; color: #fff; }
+  .bar .n { font-size: 44px; line-height: 1; }
+  .bar .l { margin-top: 4px; font-size: 16px; font-weight: 700; letter-spacing: .02em; }
   .bar .r { background: var(--c-res); }
+  .bar .r .l { font-size: 22px; font-family: "Fraunces", Georgia, serif; font-weight: 800; }
+  .bar .c { display: grid; grid-template-rows: 1fr 1fr; }
+  .bar .c .top { flex-direction: row; align-items: center; justify-content: flex-start; gap: 12px; background: #1D5F99; }
+  .bar .c .top .n { font-size: 32px; }
+  .bar .c .top .l { margin: 0; font-size: 22px; font-family: "Fraunces", Georgia, serif; font-weight: 800; }
+  .bar .c > .sub { display: grid; grid-template-columns: 30fr 20fr; padding: 0; }
+  .bar .sub > div { flex-direction: row; align-items: center; justify-content: flex-start; gap: 10px; padding: 0 22px; }
+  .bar .sub .n { font-size: 26px; }
+  .bar .sub .l { margin: 0; font-size: 15px; }
   .bar .j { background: var(--c-jefe); }
-  .bar .e { background: var(--c-eq); color: var(--navy); }
+  .bar .e { background: var(--c-eq); color: var(--navy) !important; }
   .brace { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 10px; }
   .brace div { position: relative; text-align: center; padding-top: 16px; font-size: 15px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--blue); }
   .brace div::before { content: ""; position: absolute; top: 0; left: 8px; right: 8px; height: 10px; border: 2.5px solid var(--blue-2); border-top: 0; border-radius: 0 0 10px 10px; }
@@ -179,10 +188,15 @@
 
     <section>
       <h2 class="fr"><span class="q">?</span>¿Cómo se compone la evaluación?</h2>
-      <div class="bar" role="img" aria-label="KPIs 50%, Competencias del jefe directo 30%, Competencias del equipo 20%">
-        <div class="r"><span class="n fr">50%</span><span class="l">KPIs · jefe directo</span></div>
-        <div class="j"><span class="n fr">30%</span><span class="l">Competencias · jefe directo</span></div>
-        <div class="e"><span class="n fr">20%</span><span class="l">Competencias · equipo</span></div>
+      <div class="bar" role="img" aria-label="KPIs 50%; Competencias 50%: jefe directo 30% y equipo 20%">
+        <div class="r"><span class="n fr">50%</span><span class="l">KPIs</span></div>
+        <div class="c">
+          <div class="top"><span class="n fr">50%</span><span class="l">Competencias</span></div>
+          <div class="sub">
+            <div class="j"><span class="n fr">30%</span><span class="l">Jefe directo</span></div>
+            <div class="e"><span class="n fr">20%</span><span class="l">Equipo</span></div>
+          </div>
+        </div>
       </div>
             <div class="blocks">
         <div class="blk">
