@@ -634,7 +634,9 @@ window.CS_ASSETS = {"fraunces":"data:font/woff2;base64,d09GMgABAAAAAPOwABQAAAABs
   try { const saved = JSON.parse(localStorage.getItem(KEY) || '{}'); people.forEach(p => FIELDS.forEach(f => { if (saved[p.id] && typeof saved[p.id][f] === 'string') p[f] = saved[p.id][f]; })); } catch (e) {}
   function save() { try { const o = {}; people.forEach(p => { o[p.id] = {}; FIELDS.forEach(f => (o[p.id][f] = p[f])); }); localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) {} }
 
-  let cur = people[0], gifUrl = null;
+  let cur = people[0], gifUrl = null, gifBlob = null, saver = null;
+  // Dentro de claude.ai las descargas pasan por la capacidad "downloads"; abierto como archivo local, el enlace normal basta.
+  if (window.claude && window.claude.use) window.claude.use('downloads').then(d => (saver = d)).catch(() => {});
   $('logo').src = CS_ASSETS.logo;
 
   function renderPeople() {
@@ -693,13 +695,20 @@ window.CS_ASSETS = {"fraunces":"data:font/woff2;base64,d09GMgABAAAAAPOwABQAAAABs
     try {
       const bytes = await CS.makeGif(cur, p => (bar.style.width = Math.round(p * 100) + '%'));
       if (gifUrl) URL.revokeObjectURL(gifUrl);
-      gifUrl = URL.createObjectURL(new Blob([bytes], { type: 'image/gif' }));
+      gifBlob = new Blob([bytes], { type: 'image/gif' }); gifUrl = URL.createObjectURL(gifBlob);
       $('gif').src = gifUrl; $('download').href = gifUrl; $('download').download = `cumpleanos-${cur.id}.gif`;
       $('gifInfo').textContent = `cumpleanos-${cur.id}.gif · ${(bytes.length / 1048576).toFixed(1)} MB · 600 × 860 px`;
       $('result').hidden = false; $('makeNote').textContent = 'Listo.';
     } catch (e) { $('makeNote').textContent = 'No se pudo crear el GIF. Vuelve a intentarlo.'; console.error(e); }
     btn.disabled = false; $('progress').hidden = true;
   };
+
+  $('download').addEventListener('click', async e => {
+    if (!saver || !gifBlob) return;
+    e.preventDefault();
+    try { await saver.save({ filename: $('download').download, data: gifBlob }); toast('GIF guardado'); }
+    catch (err) { if (err && err.code !== 'declined') toast('No se pudo guardar: usa clic derecho → Guardar imagen'); }
+  });
 
   document.querySelectorAll('[data-copy]').forEach(b => b.onclick = () => {
     const el = $(b.dataset.copy), text = el.textContent;
