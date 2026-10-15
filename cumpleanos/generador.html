@@ -489,7 +489,12 @@ window.CS_ASSETS = {"fraunces":"data:font/woff2;base64,d09GMgABAAAAAPOwABQAAAABs
     ctx.fillStyle = C.white; ctx.beginPath(); ctx.arc(x, y, r + 6, 0, TAU); ctx.fill();
     // foto o monograma
     ctx.save(); ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.clip();
-    if (p.foto) {
+    if (p.foto && p.crop) {
+      // encuadre exacto: (cx, cy) = centro y s = ancho del recorte, en fracción del ancho/alto de la foto
+      const img = p.foto, k = 2 * r / (p.crop.s * img.width);
+      ctx.fillStyle = C.white; ctx.fillRect(x - r, y - r, 2 * r, 2 * r);
+      ctx.drawImage(img, x - p.crop.cx * img.width * k, y - p.crop.cy * img.height * k, img.width * k, img.height * k);
+    } else if (p.foto) {
       const img = p.foto, zoom = p.zoom || 1;
       const s = Math.max(2 * r / img.width, 2 * r / img.height) * zoom, dw = img.width * s, dh = img.height * s;
       const dx = x - dw / 2 - (p.ox || 0) * (dw - 2 * r) / 2, dy = y - dh / 2 - (p.oy || 0) * (dh - 2 * r) / 2;
