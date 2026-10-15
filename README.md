@@ -12,7 +12,7 @@ Tipografías: Fraunces (título), Plus Jakarta Sans (texto), Caveat (detalle hec
 
 ## One-pager · Evaluación de Desempeño 2026
 
-Pieza A4 que acompaña el comunicado de People & Culture sobre el primer ciclo de evaluación (16–20 de noviembre).
+Pieza A4 que acompaña el comunicado de People & Culture sobre el primer ciclo de evaluación (4–8 de enero).
 
 - `onepager-evaluacion-desempeno-2026-A4.png` — versión para pantallas/correo (2480 × 3508 px)
 - `onepager-evaluacion-desempeno-2026-A4.pdf` — versión para impresión (A4)
