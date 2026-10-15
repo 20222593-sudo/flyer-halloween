@@ -1,0 +1,294 @@
+<title>Cumpleaños Cornerstone</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* Layout: tarjeta viva a la izquierda (fija al hacer scroll), panel de trabajo a la derecha;
+     en móvil se apilan. Una sola apariencia clara, con la paleta Cornerstone. */
+  :root {
+    --navy: #0D1427;
+    --blue: #004887;
+    --blue-2: #95C9E1;
+    --blue-3: #D8E8F5;
+    --red: #CB333B;
+    --paper: #F6F9FC;
+    --line: #C9D9E8;
+    --ink-soft: #46546B;
+    --ok: #1F7A4D;
+    --display: "CS Fraunces", Georgia, serif;
+    --body: "CS Jakarta", "Segoe UI", system-ui, sans-serif;
+    --hand: "CS Caveat", cursive;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--blue-3); }
+  body {
+    margin: 0; background: var(--blue-3); color: var(--navy);
+    font: 15px/1.5 var(--body);
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; padding-block: 28px 64px; }
+  header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; margin-bottom: 24px; }
+  header img { height: 26px; display: block; margin-bottom: 14px; }
+  h1 { font: 700 clamp(30px, 5vw, 44px)/1.05 var(--display); margin: 0; text-wrap: balance; }
+  h1 em { font: 700 1.1em var(--hand); color: var(--blue); font-style: normal; }
+  .lede { margin: 6px 0 0; color: var(--ink-soft); max-width: 52ch; }
+
+  .grid { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: 32px; align-items: start; }
+  @media (max-width: 860px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+
+  .stage { position: sticky; top: calc(16px + env(safe-area-inset-top, 0px)); }
+  @media (max-width: 860px) { .stage { position: static; } }
+  .stage canvas { display: block; width: 100%; max-width: 420px; height: auto; aspect-ratio: 600 / 860; border-radius: 18px; box-shadow: 0 18px 40px -18px rgba(13,20,39,.45); background: var(--navy); }
+  .stage .hint { margin: 10px 4px 0; font-size: 13px; color: var(--ink-soft); }
+
+  section.card { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
+  .stack { display: grid; gap: 18px; min-width: 0; }
+  h2 { font: 700 12px/1 var(--body); letter-spacing: .16em; text-transform: uppercase; color: var(--blue); margin: 0 0 14px; }
+
+  .people { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+  .person { all: unset; box-sizing: border-box; cursor: pointer; display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; align-items: center;
+    padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line); background: #fff; min-width: 0; }
+  .person:hover { border-color: var(--blue-2); }
+  .person:focus-visible { outline: 3px solid var(--blue-2); outline-offset: 2px; }
+  .person[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+  .person .day { grid-row: span 2; font: 700 26px/1 var(--display); font-variant-numeric: tabular-nums; color: var(--blue); width: 1.6em; text-align: center; }
+  .person[aria-pressed="true"] .day { color: var(--blue-2); }
+  .person .nm { font-weight: 700; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .person .wd { font-size: 12px; color: var(--ink-soft); display: flex; gap: 6px; align-items: center; }
+  .person[aria-pressed="true"] .wd { color: var(--blue-3); }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--line); flex: none; }
+  .dot.on { background: var(--ok); }
+
+  label, .lbl { display: block; font-size: 12.5px; font-weight: 700; color: var(--ink-soft); margin-bottom: 6px; }
+  input[type=text], textarea { width: 100%; font: inherit; color: var(--navy); background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; }
+  textarea { min-height: 112px; resize: vertical; line-height: 1.5; }
+  input:focus-visible, textarea:focus-visible { outline: 3px solid var(--blue-2); outline-offset: 1px; border-color: var(--blue); }
+  .row2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
+  .count { font-size: 12px; color: var(--ink-soft); margin-top: 4px; }
+  .count.warn { color: var(--red); }
+
+  .drop { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 14px; border: 1.5px dashed var(--blue-2); border-radius: 12px; background: #fff; }
+  .drop.over { background: var(--blue-3); border-color: var(--blue); }
+  .drop p { margin: 0; font-size: 13px; color: var(--ink-soft); flex: 1 1 180px; }
+  .sliders { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 12px; }
+  .sliders[hidden] { display: none !important; }
+  input[type=range] { width: 100%; accent-color: var(--blue); }
+
+  .btn { all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font: 700 14px/1 var(--body);
+    padding: 11px 16px; border-radius: 999px; border: 1.5px solid var(--blue); color: var(--blue); background: #fff; }
+  .btn:hover { background: var(--blue-3); }
+  .btn:focus-visible { outline: 3px solid var(--blue-2); outline-offset: 2px; }
+  .btn.primary { background: var(--navy); border-color: var(--navy); color: #fff; }
+  .btn.primary:hover { background: var(--blue); }
+  .btn.quiet { border-color: var(--line); color: var(--ink-soft); }
+  .btn[disabled] { opacity: .5; pointer-events: none; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+  .progress { height: 6px; border-radius: 6px; background: var(--blue-3); overflow: hidden; margin-top: 14px; }
+  .progress i { display: block; height: 100%; width: 0; background: var(--blue); transition: width .1s; }
+  .result { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; align-items: start; margin-top: 16px; }
+  @media (max-width: 480px) { .result { grid-template-columns: minmax(0, 1fr); } }
+  .result img { width: 100%; max-width: 150px; border-radius: 10px; display: block; }
+  .result p { margin: 0 0 10px; font-size: 13px; color: var(--ink-soft); }
+
+  .mail { display: grid; gap: 12px; }
+  .mail pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: 14px/1.55 var(--body); background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+  .mail .head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .mail .head .lbl { margin: 0; }
+  .btn.sm { padding: 7px 12px; font-size: 12.5px; }
+
+  ol.steps { margin: 0; padding-left: 20px; display: grid; gap: 6px; color: var(--ink-soft); }
+  ol.steps b { color: var(--navy); }
+  .toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--navy); color: #fff; padding: 10px 16px; border-radius: 999px; font-weight: 700; font-size: 13px; }
+  @media (prefers-reduced-motion: reduce) { .progress i { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <img id="logo" alt="Cornerstone">
+      <h1>Cumpleaños de <em>noviembre</em></h1>
+      <p class="lede">Elige a la persona, sube su foto y ajusta el mensaje. La tarjeta se anima aquí mismo y se descarga como GIF listo para pegar en Gmail.</p>
+    </div>
+  </header>
+
+  <div class="grid">
+    <div class="stage">
+      <canvas id="preview" width="600" height="860" aria-label="Vista previa animada de la tarjeta"></canvas>
+      <p class="hint">Vista previa en movimiento · bucle de 3,6 s · 600 × 860 px</p>
+    </div>
+
+    <div class="stack">
+      <section class="card">
+        <h2>Cumpleañeros de noviembre</h2>
+        <div class="people" id="people"></div>
+      </section>
+
+      <section class="card">
+        <h2>Foto</h2>
+        <div class="drop" id="drop">
+          <button class="btn" id="pick" type="button">Subir foto</button>
+          <p id="dropText">Arrastra aquí la foto de la persona (JPG o PNG). Mientras no haya foto, se muestran sus iniciales.</p>
+          <input type="file" id="file" accept="image/*" hidden>
+        </div>
+        <div class="sliders" id="sliders" hidden>
+          <div><label for="zoom">Acercar</label><input type="range" id="zoom" min="1" max="3" step="0.01" value="1"></div>
+          <div><label for="ox">Mover a los lados</label><input type="range" id="ox" min="-1" max="1" step="0.01" value="0"></div>
+          <div><label for="oy">Mover arriba / abajo</label><input type="range" id="oy" min="-1" max="1" step="0.01" value="0"></div>
+          <div style="align-self:end"><button class="btn quiet sm" id="clearPhoto" type="button">Quitar foto</button></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Textos de la tarjeta</h2>
+        <div class="stack">
+          <div class="row2">
+            <div><label for="nombre">Nombre en grande</label><input type="text" id="nombre"></div>
+            <div><label for="fecha">Fecha</label><input type="text" id="fecha"></div>
+          </div>
+          <div><label for="completo">Nombre completo</label><input type="text" id="completo"></div>
+          <div>
+            <label for="mensaje">Mensaje de Cornerstone</label>
+            <textarea id="mensaje"></textarea>
+            <div class="count" id="count"></div>
+          </div>
+          <div><label for="firma">Firma</label><input type="text" id="firma"></div>
+          <div class="actions"><button class="btn quiet sm" id="reset" type="button">Restaurar textos originales</button></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>GIF animado</h2>
+        <div class="actions">
+          <button class="btn primary" id="make" type="button">Crear GIF</button>
+          <span id="makeNote" style="font-size:13px;color:var(--ink-soft)">Tarda unos segundos.</span>
+        </div>
+        <div class="progress" id="progress" hidden><i></i></div>
+        <div class="result" id="result" hidden>
+          <img id="gif" alt="GIF de cumpleaños generado">
+          <div>
+            <p id="gifInfo"></p>
+            <div class="actions"><a class="btn" id="download" download>Descargar GIF</a></div>
+            <p style="margin-top:10px">Si el botón no descarga, haz clic derecho sobre la imagen (o mantén presionado en el celular) y elige <b>Guardar imagen</b>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Correo</h2>
+        <div class="mail">
+          <div><div class="head"><span class="lbl">Asunto</span><button class="btn sm" data-copy="asunto" type="button">Copiar</button></div><pre id="asunto"></pre></div>
+          <div><div class="head"><span class="lbl">Cuerpo</span><button class="btn sm" data-copy="cuerpo" type="button">Copiar</button></div><pre id="cuerpo"></pre></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Cómo enviarlo por Gmail</h2>
+        <ol class="steps">
+          <li>Crea el GIF y <b>descárgalo</b>.</li>
+          <li>En Gmail, pulsa <b>Redactar</b> y pega el asunto y el cuerpo.</li>
+          <li>Pulsa el ícono <b>Insertar foto</b> → <b>Subir</b> y elige el GIF con la opción <b>En línea</b>. Así se ve animado dentro del correo, no como adjunto.</li>
+          <li>Haz clic en la imagen y elige <b>Tamaño original</b> o <b>Mejor ajuste</b>. Envía.</li>
+        </ol>
+      </section>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script src="assets.js"></script>
+<script src="gif.js"></script>
+<script src="tarjeta.js"></script>
+<script>
+(function () {
+  const $ = id => document.getElementById(id);
+  const people = CS.COLABORADORES.map(p => ({ ...p, firma: CS.FIRMA, original: { ...p, firma: CS.FIRMA }, foto: null, zoom: 1, ox: 0, oy: 0 }));
+  const FIELDS = ['nombre', 'completo', 'fecha', 'mensaje', 'firma'];
+  const KEY = 'cs-cumple-nov-2026';
+  try { const saved = JSON.parse(localStorage.getItem(KEY) || '{}'); people.forEach(p => FIELDS.forEach(f => { if (saved[p.id] && typeof saved[p.id][f] === 'string') p[f] = saved[p.id][f]; })); } catch (e) {}
+  function save() { try { const o = {}; people.forEach(p => { o[p.id] = {}; FIELDS.forEach(f => (o[p.id][f] = p[f])); }); localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) {} }
+
+  let cur = people[0], gifUrl = null;
+  $('logo').src = CS_ASSETS.logo;
+
+  function renderPeople() {
+    $('people').innerHTML = '';
+    people.forEach(p => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'person'; b.setAttribute('aria-pressed', p === cur);
+      const day = (p.fecha.match(/\d+/) || [''])[0];
+      const wd = p.fecha.split(' ')[0];
+      b.innerHTML = `<span class="day"></span><span class="nm"></span><span class="wd"><span class="dot${p.foto ? ' on' : ''}" title="${p.foto ? 'Con foto' : 'Sin foto'}"></span><span></span></span>`;
+      b.querySelector('.day').textContent = day;
+      b.querySelector('.nm').textContent = p.nombre;
+      b.querySelector('.wd span:last-child').textContent = wd;
+      b.onclick = () => select(p);
+      $('people').appendChild(b);
+    });
+  }
+  function select(p) {
+    cur = p; FIELDS.forEach(f => ($(f).value = p[f]));
+    $('zoom').value = p.zoom; $('ox').value = p.ox; $('oy').value = p.oy;
+    $('sliders').hidden = !p.foto;
+    $('dropText').textContent = p.foto ? 'Foto cargada. Ajusta el encuadre con los controles o arrastra otra para cambiarla.' : 'Arrastra aquí la foto de la persona (JPG o PNG). Mientras no haya foto, se muestran sus iniciales.';
+    $('result').hidden = true; $('progress').hidden = true;
+    renderPeople(); updateMail(); updateCount();
+  }
+  function updateMail() { const m = CS.correo(cur); $('asunto').textContent = m.asunto; $('cuerpo').textContent = m.cuerpo; }
+  function updateCount() {
+    const n = cur.mensaje.length, el = $('count');
+    el.textContent = `${n} caracteres · entra cómodo hasta unos 170; más largo, la letra se achica.`;
+    el.classList.toggle('warn', n > 210);
+  }
+
+  FIELDS.forEach(f => $(f).addEventListener('input', e => { cur[f] = e.target.value; save(); updateMail(); updateCount(); if (f === 'nombre' || f === 'completo' || f === 'fecha') renderPeople(); $('result').hidden = true; }));
+  ['zoom', 'ox', 'oy'].forEach(f => $(f).addEventListener('input', e => { cur[f] = +e.target.value; $('result').hidden = true; }));
+  $('reset').onclick = () => { FIELDS.forEach(f => (cur[f] = cur.original[f])); save(); select(cur); toast('Textos restaurados'); };
+
+  function loadFile(file) {
+    if (!file || !file.type.startsWith('image/')) { toast('Elige un archivo de imagen (JPG o PNG)'); return; }
+    const url = URL.createObjectURL(file), img = new Image();
+    img.onload = () => { cur.foto = img; cur.zoom = 1; cur.ox = 0; cur.oy = 0; select(cur); };
+    img.onerror = () => toast('No se pudo abrir esa imagen');
+    img.src = url;
+  }
+  $('pick').onclick = () => $('file').click();
+  $('file').onchange = e => { loadFile(e.target.files[0]); e.target.value = ''; };
+  const drop = $('drop');
+  ['dragenter', 'dragover'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('over'); }));
+  ['dragleave', 'drop'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('over'); }));
+  drop.addEventListener('drop', e => loadFile(e.dataTransfer.files[0]));
+  $('clearPhoto').onclick = () => { cur.foto = null; select(cur); };
+
+  $('make').onclick = async () => {
+    const btn = $('make'); btn.disabled = true; $('makeNote').textContent = 'Creando…';
+    $('progress').hidden = false; $('result').hidden = true;
+    const bar = $('progress').firstElementChild; bar.style.width = '0%';
+    try {
+      const bytes = await CS.makeGif(cur, p => (bar.style.width = Math.round(p * 100) + '%'));
+      if (gifUrl) URL.revokeObjectURL(gifUrl);
+      gifUrl = URL.createObjectURL(new Blob([bytes], { type: 'image/gif' }));
+      $('gif').src = gifUrl; $('download').href = gifUrl; $('download').download = `cumpleanos-${cur.id}.gif`;
+      $('gifInfo').textContent = `cumpleanos-${cur.id}.gif · ${(bytes.length / 1048576).toFixed(1)} MB · 600 × 860 px`;
+      $('result').hidden = false; $('makeNote').textContent = 'Listo.';
+    } catch (e) { $('makeNote').textContent = 'No se pudo crear el GIF. Vuelve a intentarlo.'; console.error(e); }
+    btn.disabled = false; $('progress').hidden = true;
+  };
+
+  document.querySelectorAll('[data-copy]').forEach(b => b.onclick = () => {
+    const el = $(b.dataset.copy), text = el.textContent;
+    navigator.clipboard.writeText(text).then(() => toast('Copiado'), () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); toast('Texto seleccionado: usa Ctrl+C'); });
+  });
+
+  let tt; function toast(msg) { const t = $('toast'); t.textContent = msg; t.hidden = false; clearTimeout(tt); tt = setTimeout(() => (t.hidden = true), 1800); }
+
+  const ctx = $('preview').getContext('2d');
+  const still = matchMedia('(prefers-reduced-motion: reduce)');
+  CS.loadAssets().then(() => {
+    select(cur);
+    const loop = now => { CS.drawCard(ctx, still.matches ? 0.6 : (now / 3600) % 1, cur); requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+  });
+  window.CS_APP = { people, select };
+})();
+</script>
