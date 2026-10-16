@@ -5,12 +5,13 @@ Tarjetas de cumpleaños animadas (GIF) con la marca Cornerstone, listas para env
 - `generador.html` — ábrelo en el navegador: eliges a la persona, subes su foto (con zoom y encuadre),
   editas nombre, fecha, mensaje y firma, ves la animación y descargas el GIF. También arma el asunto y
   el cuerpo del correo para copiar.
-- `gifs/` — GIF ya generados para los cumpleañeros de noviembre y diciembre 2026 (con iniciales en lugar de foto).
+- `gifs/` — GIF ya generados para los cumpleañeros de octubre, noviembre y diciembre 2026 (con iniciales en lugar de foto).
 - `fotos/` — si guardas aquí `<id>.jpg` (p. ej. `natalia-marquez.jpg`) y corres `node render.mjs`,
   se regeneran todos los GIF con sus fotos.
 - `src/` — fuentes: `tarjeta.js` (diseño, datos y mensajes), `gif.js` (codificador GIF), `generador.html` (interfaz).
   Después de editar, corre `node build.mjs` para volver a armar `generador.html`.
 
+Ids de octubre: anite-angulo.
 Ids de noviembre: natalia-marquez, michele-montalbetti, francesca-huaman, gabriela-echeandia, adriana-lopez,
 katherine-garcia, nicole-tovar.
 Ids de diciembre: martin-barrantes, patricia-espinoza, andrea-yauri, diego-cubas, sabrina-tryon, oscar-alva.

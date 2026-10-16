@@ -14,6 +14,8 @@
   const FIRMA = 'Con cariño, tu familia Cornerstone';
 
   const COLABORADORES = [
+    { id: 'anite-angulo', mes: 'octubre', nombre: 'Anité', completo: 'Anité Angulo', fecha: 'Lunes 19 de octubre',
+      mensaje: 'Tu profesionalismo y tu sonrisa hacen que cada día en la oficina sea mejor. Que este nuevo año de vida te traiga mucha felicidad, nuevos retos y grandes satisfacciones.' },
     { id: 'natalia-marquez', nombre: 'Natalia', completo: 'Natalia Consuelo Marquez', mes: 'noviembre', fecha: 'Domingo 01 de noviembre',
       mensaje: 'Gracias por tu calidez y por la energía que contagias cada día. Que este nuevo año te traiga proyectos que te ilusionen y muchos motivos para sonreír.' },
     { id: 'michele-montalbetti', nombre: 'Michele', completo: 'Michele Montalbetti', mes: 'noviembre', fecha: 'Martes 03 de noviembre',

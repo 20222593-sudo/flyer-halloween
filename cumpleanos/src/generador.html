@@ -112,7 +112,7 @@
   <header>
     <div>
       <img id="logo" alt="Cornerstone">
-      <h1>Cumpleaños de <em id="mesTitle">diciembre</em></h1>
+      <h1>Cumpleaños de <em id="mesTitle">octubre</em></h1>
       <p class="lede">Elige a la persona, sube su foto y ajusta el mensaje. La tarjeta se anima aquí mismo y se descarga como GIF listo para pegar en Gmail.</p>
     </div>
   </header>
@@ -126,7 +126,7 @@
     <div class="stack">
       <section class="card">
         <div class="months" id="months" role="group" aria-label="Mes"></div>
-        <h2 id="peopleTitle">Cumpleañeros de diciembre</h2>
+        <h2 id="peopleTitle">Cumpleañeros de octubre</h2>
         <div class="people" id="people"></div>
       </section>
 
@@ -215,14 +215,17 @@
   function save() { try { const o = {}; people.forEach(p => { o[p.id] = {}; FIELDS.forEach(f => (o[p.id][f] = p[f])); }); localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) {} }
 
   const MESES = [...new Set(people.map(p => p.mes))];
-  let mes = MESES[MESES.length - 1];
-  try { const m = localStorage.getItem(KEY + '-mes'); if (MESES.includes(m)) mes = m; } catch (e) {}
+  // abre en el mes del próximo cumpleaños
+  const NUM = { enero: 1, febrero: 2, marzo: 3, abril: 4, mayo: 5, junio: 6, julio: 7, agosto: 8, septiembre: 9, octubre: 10, noviembre: 11, diciembre: 12 };
+  const hoy = new Date(); hoy.setHours(0, 0, 0, 0);
+  const proximo = people.find(p => new Date(2026, NUM[p.mes] - 1, +(p.fecha.match(/\d+/) || [0])[0]) >= hoy);
+  let mes = proximo ? proximo.mes : MESES[MESES.length - 1];
   function renderMonths() {
     $('months').innerHTML = '';
     MESES.forEach(m => {
       const b = document.createElement('button'); b.type = 'button'; b.className = 'month'; b.textContent = m;
       b.setAttribute('aria-pressed', m === mes);
-      b.onclick = () => { mes = m; try { localStorage.setItem(KEY + '-mes', m); } catch (e) {} select(people.find(p => p.mes === m)); };
+      b.onclick = () => { mes = m; select(people.find(p => p.mes === m)); };
       $('months').appendChild(b);
     });
     $('mesTitle').textContent = mes; $('peopleTitle').textContent = 'Cumpleañeros de ' + mes;
