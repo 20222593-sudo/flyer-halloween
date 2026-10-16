@@ -1,7 +1,7 @@
 // Genera los GIF de todas las personas en gifs/.
 // Si existe fotos/<id>.jpg|jpeg|png (p. ej. fotos/natalia-marquez.jpg) se usa como foto.
 // Encuadre opcional por persona en fotos/encuadre.json: { "<id>": { "zoom": 1.5, "ox": 0, "oy": -0.5 } }
-// Uso: node build.mjs && node render.mjs [--out carpeta]   (requiere Playwright)
+// Uso: node build.mjs && node render.mjs [--mes diciembre] [--out carpeta]   (requiere Playwright)
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -22,7 +22,9 @@ fs.mkdirSync(outDir, { recursive: true });
 const encFile = path.join(dir, 'fotos', 'encuadre.json');
 const encuadre = fs.existsSync(encFile) ? JSON.parse(fs.readFileSync(encFile, 'utf8')) : {};
 
-const ids = await page.evaluate(() => CS.COLABORADORES.map(p => p.id));
+const mi = process.argv.indexOf('--mes');
+const soloMes = mi > 0 ? process.argv[mi + 1] : null;
+const ids = await page.evaluate(m => CS.COLABORADORES.filter(p => !m || p.mes === m).map(p => p.id), soloMes);
 for (const id of ids) {
   const foto = ['jpg', 'jpeg', 'png'].map(e => path.join(dir, 'fotos', `${id}.${e}`)).find(f => fs.existsSync(f));
   const dataUrl = foto ? `data:image/${foto.endsWith('png') ? 'png' : 'jpeg'};base64,${fs.readFileSync(foto).toString('base64')}` : null;

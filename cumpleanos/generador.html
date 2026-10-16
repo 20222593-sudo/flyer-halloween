@@ -51,6 +51,11 @@
   h2 { font: 700 12px/1 var(--body); letter-spacing: .16em; text-transform: uppercase; color: var(--blue); margin: 0 0 14px; }
 
   .people { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+  .months { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .month { all: unset; box-sizing: border-box; cursor: pointer; font: 700 13px/1 var(--body); padding: 9px 14px; border-radius: 999px; border: 1.5px solid var(--line); color: var(--ink-soft); background: #fff; text-transform: capitalize; }
+  .month:hover { border-color: var(--blue-2); }
+  .month:focus-visible { outline: 3px solid var(--blue-2); outline-offset: 2px; }
+  .month[aria-pressed="true"] { background: var(--blue); border-color: var(--blue); color: #fff; }
   .person { all: unset; box-sizing: border-box; cursor: pointer; display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; align-items: center;
     padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line); background: #fff; min-width: 0; }
   .person:hover { border-color: var(--blue-2); }
@@ -114,7 +119,7 @@
   <header>
     <div>
       <img id="logo" alt="Cornerstone">
-      <h1>Cumpleaños de <em>noviembre</em></h1>
+      <h1>Cumpleaños de <em id="mesTitle">diciembre</em></h1>
       <p class="lede">Elige a la persona, sube su foto y ajusta el mensaje. La tarjeta se anima aquí mismo y se descarga como GIF listo para pegar en Gmail.</p>
     </div>
   </header>
@@ -127,7 +132,8 @@
 
     <div class="stack">
       <section class="card">
-        <h2>Cumpleañeros de noviembre</h2>
+        <div class="months" id="months" role="group" aria-label="Mes"></div>
+        <h2 id="peopleTitle">Cumpleañeros de diciembre</h2>
         <div class="people" id="people"></div>
       </section>
 
@@ -370,20 +376,32 @@ window.CS_ASSETS = {"fraunces":"data:font/woff2;base64,d09GMgABAAAAAPOwABQAAAABs
   const FIRMA = 'Con cariño, tu familia Cornerstone';
 
   const COLABORADORES = [
-    { id: 'natalia-marquez', nombre: 'Natalia', completo: 'Natalia Consuelo Marquez', fecha: 'Domingo 01 de noviembre',
+    { id: 'natalia-marquez', nombre: 'Natalia', completo: 'Natalia Consuelo Marquez', mes: 'noviembre', fecha: 'Domingo 01 de noviembre',
       mensaje: 'Gracias por tu calidez y por la energía que contagias cada día. Que este nuevo año te traiga proyectos que te ilusionen y muchos motivos para sonreír.' },
-    { id: 'michele-montalbetti', nombre: 'Michele', completo: 'Michele Montalbetti', fecha: 'Martes 03 de noviembre',
+    { id: 'michele-montalbetti', nombre: 'Michele', completo: 'Michele Montalbetti', mes: 'noviembre', fecha: 'Martes 03 de noviembre',
       mensaje: 'Tu compromiso y tu buena disposición hacen la diferencia en el equipo. ¡Celebra a lo grande y que este año venga lleno de logros y alegrías!' },
-    { id: 'francesca-huaman', nombre: 'Francesca', completo: 'Francesca Huaman', fecha: 'Jueves 05 de noviembre',
+    { id: 'francesca-huaman', nombre: 'Francesca', completo: 'Francesca Huaman', mes: 'noviembre', fecha: 'Jueves 05 de noviembre',
       mensaje: 'Gracias por tu dedicación y por esa sonrisa que ilumina la oficina. Te deseamos un año lleno de salud, aprendizajes y momentos inolvidables.' },
-    { id: 'gabriela-echeandia', nombre: 'Gabriela', completo: 'Gabriela Echeandía', fecha: 'Domingo 15 de noviembre',
+    { id: 'gabriela-echeandia', nombre: 'Gabriela', completo: 'Gabriela Echeandía', mes: 'noviembre', fecha: 'Domingo 15 de noviembre',
       mensaje: 'Admiramos tu talento y la pasión que pones en todo lo que haces. Que este día sea tan especial como tú y que este año se cumplan tus grandes sueños.' },
-    { id: 'adriana-lopez', nombre: 'Adriana', completo: 'Adriana López', fecha: 'Viernes 20 de noviembre',
+    { id: 'adriana-lopez', nombre: 'Adriana', completo: 'Adriana López', mes: 'noviembre', fecha: 'Viernes 20 de noviembre',
       mensaje: 'Tu actitud positiva y tu espíritu de equipo nos inspiran. Que este nuevo año de vida te regale nuevas metas, abrazos sinceros y mucha felicidad.' },
-    { id: 'katherine-garcia', nombre: 'Estefanía', completo: 'Katherine Estefanía García', fecha: 'Domingo 22 de noviembre',
+    { id: 'katherine-garcia', nombre: 'Estefanía', completo: 'Katherine Estefanía García', mes: 'noviembre', fecha: 'Domingo 22 de noviembre',
       mensaje: 'Gracias por tu entrega y por hacer que cada reto parezca posible. Te deseamos un cumpleaños increíble y un año lleno de bendiciones y éxitos.' },
-    { id: 'nicole-tovar', nombre: 'Nicole', completo: 'Nicole Tovar', fecha: 'Martes 24 de noviembre',
+    { id: 'nicole-tovar', nombre: 'Nicole', completo: 'Nicole Tovar', mes: 'noviembre', fecha: 'Martes 24 de noviembre',
       mensaje: 'Tu creatividad y tu entusiasmo le dan un brillo especial a Cornerstone. ¡Disfruta tu día al máximo y que este año te sorprenda con lo mejor!' },
+    { id: 'martin-barrantes', mes: 'diciembre', nombre: 'Martín', completo: 'Martín Jesús Barrantes', fecha: 'Martes 01 de diciembre',
+      mensaje: 'Abres diciembre con la mejor noticia: ¡tu cumpleaños! Gracias por tu compromiso y tu buena energía. Que este nuevo año te traiga salud, logros y mucha alegría.' },
+    { id: 'patricia-espinoza', mes: 'diciembre', nombre: 'Patricia', completo: 'Patricia Espinoza', fecha: 'Domingo 06 de diciembre',
+      mensaje: 'Gracias por tu experiencia y por la calidez con la que acompañas al equipo. Que este día esté lleno de cariño y que el año que empieza te regale grandes momentos.' },
+    { id: 'andrea-yauri', mes: 'diciembre', nombre: 'Andrea', completo: 'Andrea Sofía Yauri', fecha: 'Domingo 06 de diciembre',
+      mensaje: 'Tu alegría y tus ganas de aprender contagian a todos a tu alrededor. ¡Celebra a lo grande y que este nuevo año te traiga muchos sueños cumplidos!' },
+    { id: 'diego-cubas', mes: 'diciembre', nombre: 'Diego', completo: 'Diego Alonso Cubas', fecha: 'Sábado 19 de diciembre',
+      mensaje: 'Gracias por tu dedicación y por tu disposición para dar siempre una mano. Te deseamos un cumpleaños increíble y un año lleno de éxitos y nuevas metas.' },
+    { id: 'sabrina-tryon', mes: 'diciembre', nombre: 'Sabrina', completo: 'Sabrina Tryon', fecha: 'Sábado 19 de diciembre',
+      mensaje: 'Tu creatividad y tu energía le dan un toque especial a cada proyecto. Que este nuevo año de vida venga cargado de alegrías, aprendizajes y momentos inolvidables.' },
+    { id: 'oscar-alva', mes: 'diciembre', nombre: 'Oscar', completo: 'Oscar Santiago Jesús Alva', fecha: 'Lunes 21 de diciembre',
+      mensaje: 'Gracias por tu esfuerzo y por la confianza que transmites en cada tarea. Que cierres el año celebrando en grande y que lo que viene esté lleno de bendiciones.' },
   ];
 
   /* ── recursos (fuentes y logos embebidos en CS_ASSETS) ── */
@@ -635,18 +653,31 @@ window.CS_ASSETS = {"fraunces":"data:font/woff2;base64,d09GMgABAAAAAPOwABQAAAABs
   const $ = id => document.getElementById(id);
   const people = CS.COLABORADORES.map(p => ({ ...p, firma: CS.FIRMA, original: { ...p, firma: CS.FIRMA }, foto: null, zoom: 1, ox: 0, oy: 0 }));
   const FIELDS = ['nombre', 'completo', 'fecha', 'mensaje', 'firma'];
-  const KEY = 'cs-cumple-nov-2026';
+  const KEY = 'cs-cumple-nov-2026'; // guarda textos editados por id (todos los meses)
   try { const saved = JSON.parse(localStorage.getItem(KEY) || '{}'); people.forEach(p => FIELDS.forEach(f => { if (saved[p.id] && typeof saved[p.id][f] === 'string') p[f] = saved[p.id][f]; })); } catch (e) {}
   function save() { try { const o = {}; people.forEach(p => { o[p.id] = {}; FIELDS.forEach(f => (o[p.id][f] = p[f])); }); localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) {} }
 
-  let cur = people[0], gifUrl = null, gifBlob = null, saver = null;
+  const MESES = [...new Set(people.map(p => p.mes))];
+  let mes = MESES[MESES.length - 1];
+  try { const m = localStorage.getItem(KEY + '-mes'); if (MESES.includes(m)) mes = m; } catch (e) {}
+  function renderMonths() {
+    $('months').innerHTML = '';
+    MESES.forEach(m => {
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'month'; b.textContent = m;
+      b.setAttribute('aria-pressed', m === mes);
+      b.onclick = () => { mes = m; try { localStorage.setItem(KEY + '-mes', m); } catch (e) {} select(people.find(p => p.mes === m)); };
+      $('months').appendChild(b);
+    });
+    $('mesTitle').textContent = mes; $('peopleTitle').textContent = 'Cumpleañeros de ' + mes;
+  }
+  let cur = people.find(p => p.mes === mes), gifUrl = null, gifBlob = null, saver = null;
   // Dentro de claude.ai las descargas pasan por la capacidad "downloads"; abierto como archivo local, el enlace normal basta.
   if (window.claude && window.claude.use) window.claude.use('downloads').then(d => (saver = d)).catch(() => {});
   $('logo').src = CS_ASSETS.logo;
 
   function renderPeople() {
     $('people').innerHTML = '';
-    people.forEach(p => {
+    people.filter(p => p.mes === mes).forEach(p => {
       const b = document.createElement('button');
       b.type = 'button'; b.className = 'person'; b.setAttribute('aria-pressed', p === cur);
       const day = (p.fecha.match(/\d+/) || [''])[0];
@@ -660,7 +691,7 @@ window.CS_ASSETS = {"fraunces":"data:font/woff2;base64,d09GMgABAAAAAPOwABQAAAABs
     });
   }
   function select(p) {
-    cur = p; FIELDS.forEach(f => ($(f).value = p[f]));
+    cur = p; mes = p.mes; renderMonths(); FIELDS.forEach(f => ($(f).value = p[f]));
     $('zoom').value = p.zoom; $('ox').value = p.ox; $('oy').value = p.oy;
     $('sliders').hidden = !p.foto;
     $('dropText').textContent = p.foto ? 'Foto cargada. Ajusta el encuadre con los controles o arrastra otra para cambiarla.' : 'Arrastra aquí la foto de la persona (JPG o PNG). Mientras no haya foto, se muestran sus iniciales.';
