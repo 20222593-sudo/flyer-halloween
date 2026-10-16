@@ -20,3 +20,13 @@ Tarjetas individuales para enviar por correo a cada colaborador que cumple anive
 - `render.js` — regenera todas las tarjetas: `NODE_PATH=$(npm root -g) node aniversarios-octubre/render.js`
 
 El mensaje cambia según los años: 1 año, de 2 a 4 años, de 5 a 7 años y 8 años o más.
+
+## Aniversarios · Noviembre 2026 (animadas)
+
+Tarjetas animadas para correo (`aniversarios-noviembre/`), con el mismo diseño que las de octubre y movimiento en bucle: confeti que cae, ondas desde el retrato, destellos, medalla que late y un brillo que cruza la cinta.
+
+- `tarjetas/aniversario-<nombre>.gif` — versión animada (700 px de ancho, ~1.5 MB), para insertar en el cuerpo del correo
+- `tarjetas/aniversario-<nombre>.png` — versión estática en alta resolución (1200 × 1500 px)
+- `render.js` — regenera todo; necesita ffmpeg (`FFMPEG=/ruta/a/ffmpeg` si no está en el PATH)
+
+El primer cuadro del GIF ya muestra la tarjeta completa, así que Outlook de escritorio, que solo muestra ese cuadro, la ve bien aunque no la anime.

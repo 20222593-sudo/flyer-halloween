@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Aniversario Cornerstone</title>
+<meta name="viewport" content="width=1200">
+<style>
+  @font-face { font-family: "Fraunces"; src: url(../assets/fonts/fraunces.woff2) format("woff2"); font-weight: 100 900; }
+  @font-face { font-family: "Plus Jakarta Sans"; src: url(../assets/fonts/plus-jakarta-sans.woff2) format("woff2"); font-weight: 200 800; }
+  @font-face { font-family: "Caveat"; src: url(../assets/fonts/caveat.woff2) format("woff2"); font-weight: 400 700; }
+  /* Paleta Cornerstone: Dark Navy #0D1427 · Blue #004887 · Logo Blue #1A509D
+     Blue Accent #95C9E1 · Blue Accent #D8E8F5 · Action Red #CB333B (acento mínimo) */
+  :root {
+    --navy: #0D1427;
+    --blue: #004887;
+    --logo-blue: #1A509D;
+    --blue-2: #95C9E1;
+    --blue-3: #D8E8F5;
+    --red: #CB333B;
+    --paper: #F6F9FC;
+    --ink-soft: #3E4A63;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); }
+  body { width: 1200px; height: 1500px; overflow: hidden; }
+
+  .card {
+    position: relative; width: 1200px; height: 1500px; overflow: hidden;
+    background:
+      radial-gradient(700px 420px at 50% 100%, rgba(149,201,225,.35), transparent 70%),
+      var(--paper);
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    color: var(--navy);
+    word-spacing: .08em;
+  }
+  .card::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .1  0 0 0 0 .2  0 0 0 0 .35  0 0 0 .5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: .12; mix-blend-mode: multiply;
+  }
+  .card > * { position: relative; z-index: 1; }
+
+  .logo { display: block; height: 46px; margin: 58px auto 0; }
+
+  /* ── Panel principal ── */
+  .hero {
+    position: absolute; left: 56px; right: 56px; top: 150px; height: 720px;
+    border-radius: 40px; overflow: hidden; color: #fff; text-align: center;
+    background:
+      radial-gradient(620px 420px at 50% 36%, rgba(149,201,225,.22), transparent 65%),
+      radial-gradient(800px 500px at 0% 100%, rgba(0,72,135,.65), transparent 65%),
+      radial-gradient(800px 500px at 100% 0%, rgba(0,72,135,.55), transparent 65%),
+      var(--navy);
+  }
+  .hero svg.deco { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  .eyebrow {
+    position: absolute; left: 0; right: 0; top: 54px;
+    font-size: 21px; font-weight: 700; letter-spacing: .34em; text-transform: uppercase;
+    color: var(--blue-2);
+  }
+
+  .portrait {
+    position: absolute; left: 50%; top: 110px; transform: translateX(-50%);
+    width: 300px; height: 350px;
+  }
+  .arch {
+    position: absolute; inset: 0;
+    border-radius: 150px 150px 26px 26px;
+    background: #fff; padding: 9px;
+    box-shadow: 0 24px 60px rgba(0,0,0,.35), 0 0 0 2px rgba(149,201,225,.45);
+  }
+  .arch img {
+    width: 100%; height: 100%; display: block; object-fit: cover; object-position: 50% 30%;
+    border-radius: 141px 141px 18px 18px; background: #fff;
+  }
+
+  /* Medalla de años */
+  .badge {
+    position: absolute; right: -118px; bottom: -34px;
+    width: 176px; height: 176px; border-radius: 50%;
+    background: #fff; color: var(--blue);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    box-shadow: 0 16px 40px rgba(0,0,0,.35);
+  }
+  .badge .ring { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .sparkles { position: absolute; left: -60px; top: -60px; width: 420px; height: 470px; overflow: visible; pointer-events: none; z-index: 2; }
+  .ribbon { overflow: hidden; }
+  .ribbon .shine {
+    position: absolute; top: -20px; bottom: -20px; width: 140px; left: 0;
+    background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,.0) 20%, rgba(149,201,225,.45) 50%, rgba(255,255,255,0) 80%, transparent 100%);
+    transform: skewX(-20deg);
+  }
+  .ribbon span { position: relative; }
+  .badge .n {
+    font-family: "Fraunces", Georgia, serif; font-weight: 700;
+    font-variation-settings: "SOFT" 100, "opsz" 144;
+    font-size: 84px; line-height: .9; color: var(--blue);
+  }
+  .badge .u {
+    margin-top: 2px; font-size: 17px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--navy);
+  }
+  .badge .dot { position: absolute; top: 20px; width: 9px; height: 9px; border-radius: 50%; background: var(--red); }
+
+  .greet {
+    position: absolute; left: 40px; right: 40px; top: 500px;
+    font-family: "Fraunces", Georgia, serif; font-weight: 600;
+    font-variation-settings: "SOFT" 100, "opsz" 144;
+    font-size: 40px; line-height: 1; color: var(--blue-2); letter-spacing: .01em;
+  }
+  .name {
+    position: absolute; left: 30px; right: 30px; top: 552px;
+    font-family: "Fraunces", Georgia, serif; font-weight: 700;
+    font-variation-settings: "SOFT" 100, "opsz" 144;
+    font-size: 84px; line-height: 1; letter-spacing: -.01em; color: #fff;
+  }
+  .role {
+    position: absolute; left: 0; right: 0; top: 658px;
+    font-size: 22px; font-weight: 600; letter-spacing: .06em; color: rgba(255,255,255,.78);
+  }
+  .role b { color: var(--blue-2); font-weight: 700; }
+
+  /* ── Mensaje ── */
+  .message {
+    position: absolute; left: 120px; right: 120px; top: 880px; height: 280px;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; font-size: 29px; line-height: 1.55; color: var(--ink-soft);
+  }
+  .message strong { color: var(--blue); font-weight: 800; }
+
+  .sign {
+    position: absolute; left: 0; right: 0; top: 1176px; text-align: center;
+  }
+  .sign .hand {
+    font-family: "Caveat", cursive; font-weight: 700; font-size: 50px; color: var(--logo-blue);
+    display: inline-block; transform: rotate(-2deg);
+  }
+  .sign .team {
+    margin-top: 4px; font-size: 20px; font-weight: 800; letter-spacing: .28em; text-transform: uppercase; color: var(--navy);
+  }
+
+  .ribbon {
+    position: absolute; left: 50%; transform: translateX(-50%); top: 1318px;
+    padding: 20px 52px; border-radius: 999px; white-space: nowrap;
+    background: linear-gradient(90deg, var(--blue) 0%, var(--navy) 100%);
+    color: #fff; font-size: 30px; font-weight: 800; letter-spacing: .005em;
+    box-shadow: 0 14px 30px rgba(13,20,39,.22);
+  }
+  .foot {
+    position: absolute; left: 0; right: 0; bottom: 38px; text-align: center;
+    font-size: 16px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: rgba(13,20,39,.45);
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <img class="logo" src="../assets/logo-cornerstone-horizontal.png" alt="Cornerstone">
+
+  <section class="hero">
+    <svg class="deco" viewBox="0 0 1088 720" aria-hidden="true">
+      <!-- anillos concéntricos detrás del retrato -->
+      <g fill="none" stroke="#95C9E1" stroke-opacity=".16">
+        <circle cx="544" cy="280" r="235" stroke-width="2"/>
+        <circle cx="544" cy="280" r="300" stroke-width="1.5" stroke-dasharray="2 10" stroke-linecap="round"/>
+        <circle cx="544" cy="280" r="375" stroke-width="1"/>
+      </g>
+      <!-- ondas que salen del retrato -->
+      <g id="ripples" fill="none" stroke="#95C9E1"></g>
+      <!-- confeti de marca que cae -->
+      <g id="confetti"></g>
+    </svg>
+
+    <div class="eyebrow" id="eyebrow"></div>
+
+    <div class="portrait">
+      <div class="arch"><img id="photo" alt=""></div>
+      <svg class="sparkles" id="sparkles" viewBox="-60 -60 420 470" aria-hidden="true"></svg>
+      <div class="badge"><svg class="ring" viewBox="0 0 176 176"><circle id="ring" cx="88" cy="88" r="79" fill="none" stroke="#004887" stroke-opacity=".4" stroke-width="2.5" stroke-linecap="round"/></svg><span class="dot"></span><span class="n" id="years"></span><span class="u" id="unit"></span></div>
+    </div>
+
+    <div class="greet">¡Feliz aniversario,</div>
+    <div class="name" id="name"></div>
+    <div class="role" id="role"></div>
+  </section>
+
+  <div class="message"><p id="message"></p></div>
+
+  <div class="sign">
+    <div class="hand">Con cariño y gratitud,</div>
+    <div class="team">Todo el equipo Cornerstone</div>
+  </div>
+
+  <div class="ribbon"><div class="shine" id="shine"></div><span>Gracias por seguir creciendo con nosotros</span></div>
+  <div class="foot">Noviembre 2026</div>
+</div>
+
+<script>
+  const PEOPLE = {
+    "bianca-lozano":         { first: "Bianca",      role: "Consultant Trainee",  day: 3,  years: 1 },
+    "juan-manuel-gutierrez": { first: "Juan Manuel", role: "Managing Consultant", day: 8,  years: 5 },
+    "ana-lucia-pacheco":     { first: "Ana Lucía",   role: "Consultant Trainee",  day: 10, years: 1 },
+  };
+  const WORDS = ["", "un", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez", "once", "doce"];
+  const cap = s => s[0].toUpperCase() + s.slice(1);
+
+  function message(y) {
+    const w = WORDS[y];
+    if (y === 1) return `Hace un año llegaste a Cornerstone y desde el primer día sumaste tu energía, tus ideas y tus ganas de aprender. <strong>Gracias por este primer año</strong>: lo que aportas ya se nota en el equipo, y lo mejor está por venir.`;
+    if (y <= 4)  return `Hoy celebramos <strong>${w} años</strong> desde que llegaste a Cornerstone. Gracias por tu compromiso, tu talento y la calidez con la que acompañas a cada persona del equipo. Tu trabajo hace la diferencia y <strong>queremos que sepas cuánto lo valoramos</strong>.`;
+    if (y <= 7)  return `<strong>${cap(w)} años construyendo juntos.</strong> Gracias por tu constancia, tu criterio y tu generosidad para compartir lo que sabes. Eres parte esencial de lo que Cornerstone es hoy, y <strong>nos llena de orgullo seguir creciendo a tu lado</strong>.`;
+    return `<strong>${cap(w)} años de historia compartida.</strong> Gracias por tu entrega, tu liderazgo y por dejar huella en cada persona que ha pasado por Cornerstone. Tu trayectoria inspira a todo el equipo y <strong>es uno de los pilares de lo que somos</strong>.`;
+  }
+
+  // Animación en bucle perfecto: cada elemento es función de t ∈ [0, 1).
+  // render.js fija t cuadro por cuadro; en el navegador corre sola.
+  const W = 1088, H = 720, TAU = Math.PI * 2;
+  const NS = "http://www.w3.org/2000/svg";
+  let s = 11; const r = () => (s = (s * 16807) % 2147483647) / 2147483647;
+  const cols = ["#95C9E1", "#D8E8F5", "#FFFFFF", "#1A509D", "#95C9E1", "#CB333B", "#FFFFFF"];
+  const pieces = [];
+  while (pieces.length < 64) {
+    const x = r() * W;
+    if (Math.abs(x - W / 2) < 215) continue;           // columna central despejada (retrato y nombre)
+    const kind = r();
+    const el = document.createElementNS(NS, kind < .5 ? "rect" : kind < .78 ? "circle" : "path");
+    const c = cols[Math.floor(r() * cols.length)];
+    if (kind < .5) { el.setAttribute("width", 7 + r() * 8); el.setAttribute("height", 3.5 + r() * 3); el.setAttribute("rx", 1.5); el.setAttribute("fill", c); }
+    else if (kind < .78) { el.setAttribute("r", 2.2 + r() * 3.2); el.setAttribute("fill", c); }
+    else { el.setAttribute("d", "M0 0 q 6 -8 12 0 t 12 0"); el.setAttribute("fill", "none"); el.setAttribute("stroke", c); el.setAttribute("stroke-width", 2.6); el.setAttribute("stroke-linecap", "round"); }
+    el.setAttribute("opacity", (.45 + r() * .5).toFixed(2));
+    document.getElementById("confetti").appendChild(el);
+    pieces.push({ el, x, y0: r(), laps: r() < .7 ? 1 : 2, sway: 8 + r() * 18, ph: r(), spin: (r() < .5 ? -1 : 1) * (1 + Math.floor(r() * 2)), a0: r() * 360 });
+  }
+  const ripples = [0, 1, 2].map(() => { const c = document.createElementNS(NS, "circle"); c.setAttribute("cx", W / 2); c.setAttribute("cy", 285); document.getElementById("ripples").appendChild(c); return c; });
+
+  // destellos alrededor del retrato (coordenadas relativas al retrato 300×350)
+  const STAR = "M0 -1 C .12 -.12 .12 -.12 1 0 C .12 .12 .12 .12 0 1 C -.12 .12 -.12 .12 -1 0 C -.12 -.12 -.12 -.12 0 -1Z";
+  const sparks = [[-34, 40, 24, 0], [336, 64, 18, .33], [-46, 250, 16, .6], [22, -22, 13, .8], [290, -14, 20, .15], [-14, 366, 12, .45]].map(([x, y, size, ph]) => {
+    const p = document.createElementNS(NS, "path"); p.setAttribute("d", STAR); p.setAttribute("fill", "#fff");
+    document.getElementById("sparkles").appendChild(p); return { p, x: x + 60, y: y + 60, size, ph };
+  });
+
+  const ring = document.getElementById("ring"), DASHES = 24, CIRC = TAU * 79;
+  ring.setAttribute("stroke-dasharray", `${CIRC / DASHES * .45} ${CIRC / DASHES * .55}`);
+
+  window.setFrame = function (t) {
+    const span = H + 60;
+    for (const p of pieces) {
+      const y = ((p.y0 + p.laps * t) % 1) * span - 30;
+      const x = p.x + p.sway * Math.sin(TAU * (t * 2 + p.ph));
+      const a = p.a0 + 360 * p.spin * t;
+      p.el.setAttribute("transform", `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${a.toFixed(1)})`);
+    }
+    ripples.forEach((c, i) => {
+      const k = (t + i / 3) % 1;
+      c.setAttribute("r", (190 + k * 240).toFixed(1));
+      c.setAttribute("stroke-opacity", (.28 * (1 - k)).toFixed(3));
+      c.setAttribute("stroke-width", (2.5 - k * 1.5).toFixed(2));
+    });
+    for (const sp of sparks) {
+      const v = Math.max(0, Math.sin(TAU * (t * 2 + sp.ph)));
+      const sc = sp.size * (.35 + .65 * v);
+      sp.p.setAttribute("transform", `translate(${sp.x} ${sp.y}) scale(${sc.toFixed(2)}) rotate(${(45 * t * 2).toFixed(1)})`);
+      sp.p.setAttribute("opacity", (.25 + .75 * v).toFixed(2));
+    }
+    document.querySelector(".badge").style.transform = `scale(${(1 + .05 * Math.max(0, Math.sin(TAU * t * 2))).toFixed(3)})`;
+    ring.setAttribute("transform", `rotate(${(-90 + 360 / DASHES * 2 * t).toFixed(2)} 88 88)`);
+    // brillo que cruza la cinta en la segunda mitad del bucle
+    const k = Math.min(1, Math.max(0, (t - .45) / .4));
+    document.getElementById("shine").style.left = `${-200 + k * 1000}px`;
+  };
+  window.setFrame(0.25);
+  if (!navigator.webdriver) { const t0 = performance.now(); (function loop(now) { setFrame(((now - t0) / 3000) % 1); requestAnimationFrame(loop); })(t0); }
+
+  const slug = new URLSearchParams(location.search).get("p") || "bianca-lozano";
+  const p = PEOPLE[slug];
+  document.getElementById("photo").src = `fotos/${slug}.jpg`;
+  document.getElementById("name").textContent = `${p.first}!`;
+  document.getElementById("role").innerHTML = p.role;
+  document.getElementById("years").textContent = p.years;
+  document.getElementById("unit").textContent = p.years === 1 ? "año" : "años";
+  document.getElementById("eyebrow").textContent = `${String(p.day).padStart(2, "0")} de noviembre · ${p.years === 1 ? "1 año" : p.years + " años"} en Cornerstone`;
+  document.getElementById("message").innerHTML = message(p.years);
+</script>
+</body>
+</html>
