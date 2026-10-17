@@ -23,7 +23,7 @@ El mensaje cambia según los años: 1 año, de 2 a 4 años, de 5 a 7 años y 8 a
 
 ## Aniversarios · Noviembre 2026 (animadas)
 
-Tarjetas animadas para correo (`aniversarios-noviembre/`), con el mismo diseño que las de octubre y movimiento en bucle: confeti que cae, ondas desde el retrato, destellos, medalla que late y un brillo que cruza la cinta.
+Tarjetas animadas para correo (`aniversarios-noviembre/`). Diseño renovado: fondo navy completo con el logo en blanco, retrato más grande y el mensaje en una nota blanca con el sello Cornerstone. El movimiento va en bucle: confeti que cae (sin tapar los textos), ondas desde el retrato, destellos, medalla que late y un brillo que recorre la frase final.
 
 - `tarjetas/aniversario-<nombre>.gif` — versión animada (700 px de ancho, ~1.5 MB), para insertar en el cuerpo del correo
 - `tarjetas/aniversario-<nombre>.png` — versión estática en alta resolución (1200 × 1500 px)
