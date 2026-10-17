@@ -38,10 +38,15 @@
   .card svg.deco { position: absolute; inset: 0; width: 100%; height: 100%; }
   .card > * { position: absolute; }
 
-  .logo { left: 50%; top: 56px; height: 40px; transform: translateX(-50%); }
+  .logo-plate {
+    left: 50%; top: 40px; transform: translateX(-50%);
+    padding: 16px 34px; border-radius: 18px; background: #fff;
+    box-shadow: 0 12px 30px rgba(0,0,0,.30);
+  }
+  .logo-plate img { display: block; height: 36px; }
 
   .eyebrow {
-    left: 0; right: 0; top: 128px;
+    left: 0; right: 0; top: 142px;
     font-size: 20px; font-weight: 700; letter-spacing: .34em; text-transform: uppercase;
     color: var(--blue-2);
   }
@@ -141,7 +146,7 @@
     <g id="confetti"></g>
   </svg>
 
-  <img class="logo" src="../assets/logo-cornerstone-horizontal-blanco.png" alt="Cornerstone">
+  <div class="logo-plate"><img src="../assets/logo-cornerstone-horizontal.png" alt="Cornerstone"></div>
   <div class="eyebrow" id="eyebrow"></div>
 
   <div class="portrait">
@@ -220,7 +225,7 @@
   const ripples = [0, 1, 2].map(() => { const c = document.createElementNS(NS, "circle"); c.setAttribute("cx", W / 2); c.setAttribute("cy", 385); document.getElementById("ripples").appendChild(c); return c; });
 
   const STAR = "M0 -1 C .12 -.12 .12 -.12 1 0 C .12 .12 .12 .12 0 1 C -.12 .12 -.12 .12 -1 0 C -.12 -.12 -.12 -.12 0 -1Z";
-  const sparks = [[-36, 46, 26, 0], [368, 70, 19, .33], [-50, 270, 17, .6], [26, -24, 14, .8], [318, -16, 22, .15], [-16, 398, 13, .45]].map(([x, y, size, ph]) => {
+  const sparks = [[-36, 46, 26, 0], [368, 70, 19, .33], [-50, 270, 17, .6], [-44, 150, 14, .8], [352, 196, 20, .15], [-16, 398, 13, .45]].map(([x, y, size, ph]) => {
     const el = document.createElementNS(NS, "path"); el.setAttribute("d", STAR); el.setAttribute("fill", "#fff");
     document.getElementById("sparkles").appendChild(el); return { el, x: x + 70, y: y + 70, size, ph };
   });
@@ -230,7 +235,7 @@
   const badge = document.querySelector(".badge"), shine = document.getElementById("shine");
 
   // zonas de texto donde el confeti se desvanece: [centro y, media altura, media anchura]
-  const CLEAR = [[140, 30, 400], [715, 60, 330], [812, 26, 170], [1405, 32, 340]];
+  const CLEAR = [[78, 52, 240], [154, 28, 400], [715, 60, 330], [812, 26, 170], [1405, 32, 340]];
   function clearAt(x, y) {
     let o = 1;
     for (const [cy, hh, hw] of CLEAR) {
