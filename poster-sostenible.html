@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Halloween sostenible</title>
+<meta name="viewport" content="width=1240">
+<style>
+  @font-face { font-family: "Fraunces"; src: url(assets/fonts/fraunces.woff2) format("woff2"); font-weight: 100 900; }
+  @font-face { font-family: "Plus Jakarta Sans"; src: url(assets/fonts/plus-jakarta-sans.woff2) format("woff2"); font-weight: 200 800; }
+  @font-face { font-family: "Caveat"; src: url(assets/fonts/caveat.woff2) format("woff2"); font-weight: 400 700; }
+
+  /* A4 vertical: 1240 × 1754 */
+  :root {
+    --navy: #0D1427; --blue: #004887; --blue-2: #95C9E1;
+    --pumpkin: #EE7F35; --pumpkin-dk: #B8501A; --cream: #F6F0E4; --cream-2: #EDE3D0;
+    --kraft: #C9A77C; --leaf: #6F8F5E; --ink: #0D1427; --ink-soft: #3E4659; --card: #FFFDF8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--cream); }
+  body { width: 1240px; height: 1754px; overflow: hidden; font-family: "Plus Jakarta Sans", system-ui, sans-serif; color: var(--ink); }
+  .page { position: relative; width: 1240px; height: 1754px; background: var(--cream); overflow: hidden; display: flex; flex-direction: column; }
+  .page::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .38  0 0 0 0 .28  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: .16; mix-blend-mode: multiply;
+  }
+  .page > * { position: relative; z-index: 1; }
+  .fr { font-family: "Fraunces", Georgia, serif; font-variation-settings: "SOFT" 100, "opsz" 144; font-weight: 800; }
+  .hand { font-family: "Caveat", cursive; font-weight: 700; }
+
+  /* HERO */
+  .hero {
+    height: 640px; padding: 48px 60px 0; color: #F3F6FA; border-radius: 0 0 44px 44px; overflow: hidden;
+    background: radial-gradient(620px 520px at 80% 44%, rgba(149,201,225,.14), transparent 62%),
+                radial-gradient(760px 460px at 0% 110%, rgba(0,72,135,.55), transparent 65%), var(--navy);
+  }
+  .hero svg.deco { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .chip { display: inline-flex; background: #F3F6FA; border-radius: 999px; padding: 11px 22px; }
+  .chip img { height: 30px; display: block; }
+  .hero .txt { position: relative; width: 640px; margin-top: 54px; }
+  .eyebrow { font-size: 18px; font-weight: 700; letter-spacing: .32em; text-transform: uppercase; color: var(--blue-2); }
+  .hero h1 { margin-top: 14px; font-size: 92px; line-height: .98; letter-spacing: -.015em; }
+  .hero h1 span { color: var(--pumpkin); }
+  .hero .sub { margin-top: 18px; font-size: 52px; line-height: 1; color: var(--kraft); }
+  .hero .lead { margin-top: 22px; font-size: 22px; line-height: 1.5; color: #D6DEEA; }
+  .hero .lead b { color: #F3F6FA; }
+
+  .main { flex: 1; padding: 40px 60px 0; display: flex; flex-direction: column; justify-content: space-between; }
+
+  /* Beneficios */
+  .benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .ben { display: flex; align-items: center; gap: 14px; background: var(--card); border: 2px solid var(--cream-2); border-radius: 22px; padding: 18px 20px; }
+  .ben svg { flex: none; width: 54px; height: 54px; }
+  .ben p { font-size: 19px; font-weight: 700; line-height: 1.3; }
+  .ben p small { display: block; font-size: 15px; font-weight: 600; color: var(--ink-soft); margin-top: 2px; }
+
+  /* Por qué / Cómo */
+  .duo { display: grid; grid-template-columns: 1fr 1.15fr; gap: 20px; }
+  .card { background: var(--card); border: 2px solid var(--cream-2); border-radius: 26px; padding: 28px 30px; }
+  .q { display: flex; align-items: center; gap: 12px; font-size: 30px; line-height: 1; }
+  .q .n { flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--pumpkin); color: var(--navy); display: grid; place-items: center; font-size: 20px; }
+  .card p.body { margin-top: 16px; font-size: 20px; line-height: 1.55; color: var(--ink-soft); }
+  .card p.body b { color: var(--ink); }
+  .how { margin-top: 16px; list-style: none; display: grid; gap: 12px; }
+  .how li { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: center; font-size: 19px; font-weight: 600; line-height: 1.35; color: var(--ink-soft); }
+  .how li b { color: var(--ink); }
+  .how .ic { width: 44px; height: 44px; border-radius: 12px; background: #F3E6D2; display: grid; place-items: center; }
+  .how .ic svg { width: 30px; height: 30px; }
+
+  /* Frase */
+  .quote {
+    display: flex; align-items: center; justify-content: center; gap: 26px; text-align: left;
+    background: var(--kraft); border-radius: 26px; padding: 24px 36px; color: var(--navy);
+    background-image: repeating-linear-gradient(90deg, rgba(120,84,44,.08) 0 2px, transparent 2px 9px);
+  }
+  .quote svg { flex: none; width: 66px; height: 66px; }
+  .quote .big { font-size: 40px; line-height: 1.05; }
+  .quote .small { font-size: 34px; line-height: 1; margin-top: 4px; color: #3A2610; }
+
+  /* Fecha + premio */
+  .info { display: grid; grid-template-columns: 1.25fr 1fr; gap: 20px; }
+  .when { background: var(--navy); color: #F3F6FA; border-radius: 26px; padding: 26px 30px; display: grid; grid-template-columns: 112px 1fr; gap: 22px; align-items: center; }
+  .cal { width: 112px; border-radius: 18px; overflow: hidden; background: #F3F6FA; text-align: center; }
+  .cal .m { background: var(--pumpkin); color: var(--navy); font-size: 15px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; padding: 7px 0; }
+  .cal .d { font-size: 58px; line-height: 1; color: var(--navy); padding: 8px 0 2px; }
+  .cal .w { font-size: 14px; font-weight: 700; color: var(--ink-soft); padding-bottom: 10px; text-transform: uppercase; letter-spacing: .1em; }
+  .lbl { font-size: 15px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: var(--blue-2); }
+  .when h3 { margin-top: 6px; font-size: 34px; line-height: 1.05; }
+  .when p { margin-top: 8px; font-size: 18px; line-height: 1.45; color: #D6DEEA; }
+  .prize { background: var(--card); border: 2px solid var(--pumpkin); border-radius: 26px; padding: 26px 28px; display: grid; grid-template-columns: 84px 1fr; gap: 18px; align-items: center; }
+  .prize svg { width: 84px; height: 84px; }
+  .prize .lbl { color: var(--pumpkin-dk); }
+  .prize h3 { margin-top: 6px; font-size: 36px; line-height: 1; }
+  .prize p { margin-top: 8px; font-size: 18px; line-height: 1.4; color: var(--ink-soft); }
+
+  /* Cierre */
+  .closing {
+    margin-top: 36px; height: 120px; padding: 0 60px; display: flex; align-items: center; justify-content: space-between;
+    background: radial-gradient(600px 300px at 30% 0%, rgba(0,72,135,.5), transparent 70%), var(--navy); color: #F3F6FA; border-radius: 44px 44px 0 0;
+  }
+  .closing p { font-size: 32px; line-height: 1.1; }
+  .closing p span { color: var(--pumpkin); }
+</style>
+</head>
+<body>
+<main class="page">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="bat" viewBox="0 14 100 30"><path d="M50 41 C54 35 59 34 63 38 C67 32 75 31 80 36 C84 28 92 24 100 24 C88 16 72 16 62 24 C58 22 56 22 54 23.5 L53 17 L51 21.5 L49 21.5 L47 17 L46 23.5 C44 22 42 22 38 24 C28 16 12 16 0 24 C8 24 16 28 20 36 C25 31 33 32 37 38 C41 34 46 35 50 41 Z"/></symbol>
+      <symbol id="leaf" viewBox="-20 -30 40 60"><path d="M0 -28 C14 -18 18 -4 12 10 C8 20 2 26 0 28 C-2 26 -8 20 -12 10 C-18 -4 -14 -18 0 -28 Z"/><path d="M0 -24 V28" stroke="#0D1427" stroke-opacity=".25" stroke-width="1.6" fill="none"/></symbol>
+      <symbol id="spark" viewBox="-10 -10 20 20"><path d="M0 -10 C1 -3 3 -1 10 0 C3 1 1 3 0 10 C-1 3 -3 1 -10 0 C-3 -1 -1 -3 0 -10 Z"/></symbol>
+      <symbol id="recy" viewBox="0 0 100 100"><g fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M24.5 45 A26 26 0 0 1 71 34.5"/><path d="M61 33 L71.5 35 L74 24.5"/><path d="M75.5 55 A26 26 0 0 1 29 65.5"/><path d="M39 67 L28.5 65 L26 75.5"/></g></symbol>
+    </defs>
+  </svg>
+
+  <!-- HERO -->
+  <header class="hero">
+    <svg class="deco" viewBox="0 0 1240 640" aria-hidden="true">
+      <!-- anillo de reutilización alrededor de la calabaza -->
+      <g transform="translate(965,350)">
+        <circle r="235" fill="#F2E8D0" fill-opacity=".05"/>
+        <g fill="none" stroke="#95C9E1" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".85">
+          <path d="M-200 -40 A205 205 0 0 1 120 -165"/>
+          <path d="M84 -186 L124 -166 L106 -126"/>
+          <path d="M200 40 A205 205 0 0 1 -120 165"/>
+          <path d="M-84 186 L-124 166 L-106 126"/>
+        </g>
+        <!-- calabaza -->
+        <g transform="translate(-140,-150) scale(2.8)">
+          <path d="M50 22 C49 14 51 8 57 4" fill="none" stroke="#8A6A45" stroke-width="6" stroke-linecap="round"/>
+          <path d="M55 12 C64 2 80 4 86 12 C76 19 64 19 55 12 Z" fill="#6F8F5E"/>
+          <path d="M56 12 C66 10 76 10 84 12" fill="none" stroke="#0D1427" stroke-opacity=".25" stroke-width="1.2"/>
+          <ellipse cx="30" cy="64" rx="26" ry="40" fill="#D9662A"/><ellipse cx="70" cy="64" rx="26" ry="40" fill="#D9662A"/>
+          <ellipse cx="50" cy="64" rx="28" ry="42" fill="#EE7F35"/>
+          <ellipse cx="50" cy="64" rx="46" ry="41" fill="none" stroke="#FFF3E4" stroke-opacity=".55" stroke-width="1.4" stroke-dasharray="3.5 3.5"/>
+          <g fill="#0D1427"><path d="M33 55 L41 44 L45 57 Z"/><path d="M67 55 L59 44 L55 57 Z"/><path d="M31 70 Q50 88 69 70 Q62 74 57 73 L54 78 L50 73 L46 78 L43 73 Q38 74 31 70 Z"/></g>
+        </g>
+      </g>
+      <use href="#bat" x="760" y="70" width="80" height="24" fill="#95C9E1" fill-opacity=".6"/>
+      <use href="#bat" x="1110" y="560" width="56" height="17" fill="#95C9E1" fill-opacity=".5"/>
+      <use href="#leaf" x="1130" y="96" width="40" height="60" fill="#C9A77C" transform="rotate(30 1150 126)"/>
+      <use href="#leaf" x="740" y="520" width="34" height="52" fill="#6F8F5E" transform="rotate(-35 757 546)"/>
+      <use href="#leaf" x="1180" y="330" width="28" height="42" fill="#EE7F35" transform="rotate(60 1194 351)"/>
+      <use href="#leaf" x="640" y="40" width="26" height="40" fill="#B8501A" transform="rotate(20 653 60)"/>
+      <g fill="#F2E8D0"><use href="#spark" x="700" y="200" width="16" height="16" fill-opacity=".7"/><use href="#spark" x="1190" y="230" width="14" height="14" fill-opacity=".6"/><use href="#spark" x="880" y="40" width="18" height="18"/></g>
+    </svg>
+
+    <span class="chip"><img src="assets/logo-cornerstone-horizontal.png" alt="Cornerstone"></span>
+    <div class="txt">
+      <div class="eyebrow">Halloween 2026 · Cornerstone</div>
+      <h1 class="fr">Halloween con <span>sello sostenible</span></h1>
+      <p class="sub hand">Celebremos cuidando el planeta</p>
+      <p class="lead">Esta actividad no se trata solo de decorar: queremos demostrar que podemos <b>divertirnos, trabajar en equipo y ser creativos</b> mientras cuidamos el medio ambiente.</p>
+    </div>
+  </header>
+
+  <div class="main">
+    <!-- Por qué reutilizar -->
+    <section class="benefits">
+      <div class="ben">
+        <svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="28" fill="#F3E6D2"/><path d="M20 22 H40 L37 46 H23 Z" fill="none" stroke="#0D1427" stroke-width="3" stroke-linejoin="round"/><path d="M17 22 H43 M26 22 V18 H34 V22" fill="none" stroke="#0D1427" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M27 29 V40 M33 29 V40" stroke="#EE7F35" stroke-width="3" stroke-linecap="round"/></svg>
+        <p>Reducimos residuos<small>Menos cosas a la basura</small></p>
+      </div>
+      <div class="ben">
+        <svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="28" fill="#F3E6D2"/><path d="M18 24 H42 L39 44 H21 Z" fill="none" stroke="#0D1427" stroke-width="3" stroke-linejoin="round"/><path d="M24 24 V20 Q30 13 36 20 V24" fill="none" stroke="#0D1427" stroke-width="3" stroke-linecap="round"/><path d="M15 15 L45 45" stroke="#EE7F35" stroke-width="3.5" stroke-linecap="round"/></svg>
+        <p>Evitamos compras innecesarias<small>Usamos lo que ya existe</small></p>
+      </div>
+      <div class="ben">
+        <svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="28" fill="#F3E6D2"/><use href="#recy" x="8" y="8" width="44" height="44" stroke="#0D1427"/><path d="M30 22 C38 22 40 30 36 35 C33 38 27 38 25 36 C25 29 26 24 30 22 Z" fill="#6F8F5E"/></svg>
+        <p>Damos una segunda vida<small>A objetos que ya tenemos</small></p>
+      </div>
+    </section>
+
+    <!-- ¿Por qué? / ¿Cómo? -->
+    <section class="duo">
+      <div class="card">
+        <h2 class="q fr"><span class="n fr">1</span>¿Por qué lo hacemos?</h2>
+        <p class="body">Queremos celebrar Halloween de una manera <b>más consciente</b>, promoviendo la <b>creatividad</b>, el <b>trabajo en equipo</b> y el <b>cuidado del medio ambiente</b> mediante la reutilización de materiales.</p>
+        <p class="body hand" style="font-size:32px; line-height:1.1; color:#B8501A; margin-top:18px; text-wrap:balance">La creatividad también puede cuidar el planeta.</p>
+      </div>
+      <div class="card">
+        <h2 class="q fr"><span class="n fr">2</span>¿Cómo podemos hacerlo?</h2>
+        <ul class="how">
+          <li><span class="ic"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6 L23 15 L32 15 L25 21 L28 30 L20 24 L12 30 L15 21 L8 15 L17 15 Z" fill="#EE7F35"/></svg></span><span>Reutilizando <b>decoraciones de años anteriores</b>.</span></li>
+          <li><span class="ic"><svg viewBox="0 0 40 40" aria-hidden="true"><polygon points="8,16 13,9 32,9 32,16" fill="#A8845A"/><rect x="8" y="16" width="24" height="17" fill="#C9A77C"/><rect x="17" y="14" width="6" height="7" fill="#EFE3C8"/></svg></span><span>Aprovechando <b>materiales disponibles en la oficina</b>.</span></li>
+          <li><span class="ic"><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#recy" x="2" y="2" width="36" height="36" stroke="#004887"/></svg></span><span><b>Reciclando</b> papel, cartón, frascos y más.</span></li>
+          <li><span class="ic"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 33 C9 26 7 15 13 10 C17 7 20 10 20 13 C20 10 23 7 27 10 C33 15 31 26 20 33 Z" fill="#6F8F5E"/></svg></span><span>Evitando <b>comprar cosas nuevas</b> cuando no sea necesario.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Frase -->
+    <section class="quote">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="#0D1427"/><use href="#recy" x="0" y="0" width="100" height="100" stroke="#EE7F35"/></svg>
+      <div>
+        <p class="big fr">Menos residuos, más creatividad.</p>
+        <p class="small hand">Démosle una segunda vida a lo que ya tenemos.</p>
+      </div>
+    </section>
+
+    <!-- ¿Cuándo? + Premio -->
+    <section class="info">
+      <div class="when">
+        <div class="cal"><div class="m">Octubre</div><div class="d fr">26</div><div class="w">Lunes</div></div>
+        <div>
+          <div class="lbl">¿Cuándo empezamos?</div>
+          <h3 class="fr">Desde el lunes 26 de octubre</h3>
+          <p>Entregaremos los materiales para que cada equipo pueda preparar y decorar su espacio con anticipación.</p>
+        </div>
+      </div>
+      <div class="prize">
+        <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="38" fill="#F3E6D2"/><g stroke="#EE7F35" stroke-width="4" stroke-linecap="round"><path d="M46 10 V16 M68 34 H74 M62 17 L58 21 M30 17 L34 21"/></g><circle cx="46" cy="36" r="14" fill="#EE7F35"/><path d="M14 64 C6 64 6 52 14 50 C14 40 28 38 32 46 C36 40 50 42 50 52 C58 52 60 64 50 64 Z" fill="#FFFFFF" stroke="#0D1427" stroke-width="2"/></svg>
+        <div>
+          <div class="lbl">¿Cuál es el premio?</div>
+          <h3 class="fr">Medio día libre</h3>
+          <p>Para el equipo ganador de la mejor decoración.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="closing">
+    <p class="fr">¡Creemos juntos un Halloween <span>que cuide el planeta!</span></p>
+    <span class="chip"><img src="assets/logo-cornerstone-horizontal.png" alt="Cornerstone"></span>
+  </footer>
+</main>
+</body>
+</html>
