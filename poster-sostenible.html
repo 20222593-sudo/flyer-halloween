@@ -30,14 +30,14 @@
 
   /* HERO */
   .hero {
-    height: 640px; padding: 48px 60px 0; color: #F3F6FA; border-radius: 0 0 44px 44px; overflow: hidden;
+    height: 590px; padding: 44px 60px 0; color: #F3F6FA; border-radius: 0 0 44px 44px; overflow: hidden;
     background: radial-gradient(620px 520px at 80% 44%, rgba(149,201,225,.14), transparent 62%),
                 radial-gradient(760px 460px at 0% 110%, rgba(0,72,135,.55), transparent 65%), var(--navy);
   }
   .hero svg.deco { position: absolute; inset: 0; width: 100%; height: 100%; }
   .chip { display: inline-flex; background: #F3F6FA; border-radius: 999px; padding: 11px 22px; }
   .chip img { height: 30px; display: block; }
-  .hero .txt { position: relative; width: 640px; margin-top: 54px; }
+  .hero .txt { position: relative; width: 640px; margin-top: 40px; }
   .eyebrow { font-size: 18px; font-weight: 700; letter-spacing: .32em; text-transform: uppercase; color: var(--blue-2); }
   .hero h1 { margin-top: 14px; font-size: 92px; line-height: .98; letter-spacing: -.015em; }
   .hero h1 span { color: var(--pumpkin); }
@@ -45,7 +45,7 @@
   .hero .lead { margin-top: 22px; font-size: 22px; line-height: 1.5; color: #D6DEEA; }
   .hero .lead b { color: #F3F6FA; }
 
-  .main { flex: 1; padding: 40px 60px 0; display: flex; flex-direction: column; justify-content: space-between; }
+  .main { flex: 1; padding: 30px 60px 0; display: flex; flex-direction: column; justify-content: space-between; }
 
   /* Beneficios */
   .benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -56,12 +56,12 @@
 
   /* Por qué / Cómo */
   .duo { display: grid; grid-template-columns: 1fr 1.15fr; gap: 20px; }
-  .card { background: var(--card); border: 2px solid var(--cream-2); border-radius: 26px; padding: 28px 30px; }
+  .card { background: var(--card); border: 2px solid var(--cream-2); border-radius: 26px; padding: 24px 30px; }
   .q { display: flex; align-items: center; gap: 12px; font-size: 30px; line-height: 1; }
   .q .n { flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--pumpkin); color: var(--navy); display: grid; place-items: center; font-size: 20px; }
-  .card p.body { margin-top: 16px; font-size: 20px; line-height: 1.55; color: var(--ink-soft); }
+  .card p.body { margin-top: 14px; font-size: 19.5px; line-height: 1.5; color: var(--ink-soft); }
   .card p.body b { color: var(--ink); }
-  .how { margin-top: 16px; list-style: none; display: grid; gap: 12px; }
+  .how { margin-top: 14px; list-style: none; display: grid; gap: 10px; }
   .how li { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: center; font-size: 19px; font-weight: 600; line-height: 1.35; color: var(--ink-soft); }
   .how li b { color: var(--ink); }
   .how .ic { width: 44px; height: 44px; border-radius: 12px; background: #F3E6D2; display: grid; place-items: center; }
@@ -70,32 +70,40 @@
   /* Frase */
   .quote {
     display: flex; align-items: center; justify-content: center; gap: 26px; text-align: left;
-    background: var(--kraft); border-radius: 26px; padding: 24px 36px; color: var(--navy);
+    background: var(--kraft); border-radius: 26px; padding: 16px 36px; color: var(--navy);
     background-image: repeating-linear-gradient(90deg, rgba(120,84,44,.08) 0 2px, transparent 2px 9px);
   }
-  .quote svg { flex: none; width: 66px; height: 66px; }
-  .quote .big { font-size: 40px; line-height: 1.05; }
-  .quote .small { font-size: 34px; line-height: 1; margin-top: 4px; color: #3A2610; }
+  .quote svg { flex: none; width: 58px; height: 58px; }
+  .quote .big { font-size: 36px; line-height: 1.05; }
+  .quote .small { font-size: 30px; line-height: 1; margin-top: 4px; color: #3A2610; }
 
-  /* Fecha + premio */
-  .info { display: grid; grid-template-columns: 1.25fr 1fr; gap: 20px; }
-  .when { background: var(--navy); color: #F3F6FA; border-radius: 26px; padding: 26px 30px; display: grid; grid-template-columns: 112px 1fr; gap: 22px; align-items: center; }
-  .cal { width: 112px; border-radius: 18px; overflow: hidden; background: #F3F6FA; text-align: center; }
-  .cal .m { background: var(--pumpkin); color: var(--navy); font-size: 15px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; padding: 7px 0; }
-  .cal .d { font-size: 58px; line-height: 1; color: var(--navy); padding: 8px 0 2px; }
-  .cal .w { font-size: 14px; font-weight: 700; color: var(--ink-soft); padding-bottom: 10px; text-transform: uppercase; letter-spacing: .1em; }
-  .lbl { font-size: 15px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: var(--blue-2); }
-  .when h3 { margin-top: 6px; font-size: 34px; line-height: 1.05; }
-  .when p { margin-top: 8px; font-size: 18px; line-height: 1.45; color: #D6DEEA; }
-  .prize { background: var(--card); border: 2px solid var(--pumpkin); border-radius: 26px; padding: 26px 28px; display: grid; grid-template-columns: 84px 1fr; gap: 18px; align-items: center; }
-  .prize svg { width: 84px; height: 84px; }
+  /* Fecha + premios */
+  .info { display: grid; gap: 16px; }
+  .when { background: var(--navy); color: #F3F6FA; border-radius: 26px; padding: 18px 30px; display: grid; grid-template-columns: 92px 1fr; gap: 24px; align-items: center; }
+  .cal { width: 92px; border-radius: 16px; overflow: hidden; background: #F3F6FA; text-align: center; }
+  .cal .m { background: var(--pumpkin); color: var(--navy); font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; padding: 5px 0; }
+  .cal .d { font-size: 48px; line-height: 1; color: var(--navy); padding: 6px 0 2px; }
+  .cal .w { font-size: 12px; font-weight: 700; color: var(--ink-soft); padding-bottom: 8px; text-transform: uppercase; letter-spacing: .1em; }
+  .lbl { font-size: 14px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: var(--blue-2); }
+  .when h3 { margin-top: 4px; font-size: 32px; line-height: 1.05; }
+  .when p { margin-top: 6px; font-size: 18px; line-height: 1.4; color: #D6DEEA; }
+  .prizes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .prize { background: var(--card); border: 2px solid var(--pumpkin); border-radius: 26px; padding: 18px 24px 18px; }
   .prize .lbl { color: var(--pumpkin-dk); }
-  .prize h3 { margin-top: 6px; font-size: 36px; line-height: 1; }
-  .prize p { margin-top: 8px; font-size: 18px; line-height: 1.4; color: var(--ink-soft); }
+  .prize h3 { margin-top: 2px; font-size: 26px; line-height: 1.05; }
+  .pair { margin-top: 12px; display: grid; grid-template-columns: 1fr 40px 1fr; gap: 10px; align-items: center; }
+  .it { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; line-height: 1.25; }
+  .it svg { flex: none; width: 46px; height: 46px; }
+  .plus { width: 40px; height: 40px; border-radius: 50%; background: var(--pumpkin); color: var(--navy); display: grid; place-items: center; font-family: "Fraunces", Georgia, serif; font-weight: 800; font-size: 30px; line-height: 1; padding-bottom: 3px; }
+  .prize .note { margin-top: 8px; font-size: 14.5px; font-weight: 600; color: var(--ink-soft); }
+  .places { margin-top: 12px; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .places li { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; line-height: 1.2; }
+  .places li svg { flex: none; width: 46px; height: 46px; }
+  .pl { display: block; font-size: 12.5px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--pumpkin-dk); margin-bottom: 2px; }
 
   /* Cierre */
   .closing {
-    margin-top: 36px; height: 120px; padding: 0 60px; display: flex; align-items: center; justify-content: space-between;
+    margin-top: 30px; height: 112px; padding: 0 60px; display: flex; align-items: center; justify-content: space-between;
     background: radial-gradient(600px 300px at 30% 0%, rgba(0,72,135,.5), transparent 70%), var(--navy); color: #F3F6FA; border-radius: 44px 44px 0 0;
   }
   .closing p { font-size: 32px; line-height: 1.1; }
@@ -117,7 +125,7 @@
   <header class="hero">
     <svg class="deco" viewBox="0 0 1240 640" aria-hidden="true">
       <!-- anillo de reutilización alrededor de la calabaza -->
-      <g transform="translate(965,350)">
+      <g transform="translate(965,318)">
         <circle r="235" fill="#F2E8D0" fill-opacity=".05"/>
         <g fill="none" stroke="#95C9E1" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".85">
           <path d="M-200 -40 A205 205 0 0 1 120 -165"/>
@@ -137,9 +145,9 @@
         </g>
       </g>
       <use href="#bat" x="760" y="70" width="80" height="24" fill="#95C9E1" fill-opacity=".6"/>
-      <use href="#bat" x="1110" y="560" width="56" height="17" fill="#95C9E1" fill-opacity=".5"/>
+      <use href="#bat" x="1110" y="520" width="56" height="17" fill="#95C9E1" fill-opacity=".5"/>
       <use href="#leaf" x="1130" y="96" width="40" height="60" fill="#C9A77C" transform="rotate(30 1150 126)"/>
-      <use href="#leaf" x="740" y="520" width="34" height="52" fill="#6F8F5E" transform="rotate(-35 757 546)"/>
+      <use href="#leaf" x="740" y="480" width="34" height="52" fill="#6F8F5E" transform="rotate(-35 757 506)"/>
       <use href="#leaf" x="1180" y="330" width="28" height="42" fill="#EE7F35" transform="rotate(60 1194 351)"/>
       <use href="#leaf" x="640" y="40" width="26" height="40" fill="#B8501A" transform="rotate(20 653 60)"/>
       <g fill="#F2E8D0"><use href="#spark" x="700" y="200" width="16" height="16" fill-opacity=".7"/><use href="#spark" x="1190" y="230" width="14" height="14" fill-opacity=".6"/><use href="#spark" x="880" y="40" width="18" height="18"/></g>
@@ -163,7 +171,7 @@
       </div>
       <div class="ben">
         <svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="28" fill="#F3E6D2"/><path d="M18 24 H42 L39 44 H21 Z" fill="none" stroke="#0D1427" stroke-width="3" stroke-linejoin="round"/><path d="M24 24 V20 Q30 13 36 20 V24" fill="none" stroke="#0D1427" stroke-width="3" stroke-linecap="round"/><path d="M15 15 L45 45" stroke="#EE7F35" stroke-width="3.5" stroke-linecap="round"/></svg>
-        <p>Evitamos compras innecesarias<small>Usamos lo que ya existe</small></p>
+        <p>Evitemos compras innecesarias<small>Usemos lo que ya existe</small></p>
       </div>
       <div class="ben">
         <svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="28" fill="#F3E6D2"/><use href="#recy" x="8" y="8" width="44" height="44" stroke="#0D1427"/><path d="M30 22 C38 22 40 30 36 35 C33 38 27 38 25 36 C25 29 26 24 30 22 Z" fill="#6F8F5E"/></svg>
@@ -198,7 +206,7 @@
       </div>
     </section>
 
-    <!-- ¿Cuándo? + Premio -->
+    <!-- ¿Cuándo? + Premios -->
     <section class="info">
       <div class="when">
         <div class="cal"><div class="m">Octubre</div><div class="d fr">26</div><div class="w">Lunes</div></div>
@@ -208,12 +216,24 @@
           <p>Entregaremos los materiales para que cada equipo pueda preparar y decorar su espacio con anticipación.</p>
         </div>
       </div>
-      <div class="prize">
-        <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="38" fill="#F3E6D2"/><g stroke="#EE7F35" stroke-width="4" stroke-linecap="round"><path d="M46 10 V16 M68 34 H74 M62 17 L58 21 M30 17 L34 21"/></g><circle cx="46" cy="36" r="14" fill="#EE7F35"/><path d="M14 64 C6 64 6 52 14 50 C14 40 28 38 32 46 C36 40 50 42 50 52 C58 52 60 64 50 64 Z" fill="#FFFFFF" stroke="#0D1427" stroke-width="2"/></svg>
-        <div>
-          <div class="lbl">¿Cuál es el premio?</div>
-          <h3 class="fr">Medio día libre</h3>
-          <p>Para el equipo ganador de la mejor decoración.</p>
+      <div class="prizes">
+        <div class="prize">
+          <div class="lbl">Premio</div>
+          <h3 class="fr">Mejor mesa decorada</h3>
+          <div class="pair">
+            <div class="it"><svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="38" fill="#F3E6D2"/><g stroke="#EE7F35" stroke-width="4" stroke-linecap="round"><path d="M46 10 V16 M68 34 H74 M62 17 L58 21 M30 17 L34 21"/></g><circle cx="46" cy="36" r="14" fill="#EE7F35"/><path d="M14 64 C6 64 6 52 14 50 C14 40 28 38 32 46 C36 40 50 42 50 52 C58 52 60 64 50 64 Z" fill="#FFFFFF" stroke="#0D1427" stroke-width="2"/></svg><span>Medio día libre</span></div>
+            <span class="plus" aria-label="más">+</span>
+            <div class="it"><svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="38" fill="#F3E6D2"/><polygon points="22,42 58,42 53,68 27,68" fill="#C9A77C"/><path d="M32 44 L33 68 M40 44 V68 M48 44 L47 68" stroke="#8A6A45" stroke-width="2"/><path d="M18 44 C14 35 23 28 28 30 C28 21 38 16 44 23 C49 17 60 21 58 30 C65 30 68 39 62 44 Z" fill="#FFFFFF" stroke="#0D1427" stroke-width="1.6"/><circle cx="44" cy="17" r="5" fill="#EE7F35"/></svg><span>1 cupcake por integrante</span></div>
+          </div>
+          <p class="note">Ambos premios para cada integrante del equipo ganador.</p>
+        </div>
+        <div class="prize">
+          <div class="lbl">Premios</div>
+          <h3 class="fr">Mejor disfraz · Pasarela</h3>
+          <ul class="places">
+            <li><svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="38" fill="#F3E6D2"/><rect x="24" y="14" width="30" height="52" rx="7" fill="#0D1427"/><circle cx="39" cy="27" r="5" fill="#95C9E1"/><circle cx="39" cy="48" r="10" fill="#95C9E1"/><circle cx="39" cy="48" r="4" fill="#0D1427"/><path d="M60 38 Q64 44 60 50" fill="none" stroke="#EE7F35" stroke-width="3" stroke-linecap="round"/><path d="M64 33 Q71 44 64 55" fill="none" stroke="#EE7F35" stroke-width="3" stroke-linecap="round"/></svg><div><span class="pl">1.er puesto</span>Parlante Samsung</div></li>
+            <li><svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="38" fill="#F3E6D2"/><rect x="14" y="26" width="52" height="34" rx="5" fill="#EE7F35"/><rect x="14" y="33" width="52" height="6" fill="#D9662A"/><rect x="47" y="26" width="5" height="34" fill="#FFFFFF"/><circle cx="46" cy="24" r="4" fill="#FFFFFF" stroke="#0D1427" stroke-width="1.2"/><circle cx="54" cy="24" r="4" fill="#FFFFFF" stroke="#0D1427" stroke-width="1.2"/><rect x="20" y="47" width="12" height="7" rx="1.5" fill="#FFFFFF"/></svg><div><span class="pl">2.º puesto</span>Gift card Saga Falabella</div></li>
+          </ul>
         </div>
       </div>
     </section>
