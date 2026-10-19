@@ -23,11 +23,16 @@ const MODELO = {
       nombre: 'Entusiasmo por el Cliente',
       definicion: 'Apertura y escucha activa para entender las necesidades del cliente (tanto interno como externo), resolviendo problemas con responsabilidad y cuidando la marca para asegurar la satisfacción, fidelización y recompra de servicios.',
       comportamientos: [
-        { id: 'c1b1', nombre: 'Postura Consultiva', texto: 'Capacidad para posicionarse como un asesor estratégico de confianza ante clientes internos y externos, trascendiendo la ejecución transaccional de pedido' },
-        { id: 'c1b2', nombre: 'Responsabilidad en la Solución', texto: 'Se hace dueño de los problemas y consultas del cliente (interno o externo), asegurando respuestas oportunas y soluciones efectivas sin trasladar fricción interna.' },
-        { id: 'c1b3', nombre: 'Recompra y Profundización', texto: 'Ejecuta acciones concretas de fidelización y se esfuerza por conocer al cliente (interno o externo), maximizando el valor de una relación a largo plazo y la recompra de servicios.' },
-        { id: 'c1b4', nombre: 'Reputación y Experiencia', texto: 'Cuida rigurosamente la experiencia del cliente (interno y externo), en cada punto de contacto, resguardando la reputación de Cornerstone.' },
-        { id: 'c1b5', nombre: 'Gestión de Objeciones', texto: 'Gestiona objeciones y situaciones críticas con madurez, preservando la relación comercial y la confianza del cliente/candidato a largo plazo.', extra: NO_OBSERVADO }
+        { id: 'c1b1', nombre: 'Postura Consultiva', texto: 'Capacidad para posicionarse como un asesor estratégico de confianza ante clientes internos y externos, trascendiendo la ejecución transaccional de pedido',
+          textoYo: 'Me posiciono como asesor/a estratégico/a de confianza ante clientes internos y externos, trascendiendo la ejecución transaccional de pedido' },
+        { id: 'c1b2', nombre: 'Responsabilidad en la Solución', texto: 'Se hace dueño de los problemas y consultas del cliente (interno o externo), asegurando respuestas oportunas y soluciones efectivas sin trasladar fricción interna.',
+          textoYo: 'Me hago dueño/a de los problemas y consultas del cliente (interno o externo), asegurando respuestas oportunas y soluciones efectivas sin trasladar fricción interna.' },
+        { id: 'c1b3', nombre: 'Recompra y Profundización', texto: 'Ejecuta acciones concretas de fidelización y se esfuerza por conocer al cliente (interno o externo), maximizando el valor de una relación a largo plazo y la recompra de servicios.',
+          textoYo: 'Ejecuto acciones concretas de fidelización y me esfuerzo por conocer al cliente (interno o externo), maximizando el valor de una relación a largo plazo y la recompra de servicios.' },
+        { id: 'c1b4', nombre: 'Reputación y Experiencia', texto: 'Cuida rigurosamente la experiencia del cliente (interno y externo), en cada punto de contacto, resguardando la reputación de Cornerstone.',
+          textoYo: 'Cuido rigurosamente la experiencia del cliente (interno y externo), en cada punto de contacto, resguardando la reputación de Cornerstone.' },
+        { id: 'c1b5', nombre: 'Gestión de Objeciones', texto: 'Gestiona objeciones y situaciones críticas con madurez, preservando la relación comercial y la confianza del cliente/candidato a largo plazo.',
+          textoYo: 'Gestiono objeciones y situaciones críticas con madurez, preservando la relación comercial y la confianza del cliente/candidato a largo plazo.', extra: NO_OBSERVADO }
       ]
     },
     {
@@ -35,11 +40,16 @@ const MODELO = {
       nombre: 'Soñar en Grande',
       definicion: 'Mentalidad de crecimiento e innovación, adopta tecnologías y asume riesgos calculados para adaptar la operación, desafiar el statu quo y superar metas ambiciosas',
       comportamientos: [
-        { id: 'c2b1', nombre: 'Agilidad y Adaptación', texto: 'Es ágil para asumir desafíos, adelantar soluciones y adaptarse con flexibilidad a los cambios del entorno y del negocio.' },
-        { id: 'c2b2', nombre: 'Innovación y Riesgo Calculado', texto: 'Promueve e implementa ideas innovadoras, asumiendo riesgos calculados para transformar y optimizar las formas de trabajo.' },
-        { id: 'c2b3', nombre: 'Adopción HR Tech & AI', texto: 'Incorpora activamente herramientas digitales, inteligencia artificial y analítica (HR Tech / AI) para elevar la calidad y velocidad de su trabajo.' },
-        { id: 'c2b4', nombre: 'Planificación de Futuro', texto: 'Anticipa las necesidades y oportunidades de crecimiento, definiendo prioridades, objetivos y acciones para el mediano y largo plazo.' },
-        { id: 'c2b5', nombre: 'Superación de Metas', texto: 'Establece y persigue metas ambiciosas que desafían el statu quo, impulsando a la firma hacia la vanguardia del mercado.' }
+        { id: 'c2b1', nombre: 'Agilidad y Adaptación', texto: 'Es ágil para asumir desafíos, adelantar soluciones y adaptarse con flexibilidad a los cambios del entorno y del negocio.',
+          textoYo: 'Soy ágil para asumir desafíos, adelantar soluciones y adaptarme con flexibilidad a los cambios del entorno y del negocio.' },
+        { id: 'c2b2', nombre: 'Innovación y Riesgo Calculado', texto: 'Promueve e implementa ideas innovadoras, asumiendo riesgos calculados para transformar y optimizar las formas de trabajo.',
+          textoYo: 'Promuevo e implemento ideas innovadoras, asumiendo riesgos calculados para transformar y optimizar las formas de trabajo.' },
+        { id: 'c2b3', nombre: 'Adopción HR Tech & AI', texto: 'Incorpora activamente herramientas digitales, inteligencia artificial y analítica (HR Tech / AI) para elevar la calidad y velocidad de su trabajo.',
+          textoYo: 'Incorporo activamente herramientas digitales, inteligencia artificial y analítica (HR Tech / AI) para elevar la calidad y velocidad de mi trabajo.' },
+        { id: 'c2b4', nombre: 'Planificación de Futuro', texto: 'Anticipa las necesidades y oportunidades de crecimiento, definiendo prioridades, objetivos y acciones para el mediano y largo plazo.',
+          textoYo: 'Anticipo las necesidades y oportunidades de crecimiento, definiendo prioridades, objetivos y acciones para el mediano y largo plazo.' },
+        { id: 'c2b5', nombre: 'Superación de Metas', texto: 'Establece y persigue metas ambiciosas que desafían el statu quo, impulsando a la firma hacia la vanguardia del mercado.',
+          textoYo: 'Establezco y persigo metas ambiciosas que desafían el statu quo, impulsando a la firma hacia la vanguardia del mercado.' }
       ]
     },
     {
@@ -47,11 +57,16 @@ const MODELO = {
       nombre: 'Hacer lo Correcto e Integridad',
       definicion: 'Actuación ética, transparente y coherente que garantiza la estricta confidencialidad de la información, el apego a las metodologías corporativas y la responsabilidad directa sobre los propios actos',
       comportamientos: [
-        { id: 'c3b1', nombre: 'Confidencialidad Absoluta', texto: 'Custodia y garantiza la confidencialidad absoluta de la información estratégica de clientes, candidatos y de la organización.' },
-        { id: 'c3b2', nombre: 'Liderar con el Ejemplo', texto: 'Lidera con el ejemplo, demostrando congruencia entre sus acciones y los valores de Cornerstone, aun bajo presión comercial o de tiempo.' },
-        { id: 'c3b3', nombre: 'Accountability de Errores', texto: 'Admite abiertamente sus errores, asume la responsabilidad de sus actos y actúa consecuentemente para corregir el impacto generado.' },
-        { id: 'c3b4', nombre: 'Firmeza Ética', texto: 'Manifiesta con firmeza y respeto su disconformidad ante situaciones, acuerdos o hechos que considere no éticos o contrarios a la firma.', extra: NO_OBSERVADO },
-        { id: 'c3b5', nombre: 'Disciplina Metodológica', texto: 'Aplica las metodologías, políticas y procedimientos definidos por la firma, y propone mejoras para hacer más eficientes y consistentes las formas de trabajo.' }
+        { id: 'c3b1', nombre: 'Confidencialidad Absoluta', texto: 'Custodia y garantiza la confidencialidad absoluta de la información estratégica de clientes, candidatos y de la organización.',
+          textoYo: 'Custodio y garantizo la confidencialidad absoluta de la información estratégica de clientes, candidatos y de la organización.' },
+        { id: 'c3b2', nombre: 'Liderar con el Ejemplo', texto: 'Lidera con el ejemplo, demostrando congruencia entre sus acciones y los valores de Cornerstone, aun bajo presión comercial o de tiempo.',
+          textoYo: 'Lidero con el ejemplo, demostrando congruencia entre mis acciones y los valores de Cornerstone, aun bajo presión comercial o de tiempo.' },
+        { id: 'c3b3', nombre: 'Accountability de Errores', texto: 'Admite abiertamente sus errores, asume la responsabilidad de sus actos y actúa consecuentemente para corregir el impacto generado.',
+          textoYo: 'Admito abiertamente mis errores, asumo la responsabilidad de mis actos y actúo consecuentemente para corregir el impacto generado.' },
+        { id: 'c3b4', nombre: 'Firmeza Ética', texto: 'Manifiesta con firmeza y respeto su disconformidad ante situaciones, acuerdos o hechos que considere no éticos o contrarios a la firma.',
+          textoYo: 'Manifiesto con firmeza y respeto mi disconformidad ante situaciones, acuerdos o hechos que considere no éticos o contrarios a la firma.', extra: NO_OBSERVADO },
+        { id: 'c3b5', nombre: 'Disciplina Metodológica', texto: 'Aplica las metodologías, políticas y procedimientos definidos por la firma, y propone mejoras para hacer más eficientes y consistentes las formas de trabajo.',
+          textoYo: 'Aplico las metodologías, políticas y procedimientos definidos por la firma, y propongo mejoras para hacer más eficientes y consistentes las formas de trabajo.' }
       ]
     },
     {
@@ -59,11 +74,16 @@ const MODELO = {
       nombre: 'Determinación y Pasión',
       definicion: 'Energía ejecutiva, perseverancia y sentido de urgencia para superar barreras y lograr los KPIs del negocio, proyectando orgullo constante por la propuesta de valor de Cornerstone',
       comportamientos: [
-        { id: 'c4b1', nombre: 'Energía Ejecutiva', texto: 'Experimenta y transmite una profunda pasión por alcanzar las metas, inyectando alta energía ejecutiva en la gestión diaria.' },
-        { id: 'c4b2', nombre: 'Perseverancia y Resiliencia', texto: 'Persevera ante obstáculos, objeciones y contingencias, tomando las decisiones necesarias en el debido momento para no detener el avance.' },
-        { id: 'c4b3', nombre: 'Ownership de KPIs', texto: 'Asume la responsabilidad por sus resultados, identifica y resuelve problemas que afectan el cumplimiento de sus KPI y toma acciones oportunas para alcanzar los objetivos individuales y del equipo.' },
-        { id: 'c4b4', nombre: 'Embajador de Marca', texto: 'Proyecta orgullo por la propuesta de valor de Cornerstone, actuando como un embajador activo de la marca en sus redes y entorno.' },
-        { id: 'c4b5', nombre: 'Sentido de Urgencia', texto: 'Actúa con sentido de urgencia y velocidad de respuesta para traducir los compromisos comerciales y operacionales en entregas concretas.' }
+        { id: 'c4b1', nombre: 'Energía Ejecutiva', texto: 'Experimenta y transmite una profunda pasión por alcanzar las metas, inyectando alta energía ejecutiva en la gestión diaria.',
+          textoYo: 'Experimento y transmito una profunda pasión por alcanzar las metas, inyectando alta energía ejecutiva en la gestión diaria.' },
+        { id: 'c4b2', nombre: 'Perseverancia y Resiliencia', texto: 'Persevera ante obstáculos, objeciones y contingencias, tomando las decisiones necesarias en el debido momento para no detener el avance.',
+          textoYo: 'Persevero ante obstáculos, objeciones y contingencias, tomando las decisiones necesarias en el debido momento para no detener el avance.' },
+        { id: 'c4b3', nombre: 'Ownership de KPIs', texto: 'Asume la responsabilidad por sus resultados, identifica y resuelve problemas que afectan el cumplimiento de sus KPI y toma acciones oportunas para alcanzar los objetivos individuales y del equipo.',
+          textoYo: 'Asumo la responsabilidad por mis resultados, identifico y resuelvo problemas que afectan el cumplimiento de mis KPI y tomo acciones oportunas para alcanzar los objetivos individuales y del equipo.' },
+        { id: 'c4b4', nombre: 'Embajador de Marca', texto: 'Proyecta orgullo por la propuesta de valor de Cornerstone, actuando como un embajador activo de la marca en sus redes y entorno.',
+          textoYo: 'Proyecto orgullo por la propuesta de valor de Cornerstone, actuando como embajador/a activo/a de la marca en mis redes y entorno.' },
+        { id: 'c4b5', nombre: 'Sentido de Urgencia', texto: 'Actúa con sentido de urgencia y velocidad de respuesta para traducir los compromisos comerciales y operacionales en entregas concretas.',
+          textoYo: 'Actúo con sentido de urgencia y velocidad de respuesta para traducir los compromisos comerciales y operacionales en entregas concretas.' }
       ]
     },
     {
@@ -71,11 +91,16 @@ const MODELO = {
       nombre: 'Trabajo en Equipo y Colaboración',
       definicion: 'Articulación transversal y abierta entre áreas para priorizar los objetivos corporativos, compartiendo información, activando sinergias de cross-selling y promoviendo un buen clima de trabajo',
       comportamientos: [
-        { id: 'c5b1', nombre: 'Sinergia Interáreas', texto: 'Fomenta y gestiona de manera eficiente la colaboración con otras áreas y Unidades de Negocio para lograr mejores resultados colectivos.' },
-        { id: 'c5b2', nombre: 'Cross-selling Activo', texto: 'Identifica y promueve oportunidades de colaboración entre las Unidades de Negocio para generar nuevas oportunidades comerciales y fortalecer la propuesta de valor de la firma.' },
-        { id: 'c5b3', nombre: 'Intercambio de Información', texto: 'Comparte de forma abierta información, contactos y conocimientos clave para mejorar la comprensión de otras partes y cerrar negocios en equipo.' },
-        { id: 'c5b4', nombre: 'Clima y Reconocimiento', texto: 'Promueve, facilita y contribuye activamente a mantener un buen clima de equipo, reconociendo el trabajo de sus compañeros.' },
-        { id: 'c5b5', nombre: 'Feedback Maduro', texto: 'Ofrece y recibe retroalimentación constructiva con madurez, orientándola a la mejora continua y priorizando el objetivo corporativo de la firma.' }
+        { id: 'c5b1', nombre: 'Sinergia Interáreas', texto: 'Fomenta y gestiona de manera eficiente la colaboración con otras áreas y Unidades de Negocio para lograr mejores resultados colectivos.',
+          textoYo: 'Fomento y gestiono de manera eficiente la colaboración con otras áreas y Unidades de Negocio para lograr mejores resultados colectivos.' },
+        { id: 'c5b2', nombre: 'Cross-selling Activo', texto: 'Identifica y promueve oportunidades de colaboración entre las Unidades de Negocio para generar nuevas oportunidades comerciales y fortalecer la propuesta de valor de la firma.',
+          textoYo: 'Identifico y promuevo oportunidades de colaboración entre las Unidades de Negocio para generar nuevas oportunidades comerciales y fortalecer la propuesta de valor de la firma.' },
+        { id: 'c5b3', nombre: 'Intercambio de Información', texto: 'Comparte de forma abierta información, contactos y conocimientos clave para mejorar la comprensión de otras partes y cerrar negocios en equipo.',
+          textoYo: 'Comparto de forma abierta información, contactos y conocimientos clave para mejorar la comprensión de otras partes y cerrar negocios en equipo.' },
+        { id: 'c5b4', nombre: 'Clima y Reconocimiento', texto: 'Promueve, facilita y contribuye activamente a mantener un buen clima de equipo, reconociendo el trabajo de sus compañeros.',
+          textoYo: 'Promuevo, facilito y contribuyo activamente a mantener un buen clima de equipo, reconociendo el trabajo de mis compañeros.' },
+        { id: 'c5b5', nombre: 'Feedback Maduro', texto: 'Ofrece y recibe retroalimentación constructiva con madurez, orientándola a la mejora continua y priorizando el objetivo corporativo de la firma.',
+          textoYo: 'Ofrezco y recibo retroalimentación constructiva con madurez, orientándola a la mejora continua y priorizando el objetivo corporativo de la firma.' }
       ]
     },
     {
@@ -83,11 +108,16 @@ const MODELO = {
       nombre: 'Iniciativa, Proactividad y Comunicación',
       definicion: 'Actúa con autonomía e iniciativa para identificar oportunidades de mejora, anticipar necesidades y resolver problemas, utilizando información y datos para tomar decisiones. Comunica sus ideas y avances con claridad y oportunidad, y promueve la colaboración para alcanzar los objetivos del negocio.',
       comportamientos: [
-        { id: 'c6b1', nombre: 'Autonomía y Proactividad', texto: 'Actúa con autonomía para identificar oportunidades, anticipar necesidades y resolver problemas, tomando la iniciativa para proponer e implementar soluciones que contribuyan a los objetivos del negocio.' },
-        { id: 'c6b2', nombre: 'Toma de Decisiones Data-Driven', texto: 'Toma decisiones acertadas fundamentándose en el análisis sistemático de datos, métricas y reportes operacionales (Dashboards).' },
-        { id: 'c6b3', nombre: 'Comunicación Ejecutiva', texto: 'Se comunica con mucha facilidad y emplea un lenguaje fluido, estructurado y conciso acorde con el interlocutor (C-Level, equipo, cliente).' },
-        { id: 'c6b4', nombre: 'Escucha Activa y Alineamiento', texto: 'Escucha con atención e interés, y asegura que las partes involucradas se mantengan informadas sobre cambios o noticias del área y la firma.' },
-        { id: 'c6b5', nombre: 'Empoderamiento y Liderazgo', texto: 'Compromete y empodera a las personas/equipos, estableciendo objetivos claros, evaluando el desempeño objetivamente y brindando feedback.', extra: NO_APLICA, ayudaExtra: 'Elige No aplica si no tiene equipo a cargo.' }
+        { id: 'c6b1', nombre: 'Autonomía y Proactividad', texto: 'Actúa con autonomía para identificar oportunidades, anticipar necesidades y resolver problemas, tomando la iniciativa para proponer e implementar soluciones que contribuyan a los objetivos del negocio.',
+          textoYo: 'Actúo con autonomía para identificar oportunidades, anticipar necesidades y resolver problemas, tomando la iniciativa para proponer e implementar soluciones que contribuyan a los objetivos del negocio.' },
+        { id: 'c6b2', nombre: 'Toma de Decisiones Data-Driven', texto: 'Toma decisiones acertadas fundamentándose en el análisis sistemático de datos, métricas y reportes operacionales (Dashboards).',
+          textoYo: 'Tomo decisiones acertadas fundamentándome en el análisis sistemático de datos, métricas y reportes operacionales (Dashboards).' },
+        { id: 'c6b3', nombre: 'Comunicación Ejecutiva', texto: 'Se comunica con mucha facilidad y emplea un lenguaje fluido, estructurado y conciso acorde con el interlocutor (C-Level, equipo, cliente).',
+          textoYo: 'Me comunico con mucha facilidad y empleo un lenguaje fluido, estructurado y conciso acorde con el interlocutor (C-Level, equipo, cliente).' },
+        { id: 'c6b4', nombre: 'Escucha Activa y Alineamiento', texto: 'Escucha con atención e interés, y asegura que las partes involucradas se mantengan informadas sobre cambios o noticias del área y la firma.',
+          textoYo: 'Escucho con atención e interés, y aseguro que las partes involucradas se mantengan informadas sobre cambios o noticias del área y la firma.' },
+        { id: 'c6b5', nombre: 'Empoderamiento y Liderazgo', texto: 'Compromete y empodera a las personas/equipos, estableciendo objetivos claros, evaluando el desempeño objetivamente y brindando feedback.',
+          textoYo: 'Comprometo y empodero a las personas/equipos, estableciendo objetivos claros, evaluando el desempeño objetivamente y brindando feedback.', extra: NO_APLICA, ayudaExtra: 'Elige No aplica si no tiene equipo a cargo.', ayudaExtraYo: 'Elige No aplica si no tienes equipo a cargo.' }
       ]
     }
   ],

@@ -368,7 +368,10 @@ function vistaDatos() {
 
 function vistaCompetencia(c, n) {
   const d = estado.datos;
-  const sujeto = d.rol === JEFE ? 'en ' + esc(d.evaluado || 'tu colaborador') : 'en ti';
+  const yo = d.rol !== JEFE;
+  const guia = yo
+    ? 'Califica con qué frecuencia realizas cada comportamiento.'
+    : 'Califica con qué frecuencia observas cada comportamiento en ' + esc(d.evaluado || 'tu colaborador') + '.';
   const items = c.comportamientos.map(function (b, j) {
     const v = estado.notas[b.id];
     const escala = MODELO.escala.map(function (e) {
@@ -378,18 +381,18 @@ function vistaCompetencia(c, n) {
     }).join('');
     const extra = b.extra
       ? '<div>' + opcion(b.id, b.extra, '<span class="marca"></span>' + esc(b.extra), v === b.extra, 'extra') + '</div>' +
-        (b.ayudaExtra ? '<p class="ayuda">' + esc(b.ayudaExtra) + '</p>' : '')
+        (b.ayudaExtra ? '<p class="ayuda">' + esc(yo ? b.ayudaExtraYo : b.ayudaExtra) + '</p>' : '')
       : '';
     return '<article class="card" id="item-' + b.id + '">' +
       '<div class="item-head"><span class="num">' + n + '.' + (j + 1) + '</span><h3>' + esc(b.nombre) + '</h3></div>' +
-      '<p class="item-text">' + esc(b.texto) + '</p>' +
+      '<p class="item-text">' + esc(yo ? b.textoYo : b.texto) + '</p>' +
       '<div class="escala" role="radiogroup" aria-label="' + esc(b.nombre) + '">' + escala + '</div>' + extra +
       '<p class="error">Elige una opción para continuar.</p></article>';
   }).join('');
   return '<div class="encabezado"><p class="kicker">Competencia ' + n + ' de ' + MODELO.competencias.length + '</p>' +
       '<h2>' + esc(c.nombre) + '</h2>' +
       '<div class="definicion"><b>Definición</b>' + esc(c.definicion) + '</div>' +
-      '<p class="guia">Califica con qué frecuencia observas cada comportamiento ' + sujeto + '.</p></div>' +
+      '<p class="guia">' + guia + '</p></div>' +
     items +
     '<div class="card comentario"><label for="com-' + c.id + '">Comentario <span class="opcional">(opcional)</span></label>' +
       '<p class="ayuda" style="margin:2px 0 8px">Describe un ejemplo concreto que respalde tus calificaciones en esta competencia.</p>' +
