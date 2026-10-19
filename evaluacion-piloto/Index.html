@@ -118,11 +118,8 @@
   .opt:hover .opt-box { border-color: #50607a; }
   .opt-n { font-size: 18px; font-weight: 700; line-height: 1.2; }
   .opt-l { font-size: 13px; font-weight: 600; line-height: 1.25; }
-  .opt-f { font-size: 12px; color: var(--muted); line-height: 1.3; }
   .opt-txt { display: flex; flex-direction: column; gap: 2px; }
-  .opt-f > span { display: block; }
   .opt input:checked + .opt-box { background: var(--accent-bg); border-color: var(--accent); }
-  .opt input:checked + .opt-box .opt-f { color: #c9d6ea; }
   .opt input:focus-visible + .opt-box { outline: 2px solid var(--accent); outline-offset: 2px; }
 
   .extra { margin-top: 8px; display: inline-flex; }
@@ -204,8 +201,6 @@
       flex-direction: row; align-items: center; text-align: left; gap: 12px; padding: 9px 12px;
     }
     .escala .opt-n { width: 22px; text-align: center; }
-    .escala .opt-f > span { display: inline; }
-    .escala .opt-rg::before { content: " · "; }
     .card { padding: 14px; }
     .encabezado h2 { font-size: 19px; }
     .brand h1 { font-size: 15px; }
@@ -323,7 +318,7 @@ function opcion(nombre, valor, contenido, marcado, claseExtra) {
 
 function vistaInicio() {
   const filas = MODELO.escala.map(function (e) {
-    return '<tr><td>' + e.valor + '</td><td>' + esc(e.etiqueta) + '</td><td>' + esc(e.frecuencia) + '</td><td>' + esc(e.rango) + '</td></tr>';
+    return '<tr><td>' + e.valor + '</td><td>' + esc(e.etiqueta) + '</td></tr>';
   }).join('');
   return '<div class="encabezado"><p class="kicker">Cornerstone Perú</p><h2>Prueba piloto de la evaluación de desempeño</h2></div>' +
     '<div class="card intro">' +
@@ -333,11 +328,11 @@ function vistaInicio() {
         '<li><b>No tiene consecuencias.</b> Nadie será evaluado con estas respuestas. Responde con normalidad, como si fuera la evaluación real.</li>' +
         '<li><b>Tiempo aproximado.</b> Entre 15 y 20 minutos. Tu avance se guarda en este dispositivo si cierras la página.</li>' +
         '<li><b>Qué vas a calificar.</b> 30 comportamientos agrupados en 6 competencias. Al final de cada competencia puedes dejar un ejemplo concreto.</li>' +
-        '<li><b>Cómo usar la escala.</b> En cada comportamiento elige con qué frecuencia lo observas, en ti o en tu colaborador. La escala aparece siempre junto a cada comportamiento, así que no necesitas memorizarla.</li>' +
+        '<li><b>Cómo usar la escala.</b> En cada comportamiento elige el nivel que mejor describe tu desempeño o el de tu colaborador. La escala aparece siempre junto a cada comportamiento, así que no necesitas memorizarla.</li>' +
       '</ul>' +
     '</div>' +
     '<div class="card"><h3 style="font-size:16px">Escala de calificación</h3>' +
-      '<table class="tabla"><thead><tr><th>Nivel</th><th>Etiqueta</th><th>Frecuencia</th><th>Rango</th></tr></thead><tbody>' + filas + '</tbody></table>' +
+      '<table class="tabla"><thead><tr><th>Nivel</th><th>Etiqueta</th></tr></thead><tbody>' + filas + '</tbody></table>' +
       '<p class="guia">Algunos comportamientos tienen una opción adicional. Usa “No tuve oportunidad de observarlo” solo si la situación no se presentó. En “Empoderamiento y Liderazgo” elige “No aplica” si no hay equipo a cargo.</p>' +
     '</div>' +
     '<div class="card"><p>Al final hay 4 preguntas breves sobre tu experiencia. Son las más importantes del piloto, así que te pedimos responderlas con detalle.</p></div>';
@@ -370,14 +365,13 @@ function vistaCompetencia(c, n) {
   const d = estado.datos;
   const yo = d.rol !== JEFE;
   const guia = yo
-    ? 'Califica con qué frecuencia realizas cada comportamiento.'
-    : 'Califica con qué frecuencia observas cada comportamiento en ' + esc(d.evaluado || 'tu colaborador') + '.';
+    ? 'Elige el nivel que mejor describe cómo realizas cada comportamiento.'
+    : 'Elige el nivel que mejor describe cómo ' + esc(d.evaluado || 'tu colaborador') + ' realiza cada comportamiento.';
   const items = c.comportamientos.map(function (b, j) {
     const v = estado.notas[b.id];
     const escala = MODELO.escala.map(function (e) {
       return opcion(b.id, e.valor,
-        '<span class="opt-n">' + e.valor + '</span><span class="opt-txt"><span class="opt-l">' + esc(e.etiqueta) + '</span>' +
-        '<span class="opt-f"><span>' + esc(e.frecuencia) + '</span><span class="opt-rg">' + esc(e.rango) + '</span></span></span>', String(v) === String(e.valor));
+        '<span class="opt-n">' + e.valor + '</span><span class="opt-txt"><span class="opt-l">' + esc(e.etiqueta) + '</span></span>', String(v) === String(e.valor));
     }).join('');
     const extra = b.extra
       ? '<div>' + opcion(b.id, b.extra, '<span class="marca"></span>' + esc(b.extra), v === b.extra, 'extra') + '</div>' +
