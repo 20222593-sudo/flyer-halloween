@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<title>Zonas de decoración</title>
+<title>Designación de espacios</title>
 <meta name="viewport" content="width=1600">
 <style>
   @font-face { font-family: "Fraunces"; src: url(assets/fonts/fraunces.woff2) format("woff2"); font-weight: 100 900; }
@@ -10,92 +10,107 @@
 
   /* 16:9 · 1600 × 900 */
   :root { --navy: #0D1427; --blue: #004887; --blue-2: #95C9E1; --pumpkin: #EE7F35; --pumpkin-dk: #B8501A;
-          --paper: #F4F7FB; --ink-soft: #4A5468; --line: #D5E1EE; }
+          --paper: #F4F1EA; --ink-soft: #4A5468; --line: #E3DCCD; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { background: var(--paper); }
   body { width: 1600px; height: 900px; overflow: hidden; font-family: "Plus Jakarta Sans", system-ui, sans-serif; color: var(--navy); }
-  .page { position: relative; width: 1600px; height: 900px; padding: 56px 72px 0; background: var(--paper); overflow: hidden; }
+  .page { position: relative; width: 1600px; height: 900px; background: var(--paper); overflow: hidden; display: flex; flex-direction: column; }
   .page::before {
-    content: ""; position: absolute; inset: 0; pointer-events: none;
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .38  0 0 0 0 .28  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    opacity: .1; mix-blend-mode: multiply;
+    opacity: .14; mix-blend-mode: multiply;
   }
-  .page > * { position: relative; }
-  svg.deco { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .page > * { position: relative; z-index: 1; }
+  .fr { font-family: "Fraunces", Georgia, serif; font-variation-settings: "SOFT" 100, "opsz" 144; font-weight: 800; }
 
-  .head { display: flex; align-items: center; gap: 22px; }
-  .head svg { width: 64px; height: 70px; flex: none; }
-  .eyebrow { font-size: 17px; font-weight: 800; letter-spacing: .24em; text-transform: uppercase; color: var(--pumpkin-dk); }
-  h1 { margin-top: 6px; font-family: "Fraunces", Georgia, serif; font-variation-settings: "SOFT" 100, "opsz" 144; font-weight: 800; font-size: 60px; line-height: 1; letter-spacing: -.01em; }
+  /* Encabezado */
+  .top {
+    height: 222px; padding: 34px 64px 0; color: #F3F6FA; display: grid; grid-template-columns: 1fr auto; gap: 40px;
+    background: radial-gradient(520px 300px at 92% 10%, rgba(149,201,225,.16), transparent 65%),
+                radial-gradient(700px 360px at 0% 130%, rgba(0,72,135,.6), transparent 65%), var(--navy);
+    border-radius: 0 0 36px 36px; overflow: hidden;
+  }
+  .top svg.deco { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .top .txt { position: relative; display: grid; grid-template-columns: 92px 1fr; gap: 24px; align-items: start; }
+  .top .txt > svg { width: 92px; height: 100px; margin-top: 4px; }
+  .eyebrow { font-size: 16px; font-weight: 800; letter-spacing: .26em; text-transform: uppercase; color: var(--blue-2); }
+  h1 { margin-top: 8px; font-size: 56px; line-height: 1; letter-spacing: -.01em; }
   h1 span { color: var(--pumpkin); }
+  .lead { text-wrap: balance; margin-top: 14px; max-width: 900px; font-size: 21px; line-height: 1.45; color: #D6DEEA; }
+  .lead b { color: #F3F6FA; }
+  .chipl { position: relative; align-self: start; display: inline-flex; background: #F3F6FA; border-radius: 999px; padding: 10px 20px; }
+  .chipl img { height: 28px; display: block; }
 
-  .cols { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
-  .office h2 { font-size: 26px; font-weight: 800; }
-  .office h2 small { font-weight: 600; color: var(--ink-soft); }
-  .chips { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 10px; }
-  .chip { font-size: 19px; font-weight: 800; color: #F3F6FA; padding: 8px 18px; border-radius: 999px; }
-  .frame { margin-top: 18px; height: 496px; background: #FFFFFF; border: 2px solid var(--line); border-radius: 24px; padding: 16px; display: flex; align-items: center; justify-content: center; }
-  .frame img { max-width: 100%; max-height: 100%; border-radius: 12px; display: block; }
+  /* Planos */
+  .body { flex: 1; padding: 24px 64px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .card { background: #FFFFFF; border: 2px solid var(--line); border-radius: 26px; padding: 20px 22px 18px; display: flex; flex-direction: column; box-shadow: 0 14px 30px -24px rgba(13,20,39,.4); }
+  .card .hd { display: flex; align-items: baseline; justify-content: space-between; }
+  .card h2 { font-size: 30px; line-height: 1; }
+  .card .count { font-size: 16px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--pumpkin-dk); }
+  .chips { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { display: inline-flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 800; color: #F3F6FA; padding: 7px 16px 7px 10px; border-radius: 999px; }
+  .chip i { width: 14px; height: 14px; border-radius: 4px; background: rgba(255,255,255,.85); }
+  .plan { flex: 1; margin-top: 14px; border-radius: 16px; background: #FBFAF7; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .plan img { max-width: 100%; max-height: 100%; display: block; }
 
-  .foot { position: absolute; left: 72px; right: 72px; bottom: 34px; display: flex; align-items: center; justify-content: space-between; }
-  .foot p { display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 600; color: var(--ink-soft); }
+  /* Pie */
+  .foot { height: 76px; padding: 0 64px; display: flex; align-items: center; gap: 16px; }
+  .foot .ic { width: 38px; height: 38px; border-radius: 50%; background: var(--pumpkin); display: grid; place-items: center; flex: none; }
+  .foot .ic svg { width: 22px; height: 22px; }
+  .foot p { font-size: 19px; font-weight: 600; color: var(--ink-soft); }
   .foot p b { color: var(--navy); }
-  .foot p::before { content: ""; width: 34px; height: 4px; border-radius: 4px; background: var(--pumpkin); }
-  .foot img { height: 34px; }
 </style>
 </head>
 <body>
 <main class="page">
-  <svg class="deco" viewBox="0 0 1600 900" aria-hidden="true">
-    <defs>
-      <symbol id="bat" viewBox="0 14 100 30"><path d="M50 41 C54 35 59 34 63 38 C67 32 75 31 80 36 C84 28 92 24 100 24 C88 16 72 16 62 24 C58 22 56 22 54 23.5 L53 17 L51 21.5 L49 21.5 L47 17 L46 23.5 C44 22 42 22 38 24 C28 16 12 16 0 24 C8 24 16 28 20 36 C25 31 33 32 37 38 C41 34 46 35 50 41 Z"/></symbol>
-      <symbol id="leaf" viewBox="-20 -30 40 60"><path d="M0 -28 C14 -18 18 -4 12 10 C8 20 2 26 0 28 C-2 26 -8 20 -12 10 C-18 -4 -14 -18 0 -28 Z"/><path d="M0 -24 V28" stroke="#0D1427" stroke-opacity=".25" stroke-width="1.6" fill="none"/></symbol>
-    </defs>
-    <!-- telaraña en la esquina superior derecha -->
-    <g fill="none" stroke="#95C9E1" stroke-opacity=".55" stroke-width="1.5">
-      <path d="M1600 0 L1440 0 M1600 0 L1470 70 M1600 0 L1530 120 M1600 0 L1600 150"/>
-      <path d="M1555 0 Q1560 18 1562 24 Q1574 30 1578 34 Q1588 34 1600 40"/>
-      <path d="M1500 0 Q1514 34 1517 48 Q1540 62 1546 76 Q1566 78 1600 92"/>
-    </g>
-    <use href="#bat" x="1300" y="52" width="60" height="18" fill="#0D1427" fill-opacity=".18"/>
-    <use href="#bat" x="1210" y="96" width="38" height="11" fill="#0D1427" fill-opacity=".12"/>
-    <use href="#leaf" x="1380" y="96" width="28" height="42" fill="#EE7F35" fill-opacity=".8" transform="rotate(30 1394 117)"/>
-    <use href="#leaf" x="1440" y="140" width="22" height="34" fill="#C9A77C" transform="rotate(-25 1451 157)"/>
-  </svg>
 
-  <header class="head">
-    <svg viewBox="0 0 100 108" aria-hidden="true"><path d="M50 22 C49 14 51 8 57 4" fill="none" stroke="#8A6A45" stroke-width="6" stroke-linecap="round"/><path d="M55 12 C64 4 76 6 80 12 C71 17 62 17 55 12 Z" fill="#9FB07F"/><ellipse cx="30" cy="64" rx="26" ry="40" fill="#D9662A"/><ellipse cx="70" cy="64" rx="26" ry="40" fill="#D9662A"/><ellipse cx="50" cy="64" rx="28" ry="42" fill="#EE7F35"/><g fill="#0D1427"><path d="M33 55 L41 44 L45 57 Z"/><path d="M67 55 L59 44 L55 57 Z"/><path d="M31 70 Q50 88 69 70 Q62 74 57 73 L54 78 L50 73 L46 78 L43 73 Q38 74 31 70 Z"/></g></svg>
-    <div>
-      <div class="eyebrow">Halloween 2026 · Decoración de mesas</div>
-      <h1><span>7 equipos</span> decoran su zona</h1>
+  <header class="top">
+    <svg class="deco" viewBox="0 0 1600 222" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <symbol id="bat" viewBox="0 14 100 30"><path d="M50 41 C54 35 59 34 63 38 C67 32 75 31 80 36 C84 28 92 24 100 24 C88 16 72 16 62 24 C58 22 56 22 54 23.5 L53 17 L51 21.5 L49 21.5 L47 17 L46 23.5 C44 22 42 22 38 24 C28 16 12 16 0 24 C8 24 16 28 20 36 C25 31 33 32 37 38 C41 34 46 35 50 41 Z"/></symbol>
+        <symbol id="leaf" viewBox="-20 -30 40 60"><path d="M0 -28 C14 -18 18 -4 12 10 C8 20 2 26 0 28 C-2 26 -8 20 -12 10 C-18 -4 -14 -18 0 -28 Z"/></symbol>
+      </defs>
+      <use href="#bat" x="1210" y="120" width="56" height="17" fill="#95C9E1" fill-opacity=".5"/>
+      <use href="#bat" x="1300" y="160" width="38" height="11" fill="#95C9E1" fill-opacity=".35"/>
+      <use href="#leaf" x="1440" y="120" width="30" height="46" fill="#C9A77C" transform="rotate(30 1455 143)"/>
+      <use href="#leaf" x="1500" y="150" width="24" height="36" fill="#EE7F35" transform="rotate(-30 1512 168)"/>
+    </svg>
+    <div class="txt">
+      <svg viewBox="0 0 100 108" aria-hidden="true"><path d="M50 22 C49 14 51 8 57 4" fill="none" stroke="#8A6A45" stroke-width="6" stroke-linecap="round"/><path d="M55 12 C64 4 76 6 80 12 C71 17 62 17 55 12 Z" fill="#9FB07F"/><ellipse cx="30" cy="64" rx="26" ry="40" fill="#D9662A"/><ellipse cx="70" cy="64" rx="26" ry="40" fill="#D9662A"/><ellipse cx="50" cy="64" rx="28" ry="42" fill="#EE7F35"/><ellipse cx="50" cy="64" rx="46" ry="41" fill="none" stroke="#FFF3E4" stroke-opacity=".55" stroke-width="1.6" stroke-dasharray="4 4"/><g fill="#0D1427"><path d="M33 55 L41 44 L45 57 Z"/><path d="M67 55 L59 44 L55 57 Z"/><path d="M31 70 Q50 88 69 70 Q62 74 57 73 L54 78 L50 73 L46 78 L43 73 Q38 74 31 70 Z"/></g></svg>
+      <div>
+        <div class="eyebrow">Halloween 2026 · Decoración de mesas</div>
+        <h1 class="fr">Designación de <span>espacios para decorar</span></h1>
+        <p class="lead">Este es el espacio que se asignó a cada equipo <b>solo para la decoración de Halloween</b>. No corresponde necesariamente a sus puestos de trabajo habituales.</p>
+      </div>
     </div>
+    <span class="chipl"><img src="assets/logo-cornerstone-horizontal.png" alt="Cornerstone"></span>
   </header>
 
-  <section class="cols">
-    <div class="office">
-      <h2>Oficina 1901 <small>· 4 equipos</small></h2>
+  <section class="body">
+    <div class="card">
+      <div class="hd"><h2 class="fr">Oficina 1901</h2><span class="count">4 equipos</span></div>
       <div class="chips">
-        <span class="chip" style="background:#1F4E79">Executive</span>
-        <span class="chip" style="background:#B9472E">Eagle</span>
-        <span class="chip" style="background:#2E6B3A">Kuali</span>
-        <span class="chip" style="background:#8C6D1F">Conta</span>
+        <span class="chip" style="background:#1F4E79"><i></i>Executive</span>
+        <span class="chip" style="background:#B9472E"><i></i>Eagle</span>
+        <span class="chip" style="background:#2E6B3A"><i></i>Kuali</span>
+        <span class="chip" style="background:#8C6D1F"><i></i>Conta</span>
       </div>
-      <div class="frame"><img src="assets/planos/plano-1901.png" alt="Plano de la oficina 1901 con las zonas de Executive, Eagle, Kuali y Conta"></div>
+      <div class="plan"><img src="assets/planos/plano-1901.png" alt="Plano de la oficina 1901 con los espacios asignados a Executive, Eagle, Kuali y Conta"></div>
     </div>
-    <div class="office">
-      <h2>Oficina 1902 <small>· 3 equipos</small></h2>
+    <div class="card">
+      <div class="hd"><h2 class="fr">Oficina 1902</h2><span class="count">3 equipos</span></div>
       <div class="chips">
-        <span class="chip" style="background:#1F4E79">C&amp;S</span>
-        <span class="chip" style="background:#B9472E">Marketing</span>
-        <span class="chip" style="background:#2E6B3A">CAPI</span>
+        <span class="chip" style="background:#1F4E79"><i></i>C&amp;S</span>
+        <span class="chip" style="background:#B9472E"><i></i>Marketing</span>
+        <span class="chip" style="background:#2E6B3A"><i></i>CAPI</span>
       </div>
-      <div class="frame"><img src="assets/planos/plano-1902.png" alt="Plano de la oficina 1902 con las zonas de C&amp;S, Marketing y CAPI"></div>
+      <div class="plan"><img src="assets/planos/plano-1902.png" alt="Plano de la oficina 1902 con los espacios asignados a C&amp;S, Marketing y CAPI"></div>
     </div>
   </section>
 
   <footer class="foot">
-    <p><span>Cada equipo elige su temática y decora <b>solo su zona asignada</b>.</span></p>
-    <img src="assets/logo-cornerstone-horizontal.png" alt="Cornerstone">
+    <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0D1427" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+    <p>Busca el color de tu equipo en el plano: ese es el espacio que les toca decorar. <b>Cada equipo elige su temática y decora solo el espacio asignado.</b></p>
   </footer>
 </main>
 </body>
