@@ -5,92 +5,136 @@
 <title>Cronograma Evaluación de Desempeño 2026</title>
 <meta name="viewport" content="width=1240">
 <style>
+  @font-face { font-family: "Fraunces"; src: url(assets/fonts/fraunces.woff2) format("woff2"); font-weight: 100 900; }
   @font-face { font-family: "Plus Jakarta Sans"; src: url(assets/fonts/plus-jakarta-sans.woff2) format("woff2"); font-weight: 200 800; }
 
-  /* A4 vertical: 1240 × 1754. Estilo corporativo sobrio: blanco, azul Cornerstone y una tabla como en las presentaciones de la empresa. */
+  /* A4 vertical 1240 × 1754. Solo la gama de azules Cornerstone. Portada con hoja de calendario + recorrido vertical por etapas con íconos. */
   :root {
-    --navy: #0D1427; --blue: #004887; --blue-soft: #E8EFF7;
-    --ink: #1B2333; --ink-soft: #4A5568; --muted: #8A94A6; --line: #D9E0EA; --paper: #FFFFFF;
+    --navy: #0D1427; --blue: #004887; --blue-mid: #2D6AA3; --blue-2: #95C9E1; --blue-3: #D8E8F5; --blue-4: #EEF4FA;
+    --ink: #0D1427; --ink-soft: #46546B; --muted: #8C99AD; --card: #FFFFFF; --line: #CFDDEC;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { background: var(--paper); }
+  html, body { background: var(--blue-4); }
   body { width: 1240px; height: 1754px; overflow: hidden; font-family: "Plus Jakarta Sans", Arial, sans-serif; color: var(--ink); }
-  .page { width: 1240px; height: 1754px; padding: 70px 80px 60px; display: flex; flex-direction: column; }
+  .page { position: relative; width: 1240px; height: 1754px; display: flex; flex-direction: column; background: var(--blue-4); overflow: hidden; }
+  .fr { font-family: "Fraunces", Georgia, serif; font-variation-settings: "SOFT" 100, "opsz" 144; font-weight: 800; }
 
-  header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 26px; border-bottom: 3px solid var(--blue); }
-  header img { height: 40px; display: block; }
-  header span { font-size: 17px; font-weight: 600; color: var(--muted); letter-spacing: .04em; }
+  /* PORTADA */
+  .hero { position: relative; height: 540px; padding: 50px 64px 0; color: #F3F6FA; border-radius: 0 0 48px 48px; overflow: hidden;
+    background: radial-gradient(700px 480px at 92% 20%, rgba(149,201,225,.22), transparent 62%),
+                radial-gradient(820px 520px at -6% 120%, rgba(0,72,135,.85), transparent 65%), var(--navy); }
+  .hero svg.deco { position: absolute; right: -120px; bottom: -220px; width: 760px; height: 760px; opacity: .16; }
+  .chip { position: relative; display: inline-flex; background: #EEF4FA; border-radius: 999px; padding: 11px 22px; }
+  .chip img { height: 30px; display: block; }
+  .hero .txt { position: relative; margin-top: 50px; width: 660px; }
+  .eyebrow { font-size: 18px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--blue-2); }
+  .title { margin-top: 16px; font-size: 92px; line-height: .98; letter-spacing: -.015em; }
+  .title em { font-style: italic; font-weight: 600; color: var(--blue-2); }
+  .sub { margin-top: 24px; font-size: 24px; line-height: 1.5; color: #C3D2E4; }
+  .sub b { color: #fff; font-weight: 700; }
 
-  .intro { margin-top: 56px; }
-  .eyebrow { font-size: 18px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--blue); }
-  h1 { margin-top: 12px; font-size: 68px; font-weight: 800; line-height: 1.05; letter-spacing: -.015em; color: var(--navy); }
-  .lead { margin-top: 18px; font-size: 24px; line-height: 1.5; color: var(--ink-soft); max-width: 900px; }
+  .sheet { position: absolute; right: 70px; top: 92px; width: 350px; transform: rotate(3deg); filter: drop-shadow(0 28px 32px rgba(0,0,0,.5)); }
+  .rings { position: absolute; top: -18px; left: 0; right: 0; display: flex; justify-content: space-around; padding: 0 74px; z-index: 2; }
+  .rings i { width: 16px; height: 42px; border-radius: 10px; background: linear-gradient(90deg, #7F8DA3, #E6ECF3 45%, #75849A); }
+  .sheet .head { background: var(--blue); color: #fff; border-radius: 18px 18px 0 0; padding: 32px 0 16px; text-align: center; font-size: 23px; font-weight: 800; letter-spacing: .26em; }
+  .sheet .body { background: #fff; color: var(--ink); border-radius: 0 0 18px 18px; padding: 8px 24px 28px; text-align: center; }
+  .sheet .days { font-size: 146px; line-height: 1; letter-spacing: -.04em; }
+  .sheet .days span { color: var(--blue-2); }
+  .sheet .wk { margin-top: 2px; font-size: 17px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-soft); }
+  .sheet .what { margin-top: 18px; padding-top: 16px; border-top: 2px dashed var(--line); font-size: 30px; font-weight: 800; line-height: 1.15; color: var(--blue); }
 
-  .key { margin-top: 44px; display: flex; align-items: center; gap: 36px; padding: 34px 44px; background: var(--blue); color: #fff; border-radius: 8px; }
-  .key .d { flex: none; padding-right: 36px; border-right: 2px solid rgba(255,255,255,.35); text-align: center; }
-  .key .d b { display: block; font-size: 64px; font-weight: 800; line-height: 1; letter-spacing: -.02em; }
-  .key .d small { display: block; margin-top: 6px; font-size: 18px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; opacity: .85; }
-  .key h2 { font-size: 36px; font-weight: 800; line-height: 1.15; }
-  .key p { margin-top: 6px; font-size: 21px; line-height: 1.45; opacity: .9; }
+  /* RECORRIDO */
+  .main { position: relative; flex: 1; padding: 50px 64px 0 64px; display: flex; flex-direction: column; justify-content: space-between; }
+  .rail { position: absolute; left: 110px; top: 100px; bottom: 150px; width: 3px; background: repeating-linear-gradient(180deg, var(--blue-2) 0 10px, transparent 10px 18px); }
+  .stage { position: relative; display: grid; grid-template-columns: 94px 1fr; gap: 26px; align-items: start; }
+  .ic { position: relative; z-index: 1; margin-top: 10px; width: 94px; height: 94px; border-radius: 50%; display: grid; place-items: center; background: #fff; border: 3px solid var(--blue-3); color: var(--blue); }
+  .ic svg { width: 44px; height: 44px; }
+  .card { background: var(--card); border-radius: 24px; padding: 28px 32px 30px; box-shadow: 0 10px 24px -18px rgba(13,20,39,.45); }
+  .card .hd { display: flex; align-items: center; gap: 14px; }
+  .card h2 { font-size: 40px; line-height: 1; letter-spacing: -.01em; }
+  .pill { padding: 6px 14px; border-radius: 999px; font-size: 14.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .pill.ok { background: var(--blue-4); color: var(--muted); }
+  .items { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 12px 36px; }
+  .it { font-size: 22px; line-height: 1.4; color: var(--ink-soft); }
+  .it b { color: var(--blue); font-weight: 800; margin-right: 8px; }
+  .it small { display: block; font-size: 17px; color: var(--muted); }
 
-  table { margin-top: 44px; width: 100%; border-collapse: collapse; font-size: 21px; }
-  thead th { background: var(--blue); color: #fff; font-size: 17px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; text-align: left; padding: 15px 22px; }
-  tbody td { padding: 22px 22px; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.4; }
-  td.f { width: 270px; font-weight: 700; color: var(--navy); white-space: nowrap; }
-  td.e { width: 220px; font-size: 16px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); padding-top: 26px; }
-  td small { display: block; font-size: 17px; color: var(--ink-soft); }
-  tr.mes td { padding: 22px 22px 10px; border-bottom: 2px solid var(--navy); font-size: 18px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--navy); }
-  tr.mes td em { font-style: normal; font-weight: 600; letter-spacing: .04em; text-transform: none; color: var(--muted); margin-left: 10px; }
-  tr.hecho td { color: var(--muted); }
-  tr.hecho td.f, tr.hecho td.e { color: var(--muted); }
-  tr.dest td { background: var(--blue-soft); }
+  .stage.done .card { background: rgba(255,255,255,.6); box-shadow: none; }
+  .stage.done .ic { background: var(--blue-4); color: var(--muted); border-color: var(--line); }
+  .stage.done h2, .stage.done .it, .stage.done .it b { color: var(--muted); }
 
-  footer { margin-top: auto; padding-top: 24px; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-  footer p { font-size: 21px; line-height: 1.45; color: var(--ink); }
-  footer p b { color: var(--blue); }
-  footer img { height: 46px; flex: none; }
+  .stage.star .ic { background: var(--blue); border-color: var(--blue); color: #fff; box-shadow: 0 0 0 10px rgba(0,72,135,.12); }
+  .stage.star .card { background: var(--navy); color: #F3F6FA; padding: 32px 34px 34px; }
+  .stage.star .pill { background: var(--blue-2); color: var(--navy); }
+  .stage.star .it { color: #C3D2E4; font-size: 25px; }
+  .stage.star .it b { color: #fff; }
+
+  /* PIE */
+  .foot { margin: 26px 64px 44px; display: flex; align-items: center; gap: 22px; padding: 22px 30px; border-radius: 22px; border: 2px dashed var(--blue-2); background: #fff; }
+  .foot svg { flex: none; width: 48px; height: 48px; color: var(--blue); }
+  .foot p { flex: 1; font-size: 22px; line-height: 1.4; font-weight: 600; }
+  .foot p b { color: var(--blue); }
+  .foot img { flex: none; height: 48px; }
 </style>
 </head>
 <body>
 <div class="page">
-  <header>
-    <img src="assets/logo-cornerstone-horizontal.png" alt="Cornerstone">
-    <span>Gestión del Desempeño 2026</span>
-  </header>
-
-  <section class="intro">
-    <p class="eyebrow">Evaluación de desempeño</p>
-    <h1>Cronograma 2026</h1>
-    <p class="lead">Estas son las fechas del proceso, de octubre 2026 a enero 2027. Revísalas y bloquea tu calendario con anticipación.</p>
+  <section class="hero">
+    <svg class="deco" viewBox="0 0 760 760" fill="none" stroke="#95C9E1" stroke-width="2"><circle cx="380" cy="380" r="120"/><circle cx="380" cy="380" r="200"/><circle cx="380" cy="380" r="280"/><circle cx="380" cy="380" r="360"/></svg>
+    <span class="chip"><img src="assets/logo-cornerstone-horizontal.png" alt="Cornerstone"></span>
+    <div class="txt">
+      <p class="eyebrow">Evaluación de desempeño</p>
+      <h1 class="title fr">Agenda <em>estas</em><br>fechas</h1>
+      <p class="sub">El proceso va de <b>octubre 2026 a enero 2027</b>.<br>Revísalo hoy y organiza tu calendario.</p>
+    </div>
+    <div class="sheet">
+      <div class="rings"><i></i><i></i></div>
+      <div class="head">ENERO 2027</div>
+      <div class="body">
+        <div class="days fr">4<span>–</span>8</div>
+        <div class="wk">Lunes a viernes</div>
+        <div class="what">Evaluación en BUK</div>
+      </div>
+    </div>
   </section>
 
-  <section class="key">
-    <div class="d"><b>4 al 8</b><small>Enero 2027</small></div>
-    <div><h2>Evaluación en BUK</h2><p>Tienes de lunes a viernes para completar tu evaluación en la plataforma.</p></div>
-  </section>
+  <main class="main">
+    <div class="rail"></div>
 
-  <table>
-    <thead><tr><th>Fecha</th><th>Etapa</th><th>Actividad</th></tr></thead>
-    <tbody>
-      <tr class="mes"><td colspan="3">Octubre 2026 <em>Realizado</em></td></tr>
-      <tr class="hecho"><td class="f">Jue 15</td><td class="e">Comunicación</td><td>Comité Ejecutivo</td></tr>
-      <tr class="hecho"><td class="f">Vie 16</td><td class="e">Comunicación</td><td>Comunicado a todo el equipo</td></tr>
-      <tr class="hecho"><td class="f">Mar 20 y mié 21</td><td class="e">Comunicación</td><td>Sesiones informativas</td></tr>
+    <div class="stage done">
+      <div class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 20v8h6l14 9V11L14 20H8z"/><path d="M35 18a8 8 0 0 1 0 12"/><path d="M14 28l3 10h5l-2-9"/></svg></div>
+      <div class="card"><div class="hd"><h2 class="fr">Comunicación</h2><span class="pill ok">Realizado</span></div>
+        <div class="items"><p class="it"><b>15 oct</b>Comité Ejecutivo</p><p class="it"><b>16 oct</b>Comunicado al equipo</p><p class="it"><b>20 y 21 oct</b>Sesiones informativas</p></div></div>
+    </div>
 
-      <tr class="mes"><td colspan="3">Diciembre 2026</td></tr>
-      <tr><td class="f">Jue 10</td><td class="e">Capacitación</td><td>Capacitación a líderes + autoevaluación<small>11:00 a. m. a 1:00 p. m. · SUM</small></td></tr>
+    <div class="stage">
+      <div class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="9" width="34" height="22" rx="3"/><path d="M24 31v7M16 40h16"/><path d="M14 23l6-6 5 4 8-8"/></svg></div>
+      <div class="card"><div class="hd"><h2 class="fr">Capacitación</h2></div>
+        <div class="items"><p class="it"><b>Jue 10 dic</b>Capacitación a líderes + autoevaluación<small>11:00 a. m. a 1:00 p. m. · SUM</small></p></div></div>
+    </div>
 
-      <tr class="mes"><td colspan="3">Enero 2027</td></tr>
-      <tr class="dest"><td class="f">Lun 4 al vie 8</td><td class="e">Evaluación</td><td><b>Evaluación en BUK</b></td></tr>
-      <tr><td class="f">Lun 4 al vie 8</td><td class="e">Feedback</td><td>Campaña «Cómo dar y recibir feedback»</td></tr>
-      <tr><td class="f">Mié 13</td><td class="e">Calibración</td><td>Reportes para calibración</td></tr>
-      <tr><td class="f">Vie 15</td><td class="e">Calibración</td><td>Reportes finales</td></tr>
-      <tr><td class="f">Lun 18 al mar 26</td><td class="e">Feedback</td><td>Feedback presencial y encuesta</td></tr>
-    </tbody>
-  </table>
+    <div class="stage star">
+      <div class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="10" width="32" height="30" rx="4"/><path d="M8 18h32M16 6v8M32 6v8"/><path d="M17 29l5 5 9-10"/></svg></div>
+      <div class="card"><div class="hd"><h2 class="fr">Evaluación</h2><span class="pill">La fecha clave</span></div>
+        <div class="items"><p class="it"><b>Lun 4 al vie 8 ene</b>Evaluación en BUK</p></div></div>
+    </div>
 
-  <footer>
-    <p>Bloquea en tu calendario <b>del 4 al 8 de enero</b> para completar tu evaluación en BUK.</p>
+    <div class="stage">
+      <div class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v32M24 8v32M36 8v32"/><circle cx="12" cy="30" r="4" fill="#fff"/><circle cx="24" cy="17" r="4" fill="#fff"/><circle cx="36" cy="26" r="4" fill="#fff"/></svg></div>
+      <div class="card"><div class="hd"><h2 class="fr">Calibración</h2></div>
+        <div class="items"><p class="it"><b>Mié 13 ene</b>Reportes para calibración</p><p class="it"><b>Vie 15 ene</b>Reportes finales</p></div></div>
+    </div>
+
+    <div class="stage">
+      <div class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12a4 4 0 0 1 4-4h18a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H16l-6 5v-5a4 4 0 0 1-4-4z"/><path d="M36 18h2a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4v5l-6-5h-8a4 4 0 0 1-4-4"/></svg></div>
+      <div class="card"><div class="hd"><h2 class="fr">Feedback</h2></div>
+        <div class="items"><p class="it"><b>4 al 8 ene</b>Campaña «Cómo dar y recibir feedback»</p><p class="it"><b>18 al 26 ene</b>Feedback presencial y encuesta</p></div></div>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="17"/><path d="M24 14v10l7 5"/></svg>
+    <p>Bloquea desde hoy <b>del 4 al 8 de enero</b> para completar tu evaluación en BUK.</p>
     <img src="assets/simbolo-cornerstone.png" alt="">
   </footer>
 </div>
