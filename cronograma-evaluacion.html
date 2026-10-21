@@ -5,172 +5,171 @@
 <title>Cronograma Evaluación de Desempeño 2026</title>
 <meta name="viewport" content="width=1240">
 <style>
-  @font-face { font-family: "Fraunces"; src: url(assets/fonts/fraunces.woff2) format("woff2"); font-weight: 100 900; }
-  @font-face { font-family: "Plus Jakarta Sans"; src: url(assets/fonts/plus-jakarta-sans.woff2) format("woff2"); font-weight: 200 800; }
+  @font-face { font-family: "Lato"; src: url(assets/fonts/lato-400.ttf) format("truetype"); font-weight: 400; }
+  @font-face { font-family: "Lato"; src: url(assets/fonts/lato-700.ttf) format("truetype"); font-weight: 700; }
+  @font-face { font-family: "Lato"; src: url(assets/fonts/lato-900.ttf) format("truetype"); font-weight: 900; }
 
-  /* A4 vertical 1240 × 1754. Composición editorial en tres tiempos:
-     titular tipográfico, franja marina con la fecha clave a gran escala, y una sola línea de tiempo continua sin tarjetas. */
+  /* A4 vertical 1240 × 1754. Plantilla de comunicaciones Cornerstone (fondo marino con símbolo de agua, onda y cierre con símbolo)
+     + recorrido por etapas. Colores del manual de marca. El rojo de acción solo marca la fecha clave. */
   :root {
-    --navy: #0D1427; --blue: #004887; --sky: #95C9E1; --sky-2: #D8E8F5; --paper: #FFFFFF;
-    --ink: #0D1427; --ink-2: #3D4A5F; --mute: #9AA6B7; --rule: #DCE4EE;
+    --navy: #0D1427; --blue: #004887; --sky: #95C9E1; --sky-2: #D8E8F5; --grey: #E3E3E3; --red: #CB333B;
+    --bg: #F2F5F9; --ink: #0D1427; --ink-2: #3E4B61; --mute: #8A96A8; --card: #FFFFFF;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { background: var(--paper); }
-  body { width: 1240px; height: 1754px; overflow: hidden; font-family: "Plus Jakarta Sans", Arial, sans-serif; color: var(--ink); }
-  .page { width: 1240px; height: 1754px; display: flex; flex-direction: column; }
-  .serif { font-family: "Fraunces", Georgia, serif; font-variation-settings: "SOFT" 30, "opsz" 144; }
+  html, body { background: var(--bg); }
+  body { width: 1240px; height: 1754px; overflow: hidden; font-family: "Lato", Arial, sans-serif; color: var(--ink); }
+  .page { position: relative; width: 1240px; height: 1754px; display: flex; flex-direction: column; background: var(--bg); overflow: hidden; }
 
-  /* Cabecera */
-  .top { display: flex; align-items: center; justify-content: space-between; margin: 0 80px; padding: 56px 0 26px; border-bottom: 1px solid var(--rule); }
-  .top img { height: 34px; display: block; }
-  .top span { font-size: 16px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--mute); }
+  /* PORTADA (fondo de la plantilla) */
+  .hero { position: relative; height: 610px; padding: 60px 72px 0; color: #fff; overflow: hidden;
+    background: linear-gradient(180deg, #0D1427 0%, #0B2244 55%, #0A3A72 100%); }
+  .hero .mark { position: absolute; right: -150px; top: -60px; width: 760px; opacity: .07; }
+  .hero .wave { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 90px; display: block; }
+  .bar { position: relative; display: flex; align-items: center; justify-content: space-between; }
+  .bar img { height: 44px; display: block; }
+  .pill { padding: 12px 26px; border: 2px solid var(--sky); border-radius: 999px; font-size: 19px; font-weight: 700; letter-spacing: .2em; }
+  .txt { position: relative; margin-top: 64px; width: 770px; }
+  .eyebrow { font-size: 21px; font-weight: 700; letter-spacing: .4em; text-transform: uppercase; color: var(--sky); }
+  h1 { margin-top: 20px; font-size: 76px; font-weight: 900; line-height: 1.04; letter-spacing: -.01em; }
+  h1 span { color: var(--sky); }
+  .lead { margin-top: 24px; width: 720px; font-size: 25px; line-height: 1.5; color: #E4ECF5; }
+  .lead b { color: #fff; font-weight: 900; }
 
-  /* Titular */
-  .title { padding: 58px 80px 0; }
-  .kicker { font-size: 18px; font-weight: 800; letter-spacing: .26em; text-transform: uppercase; color: var(--blue); }
-  h1 { margin-top: 18px; font-size: 104px; font-weight: 700; line-height: .96; letter-spacing: -.025em; }
-  h1 em { font-style: italic; font-weight: 400; color: var(--blue); }
-  .period { margin-top: 26px; font-size: 24px; color: var(--ink-2); }
-  .period b { color: var(--ink); font-weight: 800; }
+  .sheet { position: absolute; right: 78px; top: 176px; width: 300px; transform: rotate(3deg); filter: drop-shadow(0 22px 26px rgba(0,0,0,.4)); }
+  .rings { position: absolute; top: -16px; left: 0; right: 0; display: flex; justify-content: space-around; padding: 0 64px; z-index: 2; }
+  .rings i { width: 14px; height: 38px; border-radius: 9px; background: linear-gradient(90deg, #7F8DA3, #E6ECF3 45%, #75849A); }
+  .sheet .head { background: var(--red); border-radius: 16px 16px 0 0; padding: 28px 0 14px; text-align: center; font-size: 20px; font-weight: 900; letter-spacing: .26em; }
+  .sheet .body { background: #fff; color: var(--ink); border-radius: 0 0 16px 16px; padding: 4px 20px 24px; text-align: center; }
+  .sheet .days { font-size: 124px; font-weight: 900; line-height: 1.05; letter-spacing: -.03em; }
+  .sheet .days span { color: var(--red); }
+  .sheet .wk { font-size: 16px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-2); }
+  .sheet .what { margin-top: 14px; padding-top: 14px; border-top: 2px dashed var(--sky-2); font-size: 26px; font-weight: 900; color: var(--blue); }
 
-  /* Franja de la fecha clave */
-  .key { margin-top: 56px; background: var(--navy); color: #fff; padding: 0 80px; display: grid; grid-template-columns: 470px 1fr; align-items: center; height: 340px; }
-  .big { border-right: 1px solid rgba(149,201,225,.35); height: 100%; display: flex; flex-direction: column; justify-content: center; }
-  .big .n { font-size: 236px; font-weight: 600; line-height: .82; letter-spacing: -.05em; }
-  .big .n i { font-style: normal; font-weight: 300; color: var(--sky); margin: 0 .02em; }
-  .big .m { margin-top: 18px; font-size: 20px; font-weight: 800; letter-spacing: .34em; text-transform: uppercase; color: var(--sky); }
-  .info { padding-left: 56px; }
-  .info .lab { font-size: 16px; font-weight: 800; letter-spacing: .26em; text-transform: uppercase; color: var(--sky); }
-  .info h2 { margin-top: 10px; font-size: 56px; font-weight: 700; line-height: 1; letter-spacing: -.015em; }
-  .info .when { margin-top: 12px; font-size: 25px; color: #CBD7E6; }
-  .info .when b { color: #fff; }
-  .remind { margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(149,201,225,.35); display: flex; gap: 16px; align-items: center; font-size: 21px; line-height: 1.45; color: #E6EDF6; }
-  .remind svg { flex: none; width: 40px; height: 40px; color: var(--sky); }
-  .remind b { color: #fff; }
+  /* RECORRIDO */
+  .main { position: relative; flex: 1; padding: 6px 72px 0; display: flex; flex-direction: column; justify-content: space-between; }
+  .rail { position: absolute; left: 115px; top: 70px; bottom: 60px; width: 3px; background: var(--sky-2); }
+  .stage { position: relative; display: grid; grid-template-columns: 88px 1fr; gap: 26px; align-items: center; }
+  .ic { position: relative; z-index: 1; width: 88px; height: 88px; border-radius: 50%; display: grid; place-items: center; background: #fff; border: 3px solid var(--sky-2); color: var(--blue); }
+  .ic svg { width: 40px; height: 40px; }
+  .card { background: var(--card); border-radius: 20px; padding: 22px 30px 24px; box-shadow: 0 12px 26px -18px rgba(13,20,39,.35); }
+  .hd { display: flex; align-items: baseline; gap: 14px; }
+  .num { font-size: 15px; font-weight: 900; letter-spacing: .2em; text-transform: uppercase; color: var(--mute); }
+  .hd h2 { font-size: 34px; font-weight: 900; line-height: 1; }
+  .tag { margin-left: auto; align-self: center; display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px; font-size: 14px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+  .tag svg { width: 14px; height: 14px; }
+  .list { margin-top: 12px; display: grid; gap: 8px; }
+  .row { display: grid; grid-template-columns: 290px 1fr; gap: 20px; align-items: baseline; font-size: 22px; line-height: 1.4; }
+  .row .d { font-weight: 900; color: var(--blue); white-space: nowrap; }
+  .row .a small { display: block; font-size: 19px; color: var(--ink-2); }
+  .row .a small b { color: var(--ink); font-weight: 900; }
 
-  /* Línea de tiempo */
-  .tl { position: relative; flex: 1; margin: 0 80px; padding: 50px 0 0; }
-  .st::before { content: ""; position: absolute; left: 128px; top: 0; bottom: 0; width: 2px; background: var(--sky-2); }
-  .st:first-of-type::before { top: 44px; }
-  .st:last-of-type::before { bottom: auto; height: 44px; }
-  .st { position: relative; display: grid; grid-template-columns: 104px 50px 236px 1fr; align-items: start; padding: 30px 0 30px; }
-  .st + .st .body, .st + .st .name { border-top: 1px solid var(--rule); }
-  .st + .st .name, .st + .st .body { padding-top: 30px; margin-top: -30px; }
-  .month { font-size: 34px; font-weight: 500; line-height: 1; color: var(--blue); }
-  .month small { display: block; margin-top: 6px; font-family: "Plus Jakarta Sans", sans-serif; font-size: 15px; font-weight: 700; letter-spacing: .18em; color: var(--mute); }
-  .dot { position: relative; z-index: 1; justify-self: center; margin-top: 7px; width: 20px; height: 20px; border-radius: 50%; background: #fff; border: 3px solid var(--blue); }
-  .name .no { font-size: 22px; font-style: italic; font-weight: 400; color: var(--blue); }
-  .name h3 { margin-top: 2px; font-size: 27px; font-weight: 800; line-height: 1.05; letter-spacing: -.01em; }
-  .name p { margin-top: 8px; font-size: 15px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
-  .body { display: grid; gap: 10px; }
-  .ev { display: grid; grid-template-columns: 248px 1fr; gap: 22px; font-size: 21px; line-height: 1.4; }
-  .ev .d { font-weight: 800; color: var(--blue); white-space: nowrap; }
-  .ev .a small { display: block; font-size: 19px; color: var(--ink-2); }
-  .ev .a small b { color: var(--ink); }
+  .stage.done .ic { background: var(--sky-2); border-color: var(--sky-2); }
+  .stage.done .card { background: rgba(255,255,255,.6); box-shadow: none; }
+  .stage.done h2, .stage.done .row, .stage.done .row .d { color: var(--mute); }
+  .stage.done .row { font-size: 20px; }
+  .stage.done .tag { background: var(--sky-2); color: var(--blue); }
 
-  .st.done .dot { background: var(--sky-2); border-color: var(--sky-2); display: grid; place-items: center; }
-  .st.done .dot svg { width: 12px; height: 12px; color: var(--blue); }
-  .st.done h3, .st.done .ev, .st.done .ev .d, .st.done .no { color: var(--mute); }
-  .st.done .ev { font-size: 20px; }
-  .st.done .name p { color: var(--blue); opacity: .55; }
+  .stage.star .ic { background: var(--red); border-color: var(--red); color: #fff; box-shadow: 0 0 0 8px rgba(203,51,59,.15); }
+  .stage.star .card { background: var(--navy); color: #fff; }
+  .stage.star .num { color: var(--sky); }
+  .stage.star .tag { background: var(--red); color: #fff; }
+  .stage.star .row { font-size: 27px; grid-template-columns: auto 1fr; gap: 26px; }
+  .stage.star .row .d { color: #fff; }
+  .stage.star .row .a { color: var(--sky); font-weight: 900; }
 
-  .st.star .dot { width: 26px; height: 26px; margin-top: 4px; background: var(--blue); border: 0; box-shadow: 0 0 0 5px #fff, 0 0 0 7px var(--blue); }
-  .st.star h3 { color: var(--blue); }
-  .st.star .ev { font-size: 25px; grid-template-columns: auto 1fr; gap: 26px; }
-  .st.star .ev .a { font-weight: 800; }
-
-  .foot { margin: 0 80px; padding: 20px 0 44px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; font-size: 16px; color: var(--mute); }
-  .foot img { height: 34px; }
-  .legend { display: flex; gap: 26px; align-items: center; }
-  .legend span { display: inline-flex; align-items: center; gap: 8px; }
-  .legend i { width: 14px; height: 14px; border-radius: 50%; }
+  /* CIERRE (como la plantilla) */
+  .close { display: flex; align-items: center; justify-content: center; gap: 22px; padding: 34px 72px 46px; }
+  .close img { height: 62px; }
+  .close p { font-size: 30px; font-weight: 900; line-height: 1.25; }
+  .close p span { color: var(--blue); }
 </style>
 </head>
 <body>
 <div class="page">
-  <header class="top">
-    <img src="assets/logo-cornerstone-horizontal.png" alt="Cornerstone">
-    <span>Cronograma 2026 · 2027</span>
-  </header>
-
-  <section class="title">
-    <p class="kicker">Primera Evaluación de Desempeño</p>
-    <h1 class="serif">Cinco etapas,<br><em>de octubre a enero</em></h1>
-    <p class="period">Cronograma del proceso · <b>octubre 2026 a enero 2027</b></p>
+  <section class="hero">
+    <img class="mark" src="assets/simbolo-cornerstone-blanco.png" alt="">
+    <div class="bar">
+      <img src="assets/logo-cornerstone-horizontal-blanco.png" alt="Cornerstone">
+      <span class="pill">OCT 2026 · ENE 2027</span>
+    </div>
+    <div class="txt">
+      <p class="eyebrow">Cronograma</p>
+      <h1>Primera Evaluación<br><span>de Desempeño</span></h1>
+      <p class="lead">Este es el recorrido de nuestra primera evaluación. <b>Revisa las fechas de cada etapa y organiza tu calendario</b> con anticipación.</p>
+    </div>
+    <div class="sheet">
+      <div class="rings"><i></i><i></i></div>
+      <div class="head">ENERO 2027</div>
+      <div class="body">
+        <div class="days">4<span>–</span>8</div>
+        <div class="wk">Lunes a viernes</div>
+        <div class="what">Evaluación en BUK</div>
+      </div>
+    </div>
+    <svg class="wave" viewBox="0 0 1240 90" preserveAspectRatio="none"><path d="M0 40 C 260 0, 520 0, 760 34 S 1120 80, 1240 30 L1240 90 L0 90 Z" fill="#F2F5F9"/></svg>
   </section>
 
-  <section class="key">
-    <div class="big">
-      <div class="n serif">4<i>–</i>8</div>
-      <div class="m">Enero 2027</div>
-    </div>
-    <div class="info">
-      <p class="lab">Fecha clave · Etapa 3</p>
-      <h2 class="serif">Evaluación en BUK</h2>
-      <p class="when">Del <b>lunes 4</b> al <b>viernes 8 de enero</b></p>
-      <p class="remind"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="30" height="27" rx="3"/><path d="M5 15h30M13 4v7M27 4v7"/><path d="M14 25l4 4 8-9"/></svg><span>Bloquea estas fechas en tu calendario y <b>completa tu evaluación en BUK</b>.</span></p>
-    </div>
-  </section>
+  <main class="main">
+    <div class="rail"></div>
 
-  <section class="tl">
-
-    <div class="st done">
-      <div class="month serif">Oct<small>2026</small></div>
-      <div class="dot"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3l2.4 2.3L9.5 3.6"/></svg></div>
-      <div class="name"><span class="no serif">01</span><h3>Comunicación</h3><p>Realizado</p></div>
-      <div class="body">
-        <div class="ev"><span class="d">15 de octubre</span><span class="a">Comité Ejecutivo</span></div>
-        <div class="ev"><span class="d">16 de octubre</span><span class="a">Comunicado al equipo</span></div>
-        <div class="ev"><span class="d">20 y 21 de octubre</span><span class="a">Sesiones informativas</span></div>
+    <div class="stage done">
+      <div class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 25l8 8 16-18"/></svg></div>
+      <div class="card">
+        <div class="hd"><span class="num">Etapa 1</span><h2>Comunicación</h2><span class="tag"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg>Realizado</span></div>
+        <div class="list">
+          <div class="row"><span class="d">15 de octubre</span><span class="a">Comité Ejecutivo</span></div>
+          <div class="row"><span class="d">16 de octubre</span><span class="a">Comunicado al equipo</span></div>
+          <div class="row"><span class="d">20 y 21 de octubre</span><span class="a">Sesiones informativas</span></div>
+        </div>
       </div>
     </div>
 
-    <div class="st">
-      <div class="month serif">Dic<small>2026</small></div>
-      <div class="dot"></div>
-      <div class="name"><span class="no serif">02</span><h3>Capacitación</h3></div>
-      <div class="body">
-        <div class="ev"><span class="d">Jueves 10 de diciembre</span><span class="a">Capacitación a líderes y autoevaluación<small><b>11:00 a. m. a 1:00 p. m.</b> · SUM</small></span></div>
+    <div class="stage">
+      <div class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="9" width="34" height="22" rx="3"/><path d="M24 31v7M16 40h16"/><path d="M14 23l6-6 5 4 8-8"/></svg></div>
+      <div class="card">
+        <div class="hd"><span class="num">Etapa 2</span><h2>Capacitación</h2></div>
+        <div class="list">
+          <div class="row"><span class="d">Jueves 10 de diciembre</span><span class="a">Capacitación a líderes y autoevaluación<small><b>11:00 a. m. a 1:00 p. m.</b> · SUM</small></span></div>
+        </div>
       </div>
     </div>
 
-    <div class="st star">
-      <div class="month serif">Ene<small>2027</small></div>
-      <div class="dot"></div>
-      <div class="name"><span class="no serif">03</span><h3>Evaluación</h3></div>
-      <div class="body">
-        <div class="ev"><span class="d">Lunes 4 al viernes 8 de enero</span><span class="a">Evaluación en BUK</span></div>
+    <div class="stage star">
+      <div class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="10" width="32" height="30" rx="4"/><path d="M8 18h32M16 6v8M32 6v8"/><path d="M17 29l5 5 9-10"/></svg></div>
+      <div class="card">
+        <div class="hd"><span class="num">Etapa 3</span><h2>Evaluación</h2><span class="tag">Fecha clave</span></div>
+        <div class="list">
+          <div class="row"><span class="d">Lunes 4 al viernes 8 de enero</span><span class="a">Evaluación en BUK</span></div>
+        </div>
       </div>
     </div>
 
-    <div class="st">
-      <div class="month"></div>
-      <div class="dot"></div>
-      <div class="name"><span class="no serif">04</span><h3>Calibración</h3></div>
-      <div class="body">
-        <div class="ev"><span class="d">Miércoles 13 de enero</span><span class="a">Reportes para calibración</span></div>
-        <div class="ev"><span class="d">Viernes 15 de enero</span><span class="a">Reportes finales</span></div>
+    <div class="stage">
+      <div class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v32M24 8v32M36 8v32"/><circle cx="12" cy="30" r="4" fill="#fff"/><circle cx="24" cy="17" r="4" fill="#fff"/><circle cx="36" cy="26" r="4" fill="#fff"/></svg></div>
+      <div class="card">
+        <div class="hd"><span class="num">Etapa 4</span><h2>Calibración</h2></div>
+        <div class="list">
+          <div class="row"><span class="d">Miércoles 13 de enero</span><span class="a">Reportes para calibración</span></div>
+          <div class="row"><span class="d">Viernes 15 de enero</span><span class="a">Reportes finales</span></div>
+        </div>
       </div>
     </div>
 
-    <div class="st">
-      <div class="month"></div>
-      <div class="dot"></div>
-      <div class="name"><span class="no serif">05</span><h3>Feedback</h3></div>
-      <div class="body">
-        <div class="ev"><span class="d">4 al 8 de enero</span><span class="a">Campaña «Cómo dar y recibir feedback»</span></div>
-        <div class="ev"><span class="d">18 al 26 de enero</span><span class="a">Feedback presencial y encuesta</span></div>
+    <div class="stage">
+      <div class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12a4 4 0 0 1 4-4h18a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H16l-6 5v-5a4 4 0 0 1-4-4z"/><path d="M36 18h2a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4v5l-6-5h-8a4 4 0 0 1-4-4"/></svg></div>
+      <div class="card">
+        <div class="hd"><span class="num">Etapa 5</span><h2>Feedback</h2></div>
+        <div class="list">
+          <div class="row"><span class="d">4 al 8 de enero</span><span class="a">Campaña «Cómo dar y recibir feedback»</span></div>
+          <div class="row"><span class="d">18 al 26 de enero</span><span class="a">Feedback presencial y encuesta</span></div>
+        </div>
       </div>
     </div>
-  </section>
+  </main>
 
-  <footer class="foot">
-    <div class="legend">
-      <span><i style="background:#D8E8F5"></i>Realizado</span>
-      <span><i style="border:3px solid #004887"></i>Próximo</span>
-      <span><i style="background:#004887"></i>Fecha clave</span>
-    </div>
+  <footer class="close">
     <img src="assets/simbolo-cornerstone.png" alt="">
+    <p>Bloquea del 4 al 8 de enero y completa<br>tu evaluación <span>en BUK</span></p>
   </footer>
 </div>
 </body>
