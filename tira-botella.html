@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tira botella Halloween</title>
+<style>
+  @font-face { font-family: "Fraunces"; src: url(assets/fonts/fraunces.woff2) format("woff2"); font-weight: 100 900; }
+  @font-face { font-family: "Plus Jakarta Sans"; src: url(assets/fonts/plus-jakarta-sans.woff2) format("woff2"); font-weight: 200 800; }
+  @font-face { font-family: "Caveat"; src: url(assets/fonts/caveat.woff2) format("woff2"); font-weight: 400 700; }
+  @page { size: 190mm 25mm; margin: 0; }
+
+  /* Tira para botella: 190 × 25 mm */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 190mm; height: 25mm; background: #0D1427; overflow: hidden; }
+  .strip {
+    position: relative; width: 190mm; height: 25mm; overflow: hidden; color: #F3F6FA;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    background: radial-gradient(60mm 30mm at 12% 120%, rgba(0,72,135,.65), transparent 70%),
+                radial-gradient(50mm 30mm at 86% -20%, rgba(149,201,225,.18), transparent 70%), #0D1427;
+    display: flex; align-items: center; justify-content: space-between; padding: 0 7mm;
+  }
+  /* costura punteada: guiño hecho a mano */
+  .strip::before, .strip::after { content: ""; position: absolute; left: 3mm; right: 3mm; height: 0; border-top: .35mm dashed rgba(201,167,124,.75); }
+  .strip::before { top: 1.6mm; } .strip::after { bottom: 1.6mm; }
+  svg.deco { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .pk { position: relative; flex: none; width: 12mm; height: 13mm; }
+  .title { position: relative; flex: none; }
+  .title h1 { font-family: "Fraunces", Georgia, serif; font-variation-settings: "SOFT" 100, "opsz" 144; font-weight: 800; font-size: 7.2mm; line-height: .95; letter-spacing: -.1mm; }
+  .title h1 span { color: #EE7F35; }
+  .title p { font-family: "Caveat", cursive; font-weight: 700; font-size: 4.3mm; line-height: 1; color: #C9A77C; margin-top: .4mm; }
+  .sep { position: relative; flex: none; width: .3mm; height: 13mm; background: rgba(149,201,225,.35); }
+  .date { position: relative; flex: none; }
+  .date .k { font-size: 2.3mm; font-weight: 800; letter-spacing: .5mm; text-transform: uppercase; color: #95C9E1; }
+  .date .v { font-size: 4.3mm; font-weight: 800; line-height: 1.1; margin-top: .4mm; white-space: nowrap; }
+  .logo { position: relative; flex: none; background: #F3F6FA; border-radius: 99mm; padding: 1.8mm 3.2mm; display: flex; }
+  .logo img { height: 4.2mm; display: block; }
+  .rec { position: relative; flex: none; display: flex; align-items: center; gap: 1.8mm; }
+  .rec svg { width: 9mm; height: 9mm; flex: none; }
+  .rec p { font-size: 2.7mm; font-weight: 700; line-height: 1.25; color: #D6DEEA; }
+  .rec p b { color: #F3F6FA; font-weight: 800; }
+</style>
+</head>
+<body>
+<div class="strip">
+  <svg class="deco" viewBox="0 0 190 25" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <symbol id="bat" viewBox="0 14 100 30"><path d="M50 41 C54 35 59 34 63 38 C67 32 75 31 80 36 C84 28 92 24 100 24 C88 16 72 16 62 24 C58 22 56 22 54 23.5 L53 17 L51 21.5 L49 21.5 L47 17 L46 23.5 C44 22 42 22 38 24 C28 16 12 16 0 24 C8 24 16 28 20 36 C25 31 33 32 37 38 C41 34 46 35 50 41 Z"/></symbol>
+      <symbol id="spark" viewBox="-10 -10 20 20"><path d="M0 -10 C1 -3 3 -1 10 0 C3 1 1 3 0 10 C-1 3 -3 1 -10 0 C-3 -1 -1 -3 0 -10 Z"/></symbol>
+      <symbol id="leaf" viewBox="-20 -30 40 60"><path d="M0 -28 C14 -18 18 -4 12 10 C8 20 2 26 0 28 C-2 26 -8 20 -12 10 C-18 -4 -14 -18 0 -28 Z"/></symbol>
+    </defs>
+    <use href="#bat" x="58" y="3.4" width="7" height="2.1" fill="#95C9E1" fill-opacity=".55"/>
+    <use href="#bat" x="176" y="5" width="7.5" height="2.3" fill="#95C9E1" fill-opacity=".6"/>
+    <use href="#bat" x="181" y="18" width="5" height="1.5" fill="#95C9E1" fill-opacity=".45"/>
+    <use href="#spark" x="54" y="19" width="2" height="2" fill="#F2E8D0" fill-opacity=".8"/>
+    <use href="#spark" x="105" y="3.5" width="1.6" height="1.6" fill="#F2E8D0" fill-opacity=".7"/>
+    <use href="#spark" x="133" y="19.5" width="1.8" height="1.8" fill="#F2E8D0" fill-opacity=".7"/>
+    <use href="#leaf" x="140" y="2.2" width="2.6" height="3.9" fill="#EE7F35" transform="rotate(35 141.3 4.1)"/>
+    <use href="#leaf" x="3.5" y="15" width="2.6" height="3.9" fill="#C9A77C" transform="rotate(-30 4.8 17)"/>
+  </svg>
+
+  <svg class="pk" viewBox="0 0 100 108" aria-hidden="true"><path d="M50 22 C49 14 51 8 57 4" fill="none" stroke="#8A6A45" stroke-width="6" stroke-linecap="round"/><path d="M55 12 C64 4 76 6 80 12 C71 17 62 17 55 12 Z" fill="#9FB07F"/><ellipse cx="30" cy="64" rx="26" ry="40" fill="#D9662A"/><ellipse cx="70" cy="64" rx="26" ry="40" fill="#D9662A"/><ellipse cx="50" cy="64" rx="28" ry="42" fill="#EE7F35"/><ellipse cx="50" cy="64" rx="46" ry="41" fill="none" stroke="#FFF3E4" stroke-opacity=".55" stroke-width="1.8" stroke-dasharray="4 4"/><g fill="#0D1427"><path d="M33 55 L41 44 L45 57 Z"/><path d="M67 55 L59 44 L55 57 Z"/><path d="M31 70 Q50 88 69 70 Q62 74 57 73 L54 78 L50 73 L46 78 L43 73 Q38 74 31 70 Z"/></g></svg>
+
+  <div class="title">
+    <h1>Halloween <span>2026</span></h1>
+    <p>edición sostenible</p>
+  </div>
+
+  <span class="sep"></span>
+
+  <div class="date">
+    <div class="k">Jueves</div>
+    <div class="v">29 de octubre</div>
+  </div>
+
+  <span class="logo"><img src="assets/logo-cornerstone-horizontal.png" alt="Cornerstone"></span>
+
+  <div class="rec">
+    <svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="47" fill="#EE7F35"/><g fill="none" stroke="#0D1427" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24.5 45 A26 26 0 0 1 71 34.5"/><path d="M61 33 L71.5 35 L74 24.5"/><path d="M75.5 55 A26 26 0 0 1 29 65.5"/><path d="M39 67 L28.5 65 L26 75.5"/></g></svg>
+    <p><b>Recicla</b> esta<br>botella</p>
+  </div>
+</div>
+</body>
+</html>
