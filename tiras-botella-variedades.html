@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tiras botella Halloween</title>
+<style>
+  @font-face { font-family: "Lobster"; src: url(assets/fonts/lobster.woff2) format("woff2"); }
+  @font-face { font-family: "Plus Jakarta Sans"; src: url(assets/fonts/plus-jakarta-sans.woff2) format("woff2"); font-weight: 200 800; }
+  @page { size: 190mm 25mm; margin: 0; }
+
+  /* 5 tiras de 190 × 25 mm · una por página en el PDF */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 190mm; background: #FFFFFF; }
+  .strip {
+    position: relative; width: 190mm; height: 25mm; overflow: hidden; break-after: page;
+    font-family: "Plus Jakarta Sans", sans-serif; color: #004887;
+    display: flex; align-items: center; justify-content: space-between; padding: 0 6mm;
+  }
+  .strip:last-child { break-after: auto; }
+  .v1 { background: radial-gradient(circle at 1.2mm 1.2mm, rgba(238,127,53,.16) .55mm, transparent .7mm) 0 0 / 5mm 5mm, linear-gradient(180deg, #FFF6E9, #FDEBD6); padding-left: 5mm; }
+  .v2 { background: radial-gradient(circle at 1.2mm 1.2mm, rgba(255,255,255,.9) .6mm, transparent .75mm) 0 0 / 5mm 5mm, linear-gradient(180deg, #E8F2FB, #D8E8F5); }
+  .v3 { background: repeating-linear-gradient(-45deg, rgba(238,127,53,.10) 0 1.2mm, transparent 1.2mm 3.6mm), linear-gradient(180deg, #FFF0E2, #FFE3CC); }
+  .v4 { background: radial-gradient(circle at 1.5mm 1.5mm, rgba(13,20,39,.12) .4mm, transparent .55mm) 0 0 / 6mm 6mm, linear-gradient(180deg, #FBF6EE, #F3EADB); }
+  .v5 { background: radial-gradient(circle at 1.2mm 1.2mm, rgba(203,51,59,.12) .55mm, transparent .7mm) 0 0 / 5mm 5mm, #FFFFFF; }
+  svg.deco { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .art { position: relative; flex: none; overflow: visible; }
+  .t { position: relative; flex: none; transform: rotate(-3deg); }
+  .t h1 { font-family: "Lobster", cursive; font-weight: 400; line-height: 1; color: #004887; }
+  .t h1.one { font-size: 7.6mm; }
+  .t h1.two { font-size: 5.4mm; line-height: 1.02; }
+  .t h1 span { color: #EE7F35; }
+  .v2 .t h1 span, .v4 .t h1 span, .v5 .t h1 span { color: #CB333B; }
+  .v3 .t h1 span { color: #D9662A; font-size: 7mm; }
+  .t h1 small { font-family: "Plus Jakarta Sans", sans-serif; font-size: 2.6mm; font-weight: 800; letter-spacing: .5mm; text-transform: uppercase; color: #004887; }
+  .tag { position: relative; flex: none; transform: rotate(3deg); color: #FFFFFF; border-radius: 2mm; padding: 1.2mm 3mm 1.4mm; text-align: center; box-shadow: .5mm .6mm 0 #0D1427; }
+  .tag.orange { background: #EE7F35; } .tag.navy { background: #004887; } .tag.red { background: #CB333B; }
+  .tag .k { font-size: 2.3mm; font-weight: 800; letter-spacing: .4mm; text-transform: uppercase; }
+  .tag .v { font-family: "Lobster", cursive; font-size: 4.8mm; line-height: 1; }
+  .logo { position: relative; flex: none; height: 4.3mm; display: block; }
+  .rec { position: relative; flex: none; display: flex; align-items: center; gap: 1.5mm; }
+  .rec svg { width: 7.6mm; height: 7.6mm; flex: none; }
+  .rec p { font-size: 2.6mm; font-weight: 800; line-height: 1.2; color: #0D1427; }
+  .rec p span { color: #CB333B; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="bat" viewBox="0 14 100 30"><path d="M50 41 C54 35 59 34 63 38 C67 32 75 31 80 36 C84 28 92 24 100 24 C88 16 72 16 62 24 C58 22 56 22 54 23.5 L53 17 L51 21.5 L49 21.5 L47 17 L46 23.5 C44 22 42 22 38 24 C28 16 12 16 0 24 C8 24 16 28 20 36 C25 31 33 32 37 38 C41 34 46 35 50 41 Z"/></symbol>
+    <symbol id="pk" viewBox="0 0 100 100"><path d="M50 20 C49 12 52 6 58 3" fill="none" stroke="#0D1427" stroke-width="6" stroke-linecap="round"/><ellipse cx="29" cy="60" rx="26" ry="36" fill="#D9662A"/><ellipse cx="71" cy="60" rx="26" ry="36" fill="#D9662A"/><ellipse cx="50" cy="60" rx="29" ry="38" fill="#EE7F35"/><g fill="#0D1427"><path d="M30 52 L40 40 L45 54 Z"/><path d="M70 52 L60 40 L55 54 Z"/><path d="M26 66 Q50 92 74 66 Q66 70 61 69 L58 75 L54 70 L50 76 L46 70 L42 75 L39 69 Q34 70 26 66 Z"/></g></symbol>
+    <symbol id="candy" viewBox="0 0 40 20"><polygon points="12,10 2,3 3,17" fill="#004887"/><polygon points="28,10 38,3 37,17" fill="#004887"/><ellipse cx="20" cy="10" rx="9" ry="7" fill="#CB333B"/><path d="M17 4 Q20 10 17 16 M23 4 Q26 10 23 16" stroke="#FFFFFF" stroke-width="1.6" fill="none" stroke-opacity=".85"/></symbol>
+    <symbol id="ghost" viewBox="0 0 100 118"><path d="M18 50 A32 32 0 0 1 82 50 V108 Q74 99 66 108 Q58 117 50 108 Q42 99 34 108 Q26 117 18 108 Z" fill="#FFFFFF" stroke="#004887" stroke-width="5" stroke-linejoin="round"/><ellipse cx="39" cy="56" rx="5.5" ry="8" fill="#004887"/><ellipse cx="61" cy="56" rx="5.5" ry="8" fill="#004887"/><ellipse cx="31" cy="70" rx="5" ry="3" fill="#EE7F35" fill-opacity=".6"/><ellipse cx="69" cy="70" rx="5" ry="3" fill="#EE7F35" fill-opacity=".6"/><path d="M43 72 Q50 79 57 72" fill="none" stroke="#004887" stroke-width="4" stroke-linecap="round"/></symbol>
+    <symbol id="spark" viewBox="-10 -10 20 20"><path d="M0 -10 C1 -3 3 -1 10 0 C3 1 1 3 0 10 C-1 3 -3 1 -10 0 C-3 -1 -1 -3 0 -10 Z"/></symbol>
+    <symbol id="leaf" viewBox="-20 -30 40 60"><path d="M0 -28 C14 -18 18 -4 12 10 C8 20 2 26 0 28 C-2 26 -8 20 -12 10 C-18 -4 -14 -18 0 -28 Z"/></symbol>
+    <symbol id="spider" viewBox="0 0 40 40"><g stroke="#0D1427" stroke-width="2.5" stroke-linecap="round" fill="none"><path d="M12 18 L3 12 M12 22 L2 22 M12 26 L4 33 M28 18 L37 12 M28 22 L38 22 M28 26 L36 33"/></g><ellipse cx="20" cy="23" rx="9" ry="10" fill="#0D1427"/><circle cx="20" cy="11" r="6" fill="#0D1427"/></symbol>
+    <pattern id="stripes" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="3" height="3" fill="#FFFFFF"/><rect width="1.5" height="3" fill="#CB333B"/></pattern>
+  </defs>
+</svg>
+
+<div class="strip v1">
+  <svg class="deco" viewBox="0 0 190 25" aria-hidden="true"><path d="M0 0 H190 V1.6 Q185 3.2 180 1.6 T170 1.6 T160 1.6 T150 1.6 T140 1.6 T130 1.6 T120 1.6 T110 1.6 T100 1.6 T90 1.6 T80 1.6 T70 1.6 T60 1.6 T50 1.6 T40 1.6 T30 1.6 T20 1.6 T10 1.6 T0 1.6 Z" fill="#004887"/><path d="M0 25 H190 V23.4 Q185 21.799999999999997 180 23.4 T170 23.4 T160 23.4 T150 23.4 T140 23.4 T130 23.4 T120 23.4 T110 23.4 T100 23.4 T90 23.4 T80 23.4 T70 23.4 T60 23.4 T50 23.4 T40 23.4 T30 23.4 T20 23.4 T10 23.4 T0 23.4 Z" fill="#EE7F35"/>
+  <use href="#bat" x="96" y="3.4" width="6.5" height="2" fill="#004887"/>
+  <use href="#candy" x="112" y="3.4" width="6" height="3" transform="rotate(-18 115 4.9)"/>
+  <use href="#candy" x="118" y="18.5" width="6" height="3" transform="rotate(14 121 20)"/>
+  <use href="#bat" x="132" y="3.4" width="5.5" height="1.7" fill="#0D1427"/>
+  <use href="#bat" x="2.5" y="4" width="6" height="1.8" fill="#0D1427"/>
+  <line x1="186.6" y1="1.6" x2="186.6" y2="9.2" stroke="#0D1427" stroke-width=".25"/><use href="#spider" x="184.6" y="8.4" width="4" height="4"/></svg>
+  <svg class="art" viewBox="0 0 100 160" style="width:10mm;height:16mm;align-self:flex-end;margin-bottom:-1mm"><path d="M18 50 A32 32 0 0 1 82 50 V160 H18 Z" fill="#FFFFFF" stroke="#004887" stroke-width="5"/><ellipse cx="39" cy="54" rx="5.5" ry="8" fill="#004887"/><ellipse cx="61" cy="54" rx="5.5" ry="8" fill="#004887"/><ellipse cx="31" cy="68" rx="5" ry="3" fill="#EE7F35" fill-opacity=".6"/><ellipse cx="69" cy="68" rx="5" ry="3" fill="#EE7F35" fill-opacity=".6"/><path d="M43 70 Q50 77 57 70" fill="none" stroke="#004887" stroke-width="4" stroke-linecap="round"/><path d="M18 80 Q6 70 4 58" fill="none" stroke="#004887" stroke-width="5" stroke-linecap="round"/></svg>
+  <div class="t"><h1 class="one">¡Feliz <span>Halloween</span>!</h1></div>
+  <div class="tag orange"><div class="k">Jueves · 2026</div><div class="v">29 de octubre</div></div>
+  <img class="logo" src="assets/logo-cornerstone-horizontal.png" alt="Cornerstone">
+  <svg class="art" viewBox="-1 -5 14 20" style="width:11mm;height:15.7mm"><use href="#pk" x="0" y="2" width="12" height="12"/><g transform="rotate(-12 6 2)"><ellipse cx="6" cy="3.6" rx="6.4" ry="1.3" fill="#004887"/><path d="M2.4 3.4 C3.4 1.4 4 -1.8 6 -3.6 C7 -4.4 8.6 -4.4 9.6 -3.8 C8.4 -3.4 7.6 -2.6 7.8 -1.2 C8.2 0.6 9 2 10 3.4 Z" fill="#004887"/><rect x="2.8" y="2.3" width="6.8" height="1" fill="#CB333B"/></g></svg>
+  <div class="rec"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="47" fill="#004887"/><g fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24.5 45 A26 26 0 0 1 71 34.5"/><path d="M61 33 L71.5 35 L74 24.5"/><path d="M75.5 55 A26 26 0 0 1 29 65.5"/><path d="M39 67 L28.5 65 L26 75.5"/></g></svg><p><span>¡Recíclame!</span><br>Soy sostenible</p></div>
+</div>
+<div class="strip v2">
+  <svg class="deco" viewBox="0 0 190 25" aria-hidden="true"><path d="M0 0 H190 V1.6 Q185 3.2 180 1.6 T170 1.6 T160 1.6 T150 1.6 T140 1.6 T130 1.6 T120 1.6 T110 1.6 T100 1.6 T90 1.6 T80 1.6 T70 1.6 T60 1.6 T50 1.6 T40 1.6 T30 1.6 T20 1.6 T10 1.6 T0 1.6 Z" fill="#004887"/><path d="M0 25 H190 V23.4 Q185 21.799999999999997 180 23.4 T170 23.4 T160 23.4 T150 23.4 T140 23.4 T130 23.4 T120 23.4 T110 23.4 T100 23.4 T90 23.4 T80 23.4 T70 23.4 T60 23.4 T50 23.4 T40 23.4 T30 23.4 T20 23.4 T10 23.4 T0 23.4 Z" fill="#95C9E1"/>
+  <use href="#bat" x="62" y="3.6" width="6" height="1.8" fill="#004887"/>
+  <use href="#spark" x="100" y="19.5" width="2" height="2" fill="#EE7F35"/>
+  <use href="#spark" x="57" y="19.5" width="1.6" height="1.6" fill="#004887"/>
+  <use href="#bat" x="140" y="3.4" width="5" height="1.5" fill="#0D1427"/></svg>
+  <svg class="art" viewBox="0 0 150 120" style="width:16mm;height:12.8mm"><use href="#ghost" x="0" y="20" width="56" height="66"/><use href="#ghost" x="44" y="0" width="68" height="80"/><use href="#ghost" x="98" y="30" width="50" height="59"/></svg>
+  <div class="t"><h1 class="two">¡Hidrátate…<br><span>si te atreves!</span></h1></div>
+  <div class="tag navy"><div class="k">Jueves · 2026</div><div class="v">29 de octubre</div></div>
+  <img class="logo" src="assets/logo-cornerstone-horizontal.png" alt="Cornerstone">
+  <svg class="art" viewBox="0 0 100 60" style="width:11mm;height:6.6mm"><use href="#bat" x="0" y="0" width="64" height="19" fill="#004887"/><use href="#bat" x="44" y="30" width="54" height="16" fill="#0D1427"/></svg>
+  <div class="rec"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="47" fill="#CB333B"/><g fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24.5 45 A26 26 0 0 1 71 34.5"/><path d="M61 33 L71.5 35 L74 24.5"/><path d="M75.5 55 A26 26 0 0 1 29 65.5"/><path d="M39 67 L28.5 65 L26 75.5"/></g></svg><p><span>¡Recíclame!</span><br>Soy sostenible</p></div>
+</div>
+<div class="strip v3">
+  <svg class="deco" viewBox="0 0 190 25" aria-hidden="true"><path d="M0 0 H190 V1.6 Q185 3.2 180 1.6 T170 1.6 T160 1.6 T150 1.6 T140 1.6 T130 1.6 T120 1.6 T110 1.6 T100 1.6 T90 1.6 T80 1.6 T70 1.6 T60 1.6 T50 1.6 T40 1.6 T30 1.6 T20 1.6 T10 1.6 T0 1.6 Z" fill="#EE7F35"/><path d="M0 25 H190 V23.4 Q185 21.799999999999997 180 23.4 T170 23.4 T160 23.4 T150 23.4 T140 23.4 T130 23.4 T120 23.4 T110 23.4 T100 23.4 T90 23.4 T80 23.4 T70 23.4 T60 23.4 T50 23.4 T40 23.4 T30 23.4 T20 23.4 T10 23.4 T0 23.4 Z" fill="#004887"/>
+  <use href="#leaf" x="59" y="17.5" width="2.4" height="3.6" fill="#7E9A6B" transform="rotate(40 60.2 19.3)"/>
+  <use href="#spark" x="98" y="3.6" width="1.8" height="1.8" fill="#004887"/>
+  <use href="#leaf" x="141" y="3.2" width="2.2" height="3.3" fill="#D9662A" transform="rotate(-30 142.1 4.8)"/></svg>
+  <svg class="art" viewBox="0 0 150 100" style="width:16.5mm;height:11mm"><use href="#pk" x="0" y="22" width="70" height="70"/><use href="#pk" x="52" y="0" width="96" height="96"/></svg>
+  <div class="t"><h1 class="two"><small>Poción de</small><br><span>hidratación</span></h1></div>
+  <div class="tag navy"><div class="k">Jueves · 2026</div><div class="v">29 de octubre</div></div>
+  <img class="logo" src="assets/logo-cornerstone-horizontal.png" alt="Cornerstone">
+  <svg class="art" viewBox="0 0 60 80" style="width:7.5mm;height:10mm"><rect x="22" y="2" width="16" height="10" rx="2" fill="#C9A77C" stroke="#0D1427" stroke-width="2.5"/><path d="M24 12 H36 V24 A24 24 0 1 1 24 24 Z" fill="#D8E8F5" stroke="#0D1427" stroke-width="3"/><path d="M8 50 Q20 44 30 50 T52 49 A24 24 0 0 1 8 50 Z" fill="#EE7F35"/><circle cx="24" cy="40" r="3" fill="#FFFFFF"/><circle cx="34" cy="34" r="2" fill="#FFFFFF"/></svg>
+  <div class="rec"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="47" fill="#004887"/><g fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24.5 45 A26 26 0 0 1 71 34.5"/><path d="M61 33 L71.5 35 L74 24.5"/><path d="M75.5 55 A26 26 0 0 1 29 65.5"/><path d="M39 67 L28.5 65 L26 75.5"/></g></svg><p><span>¡Recíclame!</span><br>Soy sostenible</p></div>
+</div>
+<div class="strip v4">
+  <svg class="deco" viewBox="0 0 190 25" aria-hidden="true"><path d="M0 0 H190 V1.6 Q185 3.2 180 1.6 T170 1.6 T160 1.6 T150 1.6 T140 1.6 T130 1.6 T120 1.6 T110 1.6 T100 1.6 T90 1.6 T80 1.6 T70 1.6 T60 1.6 T50 1.6 T40 1.6 T30 1.6 T20 1.6 T10 1.6 T0 1.6 Z" fill="#0D1427"/><path d="M0 25 H190 V23.4 Q185 21.799999999999997 180 23.4 T170 23.4 T160 23.4 T150 23.4 T140 23.4 T130 23.4 T120 23.4 T110 23.4 T100 23.4 T90 23.4 T80 23.4 T70 23.4 T60 23.4 T50 23.4 T40 23.4 T30 23.4 T20 23.4 T10 23.4 T0 23.4 Z" fill="#CB333B"/>
+  <use href="#spark" x="58" y="4" width="2" height="2" fill="#EE7F35"/>
+  <use href="#spark" x="61" y="18.5" width="1.6" height="1.6" fill="#004887"/>
+  <use href="#spark" x="99" y="19.3" width="1.8" height="1.8" fill="#EE7F35"/>
+  <use href="#spark" x="144" y="4" width="1.6" height="1.6" fill="#004887"/></svg>
+  <svg class="art" viewBox="-1 -5 14 12" style="width:13mm;height:11mm"><g transform="rotate(-12 6 2)"><ellipse cx="6" cy="3.6" rx="6.4" ry="1.3" fill="#004887"/><path d="M2.4 3.4 C3.4 1.4 4 -1.8 6 -3.6 C7 -4.4 8.6 -4.4 9.6 -3.8 C8.4 -3.4 7.6 -2.6 7.8 -1.2 C8.2 0.6 9 2 10 3.4 Z" fill="#004887"/><rect x="2.8" y="2.3" width="6.8" height="1" fill="#CB333B"/></g><use href="#spark" x="9.5" y="-4.5" width="2.4" height="2.4" fill="#EE7F35"/></svg>
+  <div class="t"><h1 class="one">Agua de <span>bruja</span></h1></div>
+  <div class="tag red"><div class="k">Jueves · 2026</div><div class="v">29 de octubre</div></div>
+  <img class="logo" src="assets/logo-cornerstone-horizontal.png" alt="Cornerstone">
+  <svg class="art" viewBox="0 0 100 100" style="width:9.5mm;height:9.5mm"><defs><mask id="m4"><rect width="100" height="100" fill="#fff"/><circle cx="66" cy="38" r="36" fill="#000"/></mask></defs><circle cx="46" cy="52" r="40" fill="#F2C94C" mask="url(#m4)"/><path d="M30 60 Q36 64 42 60" fill="none" stroke="#0D1427" stroke-width="4" stroke-linecap="round"/><use href="#spark" x="76" y="70" width="18" height="18" fill="#004887"/></svg>
+  <div class="rec"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="47" fill="#CB333B"/><g fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24.5 45 A26 26 0 0 1 71 34.5"/><path d="M61 33 L71.5 35 L74 24.5"/><path d="M75.5 55 A26 26 0 0 1 29 65.5"/><path d="M39 67 L28.5 65 L26 75.5"/></g></svg><p><span>¡Recíclame!</span><br>Soy sostenible</p></div>
+</div>
+<div class="strip v5">
+  <svg class="deco" viewBox="0 0 190 25" aria-hidden="true"><path d="M0 0 H190 V1.6 Q185 3.2 180 1.6 T170 1.6 T160 1.6 T150 1.6 T140 1.6 T130 1.6 T120 1.6 T110 1.6 T100 1.6 T90 1.6 T80 1.6 T70 1.6 T60 1.6 T50 1.6 T40 1.6 T30 1.6 T20 1.6 T10 1.6 T0 1.6 Z" fill="#004887"/>
+  <rect x="0" y="22.6" width="190" height="2.4" fill="url(#stripes)"/>
+  <use href="#candy" x="57" y="3.2" width="5" height="2.5" transform="rotate(-20 59.5 4.4)"/>
+  <use href="#spark" x="100" y="19.2" width="1.8" height="1.8" fill="#EE7F35"/>
+  <use href="#candy" x="142" y="18.8" width="5" height="2.5" transform="rotate(16 144.5 20)"/></svg>
+  <svg class="art" viewBox="0 0 120 100" style="width:13mm;height:10.8mm"><use href="#candy" x="0" y="50" width="80" height="40" transform="rotate(-18 40 70)"/><circle cx="88" cy="36" r="24" fill="#EE7F35" stroke="#0D1427" stroke-width="3"/><path d="M88 36 m-14 0 a14 14 0 1 1 14 14 a8 8 0 1 1 -8 -8" fill="none" stroke="#FFFFFF" stroke-width="4"/><rect x="86" y="60" width="4" height="36" fill="#C9A77C"/></svg>
+  <div class="t"><h1 class="two">¿Dulce o truco?<br><span>¡Mejor agua!</span></h1></div>
+  <div class="tag orange"><div class="k">Jueves · 2026</div><div class="v">29 de octubre</div></div>
+  <img class="logo" src="assets/logo-cornerstone-horizontal.png" alt="Cornerstone">
+  <svg class="art" viewBox="0 0 60 70" style="width:7mm;height:8.2mm"><polygon points="30,4 54,64 6,64" fill="#FFF3E4" stroke="#0D1427" stroke-width="3" stroke-linejoin="round"/><path d="M14 44 H46 L54 64 H6 Z" fill="#EE7F35"/><path d="M22 24 H38 L46 44 H14 Z" fill="#F2C94C"/><polygon points="30,4 54,64 6,64" fill="none" stroke="#0D1427" stroke-width="3" stroke-linejoin="round"/></svg>
+  <div class="rec"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="47" fill="#004887"/><g fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24.5 45 A26 26 0 0 1 71 34.5"/><path d="M61 33 L71.5 35 L74 24.5"/><path d="M75.5 55 A26 26 0 0 1 29 65.5"/><path d="M39 67 L28.5 65 L26 75.5"/></g></svg><p><span>¡Recíclame!</span><br>Soy sostenible</p></div>
+</div>
+</body>
+</html>
