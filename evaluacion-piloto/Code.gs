@@ -40,16 +40,16 @@ const MODELO = {
       nombre: 'Soñar en Grande',
       definicion: 'Mentalidad de crecimiento e innovación, adopta tecnologías y asume riesgos calculados para adaptar la operación, desafiar el statu quo y superar metas ambiciosas',
       comportamientos: [
-        { id: 'c2b1', nombre: 'Agilidad y Adaptación', texto: 'Es ágil para asumir desafíos, adelantar soluciones y adaptarse con flexibilidad a los cambios del entorno y del negocio.',
-          textoYo: 'Soy ágil para asumir desafíos, adelantar soluciones y adaptarme con flexibilidad a los cambios del entorno y del negocio.' },
-        { id: 'c2b2', nombre: 'Innovación y Riesgo Calculado', texto: 'Promueve e implementa ideas innovadoras, asumiendo riesgos calculados para transformar y optimizar las formas de trabajo.',
-          textoYo: 'Promuevo e implemento ideas innovadoras, asumiendo riesgos calculados para transformar y optimizar las formas de trabajo.' },
-        { id: 'c2b3', nombre: 'Adopción HR Tech & AI', texto: 'Incorpora activamente herramientas digitales, inteligencia artificial y analítica (HR Tech / AI) para elevar la calidad y velocidad de su trabajo.',
-          textoYo: 'Incorporo activamente herramientas digitales, inteligencia artificial y analítica (HR Tech / AI) para elevar la calidad y velocidad de mi trabajo.' },
-        { id: 'c2b4', nombre: 'Planificación de Futuro', texto: 'Anticipa las necesidades y oportunidades de crecimiento, definiendo prioridades, objetivos y acciones para el mediano y largo plazo.',
-          textoYo: 'Anticipo las necesidades y oportunidades de crecimiento, definiendo prioridades, objetivos y acciones para el mediano y largo plazo.' },
-        { id: 'c2b5', nombre: 'Superación de Metas', texto: 'Establece y persigue metas ambiciosas que desafían el statu quo, impulsando a la firma hacia la vanguardia del mercado.',
-          textoYo: 'Establezco y persigo metas ambiciosas que desafían el statu quo, impulsando a la firma hacia la vanguardia del mercado.' }
+        { id: 'c2b1', nombre: 'Agilidad y Adaptación', texto: 'Se adapta rápido a los cambios y asume nuevos retos con disposición.',
+          textoYo: 'Me adapto rápido a los cambios y asumo nuevos retos con disposición.' },
+        { id: 'c2b2', nombre: 'Innovación', texto: 'Propone nuevas ideas para mejorar la forma de trabajar y se anima a ponerlas en práctica, considerando sus riesgos.',
+          textoYo: 'Propongo nuevas ideas para mejorar la forma de trabajar y me animo a ponerlas en práctica, considerando sus riesgos.' },
+        { id: 'c2b3', nombre: 'Uso de Tecnología e IA', texto: 'Usa herramientas digitales e inteligencia artificial para hacer su trabajo mejor y más rápido.',
+          textoYo: 'Uso herramientas digitales e inteligencia artificial para hacer mi trabajo mejor y más rápido.' },
+        { id: 'c2b4', nombre: 'Planificación', texto: 'Planifica su trabajo con anticipación, define prioridades y se prepara para lo que viene.',
+          textoYo: 'Planifico mi trabajo con anticipación, defino prioridades y me preparo para lo que viene.' },
+        { id: 'c2b5', nombre: 'Superación de Metas', texto: 'Se pone metas retadoras y se esfuerza por superarlas, yendo más allá de lo que se le pide.',
+          textoYo: 'Me pongo metas retadoras y me esfuerzo por superarlas, yendo más allá de lo que se me pide.' }
       ]
     },
     {
