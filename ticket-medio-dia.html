@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Ticket medio día libre</title>
+<style>
+  @font-face { font-family: "Lobster"; src: url(assets/fonts/lobster.woff2) format("woff2"); }
+  @font-face { font-family: "Plus Jakarta Sans"; src: url(assets/fonts/plus-jakarta-sans.woff2) format("woff2"); font-weight: 200 800; }
+  @page { size: 180mm 70mm; margin: 0; }
+
+  /* Ticket 180 × 70 mm · cuerpo + talón desprendible */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 180mm; height: 70mm; background: #FFFFFF; overflow: hidden; }
+  .ticket { position: relative; width: 180mm; height: 70mm; display: flex; font-family: "Plus Jakarta Sans", sans-serif; border-radius: 4mm; overflow: hidden; }
+
+  .main {
+    position: relative; flex: none; width: 132mm; height: 100%; padding: 7mm 8mm 6mm 9mm; color: #FFFFFF;
+    background: radial-gradient(circle at 1.2mm 1.2mm, rgba(149,201,225,.16) .45mm, transparent .6mm) 0 0 / 5mm 5mm, linear-gradient(160deg, #0D1427 30%, #1C2A5E);
+  }
+  .stub {
+    position: relative; flex: 1; height: 100%; padding: 6mm 4mm 5mm; color: #0D1427; text-align: center;
+    display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+    background: radial-gradient(circle at 1.2mm 1.2mm, rgba(13,20,39,.12) .5mm, transparent .65mm) 0 0 / 5mm 5mm, linear-gradient(180deg, #F79A4E, #EE7F35);
+  }
+  svg.deco { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+  /* perforado */
+  .perf { position: absolute; left: 132mm; top: 0; bottom: 0; width: 0; border-left: .5mm dashed rgba(13,20,39,.55); z-index: 2; }
+  .notch { position: absolute; left: 132mm; width: 7mm; height: 7mm; margin-left: -3.5mm; border-radius: 50%; background: #FFFFFF; z-index: 3; }
+  .notch.top { top: -3.5mm; } .notch.bot { bottom: -3.5mm; }
+
+  .eyebrow { position: relative; font-size: 2.6mm; font-weight: 800; letter-spacing: .6mm; text-transform: uppercase; color: #C6E26A; }
+  h1 { position: relative; margin-top: 1mm; font-family: "Lobster", cursive; font-weight: 400; font-size: 13mm; line-height: 1; transform: rotate(-2deg); transform-origin: left; }
+  h1 span { color: #F7A04B; text-shadow: .5mm .5mm 0 #5B2A86; }
+  .msg { position: relative; margin-top: 3mm; width: 104mm; text-wrap: pretty; font-size: 3.15mm; line-height: 1.45; color: #D6DEEA; }
+  .msg b { color: #FFFFFF; }
+  .fields { position: relative; margin-top: 4mm; display: grid; grid-template-columns: 1.35fr 1fr; gap: 2.6mm 5mm; width: 112mm; }
+  .f { font-size: 2.3mm; font-weight: 800; letter-spacing: .35mm; text-transform: uppercase; color: #95C9E1; border-bottom: .3mm solid rgba(255,255,255,.55); padding-bottom: 3.8mm; }
+
+  .pill { background: #FFFFFF; border-radius: 99mm; padding: 1.2mm 2.4mm; box-shadow: .4mm .5mm 0 rgba(13,20,39,.55); }
+  .pill img { height: 3.6mm; display: block; }
+  .vale { font-size: 2.4mm; font-weight: 800; letter-spacing: .6mm; text-transform: uppercase; }
+  .big { font-family: "Lobster", cursive; font-size: 11mm; line-height: .9; color: #FFFFFF; text-shadow: .5mm .5mm 0 #0D1427; }
+  .big small { display: block; font-size: 6.4mm; color: #0D1427; text-shadow: none; }
+  .pk { width: 11mm; height: 11mm; }
+  .no { font-size: 2.3mm; font-weight: 800; letter-spacing: .35mm; text-transform: uppercase; width: 100%; border-bottom: .3mm solid rgba(13,20,39,.6); padding-bottom: 2.6mm; text-align: left; }
+</style>
+</head>
+<body>
+<div class="ticket">
+  <section class="main">
+    <svg class="deco" viewBox="0 0 132 70" aria-hidden="true">
+      <defs>
+        <symbol id="bat" viewBox="0 14 100 30"><path d="M50 41 C54 35 59 34 63 38 C67 32 75 31 80 36 C84 28 92 24 100 24 C88 16 72 16 62 24 C58 22 56 22 54 23.5 L53 17 L51 21.5 L49 21.5 L47 17 L46 23.5 C44 22 42 22 38 24 C28 16 12 16 0 24 C8 24 16 28 20 36 C25 31 33 32 37 38 C41 34 46 35 50 41 Z"/></symbol>
+        <symbol id="spark" viewBox="-10 -10 20 20"><path d="M0 -10 C1 -3 3 -1 10 0 C3 1 1 3 0 10 C-1 3 -3 1 -10 0 C-3 -1 -1 -3 0 -10 Z"/></symbol>
+        <symbol id="ghost" viewBox="0 0 100 118"><path d="M18 50 A32 32 0 0 1 82 50 V108 Q74 99 66 108 Q58 117 50 108 Q42 99 34 108 Q26 117 18 108 Z" fill="#FFFFFF" stroke="#95C9E1" stroke-width="5" stroke-linejoin="round"/><ellipse cx="39" cy="56" rx="5.5" ry="8" fill="#0D1427"/><ellipse cx="61" cy="56" rx="5.5" ry="8" fill="#0D1427"/><ellipse cx="31" cy="70" rx="5" ry="3" fill="#EE7F35" fill-opacity=".7"/><ellipse cx="69" cy="70" rx="5" ry="3" fill="#EE7F35" fill-opacity=".7"/><path d="M43 72 Q50 79 57 72" fill="none" stroke="#0D1427" stroke-width="4" stroke-linecap="round"/></symbol>
+        <mask id="moon"><rect width="132" height="70" fill="#fff"/><circle cx="121" cy="9" r="6" fill="#000"/></mask>
+      </defs>
+      <!-- luna, murciélagos y fantasma -->
+      <circle cx="117.5" cy="11" r="7" fill="#F2C94C" mask="url(#moon)"/>
+      <use href="#bat" x="96" y="6" width="8" height="2.4" fill="#95C9E1"/>
+      <use href="#bat" x="106" y="18.5" width="5.5" height="1.7" fill="#FFFFFF"/>
+      <use href="#spark" x="88" y="4.5" width="2.2" height="2.2" fill="#EE7F35"/>
+      <use href="#spark" x="125" y="27" width="1.8" height="1.8" fill="#C6E26A"/>
+      <use href="#ghost" x="114" y="31" width="12" height="14.2" transform="rotate(8 120 38)"/>
+      <!-- telaraña -->
+      <g fill="none" stroke="#FFFFFF" stroke-width=".25" stroke-opacity=".5"><path d="M0 70 L0 56 M0 70 L8 58 M0 70 L13 64 M0 70 L15 70"/><path d="M0 61 Q3.6 62.4 4.2 60 Q6 63 9 62 Q8.8 65.6 11 66.4 Q10.6 69 12 70"/><path d="M0 65.6 Q2.4 66.2 2.6 64.6 Q3.6 66.4 5.6 66 Q5.6 68.4 6.8 70"/></g>
+    </svg>
+    <div class="eyebrow">Halloween 2026 · Premio ganador</div>
+    <h1>Medio día <span>libre</span></h1>
+    <p class="msg"><b>¡Hola, equipo!</b> Antes que nada, felicitarlos por haberlo dado todo el día de Halloween. Como saben, tienen como beneficio un <b>medio día libre</b>.</p>
+    <div class="fields">
+      <div class="f">Nombre</div>
+      <div class="f">Equipo</div>
+      <div class="f">Fecha en que lo usaré</div>
+      <div class="f">V°B° jefe directo</div>
+    </div>
+  </section>
+
+  <div class="perf"></div><span class="notch top"></span><span class="notch bot"></span>
+
+  <section class="stub">
+    <span class="pill"><img src="assets/logo-cornerstone-horizontal.png" alt="Cornerstone"></span>
+    <div class="vale">Vale por</div>
+    <div class="big">½ día<small>libre</small></div>
+    <svg class="pk" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 20 C49 12 52 6 58 3" fill="none" stroke="#2E6B3A" stroke-width="6" stroke-linecap="round"/><ellipse cx="29" cy="60" rx="26" ry="36" fill="#B8501A"/><ellipse cx="71" cy="60" rx="26" ry="36" fill="#B8501A"/><ellipse cx="50" cy="60" rx="29" ry="38" fill="#D9662A"/><g fill="#0D1427"><path d="M30 52 L40 40 L45 54 Z"/><path d="M70 52 L60 40 L55 54 Z"/><path d="M26 66 Q50 92 74 66 Q66 70 61 69 L58 75 L54 70 L50 76 L46 70 L42 75 L39 69 Q34 70 26 66 Z"/></g></svg>
+    <div class="no">Nombre</div>
+  </section>
+</div>
+</body>
+</html>
