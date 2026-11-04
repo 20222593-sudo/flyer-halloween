@@ -30,3 +30,7 @@ Tarjetas animadas para correo (`aniversarios-noviembre/`). Diseño renovado: fon
 - `render.js` — regenera todo; necesita ffmpeg (`FFMPEG=/ruta/a/ffmpeg` si no está en el PATH)
 
 El primer cuadro del GIF ya muestra la tarjeta completa, así que Outlook de escritorio, que solo muestra ese cuadro, la ve bien aunque no la anime.
+
+## Aniversarios · Diciembre 2026 (animadas)
+
+`aniversarios-diciembre/` — mismo diseño y animación que noviembre. Para regenerar: `NODE_PATH=$(npm root -g) node aniversarios-diciembre/render.js`.
