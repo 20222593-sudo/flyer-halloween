@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Agente Cross Octubre</title>
+<meta name="viewport" content="width=794">
+<link rel="stylesheet" href="agente-cross.css">
+<style>
+  /* A4 = 210 × 297 mm → 794 × 1123 px a 96 dpi */
+  @page { size: A4; margin: 0; }
+  html, body { background: #fff; }
+  body { width: 794px; }
+  .page { position: relative; width: 794px; height: 1123px; overflow: hidden; background: var(--paper); display: flex; flex-direction: column; }
+  .page::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(0,72,135,.13) 1px, transparent 1.2px); background-size: 22px 22px; }
+  .page > * { position: relative; flex-shrink: 0; }
+
+  /* ---------- HERO ---------- */
+  .hero { padding: 20px 40px 44px; color: #EEF3F9; overflow: hidden;
+    background: radial-gradient(420px 320px at 90% 30%, rgba(29,95,160,.5), transparent 65%),
+                radial-gradient(420px 300px at 0% 100%, rgba(0,72,135,.55), transparent 60%), var(--navy); }
+  .hero::before { content: ""; position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(149,201,225,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(149,201,225,.06) 1px, transparent 1px); background-size: 44px 44px; }
+  .hero > * { position: relative; }
+  .hero .radar { position: absolute; right: -120px; top: 30px; width: 440px; height: 440px; }
+  .top { display: flex; align-items: center; gap: 16px; }
+  .top img { height: 22px; display: block; }
+  .top .rule { flex: 1; height: 1px; background: rgba(149,201,225,.3); }
+  .top .conf { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .22em; color: var(--red); text-transform: uppercase; }
+  .code { margin-left: 6px; font-family: var(--mono); font-size: 10px; letter-spacing: .22em; color: var(--blue-2); text-transform: uppercase; }
+  .code em { font-style: normal; opacity: .55; }
+  .hero h1 { margin-top: 8px; font-size: 70px; color: #fff; white-space: nowrap; }
+  .hero h1 span { color: var(--blue-2); }
+  .hero .subt { margin-top: 12px; display: inline-flex; align-items: center; gap: 10px; padding: 9px 14px; border: 1px solid rgba(149,201,225,.45); border-radius: 4px; background: rgba(13,20,39,.55);
+    font-family: var(--mono); font-weight: 600; font-size: 13px; letter-spacing: .2em; color: #fff; text-transform: uppercase; }
+  .hero .subt svg { width: 17px; height: 17px; color: var(--blue-2); }
+  .hero .msg { margin-top: 10px; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; }
+  .hero .msg h2 { font-family: var(--display); font-stretch: 72%; font-variation-settings: "wdth" 72; font-weight: 850; font-size: 36px; line-height: 1; color: #fff; }
+  .hero .msg p { margin-top: 5px; font-size: 16px; line-height: 1.4; color: #D3DEEC; }
+  .hero .msg p b { color: #fff; }
+  .hero .msg .stamp { font-size: 13px; flex: none; margin-bottom: 14px; transform: rotate(-9deg); }
+
+  /* ---------- EXPEDIENTES ---------- */
+  .files { margin-top: -26px; padding: 0 40px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px 14px; }
+  .f { grid-column: span 2; } .f.half { grid-column: span 3; }
+  .dir { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; margin-top: 6px; font-family: var(--mono); font-weight: 700; font-size: 11px; letter-spacing: .18em; color: var(--navy); text-transform: uppercase; }
+  .dir:first-child { margin-top: 0; padding: 7px 12px; background: #fff; border-radius: 6px; box-shadow: 0 10px 20px -16px rgba(13,20,39,.5); align-self: start; justify-self: start; }
+  .dir .arr { color: var(--red); font-size: 15px; }
+  .dir::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .dir:first-child::after { display: none; }
+  .count { font-family: var(--mono); font-weight: 700; font-size: 9px; letter-spacing: .12em; color: var(--ink-mute); text-transform: uppercase; padding: 4px 7px; border-radius: 4px; background: var(--paper-2); }
+  .f { position: relative; }
+  .tab { position: absolute; top: -24px; left: 0; height: 27px; padding: 0 12px; display: flex; align-items: center; gap: 7px; border-radius: 8px 8px 0 0;
+    background: var(--blue); color: #fff; font-family: var(--mono); font-weight: 600; font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; }
+  .tab svg { width: 12px; height: 12px; }
+  .tab b { color: var(--medal); font-weight: 700; }
+  .card { position: relative; height: 100%; background: #fff; border-radius: 10px; border-top: 4px solid var(--blue); padding: 10px 14px 11px;
+    box-shadow: 0 18px 28px -20px rgba(13,20,39,.55), 0 0 0 1px rgba(13,20,39,.05); display: flex; flex-direction: column; }
+  .row1 { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+  .agent { display: flex; align-items: center; gap: 7px; font-family: var(--mono); font-weight: 600; font-size: 10px; letter-spacing: .14em; color: var(--blue); text-transform: uppercase; }
+  .agent svg { width: 24px; height: 24px; flex: none; }
+  .card .stamp { font-size: 8.5px; transform: rotate(-6deg); padding: .4em .7em .36em .9em; }
+  .name { margin-top: 6px; white-space: nowrap; font-size: 23px !important; display: flex; align-items: flex-end; font-family: var(--display); font-stretch: 72%; font-variation-settings: "wdth" 72; font-weight: 850; font-size: 27px; line-height: .98; text-transform: uppercase; color: var(--navy); }
+  .unit { margin-top: 5px; min-height: 26px; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; line-height: 1.45; color: var(--ink-mute); text-transform: uppercase; }
+  .num { margin-top: 5px; display: block; }
+  .num b { font-family: var(--display); font-stretch: 82%; font-variation-settings: "wdth" 82; font-weight: 850; font-size: 40px; line-height: .9; color: var(--blue); letter-spacing: -.01em; }
+  .num span { display: block; margin-top: 5px; text-transform: uppercase; font-family: var(--mono); font-weight: 700; font-size: 10px; letter-spacing: .2em; color: var(--navy); }
+  .bar { margin-top: 8px; height: 6px; border-radius: 3px; background: var(--paper-2); overflow: hidden; }
+  .bar i { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--blue), var(--blue-2)); }
+  .ok { margin-top: 7px; display: inline-flex; align-self: flex-start; align-items: center; gap: 5px; padding: 5px 8px; border-radius: 5px; background: #E5F2EC; color: #23704F;
+    font-family: var(--mono); font-weight: 700; font-size: 8.5px; letter-spacing: .1em; text-transform: uppercase; }
+  .ok svg { width: 12px; height: 12px; stroke-width: 3; }
+  /* Agente #01 destacado */
+  .f.half .name { font-size: 28px !important; }
+  .f.half .num b { font-size: 42px; }
+  .f:not(.half) .num b { font-size: 34px; }
+  .f.lead .card { border-top-color: var(--medal); box-shadow: 0 0 0 2px rgba(200,164,90,.55), 0 18px 28px -18px rgba(13,20,39,.6); }
+  .f.lead .tab { background: var(--navy); }
+  .f.lead .num b { color: var(--navy); }
+  .f.lead .bar i { background: linear-gradient(90deg, var(--blue), var(--medal)); }
+
+  /* hueco del ranking: invitación al próximo agente */
+  .f.next .tab { background: transparent; color: var(--blue); border: 1.5px dashed rgba(0,72,135,.45); border-bottom: 0; }
+  .f.next .card { background: rgba(255,255,255,.55); border: 2px dashed rgba(0,72,135,.4); border-top-width: 2px; box-shadow: none; align-items: center; justify-content: center; text-align: center; }
+  .f.next .sil { width: 54px; height: 54px; border-radius: 50%; border: 2px dashed rgba(0,72,135,.45); display: grid; place-items: center; color: var(--blue); }
+  .f.next .sil svg { width: 28px; height: 28px; }
+  .f.next .agent { margin-top: 10px; justify-content: center; }
+  .f.next .q { margin-top: 4px; font-family: var(--display); font-stretch: 72%; font-variation-settings: "wdth" 72; font-weight: 850; font-size: 52px; line-height: 1; color: var(--navy); }
+  .f.next .lines { width: 80%; margin-top: 12px; display: grid; gap: 6px; }
+  .f.next .lines i { height: 6px; border-radius: 3px; background: var(--paper-2); }
+  .f.next .lines i:nth-child(2) { width: 65%; margin: 0 auto; }
+  .f.next .open { margin-top: 12px; font-family: var(--mono); font-weight: 700; font-size: 9px; letter-spacing: .18em; color: var(--red); text-transform: uppercase; }
+
+  /* ---------- CTA ---------- */
+  .cta { margin-top: auto; padding: 16px 40px 18px; background: var(--navy); color: #EEF3F9; overflow: hidden; }
+  .cta::before { content: ""; position: absolute; inset: 0;
+    background: radial-gradient(360px 260px at 100% 0%, rgba(29,95,160,.5), transparent 65%), repeating-linear-gradient(-45deg, rgba(149,201,225,.04) 0 10px, transparent 10px 20px); }
+  .cta > * { position: relative; }
+  .cta .grid { display: block; }
+  .live { display: inline-flex; align-items: center; gap: 9px; padding: 7px 12px; border-radius: 4px; background: var(--red); color: #fff;
+    font-family: var(--mono); font-weight: 700; font-size: 11.5px; letter-spacing: .24em; text-transform: uppercase; }
+  .live .dot { background: #fff; box-shadow: 0 0 0 .3em rgba(255,255,255,.25); }
+  .cta h3 { margin-top: 10px; font-family: var(--display); font-stretch: 72%; font-variation-settings: "wdth" 72; font-weight: 850; font-size: 27px; line-height: 1; color: #fff; }
+  .cta .lead { margin-top: 5px; font-size: 15px; color: #D3DEEC; }
+  .note { margin: 10px 40px 0; font-size: 10.5px; font-style: italic; color: var(--ink-mute); }
+  .cta .hl { margin-top: 10px; display: flex; align-items: center; gap: 12px; padding: 9px 14px; border-radius: 9px; background: var(--blue-2); color: var(--navy); }
+  .cta .hl svg { width: 26px; height: 26px; flex: none; }
+  .cta .hl b { font-size: 15.5px; line-height: 1.25; }
+  .blank { border: 2px dashed rgba(149,201,225,.6); border-radius: 10px; padding: 12px 10px 12px; text-align: center; background: rgba(255,255,255,.04); }
+  .blank .sil { width: 48px; height: 48px; margin: 0 auto; border-radius: 50%; border: 2px dashed rgba(149,201,225,.6); display: grid; place-items: center; color: var(--blue-2); }
+  .blank .sil svg { width: 24px; height: 24px; }
+  .blank .agent { margin-top: 10px; justify-content: center; color: var(--blue-2); }
+  .blank .q { margin-top: 4px; font-family: var(--display); font-stretch: 72%; font-variation-settings: "wdth" 72; font-weight: 850; font-size: 38px; color: #fff; line-height: 1; }
+  .blank .lines { margin-top: 10px; display: grid; gap: 6px; }
+  .blank .lines i { height: 6px; border-radius: 3px; background: rgba(149,201,225,.2); }
+  .blank .lines i:nth-child(2) { width: 65%; margin: 0 auto; }
+  .question { margin-top: 12px; padding-top: 10px; border-top: 1px dashed rgba(149,201,225,.35); display: flex; align-items: center; gap: 14px; }
+  .question svg { width: 32px; height: 32px; color: var(--blue-2); flex: none; }
+  .question p { font-family: var(--display); font-stretch: 72%; font-variation-settings: "wdth" 72; font-weight: 800; font-size: 25px; line-height: 1.02; color: #fff; white-space: nowrap; }
+  .question p span { color: var(--blue-2); }
+  .final { margin-top: 10px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 9px 18px; border-radius: 10px; background: #fff; color: var(--navy); }
+  .final .t { display: flex; align-items: center; gap: 12px; }
+  .final .t svg { width: 26px; height: 26px; color: var(--red); }
+  .final p { font-size: 18px; font-weight: 800; white-space: nowrap; }
+  .final img { height: 22px; display: block; }
+  .fine { margin-top: 10px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 8.5px; letter-spacing: .22em; color: rgba(149,201,225,.6); text-transform: uppercase; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 10.5h18"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c.8-4.2 4-6.5 8-6.5s7.2 2.3 8 6.5"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.4 15.4 21 21"/><path d="M7.8 9.2a3 3 0 0 1 2.4-1.9"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V4M4 20h16"/><path d="m7 15 4-4 3 3 5-6"/><path d="M16 8h3v3"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3.2-3.2a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3.2 3.2a4.5 4.5 0 0 0 6.4 6.4l1-1"/></symbol>
+    <symbol id="i-radar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 12 18.4 5.6"/><circle cx="15.5" cy="9.5" r="1" fill="currentColor"/></symbol>
+    <symbol id="hex" viewBox="0 0 64 64"><path d="M32 3 57 17.5v29L32 61 7 46.5v-29z"/></symbol>
+  </defs>
+</svg>
+
+<div class="page">
+  <header class="hero">
+    <svg class="radar" viewBox="0 0 640 640" aria-hidden="true">
+      <defs><linearGradient id="sw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#95C9E1" stop-opacity="0"/><stop offset="1" stop-color="#95C9E1" stop-opacity=".3"/></linearGradient></defs>
+      <g fill="none" stroke="#95C9E1">
+        <circle cx="320" cy="320" r="310" stroke-opacity=".45" stroke-width="2" stroke-dasharray="2 25.05"/>
+        <circle cx="320" cy="320" r="296" stroke-opacity=".22"/><circle cx="320" cy="320" r="210" stroke-opacity=".18" stroke-dasharray="4 8"/>
+        <circle cx="320" cy="320" r="120" stroke-opacity=".2"/><path d="M320 10v620M10 320h620" stroke-opacity=".12"/>
+      </g>
+      <path d="M320 320 L320 24 A296 296 0 0 1 529 111 Z" fill="url(#sw)"/>
+      <path d="M320 320 L529 111" stroke="#95C9E1" stroke-opacity=".7" stroke-width="2"/>
+      <g fill="#95C9E1"><circle cx="420" cy="190" r="7"/><circle cx="215" cy="160" r="5" fill-opacity=".6"/><circle cx="470" cy="420" r="5" fill-opacity=".6"/><circle cx="180" cy="430" r="6" fill-opacity=".6"/><circle cx="360" cy="250" r="5"/><circle cx="270" cy="105" r="5"/></g>
+      <g stroke="#95C9E1" stroke-opacity=".35" stroke-dasharray="4 6" fill="none"><path d="M420 190 L360 250 L270 105 M360 250 L470 420 M360 250 L180 430"/></g>
+    </svg>
+
+    <div class="top">
+      <img class="logo-white" src="../assets/logo-cornerstone-horizontal.png" alt="Cornerstone">
+      <div class="code">OP-CROSS-2026 <em>/ Boletín de inteligencia</em></div>
+      <div class="rule"></div>
+      <div class="conf"><span class="dot"></span>Top secret</div>
+    </div>
+
+    <h1 class="display">Agente <span>Cross</span></h1>
+    <div class="subt"><svg class="ico" viewBox="0 0 24 24"><use href="#i-radar"/></svg>Leads de octubre 2026</div>
+
+    <div class="msg">
+      <div>
+        <h2>¡Estos son los Agentes Cross de octubre!</h2>
+        <p><b>…y la misión continúa.</b></p>
+      </div>
+      <div class="stamp light">Octubre</div>
+    </div>
+  </header>
+
+  <section class="files">
+    <div class="dir">CS &amp; TM <span class="arr">→</span> Search</div>
+    <article class="f half lead">
+      <div class="card">
+        <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#0D1427" stroke="#C8A45A" stroke-width="3"/><path d="m32 13 3 6.2 6.8.9-4.9 4.7 1.2 6.7L32 28.3l-6.1 3.2 1.2-6.7-4.9-4.7 6.8-.9z" fill="#C8A45A"/><text x="32" y="50" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="14" fill="#fff">01</text></svg>Agente #01</div><span class="count">5 leads</span></div>
+        <div class="name">Paola Chocano</div>
+        <div class="num"><b>S/ 26,628</b><span>en leads enviados</span></div>
+        <div class="bar"><i style="width:100.0%"></i></div>
+      </div>
+    </article>
+    <article class="f half">
+      <div class="card">
+        <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">02</text></svg>Agente #02</div><span class="count">1 lead</span></div>
+        <div class="name">Sandra Narro</div>
+        <div class="num"><b>S/ 20,636</b><span>en leads enviados</span></div>
+        <div class="bar"><i style="width:77.5%"></i></div>
+      </div>
+    </article>
+    <div class="dir">Search <span class="arr">→</span> CS &amp; TM</div>
+    <article class="f lead">
+      <div class="card">
+        <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#0D1427" stroke="#C8A45A" stroke-width="3"/><path d="m32 13 3 6.2 6.8.9-4.9 4.7 1.2 6.7L32 28.3l-6.1 3.2 1.2-6.7-4.9-4.7 6.8-.9z" fill="#C8A45A"/><text x="32" y="50" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="14" fill="#fff">01</text></svg>Agente #01</div><span class="count">1 lead</span></div>
+        <div class="name">Nicolás Lizárraga</div>
+        <div class="num"><b>S/ 20,000</b><span>en leads enviados</span></div>
+        <div class="bar"><i style="width:75.1%"></i></div>
+      </div>
+    </article>
+    <article class="f">
+      <div class="card">
+        <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">02</text></svg>Agente #02</div><span class="count">1 lead</span></div>
+        <div class="name">Paulo Stoll</div>
+        <div class="num"><b>S/ 12,600</b><span>en leads enviados</span></div>
+        <div class="bar"><i style="width:47.3%"></i></div>
+      </div>
+    </article>
+    <article class="f">
+      <div class="card">
+        <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">03</text></svg>Agente #03</div><span class="count">1 lead</span></div>
+        <div class="name">Paul Pérez</div>
+        <div class="num"><b>S/ 11,000</b><span>en leads enviados</span></div>
+        <div class="bar"><i style="width:41.3%"></i></div>
+      </div>
+    </article>
+    <article class="f">
+      <div class="card">
+        <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">04</text></svg>Agente #04</div><span class="count">1 lead</span></div>
+        <div class="name">Gigi Mezones</div>
+        <div class="num"><b>S/ 7,000</b><span>en leads enviados</span></div>
+        <div class="bar"><i style="width:26.3%"></i></div>
+      </div>
+    </article>
+    <article class="f">
+      <div class="card">
+        <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">05</text></svg>Agente #05</div><span class="count">1 lead</span></div>
+        <div class="name">Sandra Cubas</div>
+        <div class="num"><b>S/ 5,932</b><span>en leads enviados</span></div>
+        <div class="bar"><i style="width:22.3%"></i></div>
+      </div>
+    </article>
+    <article class="f">
+      <div class="card">
+        <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">06</text></svg>Agente #06</div><span class="count">1 lead</span></div>
+        <div class="name">Alejandro Luna</div>
+        <div class="num"><b>S/ 5,042</b><span>en leads enviados</span></div>
+        <div class="bar"><i style="width:18.9%"></i></div>
+      </div>
+    </article>
+  </section>
+  <p class="note">Montos: valor de las ventas facturadas en octubre 2026 por leads enviados entre unidades.</p>
+
+  <section class="cta">
+    <div class="grid">
+      <div>
+        <div class="live"><span class="dot"></span>Misión activa</div>
+        <h3>La convocatoria sigue abierta para todo el equipo.</h3>
+        <div class="hl"><svg class="ico" viewBox="0 0 24 24"><use href="#i-chart"/></svg><b>A mayor cantidad de leads, mejor será tu recompensa.</b></div>
+      </div>
+    </div>
+    <div class="question">
+      <svg class="ico" viewBox="0 0 24 24"><use href="#i-search"/></svg>
+      <p>¿Quién será el próximo <span>Agente Cross</span> en entrar al ranking?</p>
+    </div>
+    <div class="final">
+      <div class="t"><p>Tu próxima misión empieza con un lead.</p></div>
+      <img src="../assets/logo-cornerstone-horizontal.png" alt="Cornerstone">
+    </div>
+  </section>
+</div>
+</body>
+</html>
