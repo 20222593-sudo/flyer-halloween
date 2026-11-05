@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Agente Cross Acumulado</title>
+<meta name="viewport" content="width=794">
+<link rel="stylesheet" href="agente-cross.css">
+<style>
+  /* A4 = 210 × 297 mm → 794 × 1123 px a 96 dpi */
+  @page { size: A4; margin: 0; }
+  html, body { background: #fff; }
+  body { width: 794px; }
+  .page { position: relative; width: 794px; height: 1123px; overflow: hidden; background: var(--paper); display: flex; flex-direction: column; }
+  .page::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(0,72,135,.13) 1px, transparent 1.2px); background-size: 22px 22px; }
+  .page > * { position: relative; flex-shrink: 0; }
+
+  /* ---------- HERO ---------- */
+  .hero { padding: 16px 40px 38px; color: #EEF3F9; overflow: hidden;
+    background: radial-gradient(420px 320px at 90% 30%, rgba(29,95,160,.5), transparent 65%),
+                radial-gradient(420px 300px at 0% 100%, rgba(0,72,135,.55), transparent 60%), var(--navy); }
+  .hero::before { content: ""; position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(149,201,225,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(149,201,225,.06) 1px, transparent 1px); background-size: 44px 44px; }
+  .hero > * { position: relative; }
+  .hero .radar { position: absolute; right: -120px; top: 30px; width: 440px; height: 440px; }
+  .top { display: flex; align-items: center; gap: 16px; }
+  .top img { height: 22px; display: block; }
+  .top .rule { flex: 1; height: 1px; background: rgba(149,201,225,.3); }
+  .top .conf { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .22em; color: var(--red); text-transform: uppercase; }
+  .code { margin-left: 6px; font-family: var(--mono); font-size: 10px; letter-spacing: .22em; color: var(--blue-2); text-transform: uppercase; }
+  .code em { font-style: normal; opacity: .55; }
+  .hero h1 { margin-top: 6px; font-size: 60px; color: #fff; white-space: nowrap; }
+  .hero h1 span { color: var(--blue-2); }
+  .hero .subt { margin-top: 12px; display: inline-flex; align-items: center; gap: 10px; padding: 9px 14px; border: 1px solid rgba(149,201,225,.45); border-radius: 4px; background: rgba(13,20,39,.55);
+    font-family: var(--mono); font-weight: 600; font-size: 13px; letter-spacing: .2em; color: #fff; text-transform: uppercase; }
+  .hero .subt svg { width: 17px; height: 17px; color: var(--blue-2); }
+  .hero .msg { margin-top: 10px; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; }
+  .hero .msg h2 { font-family: var(--display); font-stretch: 72%; font-variation-settings: "wdth" 72; font-weight: 850; font-size: 31px; line-height: 1; color: #fff; }
+  .hero .msg p { margin-top: 5px; font-size: 16px; line-height: 1.4; color: #D3DEEC; }
+  .hero .msg p b { color: #fff; }
+  .hero .msg .stamp { font-size: 13px; flex: none; margin-bottom: 14px; transform: rotate(-9deg); }
+
+  /* ---------- EXPEDIENTES ---------- */
+  .files { margin-top: -24px; padding: 0 40px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px 14px; }
+  .f { grid-column: span 2; } .f.half { grid-column: span 3; }
+  .dir { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; margin-top: 6px; font-family: var(--mono); font-weight: 700; font-size: 11px; letter-spacing: .18em; color: var(--navy); text-transform: uppercase; }
+  .dir:first-child { margin-top: 0; padding: 7px 12px; background: #fff; border-radius: 6px; box-shadow: 0 10px 20px -16px rgba(13,20,39,.5); align-self: start; justify-self: start; }
+  .dir .arr { color: var(--red); font-size: 15px; }
+  .dir::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .dir:first-child::after { display: none; }
+  .count { font-family: var(--mono); font-weight: 700; font-size: 9px; letter-spacing: .12em; color: var(--ink-mute); text-transform: uppercase; padding: 4px 7px; border-radius: 4px; background: var(--paper-2); }
+  .f { position: relative; }
+  .tab { position: absolute; top: -24px; left: 0; height: 27px; padding: 0 12px; display: flex; align-items: center; gap: 7px; border-radius: 8px 8px 0 0;
+    background: var(--blue); color: #fff; font-family: var(--mono); font-weight: 600; font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; }
+  .tab svg { width: 12px; height: 12px; }
+  .tab b { color: var(--medal); font-weight: 700; }
+  .card { position: relative; height: 100%; background: #fff; border-radius: 10px; border-top: 4px solid var(--blue); padding: 10px 14px 11px;
+    box-shadow: 0 18px 28px -20px rgba(13,20,39,.55), 0 0 0 1px rgba(13,20,39,.05); display: flex; flex-direction: column; }
+  .row1 { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+  .agent { display: flex; align-items: center; gap: 7px; font-family: var(--mono); font-weight: 600; font-size: 10px; letter-spacing: .14em; color: var(--blue); text-transform: uppercase; }
+  .agent svg { width: 24px; height: 24px; flex: none; }
+  .card .stamp { font-size: 8.5px; transform: rotate(-6deg); padding: .4em .7em .36em .9em; }
+  .name { margin-top: 7px; white-space: nowrap; font-size: 21px !important; display: flex; align-items: flex-end; font-family: var(--display); font-stretch: 72%; font-variation-settings: "wdth" 72; font-weight: 850; font-size: 27px; line-height: .98; text-transform: uppercase; color: var(--navy); }
+  .unit { margin-top: 5px; min-height: 26px; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; line-height: 1.45; color: var(--ink-mute); text-transform: uppercase; }
+  .num { margin-top: 5px; display: block; }
+  .num b { font-family: var(--display); font-stretch: 82%; font-variation-settings: "wdth" 82; font-weight: 850; font-size: 40px; line-height: .9; color: var(--blue); letter-spacing: -.01em; }
+  .num span { display: block; margin-top: 4px; text-transform: uppercase; font-family: var(--mono); font-weight: 700; font-size: 10px; letter-spacing: .2em; color: var(--navy); }
+  .bar { margin-top: 7px; height: 6px; border-radius: 3px; background: var(--paper-2); overflow: hidden; }
+  .bar i { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--blue), var(--blue-2)); }
+  .ok { margin-top: 7px; display: inline-flex; align-self: flex-start; align-items: center; gap: 5px; padding: 5px 8px; border-radius: 5px; background: #E5F2EC; color: #23704F;
+    font-family: var(--mono); font-weight: 700; font-size: 8.5px; letter-spacing: .1em; text-transform: uppercase; }
+  .ok svg { width: 12px; height: 12px; stroke-width: 3; }
+  /* Agente #01 destacado */
+  .f.half .name { font-size: 28px !important; }
+  .f.half .num b { font-size: 50px; }
+  .f:not(.half) .num b { font-size: 31px; }
+  .f.lead .card { border-top-color: var(--medal); box-shadow: 0 0 0 2px rgba(200,164,90,.55), 0 18px 28px -18px rgba(13,20,39,.6); }
+  .f.lead .tab { background: var(--navy); }
+  .f.lead .num b { color: var(--navy); }
+  .f.lead .bar i { background: linear-gradient(90deg, var(--blue), var(--medal)); }
+
+  /* hueco del ranking: invitación al próximo agente */
+  .f.next .tab { background: transparent; color: var(--blue); border: 1.5px dashed rgba(0,72,135,.45); border-bottom: 0; }
+  .f.next .card { background: rgba(255,255,255,.55); border: 2px dashed rgba(0,72,135,.4); border-top-width: 2px; box-shadow: none; align-items: center; justify-content: center; text-align: center; }
+  .f.next .sil { width: 54px; height: 54px; border-radius: 50%; border: 2px dashed rgba(0,72,135,.45); display: grid; place-items: center; color: var(--blue); }
+  .f.next .sil svg { width: 28px; height: 28px; }
+  .f.next .agent { margin-top: 10px; justify-content: center; }
+  .f.next .q { margin-top: 4px; font-family: var(--display); font-stretch: 72%; font-variation-settings: "wdth" 72; font-weight: 850; font-size: 52px; line-height: 1; color: var(--navy); }
+  .f.next .lines { width: 80%; margin-top: 12px; display: grid; gap: 6px; }
+  .f.next .lines i { height: 6px; border-radius: 3px; background: var(--paper-2); }
+  .f.next .lines i:nth-child(2) { width: 65%; margin: 0 auto; }
+  .f.next .open { margin-top: 12px; font-family: var(--mono); font-weight: 700; font-size: 9px; letter-spacing: .18em; color: var(--red); text-transform: uppercase; }
+
+  .f.ask { grid-column: span 2; }
+  .f.ask .card { flex-direction: column; align-items: flex-start; justify-content: center; gap: 8px; padding: 12px 16px; background: rgba(255,255,255,.6); border: 2px dashed rgba(0,72,135,.4); border-top-width: 2px; box-shadow: none; }
+  .f.ask svg { width: 28px; height: 28px; color: var(--blue); flex: none; }
+  .f.ask p { font-family: var(--display); font-stretch: 72%; font-variation-settings: "wdth" 72; font-weight: 850; font-size: 21px; line-height: 1.04; color: var(--navy); }
+  .f.ask p span { color: var(--blue); }
+  .f.ask p small { display: block; margin-top: 6px; font-family: var(--sans); font-stretch: 100%; font-variation-settings: normal; font-weight: 600; font-size: 11.5px; color: var(--ink-soft); }
+
+  /* ---------- CTA ---------- */
+  .cta { margin-top: auto; padding: 16px 40px 18px; background: var(--navy); color: #EEF3F9; overflow: hidden; }
+  .cta::before { content: ""; position: absolute; inset: 0;
+    background: radial-gradient(360px 260px at 100% 0%, rgba(29,95,160,.5), transparent 65%), repeating-linear-gradient(-45deg, rgba(149,201,225,.04) 0 10px, transparent 10px 20px); }
+  .cta > * { position: relative; }
+  .cta .grid { display: block; }
+  .live { display: inline-flex; align-items: center; gap: 9px; padding: 7px 12px; border-radius: 4px; background: var(--red); color: #fff;
+    font-family: var(--mono); font-weight: 700; font-size: 11.5px; letter-spacing: .24em; text-transform: uppercase; }
+  .live .dot { background: #fff; box-shadow: 0 0 0 .3em rgba(255,255,255,.25); }
+  .cta h3 { margin-top: 10px; font-family: var(--display); font-stretch: 72%; font-variation-settings: "wdth" 72; font-weight: 850; font-size: 27px; line-height: 1; color: #fff; }
+  .cta .lead { margin-top: 5px; font-size: 15px; color: #D3DEEC; }
+  .note { margin: 10px 40px 0; font-size: 10.5px; font-style: italic; color: var(--ink-mute); }
+  .cta .hl { margin-top: 10px; display: flex; align-items: center; gap: 12px; padding: 9px 14px; border-radius: 9px; background: var(--blue-2); color: var(--navy); }
+  .cta .hl svg { width: 26px; height: 26px; flex: none; }
+  .cta .hl b { font-size: 15.5px; line-height: 1.25; }
+  .blank { border: 2px dashed rgba(149,201,225,.6); border-radius: 10px; padding: 12px 10px 12px; text-align: center; background: rgba(255,255,255,.04); }
+  .blank .sil { width: 48px; height: 48px; margin: 0 auto; border-radius: 50%; border: 2px dashed rgba(149,201,225,.6); display: grid; place-items: center; color: var(--blue-2); }
+  .blank .sil svg { width: 24px; height: 24px; }
+  .blank .agent { margin-top: 10px; justify-content: center; color: var(--blue-2); }
+  .blank .q { margin-top: 4px; font-family: var(--display); font-stretch: 72%; font-variation-settings: "wdth" 72; font-weight: 850; font-size: 38px; color: #fff; line-height: 1; }
+  .blank .lines { margin-top: 10px; display: grid; gap: 6px; }
+  .blank .lines i { height: 6px; border-radius: 3px; background: rgba(149,201,225,.2); }
+  .blank .lines i:nth-child(2) { width: 65%; margin: 0 auto; }
+  .question { margin-top: 12px; padding-top: 10px; border-top: 1px dashed rgba(149,201,225,.35); display: flex; align-items: center; gap: 14px; }
+  .question svg { width: 32px; height: 32px; color: var(--blue-2); flex: none; }
+  .question p { font-family: var(--display); font-stretch: 72%; font-variation-settings: "wdth" 72; font-weight: 800; font-size: 25px; line-height: 1.02; color: #fff; white-space: nowrap; }
+  .question p span { color: var(--blue-2); }
+  .final { margin-top: 10px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 9px 18px; border-radius: 10px; background: #fff; color: var(--navy); }
+  .final .t { display: flex; align-items: center; gap: 12px; }
+  .final .t svg { width: 26px; height: 26px; color: var(--red); }
+  .final p { font-size: 18px; font-weight: 800; white-space: nowrap; }
+  .final img { height: 22px; display: block; }
+  .fine { margin-top: 10px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 8.5px; letter-spacing: .22em; color: rgba(149,201,225,.6); text-transform: uppercase; }
+  /* cierre rediseñado: mensaje + meta, con más aire */
+  .cta { padding: 18px 40px 18px !important; }
+  .cta-grid { display: grid; grid-template-columns: 1fr 236px; gap: 28px; align-items: center; }
+  .cta .left h3 { margin-top: 12px; font-size: 32px; line-height: 1.02; }
+  .cta .left h3 span { color: var(--blue-2); }
+  .cta .sub { margin-top: 10px; display: flex; align-items: center; gap: 9px; font-size: 15px; font-weight: 600; color: #D3DEEC; }
+  .cta .sub svg { width: 20px; height: 20px; color: var(--blue-2); flex: none; }
+  .goal { padding: 12px 16px 12px; border-radius: 12px; background: rgba(149,201,225,.1); border: 1.5px solid rgba(149,201,225,.45); text-align: center; }
+  .goal small { display: block; font-family: var(--mono); font-weight: 700; font-size: 9.5px; letter-spacing: .16em; color: var(--blue-2); text-transform: uppercase; }
+  .goal b { display: block; margin-top: 6px; font-family: var(--display); font-stretch: 82%; font-variation-settings: "wdth" 82; font-weight: 850; font-size: 46px; line-height: 1; color: #fff; }
+  .goal span { display: block; margin-top: 6px; font-size: 13px; font-weight: 600; color: #D3DEEC; }
+  .cta .final { margin-top: 14px; padding: 12px 0 0; background: transparent; border-radius: 0; border-top: 1px solid rgba(149,201,225,.3); color: #fff; }
+  .cta .final p { font-size: 20px; color: #fff; }
+  .cta .final img { height: 24px; }
+  /* acumulado */
+  .f.wide { grid-column: 1 / -1; }
+  .f.wide .card { display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto auto auto; column-gap: 30px; align-items: center; }
+  .f.wide .row1 { grid-column: 1; grid-row: 1; } .f.wide .name { grid-column: 1; grid-row: 2; } .f.wide .num { grid-column: 1; grid-row: 3 / 5; }
+  .f.wide .bar { grid-column: 2; grid-row: 3; margin-top: 0; height: 8px; } .f.wide .next { grid-column: 2; grid-row: 4; font-size: 12.5px; }
+  .f.wide .name { font-size: 28px !important; }
+  .f.wide .num b { font-size: 46px !important; color: var(--navy); }
+  .lv { white-space: nowrap; font-family: var(--mono); font-weight: 700; font-size: 9.5px; letter-spacing: .14em; color: #fff; background: var(--blue); padding: 4px 8px; border-radius: 4px; text-transform: uppercase; }
+  .f.lead .lv { background: var(--navy); color: var(--medal-2); }
+  .new { margin-left: 6px; margin-right: auto; font-family: var(--mono); font-weight: 700; font-size: 9px; letter-spacing: .14em; color: var(--red); border: 1.5px solid var(--red); padding: 2px 6px; border-radius: 4px; text-transform: uppercase; }
+  .row1 .count { margin-left: auto; }
+  .next { margin-top: 6px; font-size: 11px; color: var(--ink-soft); font-weight: 600; }
+  .next b { color: var(--navy); font-weight: 800; }
+  .road { margin: 12px 40px 0; padding: 10px 16px 10px; background: #fff; border-radius: 10px; box-shadow: 0 14px 26px -22px rgba(13,20,39,.5), 0 0 0 1px rgba(13,20,39,.05); }
+  .road-head { display: flex; justify-content: space-between; align-items: baseline; font-family: var(--mono); font-weight: 700; font-size: 11px; letter-spacing: .16em; color: var(--navy); text-transform: uppercase; }
+  .road-head small { font-size: 9.5px; color: var(--red); }
+  .road ul { list-style: none; margin-top: 7px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 26px; }
+  .road li { display: grid; grid-template-columns: 118px 1fr 62px; align-items: center; gap: 8px; font-size: 11px; }
+  .road .nm { font-weight: 700; color: var(--navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .road .tr { height: 6px; border-radius: 3px; background: var(--paper-2); overflow: hidden; } .road .tr i { display: block; height: 100%; background: linear-gradient(90deg, var(--blue), var(--blue-2)); }
+  .road b { text-align: right; font-weight: 800; color: var(--navy); }
+  .road em { display: none; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 10.5h18"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c.8-4.2 4-6.5 8-6.5s7.2 2.3 8 6.5"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.4 15.4 21 21"/><path d="M7.8 9.2a3 3 0 0 1 2.4-1.9"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V4M4 20h16"/><path d="m7 15 4-4 3 3 5-6"/><path d="M16 8h3v3"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3.2-3.2a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3.2 3.2a4.5 4.5 0 0 0 6.4 6.4l1-1"/></symbol>
+    <symbol id="i-radar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 12 18.4 5.6"/><circle cx="15.5" cy="9.5" r="1" fill="currentColor"/></symbol>
+    <symbol id="hex" viewBox="0 0 64 64"><path d="M32 3 57 17.5v29L32 61 7 46.5v-29z"/></symbol>
+  </defs>
+</svg>
+
+<div class="page">
+  <header class="hero">
+    <svg class="radar" viewBox="0 0 640 640" aria-hidden="true">
+      <defs><linearGradient id="sw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#95C9E1" stop-opacity="0"/><stop offset="1" stop-color="#95C9E1" stop-opacity=".3"/></linearGradient></defs>
+      <g fill="none" stroke="#95C9E1">
+        <circle cx="320" cy="320" r="310" stroke-opacity=".45" stroke-width="2" stroke-dasharray="2 25.05"/>
+        <circle cx="320" cy="320" r="296" stroke-opacity=".22"/><circle cx="320" cy="320" r="210" stroke-opacity=".18" stroke-dasharray="4 8"/>
+        <circle cx="320" cy="320" r="120" stroke-opacity=".2"/><path d="M320 10v620M10 320h620" stroke-opacity=".12"/>
+      </g>
+      <path d="M320 320 L320 24 A296 296 0 0 1 529 111 Z" fill="url(#sw)"/>
+      <path d="M320 320 L529 111" stroke="#95C9E1" stroke-opacity=".7" stroke-width="2"/>
+      <g fill="#95C9E1"><circle cx="420" cy="190" r="7"/><circle cx="215" cy="160" r="5" fill-opacity=".6"/><circle cx="470" cy="420" r="5" fill-opacity=".6"/><circle cx="180" cy="430" r="6" fill-opacity=".6"/><circle cx="360" cy="250" r="5"/><circle cx="270" cy="105" r="5"/></g>
+      <g stroke="#95C9E1" stroke-opacity=".35" stroke-dasharray="4 6" fill="none"><path d="M420 190 L360 250 L270 105 M360 250 L470 420 M360 250 L180 430"/></g>
+    </svg>
+
+    <div class="top">
+      <img class="logo-white" src="../assets/logo-cornerstone-horizontal.png" alt="Cornerstone">
+      <div class="code">OP-CROSS-2026 <em>/ Boletín de inteligencia</em></div>
+      <div class="rule"></div>
+      <div class="conf"><span class="dot"></span>Top secret</div>
+    </div>
+
+    <h1 class="display">Agente <span>Cross</span></h1>
+    <div class="subt"><svg class="ico" viewBox="0 0 24 24"><use href="#i-radar"/></svg>Acumulado enero – octubre 2026</div>
+
+    <div class="msg">
+      <div>
+        <h2>¿Cómo van nuestros Agentes Cross?</h2>
+      </div>
+      <div class="stamp light">Acumulado</div>
+    </div>
+  </header>
+
+  <section class="files">
+    <div class="dir">Agentes Cross <span class="arr">·</span> desde S/ 15,000</div>
+    <article class="f wide lead">
+      <div class="card">
+        <div class="row1"><span class="lv">Nivel Élite</span></div>
+        <div class="name">Sandra Narro</div>
+        <div class="num"><b>S/ 90,487</b><span>en leads enviados</span></div>
+        <div class="bar"><i style="width:62%"></i></div>
+        <div class="next">Faltan <b>S/ 9,513</b> para Comandante</div>
+      </div>
+    </article>
+    <article class="f">
+      <div class="card">
+        <div class="row1"><span class="lv">Nivel Especial</span></div>
+        <div class="name">Victoria Balcazar</div>
+        <div class="num"><b>S/ 57,600</b><span>en leads enviados</span></div>
+        <div class="bar"><i style="width:30%"></i></div>
+        <div class="next">Faltan <b>S/ 17,400</b> para Élite</div>
+      </div>
+    </article>
+    <article class="f">
+      <div class="card">
+        <div class="row1"><span class="lv">Nivel Especial</span></div>
+        <div class="name">Andrea Bernales</div>
+        <div class="num"><b>S/ 56,822</b><span>en leads enviados</span></div>
+        <div class="bar"><i style="width:27%"></i></div>
+        <div class="next">Faltan <b>S/ 18,178</b> para Élite</div>
+      </div>
+    </article>
+    <article class="f">
+      <div class="card">
+        <div class="row1"><span class="lv">Nivel Táctico</span></div>
+        <div class="name">Enori Larrabure</div>
+        <div class="num"><b>S/ 45,150</b><span>en leads enviados</span></div>
+        <div class="bar"><i style="width:81%"></i></div>
+        <div class="next">Faltan <b>S/ 4,850</b> para Especial</div>
+      </div>
+    </article>
+    <article class="f">
+      <div class="card">
+        <div class="row1"><span class="lv">Nivel Táctico</span></div>
+        <div class="name">Nicolás Lizárraga</div>
+        <div class="num"><b>S/ 35,694</b><span>en leads enviados</span></div>
+        <div class="bar"><i style="width:43%"></i></div>
+        <div class="next">Faltan <b>S/ 14,306</b> para Especial</div>
+      </div>
+    </article>
+    <article class="f">
+      <div class="card">
+        <div class="row1"><span class="lv">Nivel Recluta</span><span class="new">Nuevo</span></div>
+        <div class="name">Alejandro Luna</div>
+        <div class="num"><b>S/ 16,542</b><span>en leads enviados</span></div>
+        <div class="bar"><i style="width:15%"></i></div>
+        <div class="next">Faltan <b>S/ 8,458</b> para Táctico</div>
+      </div>
+    </article>
+    <article class="f">
+      <div class="card">
+        <div class="row1"><span class="lv">Nivel Recluta</span><span class="new">Nuevo</span></div>
+        <div class="name">Paul Pérez</div>
+        <div class="num"><b>S/ 16,339</b><span>en leads enviados</span></div>
+        <div class="bar"><i style="width:13%"></i></div>
+        <div class="next">Faltan <b>S/ 8,661</b> para Táctico</div>
+      </div>
+    </article>
+  </section>
+  <section class="road">
+    <div class="road-head"><span>En camino a ser Agente Cross</span><small>Meta: S/ 15,000</small></div>
+    <ul>
+      <li><span class="nm">Alessia Montalva</span><span class="tr"><i style="width:77%"></i></span><b>S/ 11,500</b><em>faltan S/ 3,500</em></li>
+      <li><span class="nm">Maria Paula Llerena</span><span class="tr"><i style="width:52%"></i></span><b>S/ 7,770</b><em>faltan S/ 7,230</em></li>
+      <li><span class="nm">Gigi Mezones</span><span class="tr"><i style="width:47%"></i></span><b>S/ 7,000</b><em>faltan S/ 8,000</em></li>
+      <li><span class="nm">Manuel Basurto</span><span class="tr"><i style="width:40%"></i></span><b>S/ 6,000</b><em>faltan S/ 9,000</em></li>
+      <li><span class="nm">Valeria Alvarez</span><span class="tr"><i style="width:40%"></i></span><b>S/ 5,932</b><em>faltan S/ 9,068</em></li>
+      <li><span class="nm">Gabriela Echeandía</span><span class="tr"><i style="width:40%"></i></span><b>S/ 5,932</b><em>faltan S/ 9,068</em></li>
+      <li><span class="nm">André Palomino</span><span class="tr"><i style="width:36%"></i></span><b>S/ 5,339</b><em>faltan S/ 9,661</em></li>
+      <li><span class="nm">Mariana Mazzini</span><span class="tr"><i style="width:34%"></i></span><b>S/ 5,085</b><em>faltan S/ 9,915</em></li>
+      <li><span class="nm">Oscar Alva</span><span class="tr"><i style="width:33%"></i></span><b>S/ 5,000</b><em>faltan S/ 10,000</em></li>
+      <li><span class="nm">Ines Secada</span><span class="tr"><i style="width:20%"></i></span><b>S/ 2,966</b><em>faltan S/ 12,034</em></li>
+    </ul>
+  </section>
+
+  <section class="cta">
+    <div class="cta-grid">
+      <div class="left">
+        <div class="live"><span class="dot"></span>Misión activa</div>
+        <h3>La convocatoria sigue abierta<br><span>para todo el equipo.</span></h3>
+        <p class="sub"><svg class="ico" viewBox="0 0 24 24"><use href="#i-chart"/></svg>Cada lead suma a tu acumulado.</p>
+      </div>
+      <div class="goal">
+        <small>Meta para entrar al ranking</small>
+        <b>S/ 15,000</b>
+        <span>y aseguras tu recompensa</span>
+      </div>
+    </div>
+    <div class="final">
+      <p>Tu próxima misión empieza con un lead.</p>
+      <img class="logo-white" src="../assets/logo-cornerstone-horizontal.png" alt="Cornerstone">
+    </div>
+  </section>
+</div>
+</body>
+</html>
