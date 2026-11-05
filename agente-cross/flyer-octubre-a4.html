@@ -16,7 +16,7 @@
   .page > * { position: relative; flex-shrink: 0; }
 
   /* ---------- HERO ---------- */
-  .hero { padding: 20px 40px 44px; color: #EEF3F9; overflow: hidden;
+  .hero { padding: 18px 40px 40px; color: #EEF3F9; overflow: hidden;
     background: radial-gradient(420px 320px at 90% 30%, rgba(29,95,160,.5), transparent 65%),
                 radial-gradient(420px 300px at 0% 100%, rgba(0,72,135,.55), transparent 60%), var(--navy); }
   .hero::before { content: ""; position: absolute; inset: 0;
@@ -41,7 +41,7 @@
   .hero .msg .stamp { font-size: 13px; flex: none; margin-bottom: 14px; transform: rotate(-9deg); }
 
   /* ---------- EXPEDIENTES ---------- */
-  .files { margin-top: -26px; padding: 0 40px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px 14px; }
+  .files { margin-top: -24px; padding: 0 40px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px 14px; }
   .f { grid-column: span 2; } .f.half { grid-column: span 3; }
   .dir { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; margin-top: 6px; font-family: var(--mono); font-weight: 700; font-size: 11px; letter-spacing: .18em; color: var(--navy); text-transform: uppercase; }
   .dir:first-child { margin-top: 0; padding: 7px 12px; background: #fff; border-radius: 6px; box-shadow: 0 10px 20px -16px rgba(13,20,39,.5); align-self: start; justify-self: start; }
@@ -54,18 +54,18 @@
     background: var(--blue); color: #fff; font-family: var(--mono); font-weight: 600; font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; }
   .tab svg { width: 12px; height: 12px; }
   .tab b { color: var(--medal); font-weight: 700; }
-  .card { position: relative; height: 100%; background: #fff; border-radius: 10px; border-top: 4px solid var(--blue); padding: 10px 14px 11px;
+  .card { position: relative; height: 100%; background: #fff; border-radius: 10px; border-top: 4px solid var(--blue); padding: 8px 14px 10px;
     box-shadow: 0 18px 28px -20px rgba(13,20,39,.55), 0 0 0 1px rgba(13,20,39,.05); display: flex; flex-direction: column; }
   .row1 { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
   .agent { display: flex; align-items: center; gap: 7px; font-family: var(--mono); font-weight: 600; font-size: 10px; letter-spacing: .14em; color: var(--blue); text-transform: uppercase; }
   .agent svg { width: 24px; height: 24px; flex: none; }
   .card .stamp { font-size: 8.5px; transform: rotate(-6deg); padding: .4em .7em .36em .9em; }
-  .name { margin-top: 6px; white-space: nowrap; font-size: 23px !important; display: flex; align-items: flex-end; font-family: var(--display); font-stretch: 72%; font-variation-settings: "wdth" 72; font-weight: 850; font-size: 27px; line-height: .98; text-transform: uppercase; color: var(--navy); }
+  .name { margin-top: 5px; white-space: nowrap; font-size: 21px !important; display: flex; align-items: flex-end; font-family: var(--display); font-stretch: 72%; font-variation-settings: "wdth" 72; font-weight: 850; font-size: 27px; line-height: .98; text-transform: uppercase; color: var(--navy); }
   .unit { margin-top: 5px; min-height: 26px; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; line-height: 1.45; color: var(--ink-mute); text-transform: uppercase; }
   .num { margin-top: 5px; display: block; }
   .num b { font-family: var(--display); font-stretch: 82%; font-variation-settings: "wdth" 82; font-weight: 850; font-size: 40px; line-height: .9; color: var(--blue); letter-spacing: -.01em; }
-  .num span { display: block; margin-top: 5px; text-transform: uppercase; font-family: var(--mono); font-weight: 700; font-size: 10px; letter-spacing: .2em; color: var(--navy); }
-  .bar { margin-top: 8px; height: 6px; border-radius: 3px; background: var(--paper-2); overflow: hidden; }
+  .num span { display: block; margin-top: 4px; text-transform: uppercase; font-family: var(--mono); font-weight: 700; font-size: 10px; letter-spacing: .2em; color: var(--navy); }
+  .bar { margin-top: 7px; height: 6px; border-radius: 3px; background: var(--paper-2); overflow: hidden; }
   .bar i { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--blue), var(--blue-2)); }
   .ok { margin-top: 7px; display: inline-flex; align-self: flex-start; align-items: center; gap: 5px; padding: 5px 8px; border-radius: 5px; background: #E5F2EC; color: #23704F;
     font-family: var(--mono); font-weight: 700; font-size: 8.5px; letter-spacing: .1em; text-transform: uppercase; }
@@ -73,7 +73,7 @@
   /* Agente #01 destacado */
   .f.half .name { font-size: 28px !important; }
   .f.half .num b { font-size: 42px; }
-  .f:not(.half) .num b { font-size: 34px; }
+  .f:not(.half) .num b { font-size: 30px; }
   .f.lead .card { border-top-color: var(--medal); box-shadow: 0 0 0 2px rgba(200,164,90,.55), 0 18px 28px -18px rgba(13,20,39,.6); }
   .f.lead .tab { background: var(--navy); }
   .f.lead .num b { color: var(--navy); }
@@ -90,6 +90,12 @@
   .f.next .lines i { height: 6px; border-radius: 3px; background: var(--paper-2); }
   .f.next .lines i:nth-child(2) { width: 65%; margin: 0 auto; }
   .f.next .open { margin-top: 12px; font-family: var(--mono); font-weight: 700; font-size: 9px; letter-spacing: .18em; color: var(--red); text-transform: uppercase; }
+
+  .f.ask { grid-column: span 4; }
+  .f.ask .card { flex-direction: row; align-items: center; gap: 16px; padding: 14px 22px; background: rgba(255,255,255,.6); border: 2px dashed rgba(0,72,135,.4); border-top-width: 2px; box-shadow: none; }
+  .f.ask svg { width: 40px; height: 40px; color: var(--blue); flex: none; }
+  .f.ask p { font-family: var(--display); font-stretch: 72%; font-variation-settings: "wdth" 72; font-weight: 850; font-size: 30px; line-height: 1.02; color: var(--navy); }
+  .f.ask p span { color: var(--blue); }
 
   /* ---------- CTA ---------- */
   .cta { margin-top: auto; padding: 16px 40px 18px; background: var(--navy); color: #EEF3F9; overflow: hidden; }
@@ -168,7 +174,6 @@
     <div class="msg">
       <div>
         <h2>¡Estos son los Agentes Cross de octubre!</h2>
-        <p><b>…y la misión continúa.</b></p>
       </div>
       <div class="stamp light">Octubre</div>
     </div>
@@ -176,20 +181,28 @@
 
   <section class="files">
     <div class="dir">CS &amp; TM <span class="arr">→</span> Search</div>
-    <article class="f half lead">
+    <article class="f lead">
       <div class="card">
-        <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#0D1427" stroke="#C8A45A" stroke-width="3"/><path d="m32 13 3 6.2 6.8.9-4.9 4.7 1.2 6.7L32 28.3l-6.1 3.2 1.2-6.7-4.9-4.7 6.8-.9z" fill="#C8A45A"/><text x="32" y="50" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="14" fill="#fff">01</text></svg>Agente #01</div><span class="count">5 leads</span></div>
+        <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#0D1427" stroke="#C8A45A" stroke-width="3"/><path d="m32 13 3 6.2 6.8.9-4.9 4.7 1.2 6.7L32 28.3l-6.1 3.2 1.2-6.7-4.9-4.7 6.8-.9z" fill="#C8A45A"/><text x="32" y="50" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="14" fill="#fff">01</text></svg>Agente #01</div><span class="count">6 leads</span></div>
         <div class="name">Paola Chocano</div>
-        <div class="num"><b>S/ 26,628</b><span>en leads enviados</span></div>
+        <div class="num"><b>S/ 31,920</b><span>en leads enviados</span></div>
         <div class="bar"><i style="width:100.0%"></i></div>
       </div>
     </article>
-    <article class="f half">
+    <article class="f">
       <div class="card">
         <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">02</text></svg>Agente #02</div><span class="count">1 lead</span></div>
         <div class="name">Sandra Narro</div>
         <div class="num"><b>S/ 20,636</b><span>en leads enviados</span></div>
-        <div class="bar"><i style="width:77.5%"></i></div>
+        <div class="bar"><i style="width:64.6%"></i></div>
+      </div>
+    </article>
+    <article class="f">
+      <div class="card">
+        <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">03</text></svg>Agente #03</div><span class="count">2 leads</span></div>
+        <div class="name">Maria Paula Llerena</div>
+        <div class="num"><b>S/ 7,770</b><span>en leads enviados</span></div>
+        <div class="bar"><i style="width:24.3%"></i></div>
       </div>
     </article>
     <div class="dir">Search <span class="arr">→</span> CS &amp; TM</div>
@@ -198,7 +211,7 @@
         <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#0D1427" stroke="#C8A45A" stroke-width="3"/><path d="m32 13 3 6.2 6.8.9-4.9 4.7 1.2 6.7L32 28.3l-6.1 3.2 1.2-6.7-4.9-4.7 6.8-.9z" fill="#C8A45A"/><text x="32" y="50" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="14" fill="#fff">01</text></svg>Agente #01</div><span class="count">1 lead</span></div>
         <div class="name">Nicolás Lizárraga</div>
         <div class="num"><b>S/ 20,000</b><span>en leads enviados</span></div>
-        <div class="bar"><i style="width:75.1%"></i></div>
+        <div class="bar"><i style="width:62.7%"></i></div>
       </div>
     </article>
     <article class="f">
@@ -206,7 +219,7 @@
         <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">02</text></svg>Agente #02</div><span class="count">1 lead</span></div>
         <div class="name">Paulo Stoll</div>
         <div class="num"><b>S/ 12,600</b><span>en leads enviados</span></div>
-        <div class="bar"><i style="width:47.3%"></i></div>
+        <div class="bar"><i style="width:39.5%"></i></div>
       </div>
     </article>
     <article class="f">
@@ -214,7 +227,7 @@
         <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">03</text></svg>Agente #03</div><span class="count">1 lead</span></div>
         <div class="name">Paul Pérez</div>
         <div class="num"><b>S/ 11,000</b><span>en leads enviados</span></div>
-        <div class="bar"><i style="width:41.3%"></i></div>
+        <div class="bar"><i style="width:34.5%"></i></div>
       </div>
     </article>
     <article class="f">
@@ -222,7 +235,7 @@
         <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">04</text></svg>Agente #04</div><span class="count">1 lead</span></div>
         <div class="name">Gigi Mezones</div>
         <div class="num"><b>S/ 7,000</b><span>en leads enviados</span></div>
-        <div class="bar"><i style="width:26.3%"></i></div>
+        <div class="bar"><i style="width:21.9%"></i></div>
       </div>
     </article>
     <article class="f">
@@ -230,7 +243,7 @@
         <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">05</text></svg>Agente #05</div><span class="count">1 lead</span></div>
         <div class="name">Sandra Cubas</div>
         <div class="num"><b>S/ 5,932</b><span>en leads enviados</span></div>
-        <div class="bar"><i style="width:22.3%"></i></div>
+        <div class="bar"><i style="width:18.6%"></i></div>
       </div>
     </article>
     <article class="f">
@@ -238,11 +251,25 @@
         <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">06</text></svg>Agente #06</div><span class="count">1 lead</span></div>
         <div class="name">Alejandro Luna</div>
         <div class="num"><b>S/ 5,042</b><span>en leads enviados</span></div>
-        <div class="bar"><i style="width:18.9%"></i></div>
+        <div class="bar"><i style="width:15.8%"></i></div>
+      </div>
+    </article>
+    <article class="f">
+      <div class="card">
+        <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><text x="32" y="41" text-anchor="middle" font-family="Archivo" font-weight="850" font-size="22" fill="#004887">07</text></svg>Agente #07</div><span class="count">1 lead</span></div>
+        <div class="name">Oscar Alva</div>
+        <div class="num"><b>S/ 5,000</b><span>en leads enviados</span></div>
+        <div class="bar"><i style="width:15.7%"></i></div>
+      </div>
+    </article>
+    <article class="f ask">
+      <div class="card">
+        <svg class="ico" viewBox="0 0 24 24"><use href="#i-search"/></svg>
+        <p>¿Quién será el próximo <span>Agente Cross</span> en entrar al ranking?</p>
       </div>
     </article>
   </section>
-  <p class="note">Montos: valor de las ventas facturadas en octubre 2026 por leads enviados entre unidades.</p>
+  <p class="note">Montos: valor de las ventas de octubre 2026 (facturadas y por facturar) por leads enviados entre unidades.</p>
 
   <section class="cta">
     <div class="grid">
@@ -251,10 +278,6 @@
         <h3>La convocatoria sigue abierta para todo el equipo.</h3>
         <div class="hl"><svg class="ico" viewBox="0 0 24 24"><use href="#i-chart"/></svg><b>A mayor cantidad de leads, mejor será tu recompensa.</b></div>
       </div>
-    </div>
-    <div class="question">
-      <svg class="ico" viewBox="0 0 24 24"><use href="#i-search"/></svg>
-      <p>¿Quién será el próximo <span>Agente Cross</span> en entrar al ranking?</p>
     </div>
     <div class="final">
       <div class="t"><p>Tu próxima misión empieza con un lead.</p></div>
