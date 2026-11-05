@@ -131,6 +131,20 @@
   .final p { font-size: 18px; font-weight: 800; white-space: nowrap; }
   .final img { height: 22px; display: block; }
   .fine { margin-top: 10px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 8.5px; letter-spacing: .22em; color: rgba(149,201,225,.6); text-transform: uppercase; }
+  /* cierre rediseñado: mensaje + meta, con más aire */
+  .cta { padding: 24px 40px 24px !important; }
+  .cta-grid { display: grid; grid-template-columns: 1fr 236px; gap: 28px; align-items: center; }
+  .cta .left h3 { margin-top: 12px; font-size: 32px; line-height: 1.02; }
+  .cta .left h3 span { color: var(--blue-2); }
+  .cta .sub { margin-top: 10px; display: flex; align-items: center; gap: 9px; font-size: 15px; font-weight: 600; color: #D3DEEC; }
+  .cta .sub svg { width: 20px; height: 20px; color: var(--blue-2); flex: none; }
+  .goal { padding: 16px 18px 15px; border-radius: 12px; background: rgba(149,201,225,.1); border: 1.5px solid rgba(149,201,225,.45); text-align: center; }
+  .goal small { display: block; font-family: var(--mono); font-weight: 700; font-size: 9.5px; letter-spacing: .16em; color: var(--blue-2); text-transform: uppercase; }
+  .goal b { display: block; margin-top: 6px; font-family: var(--display); font-stretch: 82%; font-variation-settings: "wdth" 82; font-weight: 850; font-size: 46px; line-height: 1; color: #fff; }
+  .goal span { display: block; margin-top: 6px; font-size: 13px; font-weight: 600; color: #D3DEEC; }
+  .cta .final { margin-top: 20px; padding: 13px 20px; }
+  .cta .final p { font-size: 18px; }
+  .cta .final img { height: 24px; }
 </style>
 </head>
 <body>
@@ -262,15 +276,20 @@
   </section>
 
   <section class="cta">
-    <div class="grid">
-      <div>
+    <div class="cta-grid">
+      <div class="left">
         <div class="live"><span class="dot"></span>Misión activa</div>
-        <h3>La convocatoria sigue abierta para todo el equipo.</h3>
-        <div class="hl"><svg class="ico" viewBox="0 0 24 24"><use href="#i-chart"/></svg><b>Cada lead suma a tu acumulado: desde S/ 15,000 entras al ranking y aseguras tu recompensa.</b></div>
+        <h3>La convocatoria sigue abierta<br><span>para todo el equipo.</span></h3>
+        <p class="sub"><svg class="ico" viewBox="0 0 24 24"><use href="#i-chart"/></svg>Cada lead suma a tu acumulado.</p>
+      </div>
+      <div class="goal">
+        <small>Meta para entrar al ranking</small>
+        <b>S/ 15,000</b>
+        <span>y aseguras tu recompensa</span>
       </div>
     </div>
     <div class="final">
-      <div class="t"><p>Tu próxima misión empieza con un lead.</p></div>
+      <p>Tu próxima misión empieza con un lead.</p>
       <img src="../assets/logo-cornerstone-horizontal.png" alt="Cornerstone">
     </div>
   </section>
