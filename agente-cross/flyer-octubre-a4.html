@@ -41,7 +41,7 @@
   .hero .msg .stamp { font-size: 13px; flex: none; margin-bottom: 14px; transform: rotate(-9deg); }
 
   /* ---------- EXPEDIENTES ---------- */
-  .files { margin-top: -24px; padding: 0 40px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px 14px; }
+  .files { margin-top: -24px; padding: 0 40px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px 14px; }
   .f { grid-column: span 2; } .f.half { grid-column: span 3; }
   .dir { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; margin-top: 6px; font-family: var(--mono); font-weight: 700; font-size: 11px; letter-spacing: .18em; color: var(--navy); text-transform: uppercase; }
   .dir:first-child { margin-top: 0; padding: 7px 12px; background: #fff; border-radius: 6px; box-shadow: 0 10px 20px -16px rgba(13,20,39,.5); align-self: start; justify-self: start; }
@@ -54,15 +54,15 @@
     background: var(--blue); color: #fff; font-family: var(--mono); font-weight: 600; font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; }
   .tab svg { width: 12px; height: 12px; }
   .tab b { color: var(--medal); font-weight: 700; }
-  .card { position: relative; height: 100%; background: #fff; border-radius: 10px; border-top: 4px solid var(--blue); padding: 8px 14px 10px;
+  .card { position: relative; height: 100%; background: #fff; border-radius: 10px; border-top: 4px solid var(--blue); padding: 12px 15px 14px;
     box-shadow: 0 18px 28px -20px rgba(13,20,39,.55), 0 0 0 1px rgba(13,20,39,.05); display: flex; flex-direction: column; }
   .row1 { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
   .agent { display: flex; align-items: center; gap: 7px; font-family: var(--mono); font-weight: 600; font-size: 10px; letter-spacing: .14em; color: var(--blue); text-transform: uppercase; }
   .agent svg { width: 24px; height: 24px; flex: none; }
   .card .stamp { font-size: 8.5px; transform: rotate(-6deg); padding: .4em .7em .36em .9em; }
-  .name { margin-top: 5px; white-space: nowrap; font-size: 21px !important; display: flex; align-items: flex-end; font-family: var(--display); font-stretch: 72%; font-variation-settings: "wdth" 72; font-weight: 850; font-size: 27px; line-height: .98; text-transform: uppercase; color: var(--navy); }
+  .name { margin-top: 8px; white-space: nowrap; font-size: 23px !important; display: flex; align-items: flex-end; font-family: var(--display); font-stretch: 72%; font-variation-settings: "wdth" 72; font-weight: 850; font-size: 27px; line-height: .98; text-transform: uppercase; color: var(--navy); }
   .unit { margin-top: 5px; min-height: 26px; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; line-height: 1.45; color: var(--ink-mute); text-transform: uppercase; }
-  .num { margin-top: 5px; display: block; }
+  .num { margin-top: 8px; display: block; }
   .num b { font-family: var(--display); font-stretch: 82%; font-variation-settings: "wdth" 82; font-weight: 850; font-size: 40px; line-height: .9; color: var(--blue); letter-spacing: -.01em; }
   .num span { display: block; margin-top: 4px; text-transform: uppercase; font-family: var(--mono); font-weight: 700; font-size: 10px; letter-spacing: .2em; color: var(--navy); }
   .bar { margin-top: 7px; height: 6px; border-radius: 3px; background: var(--paper-2); overflow: hidden; }
@@ -72,8 +72,8 @@
   .ok svg { width: 12px; height: 12px; stroke-width: 3; }
   /* Agente #01 destacado */
   .f.half .name { font-size: 28px !important; }
-  .f.half .num b { font-size: 42px; }
-  .f:not(.half) .num b { font-size: 30px; }
+  .f.half .num b { font-size: 50px; }
+  .f:not(.half) .num b { font-size: 36px; }
   .f.lead .card { border-top-color: var(--medal); box-shadow: 0 0 0 2px rgba(200,164,90,.55), 0 18px 28px -18px rgba(13,20,39,.6); }
   .f.lead .tab { background: var(--navy); }
   .f.lead .num b { color: var(--navy); }
@@ -91,12 +91,12 @@
   .f.next .lines i:nth-child(2) { width: 65%; margin: 0 auto; }
   .f.next .open { margin-top: 12px; font-family: var(--mono); font-weight: 700; font-size: 9px; letter-spacing: .18em; color: var(--red); text-transform: uppercase; }
 
-  .f.ask { grid-column: span 4; }
-  .f.ask .card { flex-direction: row; align-items: center; gap: 16px; padding: 14px 22px; background: rgba(255,255,255,.6); border: 2px dashed rgba(0,72,135,.4); border-top-width: 2px; box-shadow: none; }
-  .f.ask svg { width: 40px; height: 40px; color: var(--blue); flex: none; }
-  .f.ask p { font-family: var(--display); font-stretch: 72%; font-variation-settings: "wdth" 72; font-weight: 850; font-size: 27px; line-height: 1.02; color: var(--navy); }
+  .f.ask { grid-column: span 2; }
+  .f.ask .card { flex-direction: column; align-items: flex-start; justify-content: center; gap: 8px; padding: 12px 16px; background: rgba(255,255,255,.6); border: 2px dashed rgba(0,72,135,.4); border-top-width: 2px; box-shadow: none; }
+  .f.ask svg { width: 28px; height: 28px; color: var(--blue); flex: none; }
+  .f.ask p { font-family: var(--display); font-stretch: 72%; font-variation-settings: "wdth" 72; font-weight: 850; font-size: 21px; line-height: 1.04; color: var(--navy); }
   .f.ask p span { color: var(--blue); }
-  .f.ask p small { display: block; margin-top: 6px; font-family: var(--sans); font-stretch: 100%; font-variation-settings: normal; font-weight: 600; font-size: 13.5px; white-space: nowrap; color: var(--ink-soft); }
+  .f.ask p small { display: block; margin-top: 6px; font-family: var(--sans); font-stretch: 100%; font-variation-settings: normal; font-weight: 600; font-size: 11.5px; color: var(--ink-soft); }
 
   /* ---------- CTA ---------- */
   .cta { margin-top: auto; padding: 16px 40px 18px; background: var(--navy); color: #EEF3F9; overflow: hidden; }
@@ -196,21 +196,14 @@
 
   <section class="files">
     <div class="dir">CS &amp; TM <span class="arr">→</span> Search</div>
-    <article class="f">
-      <div class="card">
-        <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><path d="m21 33 7.5 7.5L44 25" fill="none" stroke="#004887" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>Agente Cross</div><span class="count">6 leads</span></div>
-        <div class="name">Paola Chocano</div>
-        <div class="num"><b>S/ 31,920</b><span>en leads enviados</span></div>
-      </div>
-    </article>
-    <article class="f">
+    <article class="f half">
       <div class="card">
         <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><path d="m21 33 7.5 7.5L44 25" fill="none" stroke="#004887" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>Agente Cross</div><span class="count">1 lead</span></div>
         <div class="name">Sandra Narro</div>
         <div class="num"><b>S/ 20,636</b><span>en leads enviados</span></div>
       </div>
     </article>
-    <article class="f">
+    <article class="f half">
       <div class="card">
         <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><path d="m21 33 7.5 7.5L44 25" fill="none" stroke="#004887" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>Agente Cross</div><span class="count">2 leads</span></div>
         <div class="name">Maria Paula Llerena</div>
@@ -228,13 +221,6 @@
     <article class="f">
       <div class="card">
         <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><path d="m21 33 7.5 7.5L44 25" fill="none" stroke="#004887" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>Agente Cross</div><span class="count">1 lead</span></div>
-        <div class="name">Paulo Stoll</div>
-        <div class="num"><b>S/ 12,600</b><span>en leads enviados</span></div>
-      </div>
-    </article>
-    <article class="f">
-      <div class="card">
-        <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><path d="m21 33 7.5 7.5L44 25" fill="none" stroke="#004887" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>Agente Cross</div><span class="count">1 lead</span></div>
         <div class="name">Paul Pérez</div>
         <div class="num"><b>S/ 11,000</b><span>en leads enviados</span></div>
       </div>
@@ -244,13 +230,6 @@
         <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><path d="m21 33 7.5 7.5L44 25" fill="none" stroke="#004887" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>Agente Cross</div><span class="count">1 lead</span></div>
         <div class="name">Gigi Mezones</div>
         <div class="num"><b>S/ 7,000</b><span>en leads enviados</span></div>
-      </div>
-    </article>
-    <article class="f">
-      <div class="card">
-        <div class="row1"><div class="agent"><svg viewBox="0 0 64 64"><use href="#hex" fill="#D8E8F5" stroke="#004887" stroke-width="3"/><path d="m21 33 7.5 7.5L44 25" fill="none" stroke="#004887" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>Agente Cross</div><span class="count">1 lead</span></div>
-        <div class="name">Sandra Cubas</div>
-        <div class="num"><b>S/ 5,932</b><span>en leads enviados</span></div>
       </div>
     </article>
     <article class="f">
