@@ -58,7 +58,7 @@ if (what === 'acumulado' || what === 'all') {
   const page = await browser.newPage({ viewport: { width: 794, height: 1123 }, deviceScaleFactor: 3 });
   await page.goto('file://' + path.join(here, 'flyer-acumulado-a4.html'));
   await page.evaluate(() => document.fonts.ready);
-  const fit = await page.evaluate(() => { const r = s => document.querySelector(s).getBoundingClientRect(); return { gap: Math.round(r('.cta').top - r('.road').bottom), bottom: Math.round(r('.cta').bottom) }; });
+  const fit = await page.evaluate(() => { const r = s => document.querySelector(s).getBoundingClientRect(); return { gap: Math.round(r('.cta').top - r('.files').bottom), bottom: Math.round(r('.cta').bottom) }; });
   await page.locator('.page').screenshot({ path: path.join(out, 'acumulado-a4.png') });
   await page.pdf({ path: path.join(out, 'acumulado-a4.pdf'), format: 'A4', printBackground: true, preferCSSPageSize: true });
   console.log('acumulado', JSON.stringify(fit));
