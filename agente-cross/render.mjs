@@ -48,7 +48,7 @@ if (what === 'octubre' || what === 'all') {
   const page = await browser.newPage({ viewport: { width: 794, height: 1123 }, deviceScaleFactor: 3 });
   await page.goto('file://' + path.join(here, 'flyer-octubre-a4.html'));
   await page.evaluate(() => document.fonts.ready);
-  const fit = await page.evaluate(() => { const r = s => document.querySelector(s).getBoundingClientRect(); return { gap: Math.round(r('.cta').top - r('.note').bottom), bottom: Math.round(r('.cta').bottom) }; });
+  const fit = await page.evaluate(() => { const r = s => document.querySelector(s).getBoundingClientRect(); return { gap: Math.round(r('.cta').top - r('.files').bottom), bottom: Math.round(r('.cta').bottom) }; });
   await page.locator('.page').screenshot({ path: path.join(out, 'octubre-a4.png') });
   await page.pdf({ path: path.join(out, 'octubre-a4.pdf'), format: 'A4', printBackground: true, preferCSSPageSize: true });
   console.log('octubre', JSON.stringify(fit));
